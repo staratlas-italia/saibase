@@ -1,0 +1,30 @@
+{
+  "name": "programs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/programs",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/programs",
+        "command": "anchor build"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/programs",
+        "command": "anchor test"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/programs/**/*.{ts,js}"]
+      }
+    }
+  },
+  "tags": []
+}

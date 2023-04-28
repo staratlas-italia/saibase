@@ -1,0 +1,51 @@
+name: ci
+'on':
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    # if: startsWith(github.event.ref, 'refs/tags/v')
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            discord_bot_token=${{secrets.DISCORD_BOT_TOKEN}}
+            features_endpoint=${{secrets.FEATURES_ENDPOINT}}
+            main_private_key=${{secrets.MAIN_PRIVATE_KEY}}
+            mongo_db_uri=${{secrets.MONGO_DB_URI}}
+            rpc_api_base_url=${{secrets.RPC_API_BASE_URL}}
+            sentry_url=${{secrets.SENTRY_URL}}
+            solscan_api_token=${{secrets.SOLSCAN_API_TOKEN}}
+          file: ./apps/patch-bot/Dockerfile
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/sai-bot:${{ github.sha }},${{ secrets.DOCKER_HUB_USERNAME }}/sai-bot:latest
+          platforms: linux/arm64
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

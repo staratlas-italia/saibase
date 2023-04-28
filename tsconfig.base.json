@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@saibase/configuration": ["libs/configuration/src/index.ts"],
+      "@saibase/errors": ["libs/errors/src/index.ts"],
+      "@saibase/fetch": ["libs/fetch/src/index.ts"],
+      "@saibase/logger": ["libs/logger/src/index.ts"],
+      "@saibase/solscan-api": ["libs/solscan-api/src/index.ts"],
+      "@saibase/star-atlas": ["libs/star-atlas/src/index.ts"],
+      "@saibase/web3": ["libs/web3/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
