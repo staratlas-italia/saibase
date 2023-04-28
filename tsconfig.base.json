@@ -18,6 +18,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "~/*": ["apps/frontend/src/*"],
       "@saibase/configuration": ["libs/configuration/src/index.ts"],
       "@saibase/errors": ["libs/errors/src/index.ts"],
       "@saibase/fetch": ["libs/fetch/src/index.ts"],

@@ -1,15 +1,10 @@
-import {
-  Err,
-  get,
-  Resp,
-  withDecoder,
-  withHeaders,
-} from '@saibase/fetch';
+import { createError } from '@saibase/errors';
+import { get, withDecoder, withHeaders } from '@saibase/fetch';
 import { PublicKey } from '@solana/web3.js';
-import { pipe } from 'fp-ts/function';
 import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
 import { apiResourcesUrl } from '../constants';
-import { playerResponseCodec, StarAtlasPlayer } from '../entities/player';
+import { StarAtlasPlayer, playerResponseCodec } from '../entities/player';
 
 const fetcher = (publicKey: PublicKey) =>
   pipe(
@@ -18,14 +13,17 @@ const fetcher = (publicKey: PublicKey) =>
     withHeaders({ 'Content-Type': 'application/json' })
   )(`${apiResourcesUrl}/players/${publicKey.toString()}`);
 
-export const fetchPlayer = (
-  publicKey: PublicKey
-): TE.TaskEither<Err, Resp<StarAtlasPlayer | null>> =>
+export const fetchPlayer = (publicKey: PublicKey) =>
   pipe(
     fetcher(publicKey),
-    TE.map(({ response, data }) =>
+    TE.chainW(({ response, data }) =>
       Object.keys(data).length === 0
-        ? { response, data: null }
-        : { response, data: data as StarAtlasPlayer }
-    )
+        ? TE.left(
+            createError('PlayerNotFound')(
+              `Cannot find player with publicKey ${publicKey.toString()}`
+            )
+          )
+        : TE.right({ response, data: data as StarAtlasPlayer })
+    ),
+    TE.mapLeft(({ type, error }) => createError(type)(error))
   );
