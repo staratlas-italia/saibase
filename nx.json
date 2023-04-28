@@ -3,7 +3,7 @@
   "npmScope": "saibase",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "YzY4OTlhZWEtNzYyYy00YjcwLThmOGYtZTgyNDEwY2FiODA4fHJlYWQtd3JpdGU="
@@ -37,7 +37,7 @@
     "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
   },
   "generators": {
-    "@nrwl/react": {
+    "@nx/react": {
       "application": {
         "babel": true
       },
@@ -45,7 +45,7 @@
         "unitTestRunner": "jest"
       }
     },
-    "@nrwl/next": {
+    "@nx/next": {
       "application": {
         "style": "styled-components",
         "linter": "eslint"
