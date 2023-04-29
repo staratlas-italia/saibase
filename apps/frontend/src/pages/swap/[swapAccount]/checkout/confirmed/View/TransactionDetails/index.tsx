@@ -1,10 +1,9 @@
-import { useMemo } from "react";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { useSwapStateAccount } from "~/components/SwapStateAccountGuard";
-import { useSwapProgramPrice } from "~/hooks/useSwapProgramPrice";
-import { Translation } from "~/i18n/Translation";
-import { useTranslation } from "~/i18n/useTranslation";
+import { Flex, Text } from '@saibase/uikit';
+import { useMemo } from 'react';
+import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
+import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
+import { Translation } from '~/i18n/Translation';
+import { useTranslation } from '~/i18n/useTranslation';
 
 const Item = ({ title, value }: { title: string; value: string }) => (
   <Flex justify="between">
@@ -21,23 +20,23 @@ export const TransactionDetails = () => {
   const { quantity, vaultCurrency } = useSwapStateAccount();
 
   const dateLabel = useTranslation(
-    "citizenship.checkout.confirmed.details.date.label"
+    'citizenship.checkout.confirmed.details.date.label'
   );
 
   const amountLabel = useTranslation(
-    "citizenship.checkout.confirmed.details.amount.label"
+    'citizenship.checkout.confirmed.details.amount.label'
   );
 
   const stateLabel = useTranslation(
-    "citizenship.checkout.confirmed.details.state.label"
+    'citizenship.checkout.confirmed.details.state.label'
   );
 
   const feeLabel = useTranslation(
-    "citizenship.checkout.confirmed.details.fee.label"
+    'citizenship.checkout.confirmed.details.fee.label'
   );
 
   const state = useTranslation(
-    "citizenship.checkout.confirmed.details.state.completed"
+    'citizenship.checkout.confirmed.details.state.completed'
   );
 
   const date = useMemo(() => new Date().toLocaleDateString(), []);

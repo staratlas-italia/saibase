@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
+import { Flex, Text } from '@saibase/uikit';
+import Link from 'next/link';
+import { Translation } from '~/i18n/Translation';
 
 export const Links = () => {
   return (

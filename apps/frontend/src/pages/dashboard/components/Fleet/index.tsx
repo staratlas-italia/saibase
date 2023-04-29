@@ -1,7 +1,7 @@
-import { EmptyView } from "~/components/EmptyView";
-import { Flex } from "~/components/layout/Flex";
-import { useFleet } from "~/hooks/useNullableFleet";
-import { Card } from "./components/Card";
+import { Flex } from '@saibase/uikit';
+import { EmptyView } from '~/components/EmptyView';
+import { useFleet } from '~/hooks/useNullableFleet';
+import { Card } from './components/Card';
 
 export const Fleet = () => {
   const fleet = useFleet();

@@ -1,9 +1,9 @@
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Header } from "~/components/layout/Header";
-import { Treasury } from "~/components/layout/Header/components/Treasury";
-import { EnlistBanner } from "~/views/Home/components/EnlistBanner";
-import { WelcomeBanner } from "~/views/Home/components/WelcomeBanner";
+import { Flex } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Header } from '~/components/layout/Header';
+import { Treasury } from '~/components/layout/Header/components/Treasury';
+import { EnlistBanner } from '~/views/Home/components/EnlistBanner';
+import { WelcomeBanner } from '~/views/Home/components/WelcomeBanner';
 
 export const HomePage = () => {
   return (

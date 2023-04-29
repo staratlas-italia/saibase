@@ -1,5 +1,5 @@
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
+import { Text } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
 
 type Props = {
   title: string;

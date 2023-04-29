@@ -18,7 +18,7 @@ export const loadNftMetadata = ({
   cluster = 'mainnet-beta',
   metaplex = Metaplex.make(connection, { cluster }),
   nft,
-  signal = new AbortController().signal,
+  signal = AbortSignal.timeout(5000),
 }: Param) =>
   pipe(
     O.fromNullable(nft),

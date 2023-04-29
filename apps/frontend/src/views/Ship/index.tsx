@@ -1,17 +1,16 @@
-import { ArrowLeftIcon } from "@heroicons/react/solid";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Container } from "~/components/layout/Container";
-import { Flex } from "~/components/layout/Flex";
-import { useShip } from "~/hooks/useShip";
-import { Translation } from "~/i18n/Translation";
-import { TranslationId } from "~/i18n/translations/types";
-import { useTranslation } from "~/i18n/useTranslation";
-import { getRoute } from "~/utils/getRoute";
-import { ShipAttributes } from "~/views/Ship/components/ShipAttributes";
-import { ShipPrices } from "~/views/Ship/components/ShipPrices";
+import { ArrowLeftIcon } from '@heroicons/react/solid';
+import { Flex, Text } from '@saibase/uikit';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Container } from '~/components/layout/Container';
+import { useShip } from '~/hooks/useShip';
+import { Translation } from '~/i18n/Translation';
+import { TranslationId } from '~/i18n/translations/types';
+import { useTranslation } from '~/i18n/useTranslation';
+import { getRoute } from '~/utils/getRoute';
+import { ShipAttributes } from '~/views/Ship/components/ShipAttributes';
+import { ShipPrices } from '~/views/Ship/components/ShipPrices';
 
 export const ShipPage = () => {
   const {
@@ -28,16 +27,16 @@ export const ShipPage = () => {
   const { locale } = useRouter();
 
   const componentsTranslation = useTranslation(
-    "Ships.Details.Components.title"
+    'Ships.Details.Components.title'
   );
-  const crewTranslation = useTranslation("Ships.Details.Crew.title");
-  const modulesTranslation = useTranslation("Ships.Details.Modules.title");
+  const crewTranslation = useTranslation('Ships.Details.Crew.title');
+  const modulesTranslation = useTranslation('Ships.Details.Modules.title');
 
   return (
     <Container>
       <Flex pt={8}>
         <BlurBackground direction="col" className="space-y-5" p={5}>
-          <Link href={getRoute("/ships")} locale={locale}>
+          <Link href={getRoute('/ships')} locale={locale}>
             <ArrowLeftIcon className="h-8 w-8 text-white" />
           </Link>
 
@@ -63,8 +62,8 @@ export const ShipPage = () => {
               {saleIsNotBegin ? (
                 <Text transform="uppercase" weight="medium">
                   <Translation
-                    id={"Ships.Details.saleDate"}
-                    values={{ date: saleDate?.toLocaleString() || "" }}
+                    id={'Ships.Details.saleDate'}
+                    values={{ date: saleDate?.toLocaleString() || '' }}
                   />
                 </Text>
               ) : (
@@ -86,7 +85,7 @@ export const ShipPage = () => {
                     id={
                       `Ships.Details.${name
                         ?.toLocaleLowerCase()
-                        ?.replace(/ /g, "_")}.description` as TranslationId
+                        ?.replace(/ /g, '_')}.description` as TranslationId
                     }
                     defaultMessage={description}
                   />

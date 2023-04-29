@@ -1,15 +1,15 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useCallback } from "react";
-import { Button, ButtonProps } from "~/components/controls/Button";
-import { useModal } from "~/contexts/ModalContext";
-import { Translation } from "~/i18n/Translation";
+import { Button, ButtonProps } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useCallback } from 'react';
+import { useModal } from '~/contexts/ModalContext';
+import { Translation } from '~/i18n/Translation';
 
 export const ConnectButton = ({
-  kind = "neutral",
+  kind = 'neutral',
 }: {
-  kind?: ButtonProps["kind"];
+  kind?: ButtonProps['kind'];
 }) => {
-  const { open } = useModal("wallet-modal");
+  const { open } = useModal('wallet-modal');
   const { wallet, connect, connected } = useWallet();
 
   const handleClick = useCallback(() => {

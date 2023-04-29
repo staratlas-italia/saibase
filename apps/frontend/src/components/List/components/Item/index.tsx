@@ -1,8 +1,5 @@
-import classNames from "classnames";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { ColorName } from "~/components/layout/Pane";
-import { iconRenderProp } from "~/types";
+import { ColorName, Flex, Text, iconRenderProp } from '@saibase/uikit';
+import classNames from 'classnames';
 
 export type ItemProps = {
   bordered?: boolean;
@@ -25,8 +22,8 @@ export const Item = ({
       justify="between"
       direction="col"
       lgDirection="row"
-      className={classNames(" border-gray-300 rounded-xl", {
-        "border-2": bordered,
+      className={classNames(' border-gray-300 rounded-xl', {
+        'border-2': bordered,
         [`border-${borderColor}`]: bordered && borderColor,
       })}
     >

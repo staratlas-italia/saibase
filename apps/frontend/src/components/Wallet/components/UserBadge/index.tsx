@@ -1,10 +1,8 @@
 import { CogIcon } from '@heroicons/react/outline';
 import { useWallet } from '@solana/wallet-adapter-react';
 
+import { Button, Flex, Text } from '@saibase/uikit';
 import styled from 'styled-components';
-import { Text } from '~/components/common/Text';
-import { Button } from '~/components/controls/Button';
-import { Flex } from '~/components/layout/Flex';
 import { Identicon } from '~/components/Wallet/components/UserBadge/Identicon';
 import { useModal } from '~/contexts/ModalContext';
 import { shortenAddress } from '~/utils/shortenAddress';

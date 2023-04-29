@@ -1,8 +1,5 @@
-import { PropsWithChildren } from "react";
-import { Loader } from "~/components/common/Loader";
-import { Text } from "~/components/common/Text";
-import { TextColor } from "~/components/common/Text/types";
-import { Flex } from "~/components/layout/Flex";
+import { Flex, Loader, Text, TextColor } from '@saibase/uikit';
+import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   color?: TextColor;
@@ -20,14 +17,14 @@ export const InfoRow = ({ color, loading, title, children }: Props) => {
               <Loader color="text-white" />
             </Flex>
           ) : (
-            children || "-"
+            children || '-'
           )}
         </Text>
         <Text
           weight="bold"
           transform="uppercase"
           size="sm"
-          color={color || "text-gray-300"}
+          color={color || 'text-gray-300'}
         >
           {title}
         </Text>

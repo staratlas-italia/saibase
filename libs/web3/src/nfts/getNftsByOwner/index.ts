@@ -11,6 +11,7 @@ type Param = {
   metaplex?: Metaplex;
   owner: PublicKey;
   signal?: AbortSignal;
+  metadataSignal?: AbortSignal;
 };
 
 export const getNftsByOwner = ({
@@ -18,6 +19,7 @@ export const getNftsByOwner = ({
   cluster = 'mainnet-beta',
   metaplex = Metaplex.make(connection, { cluster }),
   owner,
+  metadataSignal = AbortSignal.timeout(5000),
   signal = new AbortController().signal,
 }: Param) =>
   pipe(
@@ -33,7 +35,7 @@ export const getNftsByOwner = ({
     ),
     TE.chainW(
       TE.traverseArray((nft) =>
-        loadNftMetadata({ connection, metaplex, nft, signal })
+        loadNftMetadata({ connection, metaplex, nft, signal: metadataSignal })
       )
     )
   );

@@ -1,19 +1,17 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useState } from "react";
-import { useSignature } from "~/components/auth/AssertAuthenticated/useSignature";
-import { Loader } from "~/components/common/Loader";
-import { Redirect } from "~/components/common/Redirect";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Container } from "~/components/layout/Container";
-import { Flex } from "~/components/layout/Flex";
-import { Logo } from "~/components/layout/Header";
-import { Wallet } from "~/components/Wallet";
-import { useSelf } from "~/hooks/useNullableSelf";
-import { Translation } from "~/i18n/Translation";
-import { getDiscordSelf } from "~/network/discord";
-import { usePlayerStore } from "~/stores/usePlayerStore";
-import { getRoute, Routes } from "~/utils/getRoute";
+import { Flex, Loader, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useEffect, useState } from 'react';
+import { Wallet } from '~/components/Wallet';
+import { useSignature } from '~/components/auth/AssertAuthenticated/useSignature';
+import { Redirect } from '~/components/common/Redirect';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Container } from '~/components/layout/Container';
+import { Logo } from '~/components/layout/Header';
+import { useSelf } from '~/hooks/useNullableSelf';
+import { Translation } from '~/i18n/Translation';
+import { getDiscordSelf } from '~/network/discord';
+import { usePlayerStore } from '~/stores/usePlayerStore';
+import { Routes, getRoute } from '~/utils/getRoute';
 
 export const View = () => {
   const { publicKey } = useWallet();
@@ -23,18 +21,18 @@ export const View = () => {
   const linkDiscord = usePlayerStore((state) => state.linkDiscord);
 
   const [done, setDone] = useState(false);
-  const [pathname, setPathname] = useState("");
+  const [pathname, setPathname] = useState('');
 
   const signature = useSignature();
 
   useEffect(() => {
     const run = async () => {
       const parsedHash = new URLSearchParams(window.location.hash.substring(1));
-      const accessToken = parsedHash.get("access_token");
-      const error = parsedHash.get("error");
-      setPathname(parsedHash.get("state") || "");
+      const accessToken = parsedHash.get('access_token');
+      const error = parsedHash.get('error');
+      setPathname(parsedHash.get('state') || '');
 
-      if (!accessToken || error === "access_denied") {
+      if (!accessToken || error === 'access_denied') {
         setDone(true);
 
         return;
@@ -63,7 +61,7 @@ export const View = () => {
   }, [publicKey, linkDiscord, signature]);
 
   if (self.discordId || done) {
-    const route = getRoute(pathname as Routes) || getRoute("/dashboard");
+    const route = getRoute(pathname as Routes) || getRoute('/dashboard');
 
     return <Redirect replace to={route} />;
   }

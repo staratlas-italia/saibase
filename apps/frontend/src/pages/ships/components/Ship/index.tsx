@@ -1,11 +1,9 @@
 import { StarAtlasNft } from '@saibase/star-atlas';
+import { Button, Flex, TextColor } from '@saibase/uikit';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { TextColor } from '~/components/common/Text/types';
-import { Button } from '~/components/controls/Button';
-import { Flex } from '~/components/layout/Flex';
 import { MaxWidth } from '~/components/layout/MaxWidth';
 import { Translation } from '~/i18n/Translation';
 import { isFirefox } from '~/utils/isFirefox';

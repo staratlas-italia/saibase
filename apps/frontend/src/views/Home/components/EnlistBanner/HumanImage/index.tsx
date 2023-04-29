@@ -1,13 +1,13 @@
-import Image from "next/image";
-import styled from "styled-components";
-import { Flex } from "~/components/layout/Flex";
+import { Flex } from '@saibase/uikit';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 export const Container = styled(Flex)`
   position: relative;
 `;
 
 const Human = styled(Image).attrs({
-  src: "/images/human.webp",
+  src: '/images/human.webp',
 })`
   overflow: hidden;
   max-width: 450px;

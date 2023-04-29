@@ -1,5 +1,4 @@
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
+import { Flex, Text } from '@saibase/uikit';
 
 type Param = {
   name: string;

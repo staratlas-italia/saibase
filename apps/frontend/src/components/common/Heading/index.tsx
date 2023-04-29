@@ -1,9 +1,8 @@
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { TranslationId } from "~/i18n/translations/types";
-import { StrictReactNode } from "~/types";
+import { Flex, Text } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { TranslationId } from '~/i18n/translations/types';
+import { StrictReactNode } from '~/types';
 
 type Props = { title: TranslationId; rightContent?: StrictReactNode };
 

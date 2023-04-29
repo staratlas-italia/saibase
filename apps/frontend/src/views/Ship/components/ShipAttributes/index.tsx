@@ -1,7 +1,6 @@
-import { InfoRow } from "~/components/common/Info";
-import { Text } from "~/components/common/Text";
-import { Flex, FlexProps } from "~/components/layout/Flex";
-import { ShipSlot } from "~/types";
+import { Flex, FlexProps, Text } from '@saibase/uikit';
+import { InfoRow } from '~/components/common/Info';
+import { ShipSlot } from '~/types';
 
 type Props = FlexProps & { title: string; attrs?: ShipSlot[] };
 

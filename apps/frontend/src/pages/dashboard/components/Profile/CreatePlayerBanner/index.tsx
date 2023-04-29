@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
+import { Button, Flex, Text } from '@saibase/uikit';
+import Link from 'next/link';
+import { Translation } from '~/i18n/Translation';
 
 export const CreatePlayerBanner = () => {
   return (

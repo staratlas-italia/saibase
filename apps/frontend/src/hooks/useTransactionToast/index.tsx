@@ -1,16 +1,15 @@
-import { captureException } from "@sentry/nextjs";
+import { Flex, Text } from '@saibase/uikit';
+import { captureException } from '@sentry/nextjs';
 import {
   WalletNotConnectedError,
   WalletSignTransactionError,
-} from "@solana/wallet-adapter-base";
-import { useConnection } from "@solana/wallet-adapter-react";
-import Link from "next/link";
-import { useCallback } from "react";
-import { toast } from "react-toastify";
-import { useCluster } from "~/components/ClusterProvider";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { useTranslation } from "~/i18n/useTranslation";
+} from '@solana/wallet-adapter-base';
+import { useConnection } from '@solana/wallet-adapter-react';
+import Link from 'next/link';
+import { useCallback } from 'react';
+import { toast } from 'react-toastify';
+import { useCluster } from '~/components/ClusterProvider';
+import { useTranslation } from '~/i18n/useTranslation';
 
 type Options = {
   pendingMessage?: string;
@@ -22,15 +21,15 @@ export const useTransactionToast = () => {
   const { connection } = useConnection();
 
   const successTranslation = useTranslation(
-    "swap.checkout.transaction.success"
+    'swap.checkout.transaction.success'
   );
 
   const pendingTranslation = useTranslation(
-    "swap.checkout.transaction.pending"
+    'swap.checkout.transaction.pending'
   );
 
-  const errorTranslation = useTranslation("swap.checkout.transaction.error");
-  const solscanTranslation = useTranslation("generic.solscan.check");
+  const errorTranslation = useTranslation('swap.checkout.transaction.error');
+  const solscanTranslation = useTranslation('generic.solscan.check');
 
   return useCallback(
     async (promiseFn: () => Promise<string>, opts?: Options) => {
@@ -42,7 +41,7 @@ export const useTransactionToast = () => {
       const showErrorToast = () => {
         toast.update(id, {
           autoClose: 3000,
-          type: "error",
+          type: 'error',
           isLoading: false,
           render: errorTranslation,
         });
@@ -64,12 +63,12 @@ export const useTransactionToast = () => {
               return;
             }
 
-            if (status.value?.confirmationStatus !== "processed") {
+            if (status.value?.confirmationStatus !== 'processed') {
               clearInterval(interval);
 
               toast.update(id, {
                 autoClose: 3000,
-                type: signature ? "success" : "error",
+                type: signature ? 'success' : 'error',
                 isLoading: false,
                 render: () => {
                   if (!signature) {
@@ -84,7 +83,7 @@ export const useTransactionToast = () => {
 
                       <Link
                         href={`https://solscan.io/tx/${signature}${
-                          cluster ? `?cluster=${cluster}` : ""
+                          cluster ? `?cluster=${cluster}` : ''
                         }`}
                         target="_blank"
                       >
@@ -102,7 +101,7 @@ export const useTransactionToast = () => {
               });
             }
           } catch (e) {
-            captureException(e, { level: "error" });
+            captureException(e, { level: 'error' });
 
             clearInterval(interval);
             showErrorToast();

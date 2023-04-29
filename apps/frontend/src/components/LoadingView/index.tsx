@@ -1,8 +1,7 @@
-import { Loader } from "~/components/common/Loader";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Translation } from "~/i18n/Translation";
-import { GetTranslationValues, TranslationId } from "~/i18n/translations/types";
+import { Loader, Text } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { GetTranslationValues, TranslationId } from '~/i18n/translations/types';
 
 type Props<T> = {
   title?: T;

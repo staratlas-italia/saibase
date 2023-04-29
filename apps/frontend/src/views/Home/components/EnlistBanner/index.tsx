@@ -1,10 +1,8 @@
-import Link from "next/link";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { HumanImage } from "~/views/Home/components/EnlistBanner/HumanImage";
+import { Button, Flex, Text } from '@saibase/uikit';
+import Link from 'next/link';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { HumanImage } from '~/views/Home/components/EnlistBanner/HumanImage';
 
 export const EnlistBanner = () => (
   <Flex

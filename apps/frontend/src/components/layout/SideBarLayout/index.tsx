@@ -1,14 +1,14 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import React, { PropsWithChildren } from "react";
-import { BaseLayout } from "~/components/layout/BaseLayout";
-import { Container } from "~/components/layout/Container";
-import { Flex } from "~/components/layout/Flex";
-import { Header } from "~/components/layout/Header";
-import { SelfRetriever } from "~/components/SelfRetriever";
-import { Provider } from "./components/Provider";
-import { SideBar } from "./components/SideBar";
-import { SidebarToggle } from "./components/SidebarToggle";
-import { TokenAmounts } from "./components/TokenAmounts";
+import { Flex } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import React, { PropsWithChildren } from 'react';
+import { SelfRetriever } from '~/components/SelfRetriever';
+import { BaseLayout } from '~/components/layout/BaseLayout';
+import { Container } from '~/components/layout/Container';
+import { Header } from '~/components/layout/Header';
+import { Provider } from './components/Provider';
+import { SideBar } from './components/SideBar';
+import { SidebarToggle } from './components/SidebarToggle';
+import { TokenAmounts } from './components/TokenAmounts';
 
 export const SideBarLayout = React.memo(
   ({ children }: PropsWithChildren<unknown>) => {
@@ -43,4 +43,4 @@ export const SideBarLayout = React.memo(
   }
 );
 
-SideBarLayout.displayName = "SideBarLayout";
+SideBarLayout.displayName = 'SideBarLayout';

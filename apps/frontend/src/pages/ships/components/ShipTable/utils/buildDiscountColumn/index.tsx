@@ -1,5 +1,4 @@
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
+import { Flex, Text } from '@saibase/uikit';
 
 type Param = {
   name: string;
@@ -21,7 +20,7 @@ export const buildDiscountColumn = ({
       <Text
         align="center"
         weight="medium"
-        color={cell.value > 0 ? "text-emerald-300" : "text-red-300"}
+        color={cell.value > 0 ? 'text-emerald-300' : 'text-red-300'}
         className="px-4 py-2"
       >
         {cell.value ? (
@@ -31,7 +30,7 @@ export const buildDiscountColumn = ({
             {suffix || null}
           </>
         ) : (
-          "-"
+          '-'
         )}
       </Text>
     </Flex>

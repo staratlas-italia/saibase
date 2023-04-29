@@ -1,20 +1,18 @@
-import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
-import Link from "next/link";
-import { useCallback } from "react";
-import { toast } from "react-toastify";
+import { Button, Flex, Text } from '@saibase/uikit';
+import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
+import Link from 'next/link';
+import { useCallback } from 'react';
+import { toast } from 'react-toastify';
 import {
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
   TOKEN_SWAP_STATE_ACCOUNTS,
-} from "~/common/constants";
-import { useCluster } from "~/components/ClusterProvider";
-import { InfoRow } from "~/components/common/Info";
-import { Price } from "~/components/common/Price";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { Flex } from "~/components/layout/Flex";
-import { useTokenBalance } from "~/hooks/useTokenBalance";
-import { StateAccount } from "~/pages/admin/View";
-import { withdrawProceeds } from "~/programs";
+} from '~/common/constants';
+import { useCluster } from '~/components/ClusterProvider';
+import { InfoRow } from '~/components/common/Info';
+import { Price } from '~/components/common/Price';
+import { useTokenBalance } from '~/hooks/useTokenBalance';
+import { StateAccount } from '~/pages/admin/View';
+import { withdrawProceeds } from '~/programs';
 
 type Props = {
   account: StateAccount;
@@ -47,7 +45,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
   const addressString = account.publicKey.toString();
 
   const settings = (
-    cluster === "devnet"
+    cluster === 'devnet'
       ? DEVNET_TOKEN_SWAP_STATE_ACCOUNTS
       : TOKEN_SWAP_STATE_ACCOUNTS
   )[addressString];
@@ -72,7 +70,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
         account.publicKey
       );
 
-      toast.success("Done.");
+      toast.success('Done.');
     } catch (e) {
       toast.error(e.message);
     }
@@ -84,7 +82,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
         <Flex direction="col" className="space-y-3">
           <InfoRow title="Swap">
             <Text color="text-white">
-              {settings?.name.toUpperCase() || addressString} /{" "}
+              {settings?.name.toUpperCase() || addressString} /{' '}
               {settings?.vaultCurrency}
             </Text>
           </InfoRow>
@@ -92,7 +90,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
           <Flex className="space-x-3">
             <Link
               href={`https://solscan.io/account/${account.account.vault.toString()}${
-                cluster ? `?cluster=${cluster}` : ""
+                cluster ? `?cluster=${cluster}` : ''
               }`}
               target="_blank"
             >
@@ -109,7 +107,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
 
             <Link
               href={`https://solscan.io/account/${account.account.proceedsVault.toString()}${
-                cluster ? `?cluster=${cluster}` : ""
+                cluster ? `?cluster=${cluster}` : ''
               }`}
               target="_blank"
             >
@@ -154,7 +152,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
 
         <Flex direction="col">
           <Button loading={loading} onClick={onToggle}>
-            {account.account.active ? "Disable" : "Enable"}
+            {account.account.active ? 'Disable' : 'Enable'}
           </Button>
 
           <Flex pt={3}>

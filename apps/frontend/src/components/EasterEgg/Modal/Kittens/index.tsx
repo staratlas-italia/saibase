@@ -1,13 +1,11 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { shuffle } from "lodash";
-import md5 from "md5";
-import { useCallback, useMemo, useState } from "react";
-import { toast } from "react-toastify";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { Flex } from "~/components/layout/Flex";
-import { api } from "~/network/api";
-import { getApiRoute } from "~/utils/getRoute";
+import { Button, Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { shuffle } from 'lodash';
+import md5 from 'md5';
+import { useCallback, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
+import { api } from '~/network/api';
+import { getApiRoute } from '~/utils/getRoute';
 
 type Props = {
   onComplete: () => void;
@@ -35,7 +33,7 @@ export const Kittens = ({ onComplete }: Props) => {
     );
 
     const result = await api.post<{ success: boolean }>(
-      getApiRoute("/api/kittens"),
+      getApiRoute('/api/kittens'),
       {
         body: {
           publicKey: publicKey.toString(),
@@ -51,7 +49,7 @@ export const Kittens = ({ onComplete }: Props) => {
       return;
     }
 
-    toast.error("Oops...Wrong answer");
+    toast.error('Oops...Wrong answer');
   }, [onComplete, publicKey, selectedOrder]);
 
   const handleSelect = useCallback(

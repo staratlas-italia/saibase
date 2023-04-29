@@ -1,16 +1,15 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { SignatureRefresher } from "~/components/auth/AssertAuthenticated/SignatureRefresher";
-import { Redirect } from "~/components/common/Redirect";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Wallet } from "~/components/Wallet";
-import { Translation } from "~/i18n/Translation";
-import { useAuthStore } from "~/stores/useAuthStore";
-import { StrictReactNode } from "~/types";
-import { getProofMessage } from "~/utils/getProofMessage";
-import { Routes } from "~/utils/getRoute";
-import { isSignatureValid } from "~/utils/isSignatureValid";
+import { Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { Wallet } from '~/components/Wallet';
+import { SignatureRefresher } from '~/components/auth/AssertAuthenticated/SignatureRefresher';
+import { Redirect } from '~/components/common/Redirect';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { useAuthStore } from '~/stores/useAuthStore';
+import { StrictReactNode } from '~/types';
+import { getProofMessage } from '~/utils/getProofMessage';
+import { Routes } from '~/utils/getRoute';
+import { isSignatureValid } from '~/utils/isSignatureValid';
 
 type Props = {
   adminOnly?: boolean;
@@ -22,7 +21,7 @@ type Props = {
 export const AssertAuthenticated = ({
   adminOnly,
   children,
-  redirectUri = "/dashboard",
+  redirectUri = '/dashboard',
   fallback = <SignatureRefresher />,
 }: Props) => {
   const isAdmin = useAuthStore((s) => s.isAdmin);

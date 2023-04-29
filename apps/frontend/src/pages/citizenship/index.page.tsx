@@ -1,26 +1,25 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { appendQueryParams } from "~/utils/appendQueryParams";
-import { fillUrlParameters } from "~/utils/fillUrlParameters";
-import { getRoute } from "~/utils/getRoute";
-import { useFactionAccounts } from "./useFactionAccounts";
+import { Flex, Text } from '@saibase/uikit';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { appendQueryParams } from '~/utils/appendQueryParams';
+import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { getRoute } from '~/utils/getRoute';
+import { useFactionAccounts } from './useFactionAccounts';
 
 const FactionBlock = styled(BlurBackground).attrs({
   p: 5,
-  direction: "col",
+  direction: 'col',
   className:
-    "overflow-hidden md:overflow-visible cursor-pointer max-w-md w-full aspect-square md:aspect-auto",
+    'overflow-hidden md:overflow-visible cursor-pointer max-w-md w-full aspect-square md:aspect-auto',
 })`
   position: relative;
 `;
 
 const FactionSymbol = styled(Flex).attrs({
-  direction: "col",
+  direction: 'col',
 })`
   position: absolute;
   bottom: 32px;
@@ -29,7 +28,7 @@ const FactionSymbol = styled(Flex).attrs({
 
 const FactionImage = styled.img.attrs({
   className:
-    "md:opacity-60 md:hover:opacity-100 transition-all md:hover:scale-110",
+    'md:opacity-60 md:hover:opacity-100 transition-all md:hover:scale-110',
 })``;
 
 const Citizenship = () => {
@@ -59,7 +58,7 @@ const Citizenship = () => {
           onClick={() =>
             router.push(
               appendQueryParams(
-                fillUrlParameters(getRoute("/swap/:swapAccount"), {
+                fillUrlParameters(getRoute('/swap/:swapAccount'), {
                   swapAccount: accounts.mud,
                 }),
                 query
@@ -88,7 +87,7 @@ const Citizenship = () => {
           onClick={() =>
             router.push(
               appendQueryParams(
-                fillUrlParameters(getRoute("/swap/:swapAccount"), {
+                fillUrlParameters(getRoute('/swap/:swapAccount'), {
                   swapAccount: accounts.ustur,
                 }),
                 query
@@ -117,7 +116,7 @@ const Citizenship = () => {
           onClick={() =>
             router.push(
               appendQueryParams(
-                fillUrlParameters(getRoute("/swap/:swapAccount"), {
+                fillUrlParameters(getRoute('/swap/:swapAccount'), {
                   swapAccount: accounts.oni,
                 }),
                 query

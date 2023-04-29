@@ -1,10 +1,9 @@
-import classNames from "classnames";
-import { FormattedNumber } from "react-intl";
-import styled from "styled-components";
-import { Text, TextProps } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { Currency } from "~/types";
-import { isNullOrUndefined } from "~/utils/isNullOrUndefined";
+import { Flex, Text, TextProps } from '@saibase/uikit';
+import classNames from 'classnames';
+import { FormattedNumber } from 'react-intl';
+import styled from 'styled-components';
+import { Currency } from '~/types';
+import { isNullOrUndefined } from '~/utils/isNullOrUndefined';
 
 type Props = TextProps & {
   inverse?: boolean;
@@ -22,7 +21,7 @@ const CurrencyImage = styled.img<P>`
 `;
 
 export const Price = ({
-  currency = "USDC",
+  currency = 'USDC',
   decimals = 2,
   small,
   value,
@@ -31,11 +30,11 @@ export const Price = ({
 }: Props) => {
   return (
     <Flex
-      direction={inverse ? "row-reverse" : "row"}
+      direction={inverse ? 'row-reverse' : 'row'}
       as="span"
       align="center"
-      className={classNames("space-x-1", {
-        "space-x-reverse": inverse,
+      className={classNames('space-x-1', {
+        'space-x-reverse': inverse,
       })}
     >
       <Text {...props}>
@@ -46,10 +45,10 @@ export const Price = ({
             maximumFractionDigits={decimals}
           />
         ) : (
-          "-"
+          '-'
         )}
       </Text>
-      {!isNullOrUndefined(value) && currency !== "NONE" && (
+      {!isNullOrUndefined(value) && currency !== 'NONE' && (
         <CurrencyImage
           small={small}
           src={`/images/currencies/${currency.toLowerCase()}_symbol.png`}

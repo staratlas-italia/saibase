@@ -1,8 +1,8 @@
+import { Button } from '@saibase/uikit';
 import { captureException } from '@sentry/nextjs';
 import { WalletSignTransactionError } from '@solana/wallet-adapter-base';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useCallback } from 'react';
-import { Button } from '~/components/controls/Button';
 import { useBadges } from '~/hooks/useNullableBadges';
 import { useTransactionToast } from '~/hooks/useTransactionToast';
 import { Translation } from '~/i18n/Translation';

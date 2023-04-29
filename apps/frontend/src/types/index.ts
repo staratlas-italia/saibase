@@ -108,16 +108,10 @@ export type NormalizedScoreVarsShipInfo = {
 
 export type Currency = 'ATLAS' | 'POLIS' | 'USDC' | 'NONE';
 
-export type iconRenderProp = (props: {
-  className: string;
-}) => JSX.Element | null;
-
 export type AmmoMint = typeof AMMO_TOKEN_MINT_ID;
 export type FoodMint = typeof FOOD_TOKEN_MINT_ID;
 export type FuelMint = typeof FUEL_TOKEN_MINT_ID;
 export type ToolMint = typeof TOOL_TOKEN_MINT_ID;
-
-export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type ResourceMint = AmmoMint | FoodMint | FuelMint | ToolMint;
 

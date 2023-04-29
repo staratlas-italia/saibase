@@ -1,8 +1,19 @@
 const colors = require('tailwindcss/colors');
+const { createGlobPatternsForDependencies } = require('@nx/next/tailwind');
+const { join } = require('path');
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['apps/frontend/src/**/*.{js,ts,jsx,tsx,mdx}'],
+const tailwindConfig = {
+  content: [
+    join(
+      __dirname,
+      '{src,pages,components}/**/*!(*.stories|*.spec).{tsx,html}'
+    ),
+    // Adding ts files to the glob
+    ...createGlobPatternsForDependencies(__dirname).map(
+      (path) => `${path.slice(0, -1)},ts}`
+    ),
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -18,3 +29,5 @@ module.exports = {
   },
   plugins: [],
 };
+
+module.exports = tailwindConfig;

@@ -1,28 +1,28 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Text } from "~/components/common/Text";
+import { Text } from '@saibase/uikit';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export const LocaleSelector = () => {
   const { locale, asPath } = useRouter();
 
   return (
     <div className="space-x-5">
-      <Link href={asPath} locale={locale === "it" ? "en" : "it"}>
+      <Link href={asPath} locale={locale === 'it' ? 'en' : 'it'}>
         <Text
           color="text-white"
           size="2xl"
           transform="uppercase"
-          weight={locale === "it" ? "bold" : "medium"}
+          weight={locale === 'it' ? 'bold' : 'medium'}
         >
           IT
         </Text>
       </Link>
-      <Link href={asPath} locale={locale === "it" ? "en" : "it"}>
+      <Link href={asPath} locale={locale === 'it' ? 'en' : 'it'}>
         <Text
           color="text-white"
           size="2xl"
           transform="uppercase"
-          weight={locale === "en" ? "bold" : "medium"}
+          weight={locale === 'en' ? 'bold' : 'medium'}
         >
           EN
         </Text>

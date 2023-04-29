@@ -1,17 +1,16 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { BadgesRetriever } from "~/components/BadgesRetriever";
-import { Heading } from "~/components/common/Heading";
-import { Text } from "~/components/common/Text";
-import { FleetRetriever } from "~/components/FleetRetriever";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { LoadingView } from "~/components/LoadingView";
-import { SelfRetriever } from "~/components/SelfRetriever";
-import { Translation } from "~/i18n/Translation";
-import { Badges } from "~/pages/dashboard/components/Badges";
-import { Fleet } from "../Fleet";
-import { Profile } from "../Profile";
-import { ClaimAll } from "./ClaimAll";
+import { Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { BadgesRetriever } from '~/components/BadgesRetriever';
+import { FleetRetriever } from '~/components/FleetRetriever';
+import { LoadingView } from '~/components/LoadingView';
+import { SelfRetriever } from '~/components/SelfRetriever';
+import { Heading } from '~/components/common/Heading';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { Badges } from '~/pages/dashboard/components/Badges';
+import { Fleet } from '../Fleet';
+import { Profile } from '../Profile';
+import { ClaimAll } from './ClaimAll';
 
 export const View = () => {
   const { wallet, connected } = useWallet();

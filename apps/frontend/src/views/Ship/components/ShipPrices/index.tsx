@@ -1,11 +1,10 @@
-import { useMemo } from "react";
-import { InfoRow } from "~/components/common/Info";
-import { Price } from "~/components/common/Price";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { useAtlasPrice } from "~/hooks/useAtlasPrice";
-import { useEntityBestPrices } from "~/hooks/useEntityBestPrices";
-import { useEntityVwapPrice } from "~/hooks/useEntityVwapPrice";
+import { Flex, Text } from '@saibase/uikit';
+import { useMemo } from 'react';
+import { InfoRow } from '~/components/common/Info';
+import { Price } from '~/components/common/Price';
+import { useAtlasPrice } from '~/hooks/useAtlasPrice';
+import { useEntityBestPrices } from '~/hooks/useEntityBestPrices';
+import { useEntityVwapPrice } from '~/hooks/useEntityVwapPrice';
 
 export const ShipPrices = () => {
   const vwap = useEntityVwapPrice();
@@ -24,7 +23,7 @@ export const ShipPrices = () => {
     bestBidPrice: bestBidPriceAtlas,
     avgPrice: atlasPrice,
     loading: atlasLoading,
-  } = useEntityBestPrices("ATLAS");
+  } = useEntityBestPrices('ATLAS');
 
   const priceVsVwapDiscount = useMemo(() => {
     if (!price || !vwap) return null;
@@ -63,11 +62,11 @@ export const ShipPrices = () => {
           <Text
             as="span"
             color={
-              priceVsVwapDiscount > 0 ? "text-emerald-300" : "text-red-300"
+              priceVsVwapDiscount > 0 ? 'text-emerald-300' : 'text-red-300'
             }
           >
-            {Math.abs(priceVsVwapDiscount).toFixed(2)}%{" "}
-            {priceVsVwapDiscount > 0 ? "Discount" : "Premium"}
+            {Math.abs(priceVsVwapDiscount).toFixed(2)}%{' '}
+            {priceVsVwapDiscount > 0 ? 'Discount' : 'Premium'}
           </Text>
         )}
       </InfoRow>
@@ -89,11 +88,11 @@ export const ShipPrices = () => {
           <Text
             as="span"
             color={
-              priceVsAtlasDiscount > 0 ? "text-emerald-300" : "text-red-300"
+              priceVsAtlasDiscount > 0 ? 'text-emerald-300' : 'text-red-300'
             }
           >
-            {Math.abs(priceVsAtlasDiscount).toFixed(2)}%{" "}
-            {priceVsAtlasDiscount > 0 ? "Discount" : "Premium"}
+            {Math.abs(priceVsAtlasDiscount).toFixed(2)}%{' '}
+            {priceVsAtlasDiscount > 0 ? 'Discount' : 'Premium'}
           </Text>
         )}
       </InfoRow>

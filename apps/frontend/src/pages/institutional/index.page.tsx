@@ -1,22 +1,21 @@
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { appendQueryParams } from "~/utils/appendQueryParams";
-import { fillUrlParameters } from "~/utils/fillUrlParameters";
-import { getRoute } from "~/utils/getRoute";
-import { useTutorAccounts } from "./useTutorAccounts";
+import { Flex, Text } from '@saibase/uikit';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import { Translation } from '~/i18n/Translation';
+import { appendQueryParams } from '~/utils/appendQueryParams';
+import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { getRoute } from '~/utils/getRoute';
+import { useTutorAccounts } from './useTutorAccounts';
 
 const BadgeBlock = styled(Flex).attrs({
   className:
-    "overflow-hidden cursor-pointer max-w-md w-full rounded-2xl transition-all md:hover:scale-105",
+    'overflow-hidden cursor-pointer max-w-md w-full rounded-2xl transition-all md:hover:scale-105',
 })`
   position: relative;
 `;
 
 const TitleWrapper = styled(Flex).attrs({
-  className: "bg-white overflow-hidden divide-y",
+  className: 'bg-white overflow-hidden divide-y',
 })``;
 
 const numberFormatter = new Intl.NumberFormat();
@@ -45,7 +44,7 @@ const Tutor = () => {
         justify="center"
         p={8}
       >
-        {(["s", "m", "l"] as const).map((size) => {
+        {(['s', 'm', 'l'] as const).map((size) => {
           const account = accounts[size];
           const state = states[account];
           const quantity = numberFormatter.format(state?.quantity || 0);
@@ -57,7 +56,7 @@ const Tutor = () => {
               onClick={() =>
                 router.push(
                   appendQueryParams(
-                    fillUrlParameters(getRoute("/swap/:swapAccount"), {
+                    fillUrlParameters(getRoute('/swap/:swapAccount'), {
                       swapAccount: account,
                     }),
                     query
@@ -76,7 +75,7 @@ const Tutor = () => {
                 <Flex direction="col">
                   <Flex direction="col" py={4} px={4} className="md:py-3">
                     <Text size="3xl" weight="semibold">
-                      {state?.name || "Unknown"}
+                      {state?.name || 'Unknown'}
                     </Text>
 
                     <Flex pt={2}>
@@ -109,7 +108,7 @@ const Tutor = () => {
                       <li>
                         <Translation
                           id="tutor.citizenship.badge"
-                          values={{ quantity: "1" }}
+                          values={{ quantity: '1' }}
                         />
                         *
                       </li>
@@ -164,7 +163,7 @@ const Tutor = () => {
 
                           <Flex pt={3} direction="col">
                             <Text size="xs" color="text-gray-500">
-                              <Translation id="tutor.shares.description.0" />{" "}
+                              <Translation id="tutor.shares.description.0" />{' '}
                               <b>
                                 <Translation
                                   id="tutor.badgeSelector.pieces"
@@ -175,20 +174,20 @@ const Tutor = () => {
                                     ),
                                   }}
                                 />
-                              </b>{" "}
+                              </b>{' '}
                               <Translation id="tutor.shares.description.1" />
                               {!!state.discounts
                                 .discountRelativeToPreviousBundle && (
                                 <>
-                                  {" "}
-                                  <Translation id="tutor.shares.description.2" />{" "}
+                                  {' '}
+                                  <Translation id="tutor.shares.description.2" />{' '}
                                   <b>
                                     {
                                       state.discounts
                                         .discountRelativeToPreviousBundle
                                     }
                                     %
-                                  </b>{" "}
+                                  </b>{' '}
                                   <Translation id="tutor.shares.description.3" />
                                 </>
                               )}

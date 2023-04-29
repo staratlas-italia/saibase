@@ -1,12 +1,11 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { appendQueryParams } from "~/utils/appendQueryParams";
-import { MenuItem } from "../SideBar/types";
-import { getMenuItems } from "./getMenuItems";
+import { Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { appendQueryParams } from '~/utils/appendQueryParams';
+import { MenuItem } from '../SideBar/types';
+import { getMenuItems } from './getMenuItems';
 
 export const SideBarContent = () => {
   const { publicKey } = useWallet();
@@ -40,7 +39,7 @@ export const SideBarContent = () => {
               item.route,
               query as Record<string, string | number>
             )}
-            target={item.external ? "_blank" : undefined}
+            target={item.external ? '_blank' : undefined}
           >
             <Flex
               align="center"

@@ -18,14 +18,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["apps/frontend/src/*"],
       "@saibase/configuration": ["libs/configuration/src/index.ts"],
       "@saibase/errors": ["libs/errors/src/index.ts"],
       "@saibase/fetch": ["libs/fetch/src/index.ts"],
       "@saibase/logger": ["libs/logger/src/index.ts"],
+      "@saibase/uikit": ["libs/uikit/src/index.ts"],
       "@saibase/solscan-api": ["libs/solscan-api/src/index.ts"],
       "@saibase/star-atlas": ["libs/star-atlas/src/index.ts"],
-      "@saibase/web3": ["libs/web3/src/index.ts"]
+      "@saibase/web3": ["libs/web3/src/index.ts"],
+      "~/*": ["apps/frontend/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

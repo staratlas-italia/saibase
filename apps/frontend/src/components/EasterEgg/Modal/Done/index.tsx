@@ -1,11 +1,10 @@
-import { CheckCircleIcon } from "@heroicons/react/solid";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useState } from "react";
-import Confetti from "react-dom-confetti";
-import { useCluster } from "~/components/ClusterProvider";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { usePlayerStore } from "~/stores/usePlayerStore";
+import { CheckCircleIcon } from '@heroicons/react/solid';
+import { Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useEffect, useState } from 'react';
+import Confetti from 'react-dom-confetti';
+import { useCluster } from '~/components/ClusterProvider';
+import { usePlayerStore } from '~/stores/usePlayerStore';
 
 const confettiConfig = {
   angle: 90,
@@ -15,8 +14,8 @@ const confettiConfig = {
   dragFriction: 0.11,
   duration: 3000,
   stagger: 3,
-  width: "10px",
-  height: "10px",
+  width: '10px',
+  height: '10px',
 };
 
 export const EasterEggDone = () => {

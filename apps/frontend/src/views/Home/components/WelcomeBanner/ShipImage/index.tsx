@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Flex } from "~/components/layout/Flex";
+import { Flex } from '@saibase/uikit';
+import styled from 'styled-components';
 
 const BannerContainer = styled(Flex)`
   position: relative;
@@ -13,11 +13,11 @@ const SpaceBackground = styled(Flex)`
   margin-right: auto;
   width: 350px;
   height: 350px;
-  background-image: url("images/space.webp");
+  background-image: url('images/space.webp');
 `;
 
 const Ship = styled.img.attrs({
-  src: "/images/ship.webp",
+  src: '/images/ship.webp',
 })`
   min-width: 400px;
   max-width: 450px;

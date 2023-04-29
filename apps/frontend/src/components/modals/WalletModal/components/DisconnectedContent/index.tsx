@@ -1,12 +1,11 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import Image from "next/image";
-import { Button } from "~/components/controls/Button";
-import { Flex } from "~/components/layout/Flex";
-import { useModal } from "~/contexts/ModalContext";
-import { Translation } from "~/i18n/Translation";
+import { Button, Flex } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import Image from 'next/image';
+import { useModal } from '~/contexts/ModalContext';
+import { Translation } from '~/i18n/Translation';
 
 export const DisconnectedContent = () => {
-  const { close } = useModal("wallet-modal");
+  const { close } = useModal('wallet-modal');
   const { select, wallets } = useWallet();
 
   return (

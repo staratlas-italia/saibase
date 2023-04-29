@@ -1,16 +1,16 @@
-import { createQR, encodeURL } from "@solana/pay";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useRouter } from "next/router";
-import { memo, useCallback, useEffect, useMemo, useRef } from "react";
-import { useCluster } from "~/components/ClusterProvider";
-import { Flex } from "~/components/layout/Flex";
-import { useSwapStateAccount } from "~/components/SwapStateAccountGuard";
-import { useSwapProgramPrice } from "~/hooks/useSwapProgramPrice";
-import { usePaymentStore } from "~/stores/usePaymentStore";
-import { appendQueryParams } from "~/utils/appendQueryParams";
-import { fillUrlParameters } from "~/utils/fillUrlParameters";
-import { getApiRoute, getRoute } from "~/utils/getRoute";
-import { usePaymentReference } from "../../ReferenceRetriever";
+import { Flex } from '@saibase/uikit';
+import { createQR, encodeURL } from '@solana/pay';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useRouter } from 'next/router';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCluster } from '~/components/ClusterProvider';
+import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
+import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
+import { usePaymentStore } from '~/stores/usePaymentStore';
+import { appendQueryParams } from '~/utils/appendQueryParams';
+import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { getApiRoute, getRoute } from '~/utils/getRoute';
+import { usePaymentReference } from '../../ReferenceRetriever';
 
 export const QrCode = memo(() => {
   const amount = useSwapProgramPrice();
@@ -28,13 +28,13 @@ export const QrCode = memo(() => {
 
   const url = useMemo(() => {
     const currentUrl = new URL(
-      `${window.location.origin}${getApiRoute("/api/swap")}`
+      `${window.location.origin}${getApiRoute('/api/swap')}`
     );
 
-    currentUrl.searchParams.append("cluster", cluster);
-    currentUrl.searchParams.append("reference", reference.toString());
-    currentUrl.searchParams.append("publicKey", publicKey?.toString() || "");
-    currentUrl.searchParams.append("stateAccount", swapAccount.toString());
+    currentUrl.searchParams.append('cluster', cluster);
+    currentUrl.searchParams.append('reference', reference.toString());
+    currentUrl.searchParams.append('publicKey', publicKey?.toString() || '');
+    currentUrl.searchParams.append('stateAccount', swapAccount.toString());
 
     return encodeURL({
       link: currentUrl,
@@ -42,10 +42,10 @@ export const QrCode = memo(() => {
   }, [cluster, reference, publicKey, swapAccount]);
 
   useEffect(() => {
-    const qr = createQR(url, 250, "transparent");
+    const qr = createQR(url, 250, 'transparent');
 
     if (qrRef.current && amount > 0) {
-      qrRef.current.innerHTML = "";
+      qrRef.current.innerHTML = '';
       qr.append(qrRef.current);
     }
   });
@@ -67,7 +67,7 @@ export const QrCode = memo(() => {
         router.push(
           appendQueryParams(
             fillUrlParameters(
-              getRoute("/swap/:swapAccount/checkout/confirmed"),
+              getRoute('/swap/:swapAccount/checkout/confirmed'),
               {
                 swapAccount: swapAccount.toString(),
               }
@@ -81,7 +81,7 @@ export const QrCode = memo(() => {
 
       router.push(
         appendQueryParams(
-          fillUrlParameters(getRoute("/swap/:swapAccount/checkout/error"), {
+          fillUrlParameters(getRoute('/swap/:swapAccount/checkout/error'), {
             swapAccount: swapAccount.toString(),
           }),
           { cluster }
@@ -113,4 +113,4 @@ export const QrCode = memo(() => {
   );
 });
 
-QrCode.displayName = "QrCode";
+QrCode.displayName = 'QrCode';

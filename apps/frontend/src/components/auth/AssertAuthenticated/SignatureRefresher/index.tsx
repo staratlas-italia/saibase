@@ -1,8 +1,7 @@
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { useUpdateSignature } from "~/hooks/useUpdateSignature";
-import { Translation } from "~/i18n/Translation";
+import { Button, Text } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { useUpdateSignature } from '~/hooks/useUpdateSignature';
+import { Translation } from '~/i18n/Translation';
 
 export const SignatureRefresher = () => {
   const updateSignature = useUpdateSignature();

@@ -1,6 +1,5 @@
-import { PropsWithChildren } from "react";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
+import { Flex, Text } from '@saibase/uikit';
+import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{ title: string }>;
 

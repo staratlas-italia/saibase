@@ -1,14 +1,12 @@
+import { Button, Flex, Text } from '@saibase/uikit';
 import { isPublicKey } from '@saibase/web3';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ATLAS_TOKEN_MINT, USDC_TOKEN_MINT } from '~/common/constants';
-import { Text } from '~/components/common/Text';
-import { Button } from '~/components/controls/Button';
-import { Flex } from '~/components/layout/Flex';
-import { BaseModal } from '~/components/modals/BaseModal';
 import { TextInput } from '~/components/TextInput';
+import { BaseModal } from '~/components/modals/BaseModal';
 import { useModal } from '~/contexts/ModalContext';
 import { useTranslation } from '~/i18n/useTranslation';
 import { initilizeSwap } from '~/programs';

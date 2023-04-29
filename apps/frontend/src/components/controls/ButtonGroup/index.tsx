@@ -1,8 +1,7 @@
-import classNames from "classnames";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { TranslationId } from "~/i18n/translations/types";
+import { Flex, Text } from '@saibase/uikit';
+import classNames from 'classnames';
+import { Translation } from '~/i18n/Translation';
+import { TranslationId } from '~/i18n/translations/types';
 
 type Props = {
   items: [string, TranslationId][];
@@ -24,11 +23,11 @@ export const ButtonGroup = ({ items, onAction, selectedItem }: Props) => {
             type="button"
             onClick={() => onAction(key)}
             className={classNames(
-              "py-2 px-3 text-sm rounded-xltext-gray-90 rounded-xl hover:bg-gray-200",
-              { "bg-white bg-opacity-90 ": selectedItem === key }
+              'py-2 px-3 text-sm rounded-xltext-gray-90 rounded-xl hover:bg-gray-200',
+              { 'bg-white bg-opacity-90 ': selectedItem === key }
             )}
           >
-            <Text weight={selectedItem === key ? "bold" : "semibold"}>
+            <Text weight={selectedItem === key ? 'bold' : 'semibold'}>
               <Translation id={value} />
             </Text>
           </button>

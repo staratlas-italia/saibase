@@ -1,5 +1,5 @@
-import { Text } from "~/components/common/Text";
-import { Translation } from "~/i18n/Translation";
+import { Text } from '@saibase/uikit';
+import { Translation } from '~/i18n/Translation';
 
 export const Disclaimer = () => {
   return (

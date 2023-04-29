@@ -1,8 +1,8 @@
-import { MenuIcon } from "@heroicons/react/solid";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { useNavigation } from "../Provider";
-import { SideBarContent } from "../SideBarContent";
+import { MenuIcon } from '@heroicons/react/solid';
+import { Flex } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { useNavigation } from '../Provider';
+import { SideBarContent } from '../SideBarContent';
 
 export const SidebarToggle = () => {
   const { toggle, isOpen } = useNavigation();

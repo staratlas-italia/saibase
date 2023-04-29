@@ -1,16 +1,14 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useMemo } from "react";
-import { DEV_EMAIL } from "~/common/constants";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Container } from "~/components/layout/Container";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { TranslationId } from "~/i18n/translations/types";
-import { getRoute } from "~/utils/getRoute";
+import { Button, Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
+import { DEV_EMAIL } from '~/common/constants';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Container } from '~/components/layout/Container';
+import { Translation } from '~/i18n/Translation';
+import { TranslationId } from '~/i18n/translations/types';
+import { getRoute } from '~/utils/getRoute';
 
 export const View = () => {
   const { publicKey } = useWallet();
@@ -21,10 +19,10 @@ export const View = () => {
     const code = query.code as string;
 
     switch (code) {
-      case "NotEnoughFunds":
-        return "swap.checkout.error.description.notEnoughFunds";
+      case 'NotEnoughFunds':
+        return 'swap.checkout.error.description.notEnoughFunds';
       default:
-        return "swap.checkout.error.description";
+        return 'swap.checkout.error.description';
     }
   }, [query]);
 
@@ -40,7 +38,7 @@ export const View = () => {
             <Text align="center" color="text-gray-300" size="lg">
               <Translation id={translation} />
 
-              {translation === "swap.checkout.error.description" && (
+              {translation === 'swap.checkout.error.description' && (
                 <a
                   className="text-emerald-500"
                   href={`mailto:dev@staratlasitalia.com?subject=User ${publicKey?.toString()}`}
@@ -54,7 +52,7 @@ export const View = () => {
           </Flex>
 
           <Flex direction="col" pt={10}>
-            <Link replace href={getRoute("/dashboard")}>
+            <Link replace href={getRoute('/dashboard')}>
               <Button kind="neutral" as="div">
                 <Translation id="swap.checkout.confirmed.back.action.title" />
               </Button>

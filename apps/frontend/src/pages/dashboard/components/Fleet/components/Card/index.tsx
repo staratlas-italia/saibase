@@ -1,10 +1,9 @@
+import { Flex, Text } from '@saibase/uikit';
 import { useIntl } from 'react-intl';
 import { Countdown } from '~/components/Countdown';
 import { Progress } from '~/components/Progress';
-import { Text } from '~/components/common/Text';
 import type { TextColor } from '~/components/common/Text/types';
 import { BlurBackground } from '~/components/layout/BlurBackground';
-import { Flex } from '~/components/layout/Flex';
 import { NormalizedShipStakingInfoExtended, StarAtlasNft } from '~/types';
 import { Heading } from './components/Heading';
 import { Image } from './components/Image';

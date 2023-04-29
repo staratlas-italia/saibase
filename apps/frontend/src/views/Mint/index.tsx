@@ -1,13 +1,12 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useState } from "react";
-import { Redirect } from "~/components/common/Redirect";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { LoadingView } from "~/components/LoadingView";
-import { ConnectButton } from "~/components/Wallet/components/ConnectButton";
-import { Translation } from "~/i18n/Translation";
-import { useAirdropToken } from "./useAirdropToken";
+import { Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useEffect, useState } from 'react';
+import { LoadingView } from '~/components/LoadingView';
+import { ConnectButton } from '~/components/Wallet/components/ConnectButton';
+import { Redirect } from '~/components/common/Redirect';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { useAirdropToken } from './useAirdropToken';
 
 export const MintPage = () => {
   const { loading, tier } = useAirdropToken();

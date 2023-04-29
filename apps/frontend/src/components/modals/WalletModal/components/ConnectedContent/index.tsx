@@ -1,26 +1,24 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import classNames from "classnames";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useCallback, useMemo } from "react";
-import { useCluster } from "~/components/ClusterProvider";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { Flex } from "~/components/layout/Flex";
-import { List, ListSectons } from "~/components/List";
-import { useModal } from "~/contexts/ModalContext";
-import { useClearAllStores } from "~/hooks/useClearAllStores";
-import { Translation } from "~/i18n/Translation";
-import { useTranslation } from "~/i18n/useTranslation";
-import { useAppStore, useHueAnimation } from "~/stores/useAppStore";
-import { appendQueryParams } from "~/utils/appendQueryParams";
-import { shortenAddress } from "~/utils/shortenAddress";
+import { Button, Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import classNames from 'classnames';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useCallback, useMemo } from 'react';
+import { useCluster } from '~/components/ClusterProvider';
+import { List, ListSectons } from '~/components/List';
+import { useModal } from '~/contexts/ModalContext';
+import { useClearAllStores } from '~/hooks/useClearAllStores';
+import { Translation } from '~/i18n/Translation';
+import { useTranslation } from '~/i18n/useTranslation';
+import { useAppStore, useHueAnimation } from '~/stores/useAppStore';
+import { appendQueryParams } from '~/utils/appendQueryParams';
+import { shortenAddress } from '~/utils/shortenAddress';
 
 export const ConnectedContent = () => {
   const { disconnect, publicKey, wallet } = useWallet();
 
-  const { close } = useModal("wallet-modal");
+  const { close } = useModal('wallet-modal');
   const { cluster } = useCluster();
   const { asPath, pathname } = useRouter();
 
@@ -35,7 +33,7 @@ export const ConnectedContent = () => {
   }, []);
 
   const connectedWalletTranslation = useTranslation(
-    "Layout.Wallet.Modal.Connected.title"
+    'Layout.Wallet.Modal.Connected.title'
   );
 
   const sections: ListSectons = useMemo(
@@ -45,7 +43,7 @@ export const ConnectedContent = () => {
         [
           {
             bordered: true,
-            borderColor: "gray-300",
+            borderColor: 'gray-300',
             title: wallet!.adapter.name,
             icon: (props) =>
               wallet?.adapter.icon ? (
@@ -57,7 +55,7 @@ export const ConnectedContent = () => {
                   {...props}
                 />
               ) : null,
-            details: shortenAddress(publicKey?.toString() || "", 10),
+            details: shortenAddress(publicKey?.toString() || '', 10),
           },
         ],
       ],
@@ -83,20 +81,20 @@ export const ConnectedContent = () => {
             <Button
               as="div"
               size="small"
-              className={classNames("border-2 border-gray-300", {
-                "border-black": cluster === "mainnet-beta",
+              className={classNames('border-2 border-gray-300', {
+                'border-black': cluster === 'mainnet-beta',
               })}
             >
               Mainnet
             </Button>
           </Link>
 
-          <Link href={appendQueryParams(asPath, { cluster: "devnet" })}>
+          <Link href={appendQueryParams(asPath, { cluster: 'devnet' })}>
             <Button
               as="div"
               size="small"
-              className={classNames("border-2 border-gray-300", {
-                " border-black": cluster === "devnet",
+              className={classNames('border-2 border-gray-300', {
+                ' border-black': cluster === 'devnet',
               })}
             >
               Devnet

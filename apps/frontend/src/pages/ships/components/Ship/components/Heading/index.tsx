@@ -1,6 +1,5 @@
-import cx from "classnames";
-import { Text } from "~/components/common/Text";
-import { TextColor } from "~/components/common/Text/types";
+import { Text, TextColor } from '@saibase/uikit';
+import cx from 'classnames';
 
 type Props = {
   color: TextColor;
@@ -11,7 +10,7 @@ export const Heading = ({ color, subtitle, title }: Props) => (
   <Text
     as="h1"
     color={color}
-    className={"tracking-tight"}
+    className={'tracking-tight'}
     mdSize="6xl"
     size="4xl"
     weight="extrabold"

@@ -1,8 +1,8 @@
-import { Flex } from "~/components/layout/Flex";
+import { Flex } from '@saibase/uikit';
 
 export const SocialLinks = () => {
   return (
-    <Flex px={8} pb={4} justify={"between"}>
+    <Flex px={8} pb={4} justify={'between'}>
       <a
         target="_blank"
         rel="noopener noreferrer"

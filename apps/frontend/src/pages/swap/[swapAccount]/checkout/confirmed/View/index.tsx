@@ -1,20 +1,18 @@
-import { CheckCircleIcon } from "@heroicons/react/solid";
-import { useWallet } from "@solana/wallet-adapter-react";
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import Confetti from "react-dom-confetti";
-import styled from "styled-components";
-import { DEV_EMAIL } from "~/common/constants";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Container } from "~/components/layout/Container";
-import { Flex } from "~/components/layout/Flex";
-import { Logo } from "~/components/layout/Header";
-import { useSwapStateAccount } from "~/components/SwapStateAccountGuard";
-import { Translation } from "~/i18n/Translation";
-import { getRoute } from "~/utils/getRoute";
-import { TransactionDetails } from "./TransactionDetails";
+import { CheckCircleIcon } from '@heroicons/react/solid';
+import { Button, Flex, Text } from '@saibase/uikit';
+import { useWallet } from '@solana/wallet-adapter-react';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import Confetti from 'react-dom-confetti';
+import styled from 'styled-components';
+import { DEV_EMAIL } from '~/common/constants';
+import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Container } from '~/components/layout/Container';
+import { Logo } from '~/components/layout/Header';
+import { Translation } from '~/i18n/Translation';
+import { getRoute } from '~/utils/getRoute';
+import { TransactionDetails } from './TransactionDetails';
 
 const confettiConfig = {
   angle: 90,
@@ -24,8 +22,8 @@ const confettiConfig = {
   dragFriction: 0.11,
   duration: 3000,
   stagger: 3,
-  width: "10px",
-  height: "10px",
+  width: '10px',
+  height: '10px',
 };
 
 const ImageContainer = styled.div`
@@ -116,7 +114,7 @@ export const View = () => {
             </Flex>
 
             <Flex direction="col" pt={5}>
-              <Link replace href={getRoute("/dashboard")}>
+              <Link replace href={getRoute('/dashboard')}>
                 <Button kind="neutral" as="div">
                   <Translation id="swap.checkout.confirmed.back.action.title" />
                 </Button>

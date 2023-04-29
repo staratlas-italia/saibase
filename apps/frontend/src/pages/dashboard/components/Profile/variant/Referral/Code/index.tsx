@@ -1,13 +1,11 @@
-import { DuplicateIcon, PlusIcon } from "@heroicons/react/solid";
-import { APP_BASE_URL } from "~/common/constants";
-import { AssertAuthenticated } from "~/components/auth/AssertAuthenticated";
-import { Text } from "~/components/common/Text";
-import { Button } from "~/components/controls/Button";
-import { Flex } from "~/components/layout/Flex";
-import { useSelf } from "~/hooks/useNullableSelf";
-import { useReferral } from "~/hooks/useReferral";
-import { copyTextToClipboard } from "~/utils/copyToClipboard";
-import { shortenAddress } from "~/utils/shortenAddress";
+import { DuplicateIcon, PlusIcon } from '@heroicons/react/solid';
+import { Button, Flex, Text } from '@saibase/uikit';
+import { APP_BASE_URL } from '~/common/constants';
+import { AssertAuthenticated } from '~/components/auth/AssertAuthenticated';
+import { useSelf } from '~/hooks/useNullableSelf';
+import { useReferral } from '~/hooks/useReferral';
+import { copyTextToClipboard } from '~/utils/copyToClipboard';
+import { shortenAddress } from '~/utils/shortenAddress';
 
 export const Code = () => {
   const self = useSelf();
@@ -26,7 +24,7 @@ export const Code = () => {
       >
         <Flex className="overflow-hidden h-5">
           <Text color="text-gray-400">
-            {shortenAddress(referralCode || "", 10)}
+            {shortenAddress(referralCode || '', 10)}
           </Text>
         </Flex>
         <Flex

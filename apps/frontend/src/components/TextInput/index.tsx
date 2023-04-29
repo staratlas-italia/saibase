@@ -1,13 +1,12 @@
-import { ExclamationCircleIcon } from "@heroicons/react/solid";
+import { ExclamationCircleIcon } from '@heroicons/react/solid';
+import { Flex, Text } from '@saibase/uikit';
 import {
   Controller,
   get,
   RegisterOptions,
   useFormContext,
-} from "react-hook-form";
-import { BaseTextInput, BaseTextInputProps } from "~/components/BaseTextInput";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
+} from 'react-hook-form';
+import { BaseTextInput, BaseTextInputProps } from '~/components/BaseTextInput';
 
 type Props = BaseTextInputProps & {
   label: string;

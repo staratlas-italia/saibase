@@ -1,8 +1,7 @@
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Translation } from "~/i18n/Translation";
-import { Code } from "./Code";
+import { Flex, Text } from '@saibase/uikit';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Translation } from '~/i18n/Translation';
+import { Code } from './Code';
 
 export const Referral = () => {
   return (

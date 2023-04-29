@@ -1,14 +1,14 @@
-import classNames from "classnames";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { SideBarContent as Content } from "../SideBarContent";
-import { Footer } from "./components/Footer";
+import { Flex } from '@saibase/uikit';
+import classNames from 'classnames';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { SideBarContent as Content } from '../SideBarContent';
+import { Footer } from './components/Footer';
 
 export const SideBar = () => (
   <>
     <div
       className={classNames(
-        "z-20 invisible lg:visible min-h-screen fixed w-0 lg:w-64"
+        'z-20 invisible lg:visible min-h-screen fixed w-0 lg:w-64'
       )}
     >
       <BlurBackground

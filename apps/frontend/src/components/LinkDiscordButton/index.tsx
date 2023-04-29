@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Fragment, PropsWithChildren, useMemo } from "react";
-import { DISCORD_OAUTH_URL } from "~/common/constants";
-import { useSelf } from "~/hooks/useNullableSelf";
-import { Button, ButtonProps } from "../controls/Button";
+import { Button, ButtonProps } from '@saibase/uikit';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Fragment, PropsWithChildren, useMemo } from 'react';
+import { DISCORD_OAUTH_URL } from '~/common/constants';
+import { useSelf } from '~/hooks/useNullableSelf';
 
 export const DiscordLink = ({ children }: PropsWithChildren<unknown>) => {
   const router = useRouter();
@@ -14,10 +14,10 @@ export const DiscordLink = ({ children }: PropsWithChildren<unknown>) => {
 };
 
 type Props = {
-  kind?: ButtonProps["kind"];
+  kind?: ButtonProps['kind'];
 };
 
-export const LinkDiscordButton = ({ kind = "primary" }: Props) => {
+export const LinkDiscordButton = ({ kind = 'primary' }: Props) => {
   const self = useSelf();
 
   const Wrapper = useMemo(
@@ -40,7 +40,7 @@ export const LinkDiscordButton = ({ kind = "primary" }: Props) => {
           />
         )}
       >
-        {self.discordId ? "Linked" : "Link"}
+        {self.discordId ? 'Linked' : 'Link'}
       </Button>
     </Wrapper>
   );

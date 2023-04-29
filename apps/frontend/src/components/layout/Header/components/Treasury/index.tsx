@@ -1,8 +1,7 @@
-import { Price } from "~/components/common/Price";
-import { Text } from "~/components/common/Text";
-import { Flex } from "~/components/layout/Flex";
-import { useGuildTreasury } from "~/hooks/useGuildTreasury";
-import { Translation } from "~/i18n/Translation";
+import { Flex, Text } from '@saibase/uikit';
+import { Price } from '~/components/common/Price';
+import { useGuildTreasury } from '~/hooks/useGuildTreasury';
+import { Translation } from '~/i18n/Translation';
 
 export const Treasury = () => {
   const {

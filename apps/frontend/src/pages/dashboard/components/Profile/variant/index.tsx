@@ -1,13 +1,12 @@
-import { InfoRow } from "~/components/common/Info";
-import { Price } from "~/components/common/Price";
-import { Text } from "~/components/common/Text";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { LinkDiscordButton } from "~/components/LinkDiscordButton";
-import { usePlayerStore } from "~/stores/usePlayerStore";
-import { shortenAddress } from "~/utils/shortenAddress";
-import { CreatePlayerBanner } from "../CreatePlayerBanner";
-import { Referral } from "./Referral";
+import { Flex, Text } from '@saibase/uikit';
+import { LinkDiscordButton } from '~/components/LinkDiscordButton';
+import { InfoRow } from '~/components/common/Info';
+import { Price } from '~/components/common/Price';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { usePlayerStore } from '~/stores/usePlayerStore';
+import { shortenAddress } from '~/utils/shortenAddress';
+import { CreatePlayerBanner } from '../CreatePlayerBanner';
+import { Referral } from './Referral';
 
 export const Profile = () => {
   const player = usePlayerStore((s) => s.player);
@@ -50,7 +49,7 @@ export const Profile = () => {
           <Flex align="center">
             <InfoRow color="text-gray-200" title="addr">
               <Text color="text-white" size="4xl">
-                {shortenAddress(player?.publicKey || "")}
+                {shortenAddress(player?.publicKey || '')}
               </Text>
             </InfoRow>
           </Flex>
