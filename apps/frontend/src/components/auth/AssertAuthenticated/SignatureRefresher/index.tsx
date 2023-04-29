@@ -1,5 +1,4 @@
-import { Button, Text } from '@saibase/uikit';
-import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Button, Card, Text } from '@saibase/uikit';
 import { useUpdateSignature } from '~/hooks/useUpdateSignature';
 import { Translation } from '~/i18n/Translation';
 
@@ -7,7 +6,7 @@ export const SignatureRefresher = () => {
   const updateSignature = useUpdateSignature();
 
   return (
-    <BlurBackground
+    <Card
       p={5}
       direction="col"
       className="mx-auto space-y-3"
@@ -21,6 +20,6 @@ export const SignatureRefresher = () => {
       <Button kind="neutral" size="small" onClick={updateSignature}>
         <Translation id="auth.sign.cta" />
       </Button>
-    </BlurBackground>
+    </Card>
   );
 };

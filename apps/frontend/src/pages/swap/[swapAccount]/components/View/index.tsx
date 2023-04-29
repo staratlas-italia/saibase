@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/solid';
-import { Button, Flex, Text } from '@saibase/uikit';
+import { Button, Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import classNames from 'classnames';
 import Head from 'next/head';
@@ -11,7 +11,6 @@ import { LocaleSelector } from '~/components/LocaleSelector';
 import { SelfRetriever } from '~/components/SelfRetriever';
 import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
 import { Wallet } from '~/components/Wallet';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Container } from '~/components/layout/Container';
 import { Logo } from '~/components/layout/Header';
 import { Translation } from '~/i18n/Translation';
@@ -44,7 +43,7 @@ export const View = () => {
 
       <Container>
         <Flex direction="col" align="center" justify="center" pt={52}>
-          <BlurBackground p={8} className="max-w-screen-md" direction="col">
+          <Card p={8} className="max-w-screen-md" direction="col">
             <Flex align="center" pb={5} justify="between">
               <Flex>
                 <Logo />
@@ -137,7 +136,7 @@ export const View = () => {
                 </Link>
               </Flex>
             </Flex>
-          </BlurBackground>
+          </Card>
         </Flex>
       </Container>
     </>

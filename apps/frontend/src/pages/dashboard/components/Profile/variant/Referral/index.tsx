@@ -1,12 +1,11 @@
-import { Flex, Text } from '@saibase/uikit';
-import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Card, Flex, Text } from '@saibase/uikit';
 import { Translation } from '~/i18n/Translation';
 import { Code } from './Code';
 
 export const Referral = () => {
   return (
     <Flex>
-      <BlurBackground p={5} className="max-w-xs">
+      <Card p={5} className="max-w-xs">
         <Flex direction="col" className="space-y-5 overflow-auto">
           <Text color="text-white" size="2xl" transform="uppercase">
             <Translation id="Referral.Banner.title" />
@@ -40,7 +39,7 @@ export const Referral = () => {
             </Flex>
           </Flex> */}
         </Flex>
-      </BlurBackground>
+      </Card>
     </Flex>
   );
 };

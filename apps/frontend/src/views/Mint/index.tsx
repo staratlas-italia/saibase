@@ -1,10 +1,9 @@
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import { LoadingView } from '~/components/LoadingView';
 import { ConnectButton } from '~/components/Wallet/components/ConnectButton';
 import { Redirect } from '~/components/common/Redirect';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Translation } from '~/i18n/Translation';
 import { useAirdropToken } from './useAirdropToken';
 
@@ -26,14 +25,14 @@ export const MintPage = () => {
 
   if (!wallet || !connected) {
     return (
-      <BlurBackground px={5} py={3} justify="center">
+      <Card px={5} py={3} justify="center">
         <Flex direction="col" className="space-y-3" align="center">
           <Text align="center" color="text-white" size="4xl">
             <Translation id="Dashboard.Profile.Placeholder.title" />
           </Text>
           <ConnectButton />
         </Flex>
-      </BlurBackground>
+      </Card>
     );
   }
 
@@ -52,11 +51,11 @@ export const MintPage = () => {
 
   if (!loading && !tier) {
     return (
-      <BlurBackground px={3} py={2} justify="center">
+      <Card px={3} py={2} justify="center">
         <Text align="center" color="text-white" size="4xl">
           <Translation id="Mint.AccessDenied.text" />
         </Text>
-      </BlurBackground>
+      </Card>
     );
   }
 

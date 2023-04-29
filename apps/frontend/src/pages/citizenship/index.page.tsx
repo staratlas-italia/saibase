@@ -1,15 +1,14 @@
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Translation } from '~/i18n/Translation';
 import { appendQueryParams } from '~/utils/appendQueryParams';
 import { fillUrlParameters } from '~/utils/fillUrlParameters';
 import { getRoute } from '~/utils/getRoute';
 import { useFactionAccounts } from './useFactionAccounts';
 
-const FactionBlock = styled(BlurBackground).attrs({
+const FactionBlock = styled(Card).attrs({
   p: 5,
   direction: 'col',
   className:

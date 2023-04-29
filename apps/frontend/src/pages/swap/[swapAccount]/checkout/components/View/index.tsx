@@ -1,10 +1,9 @@
 import { ShieldCheckIcon } from '@heroicons/react/outline';
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import styled from 'styled-components';
 import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
 import { Wallet } from '~/components/Wallet';
 import { Loader as CLoader } from '~/components/common/Loader';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Container } from '~/components/layout/Container';
 import { Logo } from '~/components/layout/Header';
 import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
@@ -68,7 +67,7 @@ export const View = () => {
   return (
     <Container>
       <Flex direction="col" align="center" justify="center" pt={24} pb={52}>
-        <BlurBackground p={8} direction="col" className="max-w-lg">
+        <Card p={8} direction="col" className="max-w-lg">
           <Flex direction="col" className="space-y-5 ">
             <Flex justify="between">
               <Logo />
@@ -142,7 +141,7 @@ export const View = () => {
               <SwapTrigger />
             </ReferenceRetriever>
           </Flex>
-        </BlurBackground>
+        </Card>
       </Flex>
     </Container>
   );

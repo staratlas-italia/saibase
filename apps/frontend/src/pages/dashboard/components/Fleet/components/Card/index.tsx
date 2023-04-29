@@ -1,9 +1,8 @@
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import { useIntl } from 'react-intl';
 import { Countdown } from '~/components/Countdown';
 import { Progress } from '~/components/Progress';
 import type { TextColor } from '~/components/common/Text/types';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { NormalizedShipStakingInfoExtended, StarAtlasNft } from '~/types';
 import { Heading } from './components/Heading';
 import { Image } from './components/Image';
@@ -23,7 +22,7 @@ const shipColors: Record<string, TextColor> = {
   commander: 'text-red-600',
 };
 
-export const Card = ({ ship, stakeInfo }: Props) => {
+export const ShipCard = ({ ship, stakeInfo }: Props) => {
   const intl = useIntl();
 
   if (!ship) {
@@ -31,10 +30,7 @@ export const Card = ({ ship, stakeInfo }: Props) => {
   }
 
   return (
-    <BlurBackground
-      direction="col"
-      className="overflow-hidden block flex-0 relative"
-    >
+    <Card direction="col" className="overflow-hidden block flex-0 relative">
       <Image src={ship?.image} alt={ship?.name} />
 
       <div className="relative pb-8 sm:pb-16 md:pb-10 lg:w-full">
@@ -177,6 +173,6 @@ export const Card = ({ ship, stakeInfo }: Props) => {
           </div>
         </main>
       </div>
-    </BlurBackground>
+    </Card>
   );
 };

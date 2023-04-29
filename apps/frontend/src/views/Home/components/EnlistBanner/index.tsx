@@ -1,6 +1,5 @@
-import { Button, Flex, Text } from '@saibase/uikit';
+import { Button, Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Translation } from '~/i18n/Translation';
 import { HumanImage } from '~/views/Home/components/EnlistBanner/HumanImage';
 
@@ -16,7 +15,7 @@ export const EnlistBanner = () => (
       <HumanImage />
     </Flex>
 
-    <BlurBackground className="space-y-5" direction="col" py={5} px={8}>
+    <Card className="space-y-5" direction="col" py={5} px={8}>
       <Text
         color="text-white"
         className="tracking-tight "
@@ -42,6 +41,6 @@ export const EnlistBanner = () => (
           </Button>
         </Link>
       </Flex>
-    </BlurBackground>
+    </Card>
   </Flex>
 );

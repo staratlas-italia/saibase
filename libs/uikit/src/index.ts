@@ -1,4 +1,5 @@
 export * from './components/Button';
+export * from './components/Card';
 export * from './components/Flex';
 export * from './components/Loader';
 export * from './components/Padding';

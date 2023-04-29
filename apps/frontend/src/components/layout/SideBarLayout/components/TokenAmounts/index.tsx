@@ -1,6 +1,6 @@
-import { Price } from "~/components/common/Price";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { usePlayerStore } from "~/stores/usePlayerStore";
+import { Card } from '@saibase/uikit';
+import { Price } from '~/components/common/Price';
+import { usePlayerStore } from '~/stores/usePlayerStore';
 
 export const TokenAmounts = () => {
   const [atlasAmount, polisAmount, usdcAmount] = usePlayerStore(
@@ -8,12 +8,7 @@ export const TokenAmounts = () => {
   );
 
   return (
-    <BlurBackground
-      wrap="wrap"
-      px={3}
-      py={2}
-      className="lg:space-x-3 space-x-2"
-    >
+    <Card wrap="wrap" px={3} py={2} className="lg:space-x-3 space-x-2">
       <Price
         color="text-white"
         currency="ATLAS"
@@ -35,6 +30,6 @@ export const TokenAmounts = () => {
         size="xl"
         value={usdcAmount}
       />
-    </BlurBackground>
+    </Card>
   );
 };

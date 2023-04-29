@@ -1,5 +1,4 @@
-import { Flex } from '@saibase/uikit';
-import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Card, Flex } from '@saibase/uikit';
 import { Header } from '~/components/layout/Header';
 import { Treasury } from '~/components/layout/Header/components/Treasury';
 import { EnlistBanner } from '~/views/Home/components/EnlistBanner';
@@ -12,9 +11,9 @@ export const HomePage = () => {
 
       <div className="space-y-10 px-5 pb-5">
         <Flex>
-          <BlurBackground px={4} py={3} className="w-full md:w-72">
+          <Card px={4} py={3} className="w-full md:w-72">
             <Treasury />
-          </BlurBackground>
+          </Card>
         </Flex>
 
         <WelcomeBanner />

@@ -1,10 +1,9 @@
-import { Flex, Loader, Text } from '@saibase/uikit';
+import { Card, Flex, Loader, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import { Wallet } from '~/components/Wallet';
 import { useSignature } from '~/components/auth/AssertAuthenticated/useSignature';
 import { Redirect } from '~/components/common/Redirect';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Container } from '~/components/layout/Container';
 import { Logo } from '~/components/layout/Header';
 import { useSelf } from '~/hooks/useNullableSelf';
@@ -69,11 +68,7 @@ export const View = () => {
   return (
     <Container>
       <Flex direction="col" align="center" justify="center" pt={52}>
-        <BlurBackground
-          p={8}
-          className="max-w-screen-md space-y-3"
-          direction="col"
-        >
+        <Card p={8} className="max-w-screen-md space-y-3" direction="col">
           <Flex align="center" justify="between" className="space-x-3">
             <Flex>
               <Logo />
@@ -91,7 +86,7 @@ export const View = () => {
               <Translation id="discord.link.description" />
             </Text>
           </Flex>
-        </BlurBackground>
+        </Card>
       </Flex>
     </Container>
   );

@@ -1,7 +1,7 @@
 import { Flex } from '@saibase/uikit';
 import { EmptyView } from '~/components/EmptyView';
 import { useFleet } from '~/hooks/useNullableFleet';
-import { Card } from './components/Card';
+import { ShipCard } from './components/Card';
 
 export const Fleet = () => {
   const fleet = useFleet();
@@ -18,7 +18,7 @@ export const Fleet = () => {
             className="grid grid-cols-1 xl:grid-cols-2 gap-5"
           >
             {fleet.map((fleetData) => (
-              <Card key={fleetData?.ship?.mint} {...fleetData} />
+              <ShipCard key={fleetData?.ship?.mint} {...fleetData} />
             ))}
           </Flex>
         </>

@@ -1,8 +1,7 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Container } from '~/components/layout/Container';
 import { useShip } from '~/hooks/useShip';
 import { Translation } from '~/i18n/Translation';
@@ -35,7 +34,7 @@ export const ShipPage = () => {
   return (
     <Container>
       <Flex pt={8}>
-        <BlurBackground direction="col" className="space-y-5" p={5}>
+        <Card direction="col" className="space-y-5" p={5}>
           <Link href={getRoute('/ships')} locale={locale}>
             <ArrowLeftIcon className="h-8 w-8 text-white" />
           </Link>
@@ -125,7 +124,7 @@ export const ShipPage = () => {
               </Flex>
             </Flex>
           </Flex>
-        </BlurBackground>
+        </Card>
       </Flex>
     </Container>
   );

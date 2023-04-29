@@ -1,11 +1,10 @@
-import { Flex } from '@saibase/uikit';
+import { Card, Flex } from '@saibase/uikit';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { LoadingView } from '~/components/LoadingView';
 import { Table } from '~/components/Table';
 import { ButtonGroup } from '~/components/controls/ButtonGroup';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { useShips } from '~/hooks/useShips';
 import { useShipsDealsStore } from '~/stores/useShipsDealsStore';
 import { columns } from './columns';
@@ -44,7 +43,7 @@ export const ShipTable = () => {
   }
 
   return (
-    <BlurBackground className="relative overflow-hidden" p={5} mdP={8}>
+    <Card className="relative overflow-hidden" p={5} mdP={8}>
       <Flex
         className="overflow-scroll space-y-5"
         direction="col"
@@ -60,6 +59,6 @@ export const ShipTable = () => {
         />
         <Table columns={cols} data={data} fetchData={fetch} />
       </Flex>
-    </BlurBackground>
+    </Card>
   );
 };

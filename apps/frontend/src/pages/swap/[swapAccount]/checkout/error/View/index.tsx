@@ -1,10 +1,9 @@
-import { Button, Flex, Text } from '@saibase/uikit';
+import { Button, Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import { DEV_EMAIL } from '~/common/constants';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Container } from '~/components/layout/Container';
 import { Translation } from '~/i18n/Translation';
 import { TranslationId } from '~/i18n/translations/types';
@@ -29,7 +28,7 @@ export const View = () => {
   return (
     <Container>
       <Flex direction="col" align="center" justify="center" pt={24} pb={52}>
-        <BlurBackground p={8} direction="col" className="max-w-lg">
+        <Card p={8} direction="col" className="max-w-lg">
           <Text color="text-white" weight="bold" size="3xl">
             <Translation id="citizenship.checkout.error.title" />
           </Text>
@@ -58,7 +57,7 @@ export const View = () => {
               </Button>
             </Link>
           </Flex>
-        </BlurBackground>
+        </Card>
       </Flex>
     </Container>
   );

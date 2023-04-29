@@ -1,5 +1,4 @@
-import { Loader, Text } from '@saibase/uikit';
-import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Card, Loader, Text } from '@saibase/uikit';
 import { Translation } from '~/i18n/Translation';
 import { GetTranslationValues, TranslationId } from '~/i18n/translations/types';
 
@@ -11,10 +10,10 @@ export const LoadingView = <T extends TranslationId>({
   title,
   values,
 }: Props<T>) => (
-  <BlurBackground py={5} className="space-x-3" justify="center" align="center">
+  <Card py={5} className="space-x-3" justify="center" align="center">
     <Loader color="text-white" />
     <Text size="xl" color="text-white" weight="semibold">
       <Translation id="Layout.Loader.title" />
     </Text>
-  </BlurBackground>
+  </Card>
 );

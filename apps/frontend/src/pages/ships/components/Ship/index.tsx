@@ -45,6 +45,7 @@ export const ShipCard = ({ ship }: Props) => {
       })}
     >
       <Image src={ship?.image} alt={ship?.name} />
+
       <MaxWidth className="mx-auto" size="7xl">
         <div className="2xl:float-right relative pb-8 sm:pb-16 md:pb-20 lg:max-w-lg xl:max-w-2xl lg:w-full">
           <Polygon />

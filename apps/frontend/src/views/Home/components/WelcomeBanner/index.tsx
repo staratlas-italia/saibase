@@ -1,8 +1,7 @@
 import { ArrowRightIcon } from '@heroicons/react/solid';
-import { Button, Flex, Text } from '@saibase/uikit';
+import { Button, Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Translation } from '~/i18n/Translation';
 import { ShipImage } from '~/views/Home/components/WelcomeBanner/ShipImage';
 
@@ -17,12 +16,7 @@ export const WelcomeBanner = () => {
       mdDirection="row"
       justify="center"
     >
-      <BlurBackground
-        className="space-y-5"
-        direction="col"
-        p={5}
-        justify="center"
-      >
+      <Card className="space-y-5" direction="col" p={5} justify="center">
         <Text
           color="text-white"
           className="tracking-tight0"
@@ -51,7 +45,7 @@ export const WelcomeBanner = () => {
             </Button>
           </Link>
         </Flex>
-      </BlurBackground>
+      </Card>
 
       <Flex justify="center">
         <ShipImage />

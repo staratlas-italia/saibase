@@ -1,9 +1,8 @@
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Wallet } from '~/components/Wallet';
 import { SignatureRefresher } from '~/components/auth/AssertAuthenticated/SignatureRefresher';
 import { Redirect } from '~/components/common/Redirect';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Translation } from '~/i18n/Translation';
 import { useAuthStore } from '~/stores/useAuthStore';
 import { StrictReactNode } from '~/types';
@@ -31,7 +30,7 @@ export const AssertAuthenticated = ({
 
   if (!publicKey) {
     <Flex pt={32}>
-      <BlurBackground p={5} justify="center" className="mx-auto">
+      <Card p={5} justify="center" className="mx-auto">
         <Text align="center" color="text-white" size="4xl">
           <Translation id="Dashboard.Profile.Placeholder.title" />
         </Text>
@@ -39,7 +38,7 @@ export const AssertAuthenticated = ({
         <Flex pt={5}>
           <Wallet />
         </Flex>
-      </BlurBackground>
+      </Card>
     </Flex>;
   }
 

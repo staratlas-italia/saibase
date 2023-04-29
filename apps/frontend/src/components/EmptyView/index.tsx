@@ -1,12 +1,11 @@
-import { Text } from '@saibase/uikit';
-import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Card, Text } from '@saibase/uikit';
 
 type Props = {
   title: string;
 };
 
 export const EmptyView = ({ title }: Props) => (
-  <BlurBackground
+  <Card
     py={5}
     justify="center"
     align="center"
@@ -16,5 +15,5 @@ export const EmptyView = ({ title }: Props) => (
     <Text size="xl" color="text-white" weight="semibold">
       {title}
     </Text>
-  </BlurBackground>
+  </Card>
 );

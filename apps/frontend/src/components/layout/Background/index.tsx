@@ -1,11 +1,5 @@
-import { useWallet } from '@solana/wallet-adapter-react';
 import styled, { css, keyframes } from 'styled-components';
-import { BadgesRetriever } from '~/components/BadgesRetriever';
-import { SelfRetriever } from '~/components/SelfRetriever';
-import { useBadges } from '~/hooks/useNullableBadges';
-import { useHueAnimation } from '~/stores/useAppStore';
 import { getHueByFactionStyle } from '~/utils/getHueByFaction';
-import { isFactionBadge } from '~/utils/isFactionBadge';
 
 type Props = {
   show?: boolean;
@@ -23,9 +17,10 @@ const hueAnimation = (badgeMint: string) => keyframes`
 `;
 
 const LayoutBackground = styled.div.attrs({
-  className: 'fixed bg-no-repeat bg-cover bg-center min-h-screen w-screen',
+  className:
+    'fixed bg-no-repeat bg-cover bg-center min-h-screen w-screen bg-indigo-950',
 })<Props>`
-  background-image: url('/images/bg.webp');
+  /* background-image: url('/images/bg.webp');
 
   ${({ badgeMint, show = true }) =>
     show &&
@@ -33,40 +28,40 @@ const LayoutBackground = styled.div.attrs({
     css`
       animation: ${hueAnimation(badgeMint)} 0.5s ease-in-out;
       animation-fill-mode: forwards;
-    `}
+    `} */
 `;
 
-const ConnectedBackground = () => {
-  const badges = useBadges();
+// const ConnectedBackground = () => {
+//   const badges = useBadges();
 
-  const showAnimation = useHueAnimation();
+//   const showAnimation = useHueAnimation();
 
-  const badge = badges.find((badge) => isFactionBadge(badge.mint.address));
+//   const badge = badges.find((badge) => isFactionBadge(badge.mint.address));
 
-  if (!badge) {
-    return <LayoutBackground />;
-  }
+//   if (!badge) {
+//     return <LayoutBackground />;
+//   }
 
-  return (
-    <LayoutBackground
-      badgeMint={badge.mint.address.toString()}
-      show={showAnimation}
-    />
-  );
-};
+//   return (
+//     <LayoutBackground
+//       badgeMint={badge.mint.address.toString()}
+//       show={showAnimation}
+//     />
+//   );
+// };
 
 export const Background = () => {
-  const { connected } = useWallet();
+  //const { connected } = useWallet();
 
-  if (connected) {
-    return (
-      <SelfRetriever loader={<LayoutBackground />}>
-        <BadgesRetriever loader={<LayoutBackground />}>
-          <ConnectedBackground />
-        </BadgesRetriever>
-      </SelfRetriever>
-    );
-  }
+  // if (connected) {
+  //   return (
+  //     <SelfRetriever loader={<LayoutBackground />}>
+  //       <BadgesRetriever loader={<LayoutBackground />}>
+  //         <ConnectedBackground />
+  //       </BadgesRetriever>
+  //     </SelfRetriever>
+  //   );
+  // }
 
   return <LayoutBackground />;
 };

@@ -1,6 +1,5 @@
 import { MenuIcon } from '@heroicons/react/solid';
-import { Flex } from '@saibase/uikit';
-import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Card, Flex } from '@saibase/uikit';
 import { useNavigation } from '../Provider';
 import { SideBarContent } from '../SideBarContent';
 
@@ -9,17 +8,13 @@ export const SidebarToggle = () => {
 
   return (
     <Flex className="lg:hidden cursor-pointer" onClick={toggle}>
-      <BlurBackground
-        className="w-16 h-16 rounded-full"
-        align="center"
-        justify="center"
-      >
+      <Card className="w-16 h-16 rounded-full" align="center" justify="center">
         <MenuIcon className="w-8 h-8 text-white w" />
-      </BlurBackground>
+      </Card>
 
       {isOpen && (
         <Flex className="absolute z-20 ">
-          <BlurBackground>
+          <Card>
             <Flex className="absolute top-4 left-4">
               <MenuIcon className="w-8 h-8 text-white" />
             </Flex>
@@ -27,7 +22,7 @@ export const SidebarToggle = () => {
             <Flex pl={12} p={5}>
               <SideBarContent />
             </Flex>
-          </BlurBackground>
+          </Card>
         </Flex>
       )}
     </Flex>

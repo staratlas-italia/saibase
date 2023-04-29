@@ -1,7 +1,6 @@
-import { Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { EmptyView } from '~/components/EmptyView';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { useBadges } from '~/hooks/useNullableBadges';
 
 export const Badges = () => {
@@ -14,7 +13,7 @@ export const Badges = () => {
       ) : (
         <Flex className="space-x-3 overflow-x-auto pb-1">
           {badges.map((badge) => (
-            <BlurBackground
+            <Card
               key={badge.mint.address.toString()}
               disableRound
               direction="col"
@@ -39,7 +38,7 @@ export const Badges = () => {
                   </Text>
                 </Link>
               </Flex>
-            </BlurBackground>
+            </Card>
           ))}
         </Flex>
       )}

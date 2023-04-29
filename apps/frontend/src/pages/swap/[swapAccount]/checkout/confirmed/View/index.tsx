@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import { Button, Flex, Text } from '@saibase/uikit';
+import { Button, Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
@@ -7,7 +7,6 @@ import Confetti from 'react-dom-confetti';
 import styled from 'styled-components';
 import { DEV_EMAIL } from '~/common/constants';
 import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { BlurBackground } from '~/components/layout/BlurBackground';
 import { Container } from '~/components/layout/Container';
 import { Logo } from '~/components/layout/Header';
 import { Translation } from '~/i18n/Translation';
@@ -53,7 +52,7 @@ export const View = () => {
     <>
       <Container>
         <Flex direction="col" align="center" justify="center" pt={52}>
-          <BlurBackground p={8} direction="col" className="max-w-lg">
+          <Card p={8} direction="col" className="max-w-lg">
             <Flex direction="col" className="space-y-5 ">
               <Flex>
                 <Logo />
@@ -120,7 +119,7 @@ export const View = () => {
                 </Button>
               </Link>
             </Flex>
-          </BlurBackground>
+          </Card>
         </Flex>
       </Container>
     </>
