@@ -1,7 +1,7 @@
+import { StarAtlasNft } from '@saibase/star-atlas';
 import { Connection } from '@solana/web3.js';
 import { create } from 'zustand';
 import { gmClientService } from '~/common/constants';
-import { StarAtlasEntity } from '~/types';
 import { getConnectionClusterUrl } from '~/utils/connection';
 import { getAtlasMarketPrice } from '~/utils/getAtlasMarketPrice';
 import { getEntityVwapPrice } from '~/utils/getEntityVwapPrice';
@@ -26,7 +26,7 @@ type ShipsDealsStore = {
   isFetching: boolean;
   atlasPrice: number;
   data: Partial<ShipTableRow>[];
-  fetch: (ships: StarAtlasEntity[], force?: boolean) => void;
+  fetch: (ships: StarAtlasNft[], force?: boolean) => void;
 };
 
 export const useShipsDealsStore = create<ShipsDealsStore>((set, get) => ({

@@ -1,15 +1,15 @@
-import { captureException } from "@sentry/nextjs";
-import { WalletSignTransactionError } from "@solana/wallet-adapter-base";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { useCallback } from "react";
-import { Button } from "~/components/controls/Button";
-import { useBadges } from "~/hooks/useNullableBadges";
-import { useTransactionToast } from "~/hooks/useTransactionToast";
-import { Translation } from "~/i18n/Translation";
-import { useTranslation } from "~/i18n/useTranslation";
-import { useCitizenshipBadges, useTutorBadge } from "~/stores/useBadgesStore";
-import { useFleetStore } from "~/stores/useFleetStore";
-import { allGenesisBadgeMints } from "~/utils/getBadgeByMint";
+import { captureException } from '@sentry/nextjs';
+import { WalletSignTransactionError } from '@solana/wallet-adapter-base';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useCallback } from 'react';
+import { Button } from '~/components/controls/Button';
+import { useBadges } from '~/hooks/useNullableBadges';
+import { useTransactionToast } from '~/hooks/useTransactionToast';
+import { Translation } from '~/i18n/Translation';
+import { useTranslation } from '~/i18n/useTranslation';
+import { useCitizenshipBadges, useTutorBadge } from '~/stores/useBadgesStore';
+import { useFleetStore } from '~/stores/useFleetStore';
+import { allGenesisBadgeMints } from '~/utils/getBadgeByMint';
 
 export const ClaimAll = () => {
   const { connection } = useConnection();
@@ -25,8 +25,8 @@ export const ClaimAll = () => {
 
   const showTransactionToast = useTransactionToast();
 
-  const pendingMessage = useTranslation("toast.multiple.pending.transaction");
-  const successMessage = useTranslation("toast.multiple.success.transaction");
+  const pendingMessage = useTranslation('toast.multiple.pending.transaction');
+  const successMessage = useTranslation('toast.multiple.success.transaction');
 
   const handleClick = useCallback(async () => {
     if (!publicKey) {
@@ -44,11 +44,11 @@ export const ClaimAll = () => {
       for (let [index, signature] of signatures.entries()) {
         await showTransactionToast(() => Promise.resolve(signature), {
           pendingMessage: pendingMessage
-            .replace("%i", (index + 1).toString())
-            .replace("%c", signatures.length.toString()),
+            .replace('%i', (index + 1).toString())
+            .replace('%c', signatures.length.toString()),
           successMessage: successMessage
-            .replace("%i", (index + 1).toString())
-            .replace("%c", signatures.length.toString()),
+            .replace('%i', (index + 1).toString())
+            .replace('%c', signatures.length.toString()),
         });
       }
     } catch (e) {
@@ -58,7 +58,7 @@ export const ClaimAll = () => {
         }
       }
 
-      captureException(e, { level: "error" });
+      captureException(e, { level: 'error' });
     }
   }, [
     publicKey,
@@ -73,8 +73,8 @@ export const ClaimAll = () => {
   const hasGenesisOrTutorOrCitizenshipBadge =
     Boolean(tutorBadges) ||
     Boolean(citizenshipBadges?.length) ||
-    badges.some(([badge]) =>
-      allGenesisBadgeMints.includes(badge.mintAddress.toString())
+    badges.some((badge) =>
+      allGenesisBadgeMints.includes(badge.mint.address.toString())
     );
 
   if (!hasGenesisOrTutorOrCitizenshipBadge) {

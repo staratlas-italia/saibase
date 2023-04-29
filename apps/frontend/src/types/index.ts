@@ -187,7 +187,7 @@ export type Sale = {
   mintTimestamp: number;
 };
 
-export type StarAtlasEntity = {
+export type StarAtlasNft = {
   _id: string;
   description: string;
   image: string;

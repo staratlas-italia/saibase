@@ -1,3 +1,4 @@
+import { StarAtlasNft } from '@saibase/star-atlas';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,14 +8,13 @@ import { Button } from '~/components/controls/Button';
 import { Flex } from '~/components/layout/Flex';
 import { MaxWidth } from '~/components/layout/MaxWidth';
 import { Translation } from '~/i18n/Translation';
-import { StarAtlasEntity } from '~/types';
 import { isFirefox } from '~/utils/isFirefox';
 import { Description } from './components/Description';
 import { Heading } from './components/Heading';
 import { Image } from './components/Image';
 import { Polygon } from './components/Polygon';
 
-type Props = { ship: StarAtlasEntity };
+type Props = { ship: StarAtlasNft };
 
 const shipColors: { [key: string]: TextColor } = {
   'xx-small': 'text-white',

@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import useSWR from "swr";
-import { useShipContext } from "~/contexts/ShipsContext";
-import { api } from "~/network/api";
-import { StarAtlasEntity } from "~/types";
-import { getApiRoute } from "~/utils/getRoute";
+import { StarAtlasNft } from '@saibase/star-atlas';
+import { useEffect } from 'react';
+import useSWR from 'swr';
+import { useShipContext } from '~/contexts/ShipsContext';
+import { api } from '~/network/api';
+import { getApiRoute } from '~/utils/getRoute';
 
-const fetcher = (url: string) => api.get<StarAtlasEntity[]>(url);
+const fetcher = (url: string) => api.get<StarAtlasNft[]>(url);
 
 export const useNullableShips = () => {
   const { update } = useShipContext();
 
-  const { data, error } = useSWR<StarAtlasEntity[] | undefined>(
-    getApiRoute("/api/ships"),
+  const { data, error } = useSWR<StarAtlasNft[] | undefined>(
+    getApiRoute('/api/ships'),
     fetcher
   );
 

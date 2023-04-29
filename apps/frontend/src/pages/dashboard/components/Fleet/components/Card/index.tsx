@@ -1,27 +1,27 @@
-import { useIntl } from "react-intl";
-import { Text } from "~/components/common/Text";
-import type { TextColor } from "~/components/common/Text/types";
-import { Countdown } from "~/components/Countdown";
-import { BlurBackground } from "~/components/layout/BlurBackground";
-import { Flex } from "~/components/layout/Flex";
-import { Progress } from "~/components/Progress";
-import { NormalizedShipStakingInfoExtended, StarAtlasEntity } from "~/types";
-import { Heading } from "./components/Heading";
-import { Image } from "./components/Image";
+import { useIntl } from 'react-intl';
+import { Countdown } from '~/components/Countdown';
+import { Progress } from '~/components/Progress';
+import { Text } from '~/components/common/Text';
+import type { TextColor } from '~/components/common/Text/types';
+import { BlurBackground } from '~/components/layout/BlurBackground';
+import { Flex } from '~/components/layout/Flex';
+import { NormalizedShipStakingInfoExtended, StarAtlasNft } from '~/types';
+import { Heading } from './components/Heading';
+import { Image } from './components/Image';
 
 type Props = {
-  ship?: StarAtlasEntity;
+  ship?: StarAtlasNft;
   stakeInfo?: NormalizedShipStakingInfoExtended;
 };
 
 const shipColors: Record<string, TextColor> = {
-  "xx-small": "text-white",
-  "x-small": "text-indigo-300",
-  small: "text-yellow-500",
-  medium: "text-emerald-500",
-  large: "text-pink-600",
-  capital: "text-purple-400",
-  commander: "text-red-600",
+  'xx-small': 'text-white',
+  'x-small': 'text-indigo-300',
+  small: 'text-yellow-500',
+  medium: 'text-emerald-500',
+  large: 'text-pink-600',
+  capital: 'text-purple-400',
+  commander: 'text-red-600',
 };
 
 export const Card = ({ ship, stakeInfo }: Props) => {
@@ -67,7 +67,7 @@ export const Card = ({ ship, stakeInfo }: Props) => {
                 <Progress
                   title={
                     <>
-                      {"health"} -{" "}
+                      {'health'} -{' '}
                       <Countdown
                         date={
                           Date.now() +
@@ -95,7 +95,7 @@ export const Card = ({ ship, stakeInfo }: Props) => {
                 <Progress
                   title={
                     <>
-                      {"fuel"} -{" "}
+                      {'fuel'} -{' '}
                       <Countdown
                         date={
                           Date.now() +
@@ -122,7 +122,7 @@ export const Card = ({ ship, stakeInfo }: Props) => {
                 <Progress
                   title={
                     <>
-                      {"food"} -{" "}
+                      {'food'} -{' '}
                       <Countdown
                         date={
                           Date.now() +
@@ -149,7 +149,7 @@ export const Card = ({ ship, stakeInfo }: Props) => {
                 <Progress
                   title={
                     <>
-                      {"ammo"} -{" "}
+                      {'ammo'} -{' '}
                       <Countdown
                         date={
                           Date.now() +

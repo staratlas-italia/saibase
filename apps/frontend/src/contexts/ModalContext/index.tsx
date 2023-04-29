@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from 'react';
 
 export type ModalContextState = {
   modals: { [key: string]: boolean };
@@ -10,11 +16,11 @@ export const ModalContext = createContext<ModalContextState>(
 );
 
 export type AvailableModal =
-  | "wallet-modal"
-  | "add-program-instance-modal"
-  | "how-to-buy-modal"
-  | "ships-modal"
-  | "easter-egg";
+  | 'wallet-modal'
+  | 'add-program-instance-modal'
+  | 'how-to-buy-modal'
+  | 'ships-modal'
+  | 'easter-egg';
 
 export const useModal = (id: AvailableModal) => {
   const { modals, setVisible } = useContext(ModalContext);
@@ -26,7 +32,7 @@ export const useModal = (id: AvailableModal) => {
   };
 };
 
-export const ModalProvider = ({ children }) => {
+export const ModalProvider = ({ children }: PropsWithChildren) => {
   const [modals, setModals] = useState({});
 
   const setVisible = useCallback(

@@ -1,10 +1,10 @@
-import { createContext, useContext } from "react";
-import { useLocalStorage } from "~/hooks/useLocalStorage";
-import { StarAtlasEntity } from "~/types";
+import { StarAtlasNft } from '@saibase/star-atlas';
+import { PropsWithChildren, createContext, useContext } from 'react';
+import { useLocalStorage } from '~/hooks/useLocalStorage';
 
 export type ShipsContextState = {
-  ships: StarAtlasEntity[];
-  update: (ships: StarAtlasEntity[]) => void;
+  ships: StarAtlasNft[];
+  update: (ships: StarAtlasNft[]) => void;
 };
 
 export const ShipsContext = createContext<ShipsContextState>(
@@ -13,8 +13,8 @@ export const ShipsContext = createContext<ShipsContextState>(
 
 export const useShipContext = () => useContext(ShipsContext);
 
-export const ShipsProvider = ({ children }) => {
-  const [ships, update] = useLocalStorage<StarAtlasEntity[]>("ships-v1", []);
+export const ShipsProvider = ({ children }: PropsWithChildren) => {
+  const [ships, update] = useLocalStorage<StarAtlasNft[]>('ships-v1', []);
 
   return (
     <ShipsContext.Provider

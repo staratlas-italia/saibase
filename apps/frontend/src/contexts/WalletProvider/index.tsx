@@ -1,5 +1,5 @@
-import { WalletError } from "@solana/wallet-adapter-base";
-import { WalletProvider as BaseWalletProvider } from "@solana/wallet-adapter-react";
+import { WalletError } from '@solana/wallet-adapter-base';
+import { WalletProvider as BaseWalletProvider } from '@solana/wallet-adapter-react';
 import {
   LedgerWalletAdapter,
   MathWalletAdapter,
@@ -7,10 +7,10 @@ import {
   SolflareWalletAdapter,
   SolletWalletAdapter,
   SolongWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
-import { useCallback, useMemo } from "react";
+} from '@solana/wallet-adapter-wallets';
+import { PropsWithChildren, useCallback, useMemo } from 'react';
 
-export const WalletProvider = ({ children }) => {
+export const WalletProvider = ({ children }: PropsWithChildren) => {
   const wallets = useMemo(
     () => [
       new LedgerWalletAdapter(),
