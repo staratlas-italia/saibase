@@ -18,7 +18,7 @@ type PlayerStore = {
   self: Self | null;
   player: Player | null;
   isFetching: boolean;
-  amounts: [number | null, number | null, number | null];
+  amounts: [number, number, number] | null;
   linkDiscord: (_: {
     publicKey: string;
     discordId: string;
@@ -32,7 +32,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   self: null,
   player: null,
   isFetching: false,
-  amounts: [null, null, null],
+  amounts: null,
   linkDiscord: async ({ discordId, publicKey, signature }) => {
     if (get().isFetching) {
       return;

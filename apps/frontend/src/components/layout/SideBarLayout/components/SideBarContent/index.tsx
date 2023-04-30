@@ -1,5 +1,6 @@
 import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -15,7 +16,7 @@ export const SideBarContent = () => {
 
   useEffect(() => {
     const run = async () => {
-      const items = await getMenuItems(locale!, publicKey?.toString());
+      const items = await getMenuItems(locale, publicKey?.toString());
 
       setMenuItems(items);
     };
@@ -47,7 +48,13 @@ export const SideBarContent = () => {
               py={2}
               className="space-x-3 lg:space-x-6 hover:bg-gray-200 hover:bg-opacity-10 rounded-3xl"
             >
-              <img src={item.icon} className="h-5 w-5 text-white" />
+              <Image
+                alt={item.name}
+                src={item.icon}
+                width={20}
+                height={20}
+                className="text-white"
+              />
 
               <Text color="text-white" size="base" weight="medium">
                 {item.name}

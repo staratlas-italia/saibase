@@ -1,18 +1,14 @@
-import { fetchNfts } from '@saibase/star-atlas';
-import {
-  getNftOwner,
-  getTokenBalanceByMint,
-} from '@saibase/web3';
+import { fetchNfts, getEntityVwapPrice } from '@saibase/star-atlas';
+import { getNftOwner, getTokenBalanceByMint } from '@saibase/web3';
 import { PublicKey } from '@solana/web3.js';
-import { pipe } from 'fp-ts/lib/function';
 import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/lib/function';
 import { connection, guildWallets } from '../../constants';
 import { badgeMints } from '../../constants/badgeMints';
 import { logger } from '../../logger';
 import { AppState } from '../../state';
 import { ShipStats } from '../../types';
-import { getEntityVwapPrice } from '../../utils/getEntityVwapPrice';
 import { getStakeShipData } from '../../utils/getStakeShipData';
 
 export const createTakeFleetSnapshopshotJobHandler =

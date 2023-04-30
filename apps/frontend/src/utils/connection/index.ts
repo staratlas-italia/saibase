@@ -31,6 +31,5 @@ export function getConnectionContext(cluster?: Cluster): EndpointInfo {
   return endpoint;
 }
 
-export const getConnectionClusterUrl = (cluster?: Cluster) => {
-  return getConnectionContext(cluster).url;
-};
+export const getConnectionClusterUrl = (cluster?: Cluster) =>
+  getConnectionContext(cluster).url;

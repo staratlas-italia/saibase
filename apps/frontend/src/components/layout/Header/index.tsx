@@ -33,7 +33,7 @@ type Props = { fluid?: boolean; fixed?: boolean };
 
 export const Header = ({ fluid, fixed }: Props) => (
   <div
-    className={classNames('z-20 w-full pb-10', {
+    className={classNames('z-20 w-full', {
       'lg:fixed': fixed,
     })}
   >

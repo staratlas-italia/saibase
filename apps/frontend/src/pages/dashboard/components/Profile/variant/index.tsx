@@ -1,7 +1,6 @@
-import { Card, Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Price, Text } from '@saibase/uikit';
 import { LinkDiscordButton } from '~/components/LinkDiscordButton';
 import { InfoRow } from '~/components/common/Info';
-import { Price } from '~/components/common/Price';
 import { usePlayerStore } from '~/stores/usePlayerStore';
 import { shortenAddress } from '~/utils/shortenAddress';
 import { CreatePlayerBanner } from '../CreatePlayerBanner';

@@ -19,7 +19,9 @@ export const SideBar = () => (
         justify="between"
       >
         <Flex />
+
         <Content />
+
         <Footer />
       </Card>
     </div>

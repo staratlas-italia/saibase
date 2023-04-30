@@ -1,7 +1,6 @@
-import { Button } from '@saibase/uikit';
+import { Button, Heading } from '@saibase/uikit';
 import Head from 'next/head';
 import { ShipsRetriever } from '~/components/ShipsRetriever';
-import { Heading } from '~/components/common/Heading';
 import { useShips } from '~/hooks/useShips';
 import { Translation } from '~/i18n/Translation';
 import { useShipsDealsStore } from '~/stores/useShipsDealsStore';
@@ -26,7 +25,9 @@ const ShipsDealsPage = () => (
 
     <ShipsRetriever>
       <div className="space-y-5">
-        <Heading title="Ships.Heading.title" rightContent={<Refresh />} />
+        <Heading rightContent={<Refresh />}>
+          <Translation id="Ships.Heading.title" />
+        </Heading>
 
         <ShipTable />
       </div>

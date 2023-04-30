@@ -1,11 +1,14 @@
-import { Card } from '@saibase/uikit';
-import { Price } from '~/components/common/Price';
+import { Card, Price } from '@saibase/uikit';
 import { usePlayerStore } from '~/stores/usePlayerStore';
 
 export const TokenAmounts = () => {
-  const [atlasAmount, polisAmount, usdcAmount] = usePlayerStore(
-    (s) => s.amounts
-  );
+  const amouts = usePlayerStore((s) => s.amounts);
+
+  if (!amouts) {
+    return null;
+  }
+
+  const [atlasAmount, polisAmount, usdcAmount] = amouts;
 
   return (
     <Card wrap="wrap" px={3} py={2} className="lg:space-x-3 space-x-2">

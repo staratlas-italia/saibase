@@ -1,10 +1,9 @@
-import { Card, Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Heading, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { BadgesRetriever } from '~/components/BadgesRetriever';
 import { FleetRetriever } from '~/components/FleetRetriever';
 import { LoadingView } from '~/components/LoadingView';
 import { SelfRetriever } from '~/components/SelfRetriever';
-import { Heading } from '~/components/common/Heading';
 import { Translation } from '~/i18n/Translation';
 import { Badges } from '~/pages/dashboard/components/Badges';
 import { Fleet } from '../Fleet';
@@ -30,7 +29,9 @@ export const View = () => {
         <Profile />
 
         <Flex direction="col" className="z-10 space-y-5">
-          <Heading title="Badges.Heading.title" />
+          <Heading>
+            <Translation id="Badges.Heading.title" />
+          </Heading>
 
           <BadgesRetriever loader={<LoadingView />}>
             <Badges />
@@ -39,13 +40,14 @@ export const View = () => {
 
         <Flex direction="col" className="z-10 space-y-5">
           <Heading
-            title="Fleet.Heading.title"
             rightContent={
               <BadgesRetriever>
                 <ClaimAll />
               </BadgesRetriever>
             }
-          />
+          >
+            <Translation id="Fleet.Heading.title" />
+          </Heading>
 
           <FleetRetriever loader={<LoadingView />}>
             <Fleet />

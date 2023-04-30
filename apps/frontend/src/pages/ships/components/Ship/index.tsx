@@ -1,6 +1,5 @@
 import { StarAtlasNft } from '@saibase/star-atlas';
-import { Button, Flex, TextColor } from '@saibase/uikit';
-import classNames from 'classnames';
+import { Button, Card, Flex, TextColor } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
@@ -38,13 +37,10 @@ export const ShipCard = ({ ship }: Props) => {
     : null;
 
   return (
-    <div
-      className={classNames('rounded-3xl relative  overflow-hidden ', {
-        'backdrop-filter backdrop-blur-lg bg-opacity-10 bg-black': !isF,
-        'bg-gray-800': isF,
-      })}
-    >
-      <Image src={ship?.image} alt={ship?.name} />
+    <Card direction="col" border>
+      <div className="rounded-t-2xl overflow-hidden">
+        <Image src={ship?.image} alt={ship?.name} />
+      </div>
 
       <MaxWidth className="mx-auto" size="7xl">
         <div className="2xl:float-right relative pb-8 sm:pb-16 md:pb-20 lg:max-w-lg xl:max-w-2xl lg:w-full">
@@ -104,6 +100,6 @@ export const ShipCard = ({ ship }: Props) => {
           </main>
         </div>
       </MaxWidth>
-    </div>
+    </Card>
   );
 };

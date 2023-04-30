@@ -1,13 +1,13 @@
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { constVoid, pipe } from "fp-ts/function";
-import * as O from "fp-ts/Option";
-import * as T from "fp-ts/Task";
-import * as TE from "fp-ts/TaskEither";
-import { useCallback, useMemo } from "react";
-import { useAuthStore } from "~/stores/useAuthStore";
-import { getProofMessage } from "~/utils/getProofMessage";
-import { createProof } from "./createProof";
-import { logCreateProofError } from "./logCreateProofError";
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import * as O from 'fp-ts/Option';
+import * as T from 'fp-ts/Task';
+import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
+import { useCallback, useMemo } from 'react';
+import { useAuthStore } from '~/stores/useAuthStore';
+import { getProofMessage } from '~/utils/getProofMessage';
+import { createProof } from './createProof';
+import { logCreateProofError } from './logCreateProofError';
 
 export const useUpdateSignature = () => {
   const { connection } = useConnection();
@@ -19,7 +19,7 @@ export const useUpdateSignature = () => {
     () =>
       pipe(
         O.fromNullable(publicKey),
-        O.match(constVoid, (publicKey) =>
+        O.map((publicKey) =>
           pipe(
             createProof({
               connection,

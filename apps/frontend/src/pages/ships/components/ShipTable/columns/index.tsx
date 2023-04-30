@@ -1,15 +1,12 @@
 import { ExternalLinkIcon } from '@heroicons/react/solid';
-import { Flex } from '@saibase/uikit';
+import { Flex, Price, Text } from '@saibase/uikit';
+import { createColumnHelper } from '@tanstack/react-table';
+import Image from 'next/image';
 import Link from 'next/link';
+import { ShipTableRow } from '~/stores/useShipsDealsStore';
 import { fillUrlParameters } from '~/utils/fillUrlParameters';
 import { getRoute } from '~/utils/getRoute';
 import { MarketAction } from '..';
-import { buildDiscountColumn } from '../utils/buildDiscountColumn';
-import { buildNameColumn } from '../utils/buildNameColumn';
-import {
-  buildAtlasPriceColumn,
-  buildPriceColumn,
-} from '../utils/buildPriceColumn';
 
 type Param = {
   action: MarketAction;
@@ -18,75 +15,149 @@ type Param = {
   atlasPrice: number;
 };
 
+const columnHelper = createColumnHelper<ShipTableRow>();
+
 export const columns = ({
   action,
   locale,
   formatMessage,
   atlasPrice,
 }: Param) => [
-  buildNameColumn({
-    name: formatMessage({
+  columnHelper.accessor('name', {
+    minSize: 200,
+    enableSorting: false,
+    header: formatMessage({
       id: 'Ships.Table.Column.name',
     }),
-    accessor: 'name',
-    imageUrlAccessor: 'imageUrl',
+    cell: (info) => (
+      <Flex align="center" direction="row" className="space-x-3">
+        <Image
+          alt={info.row.original.name || ''}
+          width={48}
+          height={48}
+          src={info.row.original.imageUrl || ''}
+          className="object-cover"
+        />
+
+        <Text>{info.getValue()}</Text>
+      </Flex>
+    ),
   }),
-  buildPriceColumn({
-    name: formatMessage({
+  columnHelper.accessor(action === 'buy' ? 'buyPrice' : 'sellPrice', {
+    header: formatMessage({
       id: 'Ships.Table.Column.price',
     }),
-    accessor: action === 'buy' ? 'buyPrice' : 'sellPrice',
-    currency: 'USDC',
+    cell: (info) => (
+      <Flex justify="end" grow={1}>
+        <Price currency="USDC" value={info.getValue()} />
+      </Flex>
+    ),
   }),
-  buildAtlasPriceColumn({
-    name: formatMessage({
+  columnHelper.accessor(action === 'buy' ? 'atlasBuyPrice' : 'atlasSellPrice', {
+    minSize: 175,
+    header: formatMessage({
       id: 'Ships.Table.Column.atlasPrice',
     }),
-    accessor: action === 'buy' ? 'atlasBuyPrice' : 'atlasSellPrice',
-    atlasValue: atlasPrice,
+    cell: (info) => (
+      <Flex justify="end">
+        {info.getValue() ? (
+          <Flex align="end" className="space-y-1" direction="col">
+            <Price currency={'ATLAS'} value={info.getValue()} />
+
+            <Price
+              currency={'USDC'}
+              value={(info.getValue() ?? 0) * atlasPrice}
+            />
+          </Flex>
+        ) : (
+          '-'
+        )}
+      </Flex>
+    ),
   }),
-  buildPriceColumn({
-    name: formatMessage({
+  columnHelper.accessor('vwapPrice', {
+    header: formatMessage({
       id: 'Ships.Table.Column.vwap',
     }),
-    accessor: 'vwapPrice',
-    currency: 'USDC',
+    cell: (info) => (
+      <Flex justify="end">
+        <Price currency="USDC" value={info.getValue()} />
+      </Flex>
+    ),
   }),
-  buildDiscountColumn({
-    name: formatMessage({
-      id: 'Ships.Table.Column.priceVsVwapPrice',
-    }),
-    accessor: action === 'buy' ? 'buyPriceVsVwapPrice' : 'sellPriceVsVwapPrice',
-    suffix: ' %',
-  }),
-  buildDiscountColumn({
-    name: formatMessage({
-      id: 'Ships.Table.Column.atlasPriceVsVwapPrice',
-    }),
-    accessor:
-      action === 'buy'
-        ? 'atlasBuyPriceVsVwapPrice'
-        : 'atlasSellPriceVsVwapPrice',
-    suffix: ' %',
-  }),
-  {
-    Header: '',
-    id: 'actions',
-    sortDisabled: true,
-    Cell: ({ row }) => {
-      return (
-        <Flex px={3}>
-          <Link
-            href={fillUrlParameters(getRoute('/ships/:shipId'), {
-              shipId: row.original.id,
-            })}
-            locale={locale}
-            target="_blank"
+  columnHelper.accessor(
+    action === 'buy' ? 'buyPriceVsVwapPrice' : 'sellPriceVsVwapPrice',
+    {
+      minSize: 200,
+      header: formatMessage({
+        id: 'Ships.Table.Column.priceVsVwapPrice',
+      }),
+      cell: (info) => (
+        <Flex justify="end">
+          <Text
+            align="center"
+            weight="medium"
+            color={
+              (info.getValue() as number) > 0
+                ? 'text-emerald-300'
+                : 'text-red-300'
+            }
+            className="px-4 py-2"
           >
-            <ExternalLinkIcon className="h-5 w-5" />
-          </Link>
+            {info.getValue() ? (
+              <>{Math.abs(info.getValue() as number).toFixed(2)}%</>
+            ) : (
+              '-'
+            )}
+          </Text>
         </Flex>
-      );
-    },
-  },
+      ),
+    }
+  ),
+  columnHelper.accessor(
+    action === 'buy' ? 'atlasBuyPriceVsVwapPrice' : 'atlasSellPriceVsVwapPrice',
+    {
+      minSize: 200,
+      header: formatMessage({
+        id: 'Ships.Table.Column.atlasPriceVsVwapPrice',
+      }),
+      cell: (info) => (
+        <Flex justify="end">
+          <Text
+            align="center"
+            weight="medium"
+            color={
+              (info.getValue() as number) > 0
+                ? 'text-emerald-300'
+                : 'text-red-300'
+            }
+            className="px-4 py-2"
+          >
+            {info.getValue() ? (
+              <>{Math.abs(info.getValue() as number).toFixed(2)}%</>
+            ) : (
+              '-'
+            )}
+          </Text>
+        </Flex>
+      ),
+    }
+  ),
+  columnHelper.display({
+    size: 50,
+    id: 'actions',
+    cell: ({ row }) => (
+      <Flex px={3}>
+        <Link
+          href={fillUrlParameters(getRoute('/ships/:shipId'), {
+            shipId: row.original.id || '',
+          })}
+          locale={locale}
+          target="_blank"
+        >
+          <ExternalLinkIcon className="h-5 w-5" />
+        </Link>
+      </Flex>
+    ),
+  }),
 ];

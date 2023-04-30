@@ -1,5 +1,4 @@
-import { Flex, Text } from '@saibase/uikit';
-import { Price } from '~/components/common/Price';
+import { Flex, Price, Text } from '@saibase/uikit';
 import { useGuildTreasury } from '~/hooks/useGuildTreasury';
 import { Translation } from '~/i18n/Translation';
 

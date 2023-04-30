@@ -1,31 +1,33 @@
-import { StarAtlasNft } from '@saibase/star-atlas';
+import {
+  StarAtlasNft,
+  getEntityVwapPrice,
+  getOrderBooks,
+} from '@saibase/star-atlas';
 import { Connection } from '@solana/web3.js';
 import { create } from 'zustand';
 import { gmClientService } from '~/common/constants';
 import { getConnectionClusterUrl } from '~/utils/connection';
 import { getAtlasMarketPrice } from '~/utils/getAtlasMarketPrice';
-import { getEntityVwapPrice } from '~/utils/getEntityVwapPrice';
-import { getOrderBooks } from '~/utils/getOrderbooks';
 
-type ShipTableRow = {
+export type ShipTableRow = {
   id: string;
   imageUrl: string;
   name: string;
   vwapPrice: number;
   atlasBuyPrice: number;
-  buyPriceVsVwapPrice: number;
-  atlasBuyPriceVsVwapPrice: number;
+  buyPriceVsVwapPrice?: number;
+  atlasBuyPriceVsVwapPrice?: number;
   buyPrice: number;
   atlasSellPrice: number;
-  sellPriceVsVwapPrice: number;
-  atlasSellPriceVsVwapPrice: number;
+  sellPriceVsVwapPrice?: number;
+  atlasSellPriceVsVwapPrice?: number;
   sellPrice: number;
 };
 
 type ShipsDealsStore = {
   isFetching: boolean;
   atlasPrice: number;
-  data: Partial<ShipTableRow>[];
+  data: ShipTableRow[];
   fetch: (ships: StarAtlasNft[], force?: boolean) => void;
 };
 
@@ -46,7 +48,7 @@ export const useShipsDealsStore = create<ShipsDealsStore>((set, get) => ({
 
     const connection = new Connection(getConnectionClusterUrl('mainnet-beta'));
 
-    const orderbooks = await getOrderBooks(gmClientService, connection);
+    const orderbooks = await getOrderBooks({ connection, gmClientService });
 
     const atlasPrice = await getAtlasMarketPrice();
 

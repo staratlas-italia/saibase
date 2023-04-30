@@ -1,4 +1,5 @@
 import { Card, Flex } from '@saibase/uikit';
+import { ColumnDef } from '@tanstack/react-table';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -6,7 +7,7 @@ import { LoadingView } from '~/components/LoadingView';
 import { Table } from '~/components/Table';
 import { ButtonGroup } from '~/components/controls/ButtonGroup';
 import { useShips } from '~/hooks/useShips';
-import { useShipsDealsStore } from '~/stores/useShipsDealsStore';
+import { ShipTableRow, useShipsDealsStore } from '~/stores/useShipsDealsStore';
 import { columns } from './columns';
 
 export type MarketAction = 'buy' | 'sell';
@@ -23,7 +24,7 @@ export const ShipTable = () => {
 
   const { locale } = useRouter();
 
-  const cols = useMemo(
+  const cols: ColumnDef<ShipTableRow, any>[] = useMemo(
     () =>
       columns({
         action,
@@ -43,20 +44,21 @@ export const ShipTable = () => {
   }
 
   return (
-    <Card className="relative overflow-hidden" p={5} mdP={8}>
+    <Card border className="relative" p={5} mdP={8} direction="col">
+      <ButtonGroup
+        items={[
+          ['buy', 'Ships.Table.Buy.action.title'],
+          ['sell', 'Ships.Table.Sell.action.title'],
+        ]}
+        onAction={(action) => setAction(action as MarketAction)}
+        selectedItem={action}
+      />
+
       <Flex
         className="overflow-scroll space-y-5"
         direction="col"
         justify="center"
       >
-        <ButtonGroup
-          items={[
-            ['buy', 'Ships.Table.Buy.action.title'],
-            ['sell', 'Ships.Table.Sell.action.title'],
-          ]}
-          onAction={(action) => setAction(action as MarketAction)}
-          selectedItem={action}
-        />
         <Table columns={cols} data={data} fetchData={fetch} />
       </Flex>
     </Card>

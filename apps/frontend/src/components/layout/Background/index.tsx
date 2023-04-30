@@ -18,11 +18,11 @@ const hueAnimation = (badgeMint: string) => keyframes`
 
 const LayoutBackground = styled.div.attrs({
   className:
-    'fixed bg-no-repeat bg-cover bg-center min-h-screen w-screen bg-indigo-950',
+    'fixed bg-no-repeat bg-cover bg-center min-h-screen w-screen bg-primary',
 })<Props>`
-  /* background-image: url('/images/bg.webp');
+  // background-image: url('/images/bg.webp');
 
-  ${({ badgeMint, show = true }) =>
+  /* ${({ badgeMint, show = true }) =>
     show &&
     badgeMint &&
     css`
@@ -51,7 +51,7 @@ const LayoutBackground = styled.div.attrs({
 // };
 
 export const Background = () => {
-  //const { connected } = useWallet();
+  // const { connected } = useWallet();
 
   // if (connected) {
   //   return (

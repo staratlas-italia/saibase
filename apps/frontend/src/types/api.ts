@@ -1,7 +1,7 @@
-import { WithId } from "mongodb";
-import { FactionWithNone, NormalizedShipStakingInfoExtended } from "~/types";
+import { WithId } from 'mongodb';
+import { FactionWithNone, NormalizedShipStakingInfoExtended } from '.';
 
-type Tag = "cat-lover";
+type Tag = 'cat-lover';
 
 export type Self = WithId<{
   createdAt?: Date;
@@ -30,7 +30,7 @@ export type PaymentReferenceResponse =
     }
   | { success: true; reference: string };
 
-export type TransactionStatus = "ACCEPTED" | "PENDING" | "REJECTED";
+export type TransactionStatus = 'ACCEPTED' | 'PENDING' | 'REJECTED';
 
 export type Transaction<Meta = Record<string, string | number>> = {
   meta: Meta;

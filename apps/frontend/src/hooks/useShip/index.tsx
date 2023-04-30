@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import { useMemo } from "react";
-import { useShips } from "~/hooks/useShips";
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
+import { useShips } from '~/hooks/useShips';
 
 export const useShip = () => {
   const {
@@ -9,7 +9,7 @@ export const useShip = () => {
 
   const { ships } = useShips();
 
-  const ship = useMemo(() => ships?.find((s) => s._id === id), [id]);
+  const ship = useMemo(() => ships?.find((s) => s._id === id), [id, ships]);
 
   const saleIsNotBegin = useMemo(() => {
     if (!ship) return null;
@@ -27,7 +27,7 @@ export const useShip = () => {
     const timestamp = Math.min(...saleTimestamps);
 
     return new Date(timestamp * 1000);
-  }, []);
+  }, [ship]);
 
   return {
     ...ship,

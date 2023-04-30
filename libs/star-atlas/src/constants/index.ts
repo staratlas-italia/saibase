@@ -1,1 +1,6 @@
-export const apiResourcesUrl = 'https://galaxy.staratlas.com';
+import { PublicKey } from '@solana/web3.js';
+
+export const saApiResourcesUrl = 'https://galaxy.staratlas.com';
+export const saMarketplaceProgramId = new PublicKey(
+  'traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg'
+);

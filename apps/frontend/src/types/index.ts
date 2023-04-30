@@ -2,13 +2,7 @@ import { BN } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { ScoreVarsShipInfo, ShipStakingInfo } from '@staratlas/factory';
 import { ReactChild, ReactNodeArray, ReactPortal } from 'react';
-import {
-  AMMO_TOKEN_MINT_ID,
-  FOOD_TOKEN_MINT_ID,
-  FUEL_TOKEN_MINT_ID,
-  TOOL_TOKEN_MINT_ID,
-} from '~/common/constants';
-import { TranslationId } from '~/i18n/translations/types';
+import { TranslationId } from '../i18n/translations/types';
 
 export type StrictReactFragment =
   | {
@@ -50,7 +44,7 @@ export type Player = {
   badgeMint: string | null;
   balance: number;
   balances: {
-    mint: ResourceMint;
+    mint: string;
     quantity: number;
     valuePerAsset: number;
   }[];
@@ -108,13 +102,6 @@ export type NormalizedScoreVarsShipInfo = {
 
 export type Currency = 'ATLAS' | 'POLIS' | 'USDC' | 'NONE';
 
-export type AmmoMint = typeof AMMO_TOKEN_MINT_ID;
-export type FoodMint = typeof FOOD_TOKEN_MINT_ID;
-export type FuelMint = typeof FUEL_TOKEN_MINT_ID;
-export type ToolMint = typeof TOOL_TOKEN_MINT_ID;
-
-export type ResourceMint = AmmoMint | FoodMint | FuelMint | ToolMint;
-
 export type ShipSlot = {
   type: string;
   size: string;
@@ -169,42 +156,6 @@ type Airdrop = {
   _id: string;
   id: number;
   supply: number;
-};
-
-export type Sale = {
-  _id: string;
-  listTimestamp: number;
-  supply: number;
-  price: number;
-  isMinted: boolean;
-  isListed: boolean;
-  mintTimestamp: number;
-};
-
-export type StarAtlasNft = {
-  _id: string;
-  description: string;
-  image: string;
-  attributes: ShipAttributes;
-  slots: ShipSlots;
-  symbol: string;
-  media: ShipMedia;
-  tradeSettings: {
-    saleTime: 1630454400;
-    msrp: {
-      value: 20;
-      currencySymbol: 'USDC';
-    };
-  };
-  deactivated: boolean;
-  name: string;
-  collection: ShipCollection;
-  createdAt: string;
-  updatedAt: string;
-  mint: string;
-  markets: Market[];
-  primarySales: Sale[];
-  airdrops: Airdrop[];
 };
 
 export type UsturAvatar = 'Ustur_A' | 'Ustur_B' | 'Ustur_C' | 'Ustur_D';

@@ -1,5 +1,6 @@
 import { Err } from '@contactlab/appy';
 import {
+  NftClass,
   StarAtlasNft,
   StarAtlasNftArray,
   fetchNfts,
@@ -8,7 +9,6 @@ import * as A from 'fp-ts/Array';
 import { Ord } from 'fp-ts/Ord';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
-import { NftClass } from 'libs/star-atlas/src/entities';
 
 const shipSizes: Record<string, number> = {
   mini: -2,

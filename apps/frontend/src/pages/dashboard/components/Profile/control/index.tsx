@@ -1,11 +1,10 @@
-import { Card, Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Price, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { Fragment, useMemo } from 'react';
 import { DiscordLink } from '~/components/LinkDiscordButton';
 import { InfoRow } from '~/components/common/Info';
-import { Price } from '~/components/common/Price';
 import { useSelf } from '~/hooks/useNullableSelf';
 import { usePlayerStore } from '~/stores/usePlayerStore';
 import { shortenAddress } from '~/utils/shortenAddress';
@@ -30,6 +29,7 @@ export const Profile = () => {
   return (
     <Flex>
       <Card
+        border
         direction="col"
         lgDirection="row"
         px={5}

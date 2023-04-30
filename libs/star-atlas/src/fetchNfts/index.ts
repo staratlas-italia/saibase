@@ -1,13 +1,7 @@
-import {
-  Err,
-  get,
-  Resp,
-  withDecoder,
-  withHeaders,
-} from '@saibase/fetch';
+import { Err, get, Resp, withDecoder, withHeaders } from '@saibase/fetch';
 import { pipe } from 'fp-ts/function';
 import { TaskEither } from 'fp-ts/lib/TaskEither';
-import { apiResourcesUrl } from '../constants';
+import { saApiResourcesUrl } from '../constants';
 import { nftsCodec, StarAtlasNftArray } from '../entities/nft';
 
 export const fetchNfts = (): TaskEither<Err, Resp<StarAtlasNftArray>> =>
@@ -15,4 +9,4 @@ export const fetchNfts = (): TaskEither<Err, Resp<StarAtlasNftArray>> =>
     get,
     withDecoder(nftsCodec),
     withHeaders({ 'Content-Type': 'application/json' })
-  )(`${apiResourcesUrl}/nfts`);
+  )(`${saApiResourcesUrl}/nfts`);

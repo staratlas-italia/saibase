@@ -22,7 +22,7 @@ export const SideBarLayout = React.memo(
           <Header fluid fixed />
 
           <Container>
-            <div className="pt-32 h-full relative container lg:px-5 lg:pl-80 mx-auto pb-32 sm:pb-28 lg:pb-0">
+            <div className="pt-24 h-full relative container lg:px-5 lg:pl-80 mx-auto pb-32 sm:pb-28 lg:pb-0">
               <Flex className="space-x-5 lg:space-x-0" pb={5}>
                 <SidebarToggle />
 

@@ -1,7 +1,8 @@
-import Head from "next/head";
-import { Heading } from "~/components/common/Heading";
-import { ShipsRetriever } from "~/components/ShipsRetriever";
-import { ShipList } from "./components/ShipList";
+import { Heading } from '@saibase/uikit';
+import Head from 'next/head';
+import { ShipsRetriever } from '~/components/ShipsRetriever';
+import { Translation } from '~/i18n/Translation';
+import { ShipList } from './components/ShipList';
 
 const ShipsDealsPage = () => (
   <>
@@ -11,7 +12,9 @@ const ShipsDealsPage = () => (
 
     <ShipsRetriever>
       <div className="space-y-5">
-        <Heading title="Ships.Heading.title" />
+        <Heading>
+          <Translation id="Ships.Heading.title" />
+        </Heading>
 
         <ShipList />
       </div>

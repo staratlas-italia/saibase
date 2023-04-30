@@ -3,7 +3,7 @@ import { get, withDecoder, withHeaders } from '@saibase/fetch';
 import { PublicKey } from '@solana/web3.js';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
-import { apiResourcesUrl } from '../constants';
+import { saApiResourcesUrl } from '../constants';
 import { StarAtlasPlayer, playerResponseCodec } from '../entities/player';
 
 const fetcher = (publicKey: PublicKey) =>
@@ -11,7 +11,7 @@ const fetcher = (publicKey: PublicKey) =>
     get,
     withDecoder(playerResponseCodec),
     withHeaders({ 'Content-Type': 'application/json' })
-  )(`${apiResourcesUrl}/players/${publicKey.toString()}`);
+  )(`${saApiResourcesUrl}/players/${publicKey.toString()}`);
 
 export const fetchPlayer = (publicKey: PublicKey) =>
   pipe(

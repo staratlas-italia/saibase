@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from '@saibase/uikit';
+import { Button, Flex, Price, Text } from '@saibase/uikit';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useCallback } from 'react';
@@ -9,7 +9,6 @@ import {
 } from '~/common/constants';
 import { useCluster } from '~/components/ClusterProvider';
 import { InfoRow } from '~/components/common/Info';
-import { Price } from '~/components/common/Price';
 import { useTokenBalance } from '~/hooks/useTokenBalance';
 import { StateAccount } from '~/pages/admin/View';
 import { withdrawProceeds } from '~/programs';

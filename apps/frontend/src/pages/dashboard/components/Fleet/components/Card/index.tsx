@@ -30,8 +30,10 @@ export const ShipCard = ({ ship, stakeInfo }: Props) => {
   }
 
   return (
-    <Card direction="col" className="overflow-hidden block flex-0 relative">
-      <Image src={ship?.image} alt={ship?.name} />
+    <Card border direction="col" className=" block flex-0 relative">
+      <div className="rounded-t-2xl overflow-hidden">
+        <Image src={ship?.image} alt={ship?.name} />
+      </div>
 
       <div className="relative pb-8 sm:pb-16 md:pb-10 lg:w-full">
         <main className="relative z-10 pt-5 mx-auto w-full px-4 sm:pt-12 sm:px-6 md:pt-10 lg:px-8">
