@@ -1,8 +1,5 @@
 import { solscanApiToken } from '@saibase/configuration';
-import {
-  fetchAllTokenHolders,
-  Holder,
-} from '@saibase/solscan-api';
+import { fetchAllTokenHolders, Holder } from '@saibase/solscan-api';
 import { captureException } from '@sentry/node';
 import { flow, pipe } from 'fp-ts/function';
 import * as RA from 'fp-ts/ReadonlyArray';

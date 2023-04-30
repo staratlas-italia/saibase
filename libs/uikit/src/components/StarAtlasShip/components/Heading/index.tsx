@@ -1,5 +1,6 @@
-import { Text, TextColor } from '@saibase/uikit';
 import cx from 'classnames';
+import { Text } from '../../../Text';
+import { TextColor } from '../../../Text/types';
 
 type Props = {
   color: TextColor;
@@ -12,11 +13,12 @@ export const Heading = ({ color, subtitle, title }: Props) => (
     as="h1"
     color={color}
     className={'tracking-tight'}
-    mdSize="6xl"
+    mdSize="5xl"
     size="4xl"
     weight="extrabold"
   >
     <span className={cx(`block xl:inline`)}>{title}</span>
+
     <Text
       color="text-gray-200"
       className="mt-2 block"

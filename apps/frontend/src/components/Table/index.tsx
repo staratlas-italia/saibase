@@ -1,4 +1,4 @@
-import { Flex, Loader } from '@saibase/uikit';
+import { Flex } from '@saibase/uikit';
 import {
   ColumnDef,
   SortingState,
@@ -107,25 +107,17 @@ export const Table = <T, V>({
       </thead>
 
       <tbody className="divide-y-2 divide-primary">
-        {loading ? (
-          <tr>
-            <td colSpan={10000}>
-              <Flex justify="center" py={5}>
-                <Loader />
-              </Flex>
-            </td>
-          </tr>
-        ) : (
-          table.getRowModel().rows.map((row, i) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-2">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))
-        )}
+        {loading
+          ? null
+          : table.getRowModel().rows.map((row, i) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="px-2">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
       </tbody>
     </table>
   );

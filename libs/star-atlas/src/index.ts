@@ -2,6 +2,9 @@ export * from './constants';
 export type {
   NftClass,
   NftPrimarySale,
+  ScoreVarsShipInfo,
+  ShipStakingInfo,
+  ShipStakingInfoExtended,
   StarAtlasNft,
   StarAtlasNftArray,
 } from './entities';

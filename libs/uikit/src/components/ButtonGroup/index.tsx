@@ -1,10 +1,10 @@
-import { Flex, Text } from '@saibase/uikit';
 import classNames from 'classnames';
-import { Translation } from '~/i18n/Translation';
-import { TranslationId } from '~/i18n/translations/types';
+
+import { Flex } from '../Flex';
+import { Text } from '../Text';
 
 type Props = {
-  items: [string, TranslationId][];
+  items: [string, string][];
   onAction: (key: string) => void;
   selectedItem?: string;
 };
@@ -28,7 +28,7 @@ export const ButtonGroup = ({ items, onAction, selectedItem }: Props) => {
             )}
           >
             <Text weight={selectedItem === key ? 'bold' : 'semibold'}>
-              <Translation id={value} />
+              {value}
             </Text>
           </button>
         ))}

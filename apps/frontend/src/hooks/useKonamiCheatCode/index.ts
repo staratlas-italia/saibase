@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export const KONAMI_CODE = [
-  "QXJyb3dVcA==",
-  "QXJyb3dVcA==",
-  "QXJyb3dEb3du",
-  "QXJyb3dEb3du",
-  "QXJyb3dMZWZ0",
-  "QXJyb3dSaWdodA==",
-  "QXJyb3dMZWZ0",
-  "QXJyb3dSaWdodA==",
-  "Yg==",
-  "YQ==",
+  'QXJyb3dVcA==',
+  'QXJyb3dVcA==',
+  'QXJyb3dEb3du',
+  'QXJyb3dEb3du',
+  'QXJyb3dMZWZ0',
+  'QXJyb3dSaWdodA==',
+  'QXJyb3dMZWZ0',
+  'QXJyb3dSaWdodA==',
+  'Yg==',
+  'YQ==',
 ];
 
 type Param = {
@@ -29,7 +29,7 @@ export const useKonamiCheatCode = ({
       const { key } = event;
 
       // is key in correct order otherwise reset
-      if (Buffer.from(sequence[currentIndex], "base64").toString() !== key) {
+      if (Buffer.from(sequence[currentIndex], 'base64').toString() !== key) {
         currentIndex = 0;
         return;
       }
@@ -43,10 +43,10 @@ export const useKonamiCheatCode = ({
       }
     };
 
-    document.addEventListener("keyup", onKeyUpHandler);
+    document.addEventListener('keyup', onKeyUpHandler);
 
     return () => {
-      document.removeEventListener("keyup", onKeyUpHandler);
+      document.removeEventListener('keyup', onKeyUpHandler);
     };
   }, [onUnlock, sequence]);
 

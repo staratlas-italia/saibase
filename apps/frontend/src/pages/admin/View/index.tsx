@@ -12,6 +12,7 @@ import { useCluster } from '~/components/ClusterProvider';
 import { AddProgramInstanceModal } from '~/components/modals/AddProgramInstanceModal';
 import { useModal } from '~/contexts/ModalContext';
 import { useTransactionToast } from '~/hooks/useTransactionToast';
+import { Translation } from '~/i18n/Translation';
 import { ProgramInstance } from '~/pages/admin/View/ProgramInstance';
 import {
   getAllSwapStates,
@@ -144,7 +145,6 @@ export const View = () => {
 
       <Flex className="space-y-3" direction="col">
         <Heading
-          title="Admin.Stats.title"
           rightContent={
             <Flex className="space-x-3">
               <Button kind="neutral" size="small" onClick={open}>
@@ -156,7 +156,9 @@ export const View = () => {
               </Button>
             </Flex>
           }
-        />
+        >
+          <Translation id="Admin.Stats.title" />
+        </Heading>
 
         <Flex direction="col" className="space-y-3" grow={1}>
           {Object.values(states).map((state) => (

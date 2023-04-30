@@ -1,12 +1,12 @@
-import { Card, Flex } from '@saibase/uikit';
+import { ButtonGroup, Card, Flex } from '@saibase/uikit';
 import { ColumnDef } from '@tanstack/react-table';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { LoadingView } from '~/components/LoadingView';
 import { Table } from '~/components/Table';
-import { ButtonGroup } from '~/components/controls/ButtonGroup';
+
 import { useShips } from '~/hooks/useShips';
+import { useTranslation } from '~/i18n/useTranslation';
 import { ShipTableRow, useShipsDealsStore } from '~/stores/useShipsDealsStore';
 import { columns } from './columns';
 
@@ -16,7 +16,7 @@ export const ShipTable = () => {
   const { ships } = useShips();
   const fetchPrices = useShipsDealsStore((s) => s.fetch);
 
-  const { data, atlasPrice, isFetching } = useShipsDealsStore();
+  const { data, atlasPrice } = useShipsDealsStore();
 
   const [action, setAction] = useState<MarketAction>('buy');
 
@@ -35,20 +35,19 @@ export const ShipTable = () => {
     [action, atlasPrice, intl.formatMessage, locale]
   );
 
+  const buyTitle = useTranslation('Ships.Table.Buy.action.title');
+  const sellTitle = useTranslation('Ships.Table.Sell.action.title');
+
   const fetch = useCallback(() => {
     fetchPrices(ships);
   }, [fetchPrices, ships]);
-
-  if (isFetching) {
-    return <LoadingView />;
-  }
 
   return (
     <Card border className="relative" p={5} mdP={8} direction="col">
       <ButtonGroup
         items={[
-          ['buy', 'Ships.Table.Buy.action.title'],
-          ['sell', 'Ships.Table.Sell.action.title'],
+          ['buy', buyTitle],
+          ['sell', sellTitle],
         ]}
         onAction={(action) => setAction(action as MarketAction)}
         selectedItem={action}

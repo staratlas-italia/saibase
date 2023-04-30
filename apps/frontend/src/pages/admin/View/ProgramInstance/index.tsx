@@ -1,4 +1,4 @@
-import { Button, Flex, Price, Text } from '@saibase/uikit';
+import { Button, Card, Flex, Price, Text } from '@saibase/uikit';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useCallback } from 'react';
@@ -76,91 +76,89 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
   }, [account.publicKey, anchorWallet, cluster, connection]);
 
   return (
-    <Flex direction="col" key={addressString}>
-      <Flex className="bg-blue-900 rounded" p={3} justify="between">
-        <Flex direction="col" className="space-y-3">
-          <InfoRow title="Swap">
-            <Text color="text-white">
-              {settings?.name.toUpperCase() || addressString} /{' '}
-              {settings?.vaultCurrency}
+    <Card border key={addressString} p={3} justify="between">
+      <Flex direction="col" className="space-y-3">
+        <InfoRow title="Swap">
+          <Text color="text-white">
+            {settings?.name.toUpperCase() || addressString} /{' '}
+            {settings?.vaultCurrency}
+          </Text>
+        </InfoRow>
+
+        <Flex className="space-x-3">
+          <Link
+            href={`https://solscan.io/account/${account.account.vault.toString()}${
+              cluster ? `?cluster=${cluster}` : ''
+            }`}
+            target="_blank"
+          >
+            <Text
+              weight="bold"
+              transform="uppercase"
+              size="sm"
+              color="text-gray-300"
+            >
+              <LinkIcon />
+              Vault
             </Text>
+          </Link>
+
+          <Link
+            href={`https://solscan.io/account/${account.account.proceedsVault.toString()}${
+              cluster ? `?cluster=${cluster}` : ''
+            }`}
+            target="_blank"
+          >
+            <Text
+              weight="bold"
+              transform="uppercase"
+              size="sm"
+              color="text-gray-300"
+            >
+              <LinkIcon />
+              Proceeds Vault
+            </Text>
+          </Link>
+        </Flex>
+        <Flex className="space-x-5">
+          <InfoRow title="Price">
+            <Price
+              color="text-white"
+              currency="USDC"
+              decimals={5}
+              value={account.account.price.toNumber() / Math.pow(10, 6)}
+            />
           </InfoRow>
 
-          <Flex className="space-x-3">
-            <Link
-              href={`https://solscan.io/account/${account.account.vault.toString()}${
-                cluster ? `?cluster=${cluster}` : ''
-              }`}
-              target="_blank"
-            >
-              <Text
-                weight="bold"
-                transform="uppercase"
-                size="sm"
-                color="text-gray-300"
-              >
-                <LinkIcon />
-                Vault
-              </Text>
-            </Link>
+          <InfoRow title="Proceeds vault" loading={loadingBalance}>
+            <Price
+              color="text-white"
+              currency="USDC"
+              value={proceedsBalance || 0}
+            />
+          </InfoRow>
 
-            <Link
-              href={`https://solscan.io/account/${account.account.proceedsVault.toString()}${
-                cluster ? `?cluster=${cluster}` : ''
-              }`}
-              target="_blank"
-            >
-              <Text
-                weight="bold"
-                transform="uppercase"
-                size="sm"
-                color="text-gray-300"
-              >
-                <LinkIcon />
-                Proceeds Vault
-              </Text>
-            </Link>
-          </Flex>
-          <Flex className="space-x-5">
-            <InfoRow title="Price">
-              <Price
-                color="text-white"
-                currency="USDC"
-                decimals={5}
-                value={account.account.price.toNumber() / Math.pow(10, 6)}
-              />
-            </InfoRow>
-
-            <InfoRow title="Proceeds vault" loading={loadingBalance}>
-              <Price
-                color="text-white"
-                currency="USDC"
-                value={proceedsBalance || 0}
-              />
-            </InfoRow>
-
-            <InfoRow title="Vault" loading={loadingVaultBalance}>
-              <Price
-                currency="NONE"
-                color="text-white"
-                value={vaultBalance || 0}
-              />
-            </InfoRow>
-          </Flex>
-        </Flex>
-
-        <Flex direction="col">
-          <Button loading={loading} onClick={onToggle}>
-            {account.account.active ? 'Disable' : 'Enable'}
-          </Button>
-
-          <Flex pt={3}>
-            <Button loading={loading} onClick={handleWithdraw}>
-              Withdraw proceeds
-            </Button>
-          </Flex>
+          <InfoRow title="Vault" loading={loadingVaultBalance}>
+            <Price
+              currency="NONE"
+              color="text-white"
+              value={vaultBalance || 0}
+            />
+          </InfoRow>
         </Flex>
       </Flex>
-    </Flex>
+
+      <Flex direction="col">
+        <Button loading={loading} onClick={onToggle}>
+          {account.account.active ? 'Disable' : 'Enable'}
+        </Button>
+
+        <Flex pt={3}>
+          <Button loading={loading} onClick={handleWithdraw}>
+            Withdraw proceeds
+          </Button>
+        </Flex>
+      </Flex>
+    </Card>
   );
 };

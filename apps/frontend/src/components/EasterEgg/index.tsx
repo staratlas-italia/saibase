@@ -1,11 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 import {
   FallingSpaceships,
   FallingSpaceshipsProps,
-} from "~/components/EasterEgg/FallingSpaceships";
-import { HtmlComment } from "~/components/HtmlComment";
-import { useModal } from "~/contexts/ModalContext";
-import { useKonamiCheatCode } from "~/hooks/useKonamiCheatCode";
+} from '~/components/EasterEgg/FallingSpaceships';
+import { HtmlComment } from '~/components/HtmlComment';
+import { useModal } from '~/contexts/ModalContext';
+import { useKonamiCheatCode } from '~/hooks/useKonamiCheatCode';
 
 const Content = ({ onUnlock }: { onUnlock: () => void }) => {
   useKonamiCheatCode({ onUnlock });
@@ -14,7 +14,7 @@ const Content = ({ onUnlock }: { onUnlock: () => void }) => {
 };
 
 export const EasterEgg = (props: FallingSpaceshipsProps) => {
-  const { open } = useModal("easter-egg");
+  const { open } = useModal('easter-egg');
   const [show, setShow] = useState(false);
   const onUnlock = useCallback(() => setShow(true), [setShow]);
 
@@ -38,6 +38,7 @@ export const EasterEgg = (props: FallingSpaceshipsProps) => {
   return (
     <>
       <HtmlComment text="Here should be what you're searching for... but hey, you need to press some key :)" />
+
       <Content onUnlock={onUnlock} />
     </>
   );

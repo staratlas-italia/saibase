@@ -1,4 +1,4 @@
-import { Button, Heading } from '@saibase/uikit';
+import { Button, Flex, Heading, Loader } from '@saibase/uikit';
 import Head from 'next/head';
 import { ShipsRetriever } from '~/components/ShipsRetriever';
 import { useShips } from '~/hooks/useShips';
@@ -8,12 +8,16 @@ import { ShipTable } from '../components/ShipTable';
 
 const Refresh = () => {
   const { ships } = useShips();
-  const fetch = useShipsDealsStore((s) => s.fetch);
+  const { fetch, isFetching } = useShipsDealsStore();
 
   return (
-    <Button size="small" onClick={() => fetch(ships, true)}>
-      <Translation id="Admin.Stats.Refresh.action.title" />
-    </Button>
+    <Flex align="center" className="space-x-2">
+      {isFetching && <Loader color="text-white" />}
+
+      <Button size="small" onClick={() => fetch(ships, true)}>
+        <Translation id="Admin.Stats.Refresh.action.title" />
+      </Button>
+    </Flex>
   );
 };
 

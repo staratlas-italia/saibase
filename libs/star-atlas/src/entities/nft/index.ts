@@ -1,3 +1,8 @@
+import { BN } from '@project-serum/anchor';
+import {
+  ScoreVarsShipInfo as SaScoreVarsShipInfo,
+  ShipStakingInfo as SaShipStakingInfo,
+} from '@staratlas/factory';
 import * as t from 'io-ts';
 import { nullable, optional } from '../../utils';
 
@@ -172,3 +177,45 @@ export type NftClass = t.TypeOf<typeof classCodec>;
 export type NftPrimarySale = t.TypeOf<typeof primarySaleCodec>;
 export type StarAtlasNft = t.TypeOf<typeof nftCodec>;
 export type StarAtlasNftArray = t.TypeOf<typeof nftsCodec>;
+
+export type ShipStakingInfo = {
+  [key in keyof SaShipStakingInfo]: SaShipStakingInfo[key] extends infer U
+    ? U extends BN
+      ? number
+      : string
+    : never;
+};
+
+export type ShipStakingInfoExtended = ShipStakingInfo & {
+  pendingRewardsV2: number;
+  rewardRatePerSecond: number;
+  fuelMaxReserve: number;
+  foodMaxReserve: number;
+  armsMaxReserve: number;
+  toolkitMaxReserve: number;
+  millisecondsToBurnOneFuel: number;
+  millisecondsToBurnOneFood: number;
+  millisecondsToBurnOneArms: number;
+  millisecondsToBurnOneToolkit: number;
+  dailyFuelConsumption: number;
+  dailyFoodConsumption: number;
+  dailyArmsConsumption: number;
+  dailyToolkitConsumption: number;
+  dailyFuelCostInAtlas: number;
+  dailyFoodCostInAtlas: number;
+  dailyArmsCostInAtlas: number;
+  dailyToolkitCostInAtlas: number;
+  dailyMaintenanceCostInAtlas: number;
+  grossDailyRewardInAtlas: number;
+  netDailyRewardInAtlas: number;
+};
+
+export type ScoreVarsShipInfo = {
+  [key in keyof SaScoreVarsShipInfo]: SaScoreVarsShipInfo[key] extends infer U
+    ? U extends BN
+      ? number
+      : U extends number
+      ? number
+      : string
+    : never;
+};

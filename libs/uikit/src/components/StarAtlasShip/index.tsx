@@ -1,18 +1,25 @@
-import { Card, Flex, Text } from '@saibase/uikit';
-import { useIntl } from 'react-intl';
-import { Countdown } from '~/components/Countdown';
-import { Progress } from '~/components/Progress';
-import type { TextColor } from '~/components/common/Text/types';
-import { NormalizedShipStakingInfoExtended, StarAtlasNft } from '~/types';
+import type {
+  ShipStakingInfoExtended,
+  StarAtlasNft,
+} from '@saibase/star-atlas';
+import { default as NextImage } from 'next/image';
+import { Card } from '../Card';
+import { Countdown } from '../Countdown';
+import { Flex } from '../Flex';
+import { Progress } from '../Progress';
+import { Text } from '../Text';
+import { TextColor } from '../Text/types';
+import { Description } from './components/Description';
 import { Heading } from './components/Heading';
-import { Image } from './components/Image';
 
 type Props = {
   ship?: StarAtlasNft;
-  stakeInfo?: NormalizedShipStakingInfoExtended;
+  stakeInfo?: ShipStakingInfoExtended;
+  bottomContent?: React.ReactNode;
+  showDesc?: boolean;
 };
 
-const shipColors: Record<string, TextColor> = {
+const shipColors: { [key: string]: TextColor } = {
   'xx-small': 'text-white',
   'x-small': 'text-indigo-300',
   small: 'text-yellow-500',
@@ -20,36 +27,65 @@ const shipColors: Record<string, TextColor> = {
   large: 'text-pink-600',
   capital: 'text-purple-400',
   commander: 'text-red-600',
+  titan: 'text-emerald-400',
 };
 
-export const ShipCard = ({ ship, stakeInfo }: Props) => {
-  const intl = useIntl();
-
+export const StarAtlasShip = ({
+  ship,
+  stakeInfo,
+  bottomContent = null,
+  showDesc,
+}: Props) => {
   if (!ship) {
     return null;
   }
 
   return (
-    <Card border direction="col" className=" block flex-0 relative">
-      <div className="rounded-t-2xl overflow-hidden">
-        <Image src={ship?.image} alt={ship?.name} />
+    <Card border direction="col">
+      <div className="rounded-t-2xl overflow-hidden relative h-56">
+        <NextImage
+          src={ship?.image}
+          alt={ship?.name}
+          fill
+          quality={20}
+          className=" object-cover"
+        />
       </div>
 
-      <div className="relative pb-8 sm:pb-16 md:pb-10 lg:w-full">
-        <main className="relative z-10 pt-5 mx-auto w-full px-4 sm:pt-12 sm:px-6 md:pt-10 lg:px-8">
-          <div className="sm:text-center lg:text-left">
-            <Heading
-              color={shipColors[ship?.attributes?.class?.toLowerCase()]}
-              title={ship?.name}
-              subtitle={ship?.attributes?.class}
-            />
-            <div className="mt-3 sm:mt-5 sm:mx-auto md:mt-5 lg:mx-0">
+      <Flex
+        grow={1}
+        direction="col"
+        py={12}
+        px={6}
+        mdPy={10}
+        mdPx={8}
+        className="w-full"
+      >
+        <Flex grow={1} direction="col">
+          <Heading
+            color={shipColors[ship?.attributes?.class?.toLowerCase()]}
+            title={ship?.name}
+            subtitle={ship?.attributes?.class}
+          />
+
+          {showDesc && (
+            <Flex py={2}>
+              <Description text={ship.description} />
+            </Flex>
+          )}
+
+          {stakeInfo && (
+            <div className="w-full mt-3 sm:mt-5 sm:mx-auto md:mt-5 lg:mx-0">
               <Flex direction="row" className="w-full">
                 <Flex justify="start" align="center">
-                  <img
+                  <NextImage
+                    alt="Rocket"
+                    width={20}
+                    height={20}
                     src={`/images/icons/rocket-solid.svg`}
-                    className="h-5 w-5 text-white"
+                    className="text-white"
                   />
+
                   <Text
                     color="text-white"
                     weight="semibold"
@@ -60,6 +96,7 @@ export const ShipCard = ({ ship, stakeInfo }: Props) => {
                   </Text>
                 </Flex>
               </Flex>
+
               <Flex py={3} direction="col" className="space-y-4">
                 <Progress
                   title={
@@ -172,9 +209,11 @@ export const ShipCard = ({ ship, stakeInfo }: Props) => {
                 />
               </Flex>
             </div>
-          </div>
-        </main>
-      </div>
+          )}
+        </Flex>
+
+        <div className="pt-2">{bottomContent}</div>
+      </Flex>
     </Card>
   );
 };
