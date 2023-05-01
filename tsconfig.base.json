@@ -18,6 +18,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@saibase/anchor-swap": ["libs/anchor/swap/src/index.ts"],
       "@saibase/configuration": ["libs/configuration/src/index.ts"],
       "@saibase/constants": ["libs/constants/src/index.ts"],
       "@saibase/errors": ["libs/errors/src/index.ts"],

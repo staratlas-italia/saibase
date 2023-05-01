@@ -1,15 +1,16 @@
+import { initilizeSwap } from '@saibase/anchor-swap';
+import { mints } from '@saibase/constants';
 import { Button, Flex, Text } from '@saibase/uikit';
 import { isPublicKey } from '@saibase/web3';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { ATLAS_TOKEN_MINT, USDC_TOKEN_MINT } from '~/common/constants';
 import { TextInput } from '~/components/TextInput';
 import { BaseModal } from '~/components/modals/BaseModal';
 import { useModal } from '~/contexts/ModalContext';
 import { useTranslation } from '~/i18n/useTranslation';
-import { initilizeSwap } from '~/programs';
+
 import { shortenAddress } from '~/utils/shortenAddress';
 
 type Form = {
@@ -30,7 +31,7 @@ export const AddProgramInstanceModal = ({ onComplete }: Props) => {
   const form = useForm<Form>({
     mode: 'onChange',
     defaultValues: {
-      proceedsMint: USDC_TOKEN_MINT.toString(),
+      proceedsMint: mints.usdc.toString(),
     },
   });
 
@@ -104,8 +105,8 @@ export const AddProgramInstanceModal = ({ onComplete }: Props) => {
               <TextInput
                 name="proceedsMint"
                 label="Proceeds Mint"
-                placeholder={shortenAddress(USDC_TOKEN_MINT.toString(), 10)}
-                defaultValue={USDC_TOKEN_MINT.toString()}
+                placeholder={shortenAddress(mints.usdc.toString(), 10)}
+                defaultValue={mints.usdc.toString()}
                 rules={{
                   required: requiredErrorMessage,
                   validate: {
@@ -121,7 +122,7 @@ export const AddProgramInstanceModal = ({ onComplete }: Props) => {
               <TextInput
                 name="mint"
                 label="Token Mint"
-                placeholder={shortenAddress(ATLAS_TOKEN_MINT.toString(), 10)}
+                placeholder={shortenAddress(mints.atlas.toString(), 10)}
                 rules={{
                   required: requiredErrorMessage,
                   validate: {

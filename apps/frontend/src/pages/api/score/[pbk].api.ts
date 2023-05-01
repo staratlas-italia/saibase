@@ -1,17 +1,17 @@
 import { BN } from '@project-serum/anchor';
-import { isPublicKey } from '@saibase/web3';
-import { Cluster, Connection, PublicKey } from '@solana/web3.js';
-import {
-  ShipStakingInfo,
-  getAllFleetsForUserPublicKey,
-  getScoreVarsShipInfo,
-} from '@staratlas/factory';
+import { getAllFleets, getShipInfo } from '@saibase/star-atlas';
+import { parsePublicKey } from '@saibase/web3';
+import { Cluster, Connection } from '@solana/web3.js';
+import { ShipStakingInfo } from '@staratlas/factory';
+import * as E from 'fp-ts/Either';
+import * as A from 'fp-ts/ReadonlyArray';
+import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import {
   ARMS_PRICE,
   FOOD_PRICE,
   FUEL_PRICE,
-  SA_FLEET_PROGRAM,
   TOOLKIT_PRICE,
 } from '~/common/constants';
 import { ScoreFleetResponse } from '~/types/api';
@@ -48,38 +48,45 @@ const handler = async (
     getConnectionClusterUrl(cluster as Cluster)
   );
 
-  if (!pbk || !isPublicKey(pbk as string)) {
-    res.status(200).json({
-      success: false,
-      error: 'Invalid pubkey',
-    });
-    return;
+  const result = await pipe(
+    parsePublicKey(pbk as string),
+    TE.fromEither,
+    TE.orElseFirstIOK(
+      () => () =>
+        res.status(200).json({
+          success: false,
+          error: 'Invalid pubkey',
+        })
+    ),
+    TE.chainW((player) =>
+      pipe(
+        TE.Do,
+        TE.bind('fleet', () => getAllFleets({ connection, player })),
+        TE.bindW('fleetVars', ({ fleet }) =>
+          pipe(
+            fleet,
+            TE.traverseArray((account) =>
+              getShipInfo({ connection, shipMint: account.shipMint })
+            )
+          )
+        )
+      )
+    ),
+    TE.map(({ fleet, fleetVars }) => A.zip(fleet, fleetVars))
+  )();
+
+  if (E.isLeft(result)) {
+    const error = result.left;
+
+    return res
+      .status(400)
+      .json({ type: error.type, message: error.error.message });
   }
 
-  const accounts = await getAllFleetsForUserPublicKey(
-    connection,
-    new PublicKey(pbk),
-    SA_FLEET_PROGRAM
-  );
-
-  const shipsVars = await Promise.all(
-    accounts.map((account) => {
-      return getScoreVarsShipInfo(
-        connection,
-        SA_FLEET_PROGRAM,
-        new PublicKey(account.shipMint.toString())
-      );
-    })
-  );
-
-  const accountsWithVars = accounts.map((item, i) =>
-    Object.assign(item, shipsVars[i])
-  );
-
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     date: new Date(new Date().toUTCString()).toISOString(),
-    data: accountsWithVars.map((account) => ({
+    data: result.right.map(([account, vars]) => ({
       owner: account.owner.toString(),
       factionId: account.factionId.toString(),
       shipMint: account.shipMint.toString(),
@@ -101,106 +108,106 @@ const handler = async (
       stakedTimePaid: account.stakedTimePaid.toNumber(),
       pendingRewards: account.pendingRewards.toNumber(),
       pendingRewardsV2:
-        getReward(account, account.rewardRatePerSecond.toNumber()) /
+        getReward(account, vars.rewardRatePerSecond.toNumber()) /
         Math.pow(10, 8),
       totalRewardsPaid: account.totalRewardsPaid.toNumber(),
       /* Vars */
-      rewardRatePerSecond: account.rewardRatePerSecond.toNumber(),
-      fuelMaxReserve: account.fuelMaxReserve,
-      foodMaxReserve: account.foodMaxReserve,
-      armsMaxReserve: account.armsMaxReserve,
-      toolkitMaxReserve: account.toolkitMaxReserve,
-      millisecondsToBurnOneFuel: account.millisecondsToBurnOneFuel,
-      millisecondsToBurnOneFood: account.millisecondsToBurnOneFood,
-      millisecondsToBurnOneArms: account.millisecondsToBurnOneArms,
-      millisecondsToBurnOneToolkit: account.millisecondsToBurnOneToolkit,
+      rewardRatePerSecond: vars.rewardRatePerSecond.toNumber(),
+      fuelMaxReserve: vars.fuelMaxReserve,
+      foodMaxReserve: vars.foodMaxReserve,
+      armsMaxReserve: vars.armsMaxReserve,
+      toolkitMaxReserve: vars.toolkitMaxReserve,
+      millisecondsToBurnOneFuel: vars.millisecondsToBurnOneFuel,
+      millisecondsToBurnOneFood: vars.millisecondsToBurnOneFood,
+      millisecondsToBurnOneArms: vars.millisecondsToBurnOneArms,
+      millisecondsToBurnOneToolkit: vars.millisecondsToBurnOneToolkit,
       /* Custom values */
       dailyFuelConsumption: resDailyConsumption(
-        account.millisecondsToBurnOneFuel,
+        vars.millisecondsToBurnOneFuel,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyFoodConsumption: resDailyConsumption(
-        account.millisecondsToBurnOneFood,
+        vars.millisecondsToBurnOneFood,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyArmsConsumption: resDailyConsumption(
-        account.millisecondsToBurnOneArms,
+        vars.millisecondsToBurnOneArms,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyToolkitConsumption: resDailyConsumption(
-        account.millisecondsToBurnOneToolkit,
+        vars.millisecondsToBurnOneToolkit,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyFuelCostInAtlas: resDailyCostInAtlas(
         FUEL_PRICE,
-        account.millisecondsToBurnOneFuel,
+        vars.millisecondsToBurnOneFuel,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyFoodCostInAtlas: resDailyCostInAtlas(
         FOOD_PRICE,
-        account.millisecondsToBurnOneFood,
+        vars.millisecondsToBurnOneFood,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyArmsCostInAtlas: resDailyCostInAtlas(
         ARMS_PRICE,
-        account.millisecondsToBurnOneArms,
+        vars.millisecondsToBurnOneArms,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyToolkitCostInAtlas: resDailyCostInAtlas(
         TOOLKIT_PRICE,
-        account.millisecondsToBurnOneToolkit,
+        vars.millisecondsToBurnOneToolkit,
         account.shipQuantityInEscrow.toNumber()
       ),
       dailyMaintenanceCostInAtlas: dailyMaintenanceCostInAtlas(
         resDailyCostInAtlas(
           FUEL_PRICE,
-          account.millisecondsToBurnOneFuel,
+          vars.millisecondsToBurnOneFuel,
           account.shipQuantityInEscrow.toNumber()
         ),
         resDailyCostInAtlas(
           FOOD_PRICE,
-          account.millisecondsToBurnOneFood,
+          vars.millisecondsToBurnOneFood,
           account.shipQuantityInEscrow.toNumber()
         ),
         resDailyCostInAtlas(
           ARMS_PRICE,
-          account.millisecondsToBurnOneArms,
+          vars.millisecondsToBurnOneArms,
           account.shipQuantityInEscrow.toNumber()
         ),
         resDailyCostInAtlas(
           TOOLKIT_PRICE,
-          account.millisecondsToBurnOneToolkit,
+          vars.millisecondsToBurnOneToolkit,
           account.shipQuantityInEscrow.toNumber()
         )
       ),
       grossDailyRewardInAtlas: grossDailyRewardInAtlas(
-        account.rewardRatePerSecond.toNumber(),
+        vars.rewardRatePerSecond.toNumber(),
         account.shipQuantityInEscrow.toNumber()
       ),
       netDailyRewardInAtlas: netDailyRewardInAtlas(
         grossDailyRewardInAtlas(
-          account.rewardRatePerSecond.toNumber(),
+          vars.rewardRatePerSecond.toNumber(),
           account.shipQuantityInEscrow.toNumber()
         ),
         dailyMaintenanceCostInAtlas(
           resDailyCostInAtlas(
             FUEL_PRICE,
-            account.millisecondsToBurnOneFuel,
+            vars.millisecondsToBurnOneFuel,
             account.shipQuantityInEscrow.toNumber()
           ),
           resDailyCostInAtlas(
             FOOD_PRICE,
-            account.millisecondsToBurnOneFood,
+            vars.millisecondsToBurnOneFood,
             account.shipQuantityInEscrow.toNumber()
           ),
           resDailyCostInAtlas(
             ARMS_PRICE,
-            account.millisecondsToBurnOneArms,
+            vars.millisecondsToBurnOneArms,
             account.shipQuantityInEscrow.toNumber()
           ),
           resDailyCostInAtlas(
             TOOLKIT_PRICE,
-            account.millisecondsToBurnOneToolkit,
+            vars.millisecondsToBurnOneToolkit,
             account.shipQuantityInEscrow.toNumber()
           )
         )

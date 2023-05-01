@@ -1,9 +1,8 @@
+import { ShipStakingInfo, saFleetProgram } from '@saibase/star-atlas';
 import { isPublicKey } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { getShipStakingAccountInfo } from '@staratlas/factory';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { SA_FLEET_PROGRAM } from '~/common/constants';
-import { NormalizedShipStakingInfo } from '~/types';
 import { getConnectionClusterUrl } from '~/utils/connection';
 
 export type ResponseData =
@@ -13,7 +12,7 @@ export type ResponseData =
     }
   | {
       success: true;
-      data: NormalizedShipStakingInfo;
+      data: ShipStakingInfo;
     };
 
 const handler = async (
@@ -46,7 +45,7 @@ const handler = async (
 
   const account = await getShipStakingAccountInfo(
     connection,
-    SA_FLEET_PROGRAM,
+    saFleetProgram,
     new PublicKey(mint as string),
     new PublicKey(pbk as string)
   );

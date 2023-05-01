@@ -1,3 +1,4 @@
+import { withdrawProceeds } from '@saibase/anchor-swap';
 import { Button, Card, Flex, Price, Text } from '@saibase/uikit';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
@@ -11,7 +12,6 @@ import { useCluster } from '~/components/ClusterProvider';
 import { InfoRow } from '~/components/common/Info';
 import { useTokenBalance } from '~/hooks/useTokenBalance';
 import { StateAccount } from '~/pages/admin/View';
-import { withdrawProceeds } from '~/programs';
 
 type Props = {
   account: StateAccount;

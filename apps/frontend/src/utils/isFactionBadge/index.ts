@@ -1,9 +1,9 @@
-import { PublicKey } from "@solana/web3.js";
-import { CITIZEN_TOKEN_MINT_PER_FACTION } from "~/common/constants/citizenship";
+import { citizenship } from '@saibase/constants';
+import { PublicKey } from '@solana/web3.js';
 
 export const isFactionBadge = (badgeMint: PublicKey) => {
   if (
-    Object.values(CITIZEN_TOKEN_MINT_PER_FACTION)
+    Object.values(citizenship.tokenMintPerFaction['mainnet-beta'])
       .map((s) => s.toString())
       .includes(badgeMint.toString())
   ) {

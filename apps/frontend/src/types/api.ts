@@ -1,5 +1,6 @@
+import { ShipStakingInfoExtended } from '@saibase/star-atlas';
 import { WithId } from 'mongodb';
-import { FactionWithNone, NormalizedShipStakingInfoExtended } from '.';
+import { FactionWithNone } from '.';
 
 type Tag = 'cat-lover';
 
@@ -61,7 +62,7 @@ export type ScoreFleetResponse =
     }
   | {
       success: true;
-      data: NormalizedShipStakingInfoExtended[];
+      data: ShipStakingInfoExtended[];
     };
 
 export type Faction = null | 0 | 1 | 2;

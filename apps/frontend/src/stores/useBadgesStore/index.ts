@@ -1,4 +1,5 @@
 import { Nft, NftWithToken, Sft, SftWithToken } from '@metaplex-foundation/js';
+import { citizenship } from '@saibase/constants';
 import { fetchNfts } from '@saibase/star-atlas';
 import {
   getAllNftsByMintList,
@@ -15,7 +16,6 @@ import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
 import { create } from 'zustand';
-import { CITIZEN_TOKEN_MINT_PER_FACTION } from '~/common/constants/citizenship';
 import { TUTOR_SWAP_TOKEN_MINT } from '~/common/constants/tutor';
 import { getBadgeByMint } from '~/utils/getBadgeByMint';
 
@@ -87,9 +87,9 @@ export const useBadgesStore = create<BadgesStore>((set, get) => ({
     )();
 
     const mints = [
-      CITIZEN_TOKEN_MINT_PER_FACTION.oni,
-      CITIZEN_TOKEN_MINT_PER_FACTION.mud,
-      CITIZEN_TOKEN_MINT_PER_FACTION.ustur,
+      citizenship.tokenMintPerFaction['mainnet-beta'].oni,
+      citizenship.tokenMintPerFaction['mainnet-beta'].mud,
+      citizenship.tokenMintPerFaction['mainnet-beta'].ustur,
       TUTOR_SWAP_TOKEN_MINT,
     ];
 
@@ -128,7 +128,7 @@ export const useBadgesStore = create<BadgesStore>((set, get) => ({
 
 const citizenshipSelector = (state: BadgesStore) =>
   state.badges?.filter((badge) =>
-    Object.values(CITIZEN_TOKEN_MINT_PER_FACTION)
+    Object.values(citizenship.tokenMintPerFaction['mainnet-beta'])
       .map((p) => p.toString())
       .includes(badge.mint.address.toString())
   );

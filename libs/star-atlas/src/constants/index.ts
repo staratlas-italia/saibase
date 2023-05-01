@@ -4,3 +4,7 @@ export const saApiResourcesUrl = 'https://galaxy.staratlas.com';
 export const saMarketplaceProgramId = new PublicKey(
   'traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg'
 );
+
+export const saFleetProgram = new PublicKey(
+  'FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW'
+);

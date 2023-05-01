@@ -1,9 +1,9 @@
-import { NormalizedShipStakingInfoExtended } from '../../../types';
+import { ShipStakingInfoExtended } from '@saibase/star-atlas';
 import { getRemainingTimeBeforeRefillInSeconds } from '../getRemainingTimeBeforeRefillInSeconds';
 import { getSecondsSinceLastRefill } from '../getSecondsSinceLastRefill';
 
 export const getPassedTimeSinceLastRefillInSeconds = (
-  ship: NormalizedShipStakingInfoExtended
+  ship: ShipStakingInfoExtended
 ) => {
   const secondsSinceLastRefill = getSecondsSinceLastRefill(
     ship.currentCapacityTimestamp

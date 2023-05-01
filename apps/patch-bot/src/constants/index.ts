@@ -1,8 +1,5 @@
 import { GrowthBook } from '@growthbook/growthbook';
-import {
-  environment,
-  rpcApiBaseUrl,
-} from '@saibase/configuration';
+import { environment, rpcApiBaseUrl } from '@saibase/configuration';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { Faction } from '../types';
 import { roleIds } from './roles';
@@ -34,12 +31,6 @@ export const featuresEndpoint = process.env.FEATURES_ENDPOINT;
 export const discordBotToken = process.env.DISCORD_BOT_TOKEN;
 
 export const growthbook = new GrowthBook();
-
-export const SOLSCAN_API_URL = 'https://public-api.solscan.io';
-
-export const SA_FLEET_PROGRAM_ID = new PublicKey(
-  'FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW'
-);
 
 export const TOKEN_PROGRAM_ID = new PublicKey(
   'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'

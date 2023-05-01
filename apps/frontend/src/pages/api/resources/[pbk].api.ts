@@ -1,12 +1,7 @@
+import { mints } from '@saibase/constants';
 import { getTokenBalanceByMint, isPublicKey } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { NextApiRequest, NextApiResponse } from 'next';
-import {
-  AMMO_TOKEN_MINT_ID,
-  FOOD_TOKEN_MINT_ID,
-  FUEL_TOKEN_MINT_ID,
-  TOOL_TOKEN_MINT_ID,
-} from '~/common/constants/index';
 import { getConnectionClusterUrl } from '~/utils/connection';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -29,25 +24,25 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const foodAmountAccount = await getTokenBalanceByMint(
     connection,
     new PublicKey(pbk),
-    new PublicKey(FOOD_TOKEN_MINT_ID)
+    mints.food
   )();
 
   const fuelAmountAccount = await getTokenBalanceByMint(
     connection,
     new PublicKey(pbk),
-    new PublicKey(FUEL_TOKEN_MINT_ID)
+    mints.fuel
   )();
 
   const ammoAmountAccount = await getTokenBalanceByMint(
     connection,
     new PublicKey(pbk),
-    new PublicKey(AMMO_TOKEN_MINT_ID)
+    mints.ammo
   )();
 
   const toolAmountAccount = await getTokenBalanceByMint(
     connection,
     new PublicKey(pbk),
-    new PublicKey(TOOL_TOKEN_MINT_ID)
+    mints.toolkit
   )();
 
   res.status(200).json({

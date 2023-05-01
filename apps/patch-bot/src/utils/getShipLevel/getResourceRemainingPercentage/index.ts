@@ -1,9 +1,10 @@
-import { NormalizedShipStakingInfoExtended, Resource } from '../../../types';
+import { ShipStakingInfoExtended } from '@saibase/star-atlas';
+import { Resource } from '../../../types';
 import { getRemainingTimeBeforeRefillInSeconds } from '../getRemainingTimeBeforeRefillInSeconds';
 import { getResourceMaxCapacityInSeconds } from '../getResourceMaxCapacityInSeconds';
 
 export const getResourceRemainingPercentage = (
-  ship: NormalizedShipStakingInfoExtended,
+  ship: ShipStakingInfoExtended,
   resource: Resource,
   timePassSinceStart: number
 ): number => {

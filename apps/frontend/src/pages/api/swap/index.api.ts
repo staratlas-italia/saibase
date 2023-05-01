@@ -1,29 +1,27 @@
-import { AnchorProvider, BN, Program } from "@project-serum/anchor";
-import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-import { getAssociatedTokenAddress } from "@solana/spl-token";
+import { AnchorProvider, BN, Program } from '@project-serum/anchor';
+import NodeWallet from '@project-serum/anchor/dist/cjs/nodewallet';
+import { mints } from '@saibase/constants';
+import { getAssociatedTokenAddress } from '@solana/spl-token';
 import {
   Cluster,
   Connection,
   Keypair,
   PublicKey,
   Transaction,
-} from "@solana/web3.js";
-import { pipe } from "fp-ts/function";
-import { NextApiRequest, NextApiResponse } from "next";
+} from '@solana/web3.js';
+import { pipe } from 'fp-ts/function';
+import { NextApiRequest, NextApiResponse } from 'next';
 import {
   APP_BASE_URL,
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
-  DEVNET_USDC_TOKEN_MINT,
   SAI_TOKEN_SWAP_PROGRAM_ID,
   TOKEN_SWAP_STATE_ACCOUNTS,
-  USDC_TOKEN_MINT,
-} from "~/common/constants";
-import { matchMethodMiddleware } from "~/middlewares/matchMethod";
-import { IDL } from "~/programs/sai_token_swap";
-import { getConnectionClusterUrl } from "~/utils/connection";
+} from '~/common/constants';
+import { matchMethodMiddleware } from '~/middlewares/matchMethod';
+import { getConnectionClusterUrl } from '~/utils/connection';
 
 const getSwapState = (cluster?: Cluster) =>
-  cluster === "devnet"
+  cluster === 'devnet'
     ? DEVNET_TOKEN_SWAP_STATE_ACCOUNTS
     : TOKEN_SWAP_STATE_ACCOUNTS;
 
@@ -53,14 +51,14 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     !publicKeyField ||
     !referenceField
   ) {
-    throw new Error("Invalid params");
+    throw new Error('Invalid params');
   }
 
   const owner = new PublicKey(accountField);
   const publicKey = new PublicKey(publicKeyField);
 
   if (!owner.equals(publicKey)) {
-    throw new Error("Not same publickey!");
+    throw new Error('Not same publickey!');
   }
 
   const reference = new PublicKey(referenceField);
@@ -74,20 +72,24 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     AnchorProvider.defaultOptions()
   );
 
-  const program = new Program(IDL, SAI_TOKEN_SWAP_PROGRAM_ID, provider);
+  const program = new Program(
+    saiTokenSwapIdl,
+    SAI_TOKEN_SWAP_PROGRAM_ID,
+    provider
+  );
 
   const [vaultPda] = await PublicKey.findProgramAddress(
-    [Buffer.from("vault"), stateAccount.toBuffer()],
+    [Buffer.from('vault'), stateAccount.toBuffer()],
     SAI_TOKEN_SWAP_PROGRAM_ID
   );
 
   const [proceedsVaultPda] = await PublicKey.findProgramAddress(
-    [Buffer.from("proceeds_vault"), stateAccount.toBuffer()],
+    [Buffer.from('proceeds_vault'), stateAccount.toBuffer()],
     SAI_TOKEN_SWAP_PROGRAM_ID
   );
 
   const buyerOutTokenAccount = await getAssociatedTokenAddress(
-    clusterField === "devnet" ? DEVNET_USDC_TOKEN_MINT : USDC_TOKEN_MINT,
+    clusterField === 'devnet' ? mints.usdcDevnet : mints.usdc,
     owner
   );
 
@@ -131,7 +133,7 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     verifySignatures: false,
   });
 
-  const base64Transaction = serializedTransaction.toString("base64");
+  const base64Transaction = serializedTransaction.toString('base64');
 
   const message = `Thank you for your purchase of ${state.name}`;
 
@@ -140,11 +142,11 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
-    case "GET":
+    case 'GET':
       return getHandler(req, res);
-    case "POST":
+    case 'POST':
       return postHandler(req, res);
   }
 };
 
-export default pipe(handler, matchMethodMiddleware(["GET", "POST"]));
+export default pipe(handler, matchMethodMiddleware(['GET', 'POST']));

@@ -1,8 +1,9 @@
-import { NormalizedShipStakingInfoExtended, Resource } from '../../../types';
+import { ShipStakingInfoExtended } from '@saibase/star-atlas';
+import { Resource } from '../../../types';
 import { assertNever } from '../../assertNever';
 
 export const getResourceMaxCapacityInSeconds = (
-  ship: NormalizedShipStakingInfoExtended,
+  ship: ShipStakingInfoExtended,
   resource: Resource
 ) => {
   switch (resource) {

@@ -41,4 +41,10 @@ export const playerCodec = t.type({
 
 export const playerResponseCodec = t.union([playerCodec, t.type({})]);
 
+export const factions = ['ONI', 'MUD', 'USTUR'] as const;
+
+export type Faction = (typeof factions)[number];
+
+export type FactionWithNone = Faction | 'NONE';
+
 export type StarAtlasPlayer = t.TypeOf<typeof playerCodec>;

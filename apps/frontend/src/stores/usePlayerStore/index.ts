@@ -1,11 +1,7 @@
+import { mints } from '@saibase/constants';
 import { getTokenBalanceByMint } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { create } from 'zustand';
-import {
-  ATLAS_TOKEN_MINT,
-  POLIS_TOKEN_MINT,
-  USDC_TOKEN_MINT,
-} from '~/common/constants';
 import { fetchPlayer } from '~/network/player';
 import { fetchOrCreateSelf, linkDiscordId } from '~/network/self';
 import { Avatar, Player } from '~/types';
@@ -69,17 +65,17 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         getTokenBalanceByMint(
           connection,
           new PublicKey(publicKey),
-          ATLAS_TOKEN_MINT
+          mints.atlas
         )(),
         getTokenBalanceByMint(
           connection,
           new PublicKey(publicKey),
-          POLIS_TOKEN_MINT
+          mints.polis
         )(),
         getTokenBalanceByMint(
           connection,
           new PublicKey(publicKey),
-          USDC_TOKEN_MINT
+          mints.usdc
         )(),
       ]);
 

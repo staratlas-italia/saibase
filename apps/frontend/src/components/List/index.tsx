@@ -1,5 +1,4 @@
-import { Flex } from '@saibase/uikit';
-import { Spacing } from '~/common/spacing';
+import { Flex, Spacing } from '@saibase/uikit';
 import { Item, ItemProps } from '~/components/List/components/Item';
 import { Section } from '~/components/List/components/Section';
 

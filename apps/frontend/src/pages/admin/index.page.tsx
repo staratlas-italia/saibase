@@ -1,5 +1,5 @@
-import { AssertAuthenticated } from "~/components/auth/AssertAuthenticated";
-import { View } from "./View";
+import { AssertAuthenticated } from '../../components/auth/AssertAuthenticated';
+import { View } from './View';
 
 const AdminPage = () => (
   <AssertAuthenticated adminOnly>

@@ -1,6 +1,4 @@
-import { BN } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
-import { ScoreVarsShipInfo, ShipStakingInfo } from '@staratlas/factory';
 import { ReactChild, ReactNodeArray, ReactPortal } from 'react';
 import { TranslationId } from '../i18n/translations/types';
 
@@ -24,20 +22,6 @@ export type StrictReactNode =
 
 export type Tier = 'tier1' | 'tier2' | 'tier3';
 
-type ShipAttributes = {
-  itemType: string;
-  class: string;
-  tier: number;
-  spec: string;
-  rarity: string;
-  category: string;
-  make: string;
-  model: string;
-  unitLength: number;
-  unitWidth: number;
-  unitHeight: number;
-};
-
 export type Player = {
   avatarId: Avatar;
   avatarImageUrl?: string;
@@ -56,48 +40,6 @@ export type Player = {
   rank: number;
   registrationDate: string;
   updatedAt: string;
-};
-
-export type NormalizedShipStakingInfo = {
-  [key in keyof ShipStakingInfo]: ShipStakingInfo[key] extends infer U
-    ? U extends BN
-      ? number
-      : string
-    : never;
-};
-
-export type NormalizedShipStakingInfoExtended = NormalizedShipStakingInfo & {
-  pendingRewardsV2: number;
-  rewardRatePerSecond: number;
-  fuelMaxReserve: number;
-  foodMaxReserve: number;
-  armsMaxReserve: number;
-  toolkitMaxReserve: number;
-  millisecondsToBurnOneFuel: number;
-  millisecondsToBurnOneFood: number;
-  millisecondsToBurnOneArms: number;
-  millisecondsToBurnOneToolkit: number;
-  dailyFuelConsumption: number;
-  dailyFoodConsumption: number;
-  dailyArmsConsumption: number;
-  dailyToolkitConsumption: number;
-  dailyFuelCostInAtlas: number;
-  dailyFoodCostInAtlas: number;
-  dailyArmsCostInAtlas: number;
-  dailyToolkitCostInAtlas: number;
-  dailyMaintenanceCostInAtlas: number;
-  grossDailyRewardInAtlas: number;
-  netDailyRewardInAtlas: number;
-};
-
-export type NormalizedScoreVarsShipInfo = {
-  [key in keyof ScoreVarsShipInfo]: ScoreVarsShipInfo[key] extends infer U
-    ? U extends BN
-      ? number
-      : U extends number
-      ? number
-      : string
-    : never;
 };
 
 export type Currency = 'ATLAS' | 'POLIS' | 'USDC' | 'NONE';
@@ -125,37 +67,11 @@ export const shipSizes = [
 
 export type ShipSize = (typeof shipSizes)[number];
 
-type ShipSlots = {
-  crewSlots: ShipSlot[];
-  componentSlots: ShipSlot[];
-  moduleSlots: ShipSlot[];
-};
-
-type ShipMedia = {
-  qrInstagram: string;
-  qrFacebook: string;
-  sketchfab: string;
-  audio: string;
-  thumbnailUrl: string;
-  gallery: string[];
-};
-
-type ShipCollection = {
-  family: string;
-  name: string;
-};
-
 export type Market = {
   _id: string;
   id: string;
   quotePair: string;
   serumProgramId: string;
-};
-
-type Airdrop = {
-  _id: string;
-  id: number;
-  supply: number;
 };
 
 export type UsturAvatar = 'Ustur_A' | 'Ustur_B' | 'Ustur_C' | 'Ustur_D';

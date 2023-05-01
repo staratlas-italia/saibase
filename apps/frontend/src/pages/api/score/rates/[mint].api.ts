@@ -1,19 +1,18 @@
+import { ScoreVarsShipInfo, getShipInfo } from '@saibase/star-atlas';
 import { isPublicKey } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
-import { getScoreVarsShipInfo } from '@staratlas/factory';
+import * as E from 'fp-ts/Either';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { SA_FLEET_PROGRAM } from '~/common/constants';
-import { NormalizedScoreVarsShipInfo } from '~/types';
 import { getConnectionClusterUrl } from '~/utils/connection';
 
 export type ResponseData =
   | {
       success: false;
-      error: string;
+      error: unknown;
     }
   | {
       success: true;
-      data: NormalizedScoreVarsShipInfo;
+      data: ScoreVarsShipInfo;
     };
 
 const handler = async (
@@ -36,11 +35,18 @@ const handler = async (
     return;
   }
 
-  const account = await getScoreVarsShipInfo(
+  const result = await getShipInfo({
     connection,
-    SA_FLEET_PROGRAM,
-    new PublicKey(mint)
-  );
+    shipMint: new PublicKey(mint),
+  })();
+
+  if (E.isLeft(result)) {
+    return res
+      .status(400)
+      .json({ success: false, error: { type: result.left.type } });
+  }
+
+  const account = result.right;
 
   res.status(200).json({
     success: true,

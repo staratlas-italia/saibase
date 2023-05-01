@@ -1,3 +1,8 @@
+import {
+  getAllSwapStates,
+  getWithdrawProceedsInstruction,
+  startOrStopSell,
+} from '@saibase/anchor-swap';
 import { Button, Flex, Heading } from '@saibase/uikit';
 import { getTokenBalanceByTokenAddress } from '@saibase/web3';
 import {
@@ -14,11 +19,6 @@ import { useModal } from '~/contexts/ModalContext';
 import { useTransactionToast } from '~/hooks/useTransactionToast';
 import { Translation } from '~/i18n/Translation';
 import { ProgramInstance } from '~/pages/admin/View/ProgramInstance';
-import {
-  getAllSwapStates,
-  getWithdrawProceedsInstruction,
-  startOrStopSell,
-} from '~/programs';
 
 type UnwrapPromiseType<T> = T extends Promise<infer U> ? U : never;
 

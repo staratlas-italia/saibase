@@ -12,4 +12,5 @@ export * from './components/StarAtlasShip';
 export * from './components/Text';
 export * from './components/Text/types';
 export * from './tokens/colors';
+export * from './tokens/spacing';
 export * from './types';

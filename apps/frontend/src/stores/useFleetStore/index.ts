@@ -1,4 +1,9 @@
-import { StarAtlasNft } from '@saibase/star-atlas';
+import { mints } from '@saibase/constants';
+import {
+  ShipStakingInfoExtended,
+  StarAtlasNft,
+  saFleetProgram,
+} from '@saibase/star-atlas';
 import {
   Cluster,
   Connection,
@@ -12,14 +17,12 @@ import * as TE from 'fp-ts/TaskEither';
 import { flow, pipe } from 'fp-ts/function';
 import { chunk } from 'lodash';
 import { create } from 'zustand';
-import { ATLAS_TOKEN_MINT, SA_FLEET_PROGRAM } from '~/common/constants';
 import { fetchPlayerStakeShips } from '~/network/score';
 import { getShipsNfts } from '~/network/ships/getAllShips';
-import { NormalizedShipStakingInfoExtended } from '~/types';
 
 type FleetData = {
   ship: StarAtlasNft;
-  stakeInfo?: NormalizedShipStakingInfoExtended;
+  stakeInfo?: ShipStakingInfoExtended;
 };
 
 type FleetStore = {
@@ -115,9 +118,9 @@ const getHarvestAllInstructions = async (
           return createHarvestInstruction(
             connection,
             player,
-            ATLAS_TOKEN_MINT,
+            mints.atlas,
             new PublicKey(fleet.ship.mint),
-            SA_FLEET_PROGRAM
+            saFleetProgram
           );
         }
       })

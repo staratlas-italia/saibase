@@ -1,12 +1,8 @@
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useState } from "react";
-import {
-  TIER1_TOKEN_MINT_ID,
-  TIER2_TOKEN_MINT_ID,
-  TIER3_TOKEN_MINT_ID,
-} from "~/common/constants";
-import { Tier } from "~/types";
-import { getTokenBalanceByMint } from "~/utils/getTokenBalanceByMint";
+import { mints } from '@saibase/constants';
+import { getTokenBalanceByMint } from '@saibase/web3';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useEffect, useState } from 'react';
+import { Tier } from '~/types';
 
 export const useAirdropToken = () => {
   const { connection } = useConnection();
@@ -20,13 +16,9 @@ export const useAirdropToken = () => {
       if (connected && publicKey) {
         setLoading(true);
 
-        const promises = [
-          TIER1_TOKEN_MINT_ID,
-          TIER2_TOKEN_MINT_ID,
-          TIER3_TOKEN_MINT_ID,
-        ].map(
+        const promises = [mints.tier1, mints.tier2, mints.tier3].map(
           async (tierMint) =>
-            await getTokenBalanceByMint(connection, publicKey, tierMint)
+            await getTokenBalanceByMint(connection, publicKey, tierMint)()
         );
 
         const ammounts = (await Promise.all(promises)) as [

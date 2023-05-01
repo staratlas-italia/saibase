@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-
 import { Flex } from '../Flex';
 import { Text } from '../Text';
 

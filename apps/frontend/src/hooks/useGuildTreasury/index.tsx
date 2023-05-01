@@ -1,7 +1,7 @@
-import { useConnection } from "@solana/wallet-adapter-react";
-import { PublicKey } from "@solana/web3.js";
-import { useEffect, useState } from "react";
-import { USDC_TOKEN_MINT } from "~/common/constants";
+import { mints } from '@saibase/constants';
+import { useConnection } from '@solana/wallet-adapter-react';
+import { PublicKey } from '@solana/web3.js';
+import { useEffect, useState } from 'react';
 
 type GuildTreasury = {
   usdcAmount?: number;
@@ -18,7 +18,7 @@ export const useGuildTreasury = (): UseGuildTreasuryResult => {
     const run = async () => {
       setLoading(true);
 
-      const addrs = process.env.GUILD_TREASURY_ADDR?.split(",") || [];
+      const addrs = process.env.GUILD_TREASURY_ADDR?.split(',') || [];
 
       const usdcAmount = await addrs.reduce(async (sumP, addr) => {
         let sum = await sumP;
@@ -27,7 +27,7 @@ export const useGuildTreasury = (): UseGuildTreasuryResult => {
           const tokens = await connection.getParsedTokenAccountsByOwner(
             new PublicKey(addr),
             {
-              mint: USDC_TOKEN_MINT,
+              mint: mints.usdc,
             }
           );
 

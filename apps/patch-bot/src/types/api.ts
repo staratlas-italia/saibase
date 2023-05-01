@@ -1,4 +1,4 @@
-import { NormalizedShipStakingInfoExtended } from '.';
+import { ShipStakingInfoExtended } from '@saibase/star-atlas';
 
 export type ScoreFleetResponse =
   | {
@@ -7,5 +7,5 @@ export type ScoreFleetResponse =
     }
   | {
       success: true;
-      data: NormalizedShipStakingInfoExtended[];
+      data: ShipStakingInfoExtended[];
     };

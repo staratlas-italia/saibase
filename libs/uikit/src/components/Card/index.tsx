@@ -1,5 +1,5 @@
-import { Flex, FlexProps } from '@saibase/uikit';
 import classNames from 'classnames';
+import { Flex, FlexProps } from '../Flex';
 
 type Props = FlexProps & {
   border?: boolean;
