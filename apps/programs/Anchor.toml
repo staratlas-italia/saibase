@@ -1,15 +1,20 @@
 [features]
 seeds = false
 skip-lint = false
+
 [programs.localnet]
-programs = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+sai_token_swap = "DCcmLPojwSQN72iuRJmER1NGmnnoFbfZyG1k7nQpEdXA"
+
+[programs.devnet]
+sai_token_swap = "DCcmLPojwSQN72iuRJmER1NGmnnoFbfZyG1k7nQpEdXA"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
-wallet = "/Users/at0706/.config/solana/devnet.json"
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+copy-idl = "mkdir -p app/src/idl && cp target/idl/sai_token_swap.json app/src/idl/sai_token_swap.json"

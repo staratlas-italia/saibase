@@ -1,0 +1,23 @@
+[package]
+name = "sai-token-swap"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "sai_token_swap"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang =  { git = "https://github.com/coral-xyz/anchor", features = ["init-if-needed"]}
+anchor-spl = { git = "https://github.com/coral-xyz/anchor" }
+num-traits = "0.2"
+num-derive = "0.3"
+solana-program = "~1.14.16"
