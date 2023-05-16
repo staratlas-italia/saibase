@@ -1,4 +1,4 @@
-import { EmbedBuilder, EmbedField, Message, TextChannel } from 'discord.js';
+import { EmbedField, Message, TextChannel } from 'discord.js';
 import { snapshot } from '../../../commands/snapshot';
 import { AppState } from '../../../state';
 
@@ -22,19 +22,17 @@ export const createOnSnapshot =
       };
     });
 
-    const embed = new EmbedBuilder()
-      .setTitle('SAI Fleet Snapshot')
-      .setColor('#eef35f')
-      .setDescription(
-        `Total value: ${new Intl.NumberFormat('it', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(totalUsd)}`
-      )
-      .setFields(fields)
-      .setFooter({
+    const embed = {
+      title: 'SAI Fleet Snapshot',
+      description: `Total value: ${new Intl.NumberFormat('it', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(totalUsd)}`,
+      fields,
+      footer: {
         text: `Note: the prices in this table are calculated using VWAP prices`,
-      });
+      },
+    };
 
     (message.channel as TextChannel).send({
       content: `<@${message.author.id}> here the requested snapshot`,
