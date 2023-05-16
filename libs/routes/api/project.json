@@ -1,0 +1,16 @@
+{
+  "name": "routes-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/routes/api/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/routes/api/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

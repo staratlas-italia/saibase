@@ -1,10 +1,10 @@
+import { getPublicRoute } from '@saibase/routes-public';
 import { Flex, Text } from '@saibase/uikit';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Translation } from '~/i18n/Translation';
 import { appendQueryParams } from '~/utils/appendQueryParams';
 import { fillUrlParameters } from '~/utils/fillUrlParameters';
-import { getRoute } from '~/utils/getRoute';
 import { useTutorAccounts } from './useTutorAccounts';
 
 const BadgeBlock = styled(Flex).attrs({
@@ -56,7 +56,7 @@ const Tutor = () => {
               onClick={() =>
                 router.push(
                   appendQueryParams(
-                    fillUrlParameters(getRoute('/swap/:swapAccount'), {
+                    fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
                       swapAccount: account,
                     }),
                     query

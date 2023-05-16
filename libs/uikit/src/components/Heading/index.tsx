@@ -6,7 +6,7 @@ import { Text } from '../Text';
 type Props = PropsWithChildren<{ rightContent?: ReactNode }>;
 
 export const Heading = ({ children, rightContent = null }: Props) => (
-  <Card border p={5} justify="between">
+  <Card p={5} justify="between">
     <Text color="text-white" size="4xl" weight="bold">
       {children}
     </Text>

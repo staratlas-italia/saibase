@@ -41,14 +41,14 @@ export const StarAtlasShip = ({
   }
 
   return (
-    <Card border direction="col">
-      <div className="rounded-t-2xl overflow-hidden relative h-56">
+    <Card direction="col">
+      <div className="relative h-56">
         <NextImage
           src={ship?.image}
           alt={ship?.name}
           fill
           quality={20}
-          className=" object-cover"
+          className="object-cover"
         />
       </div>
 

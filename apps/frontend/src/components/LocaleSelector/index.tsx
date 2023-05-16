@@ -17,6 +17,7 @@ export const LocaleSelector = () => {
           IT
         </Text>
       </Link>
+
       <Link href={asPath} locale={locale === 'it' ? 'en' : 'it'}>
         <Text
           color="text-white"

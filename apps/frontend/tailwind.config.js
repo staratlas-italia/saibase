@@ -26,6 +26,7 @@ const tailwindConfig = {
         gray: colors.neutral,
         primary: 'rgb(43, 45, 80)',
         'primary-dark': 'rgb(27, 28, 54)',
+        'primary-border': '#5C5F8B',
       },
     },
   },

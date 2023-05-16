@@ -1,4 +1,4 @@
-import { Card, Flex } from '@saibase/uikit';
+import { Flex } from '@saibase/uikit';
 import classNames from 'classnames';
 import { SideBarContent as Content } from '../SideBarContent';
 import { Footer } from './components/Footer';
@@ -10,10 +10,9 @@ export const SideBar = () => (
         'z-20 invisible lg:visible min-h-screen fixed w-0 lg:w-64'
       )}
     >
-      <Card
-        className="rounded-none h-screen"
+      <Flex
+        className="rounded-none h-screen bg-primary-dark"
         direction="col"
-        disableRound
         px={2}
         pt={8}
         justify="between"
@@ -23,7 +22,7 @@ export const SideBar = () => (
         <Content />
 
         <Footer />
-      </Card>
+      </Flex>
     </div>
   </>
 );

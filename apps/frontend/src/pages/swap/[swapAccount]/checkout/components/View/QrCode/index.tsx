@@ -1,3 +1,4 @@
+import { getApiRoute } from '@saibase/routes-api';
 import { Flex } from '@saibase/uikit';
 import { createQR, encodeURL } from '@solana/pay';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -9,7 +10,6 @@ import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
 import { usePaymentStore } from '~/stores/usePaymentStore';
 import { appendQueryParams } from '~/utils/appendQueryParams';
 import { fillUrlParameters } from '~/utils/fillUrlParameters';
-import { getApiRoute, getRoute } from '~/utils/getRoute';
 import { usePaymentReference } from '../../ReferenceRetriever';
 
 export const QrCode = memo(() => {
@@ -66,12 +66,9 @@ export const QrCode = memo(() => {
       if (status) {
         router.push(
           appendQueryParams(
-            fillUrlParameters(
-              getRoute('/swap/:swapAccount/checkout/confirmed'),
-              {
-                swapAccount: swapAccount.toString(),
-              }
-            ),
+            fillUrlParameters('/swap/:swapAccount/checkout/confirmed', {
+              swapAccount: swapAccount.toString(),
+            }),
             { cluster }
           )
         );
@@ -81,7 +78,7 @@ export const QrCode = memo(() => {
 
       router.push(
         appendQueryParams(
-          fillUrlParameters(getRoute('/swap/:swapAccount/checkout/error'), {
+          fillUrlParameters('/swap/:swapAccount/checkout/error', {
             swapAccount: swapAccount.toString(),
           }),
           { cluster }

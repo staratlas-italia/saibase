@@ -1,11 +1,11 @@
 import { ExternalLinkIcon } from '@heroicons/react/solid';
+import { getPublicRoute } from '@saibase/routes-public';
 import { Flex, Price, Text } from '@saibase/uikit';
 import { createColumnHelper } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShipTableRow } from '~/stores/useShipsDealsStore';
 import { fillUrlParameters } from '~/utils/fillUrlParameters';
-import { getRoute } from '~/utils/getRoute';
 import { MarketAction } from '..';
 
 type Param = {
@@ -149,7 +149,7 @@ export const columns = ({
     cell: ({ row }) => (
       <Flex px={3}>
         <Link
-          href={fillUrlParameters(getRoute('/ships/:shipId'), {
+          href={fillUrlParameters(getPublicRoute('/ships/:shipId'), {
             shipId: row.original.id || '',
           })}
           locale={locale}

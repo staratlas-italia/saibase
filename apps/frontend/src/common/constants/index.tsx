@@ -1,9 +1,9 @@
 import { GrowthBook } from '@growthbook/growthbook-react';
 import { PublicKey } from '@solana/web3.js';
 import { GmClientService } from '@staratlas/factory';
-import { citizenShipAccounts } from '~/common/constants/citizenship';
+import { citizenShipAccounts } from 'apps/frontend/src/common/constants/citizenship';
 import { tutorAccounts } from '~/common/constants/tutor';
-import { SwapSetting } from '~/types';
+import { SwapSetting } from './types';
 
 export const DISCORD_API_URL = 'https://discord.com/api';
 

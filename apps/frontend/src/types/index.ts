@@ -1,6 +1,4 @@
-import { PublicKey } from '@solana/web3.js';
 import { ReactChild, ReactNodeArray, ReactPortal } from 'react';
-import { TranslationId } from '../i18n/translations/types';
 
 export type StrictReactFragment =
   | {
@@ -97,38 +95,3 @@ export const factions = ['ONI', 'MUD', 'USTUR'] as const;
 export type Faction = (typeof factions)[number];
 
 export type FactionWithNone = Faction | 'NONE';
-
-export type SwapSetting = {
-  size?: string;
-  discounted?: boolean;
-  mint: PublicKey;
-  name: string;
-  quantity?: number;
-  swapAccount: PublicKey;
-  prices?: {
-    real: number;
-    full: number;
-  };
-  vaultCurrency: string;
-  image: {
-    normal: string;
-    square: string;
-  };
-  discounts?: {
-    discountRelativeToPreviousBundle: number;
-    preReleaseDiscount: number;
-  };
-  sections: {
-    intro: {
-      title: TranslationId;
-      description: TranslationId;
-    };
-    checkout: {
-      title: TranslationId;
-      subtitle: TranslationId;
-    };
-    confirmed: {
-      description: TranslationId;
-    };
-  };
-};

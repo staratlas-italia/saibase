@@ -1,4 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import { getPublicRoute } from '@saibase/routes-public';
 import { Button, Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
@@ -10,7 +11,6 @@ import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
 import { Container } from '~/components/layout/Container';
 import { Logo } from '~/components/layout/Header';
 import { Translation } from '~/i18n/Translation';
-import { getRoute } from '~/utils/getRoute';
 import { TransactionDetails } from './TransactionDetails';
 
 const confettiConfig = {
@@ -113,7 +113,7 @@ export const View = () => {
             </Flex>
 
             <Flex direction="col" pt={5}>
-              <Link replace href={getRoute('/dashboard')}>
+              <Link replace href={getPublicRoute('/dashboard')}>
                 <Button kind="neutral" as="div">
                   <Translation id="swap.checkout.confirmed.back.action.title" />
                 </Button>

@@ -1,7 +1,7 @@
 import { citizenship } from '@saibase/constants';
 import { Faction } from '@saibase/star-atlas';
 import { Cluster } from '@solana/web3.js';
-import { SwapSetting } from '~/types';
+import { SwapSetting } from '../types';
 
 type CitizenShipAccounts = {
   discounted: Record<string, SwapSetting>;

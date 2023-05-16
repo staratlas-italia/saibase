@@ -4,6 +4,7 @@ import { getHueByFactionStyle } from '~/utils/getHueByFaction';
 type Props = {
   show?: boolean;
   badgeMint?: string;
+  image?: boolean;
 };
 
 const hueAnimation = (badgeMint: string) => keyframes`
@@ -20,9 +21,11 @@ const LayoutBackground = styled.div.attrs({
   className:
     'fixed bg-no-repeat bg-cover bg-center min-h-screen w-screen bg-primary',
 })<Props>`
-  // background-image: url('/images/bg.webp');
-
-  /* ${({ badgeMint, show = true }) =>
+  ${({ image }) =>
+    image &&
+    css`
+      background-image: url('/images/bg.webp');
+    `}/* ${({ badgeMint, show = true }) =>
     show &&
     badgeMint &&
     css`
@@ -50,7 +53,7 @@ const LayoutBackground = styled.div.attrs({
 //   );
 // };
 
-export const Background = () => {
+export const Background = (props: Props) => {
   // const { connected } = useWallet();
 
   // if (connected) {
@@ -63,5 +66,5 @@ export const Background = () => {
   //   );
   // }
 
-  return <LayoutBackground />;
+  return <LayoutBackground {...props} />;
 };

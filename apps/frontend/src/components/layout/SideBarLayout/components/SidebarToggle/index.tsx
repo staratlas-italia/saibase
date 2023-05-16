@@ -8,9 +8,13 @@ export const SidebarToggle = () => {
 
   return (
     <Flex className="lg:hidden cursor-pointer" onClick={toggle}>
-      <Card className="w-16 h-16 rounded-full" align="center" justify="center">
+      <Flex
+        className="w-16 h-16 bg-primary-dark rounded-full"
+        align="center"
+        justify="center"
+      >
         <MenuIcon className="w-8 h-8 text-white w" />
-      </Card>
+      </Flex>
 
       {isOpen && (
         <Flex className="absolute z-20 ">

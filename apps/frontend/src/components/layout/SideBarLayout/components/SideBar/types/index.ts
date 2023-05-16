@@ -1,8 +1,8 @@
-import { Routes } from "~/utils/getRoute";
+import { PublicRoute } from '@saibase/routes-public';
 
 export type MenuItem = {
   name: string;
   external?: boolean;
   icon: string;
-  route: Routes | string;
+  route: PublicRoute | string;
 };

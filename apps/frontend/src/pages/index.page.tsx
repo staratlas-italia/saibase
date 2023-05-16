@@ -1,8 +1,9 @@
+import { getPublicRoute } from '@saibase/routes-public';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Head from 'next/head';
 import { useMemo } from 'react';
 import { Redirect } from '../components/common/Redirect';
-import { getRoute } from '../utils/getRoute';
+import { Background } from '../components/layout/Background';
 import { HomePage } from '../views/Home';
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
   const initiallyConnected = useMemo(() => connected, []);
 
   if (initiallyConnected) {
-    return <Redirect to={getRoute('/dashboard')} />;
+    return <Redirect to={getPublicRoute('/dashboard')} />;
   }
 
   return (
@@ -20,6 +21,8 @@ const Home = () => {
       <Head>
         <title>Home - StarAtlasItalia</title>
       </Head>
+
+      <Background image />
 
       <HomePage />
     </>

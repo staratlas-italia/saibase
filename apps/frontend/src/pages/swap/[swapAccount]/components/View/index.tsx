@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/solid';
+import { getPublicRoute } from '@saibase/routes-public';
 import { Button, Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import classNames from 'classnames';
@@ -16,7 +17,6 @@ import { Logo } from '~/components/layout/Header';
 import { Translation } from '~/i18n/Translation';
 import { appendQueryParams } from '~/utils/appendQueryParams';
 import { fillUrlParameters } from '~/utils/fillUrlParameters';
-import { getRoute } from '~/utils/getRoute';
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -115,7 +115,7 @@ export const View = () => {
                     connected
                       ? appendQueryParams(
                           fillUrlParameters(
-                            getRoute('/swap/:swapAccount/checkout'),
+                            getPublicRoute('/swap/:swapAccount/checkout'),
                             { swapAccount: swapAccount.toString() }
                           ),
                           (cluster ? { cluster } : {}) as Record<string, any>

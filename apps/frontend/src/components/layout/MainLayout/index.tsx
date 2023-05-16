@@ -1,13 +1,13 @@
+import { PublicRoute } from '@saibase/routes-public';
 import { useRouter } from 'next/router';
 import { PropsWithChildren, useMemo } from 'react';
 import { BaseLayout } from '~/components/layout/BaseLayout';
 import { SideBarLayout } from '~/components/layout/SideBarLayout';
-import { Routes } from '~/utils/getRoute';
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
   const { pathname } = useRouter();
 
-  const route = pathname as Routes;
+  const route = pathname as PublicRoute;
 
   const Layout = useMemo(() => {
     switch (route) {

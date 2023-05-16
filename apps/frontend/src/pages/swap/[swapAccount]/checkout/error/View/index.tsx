@@ -1,3 +1,4 @@
+import { getPublicRoute } from '@saibase/routes-public';
 import { Button, Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
@@ -7,7 +8,6 @@ import { DEV_EMAIL } from '~/common/constants';
 import { Container } from '~/components/layout/Container';
 import { Translation } from '~/i18n/Translation';
 import { TranslationId } from '~/i18n/translations/types';
-import { getRoute } from '~/utils/getRoute';
 
 export const View = () => {
   const { publicKey } = useWallet();
@@ -51,7 +51,7 @@ export const View = () => {
           </Flex>
 
           <Flex direction="col" pt={10}>
-            <Link replace href={getRoute('/dashboard')}>
+            <Link replace href={getPublicRoute('/dashboard')}>
               <Button kind="neutral" as="div">
                 <Translation id="swap.checkout.confirmed.back.action.title" />
               </Button>

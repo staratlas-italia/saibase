@@ -1,3 +1,4 @@
+import { PublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Wallet } from '~/components/Wallet';
@@ -7,14 +8,13 @@ import { Translation } from '~/i18n/Translation';
 import { useAuthStore } from '~/stores/useAuthStore';
 import { StrictReactNode } from '~/types';
 import { getProofMessage } from '~/utils/getProofMessage';
-import { Routes } from '~/utils/getRoute';
 import { isSignatureValid } from '~/utils/isSignatureValid';
 
 type Props = {
   adminOnly?: boolean;
   children: StrictReactNode;
   fallback?: StrictReactNode;
-  redirectUri?: Routes;
+  redirectUri?: PublicRoute;
 };
 
 export const AssertAuthenticated = ({

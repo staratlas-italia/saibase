@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid';
+import { getPublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,7 +8,6 @@ import { useShip } from '~/hooks/useShip';
 import { Translation } from '~/i18n/Translation';
 import { TranslationId } from '~/i18n/translations/types';
 import { useTranslation } from '~/i18n/useTranslation';
-import { getRoute } from '~/utils/getRoute';
 import { ShipAttributes } from '~/views/Ship/components/ShipAttributes';
 import { ShipPrices } from '~/views/Ship/components/ShipPrices';
 
@@ -35,7 +35,7 @@ export const ShipPage = () => {
     <Container>
       <Flex pt={8}>
         <Card direction="col" className="space-y-5" p={5}>
-          <Link href={getRoute('/ships')} locale={locale}>
+          <Link href={getPublicRoute('/ships')} locale={locale}>
             <ArrowLeftIcon className="h-8 w-8 text-white" />
           </Link>
 
@@ -51,7 +51,7 @@ export const ShipPage = () => {
 
           <Flex direction="col" className="grid grid-cols-3 gap-5 text-white ">
             <Flex justify="center" className="col-span-3 lg:col-span-1">
-              <img className="object-cover" src={image} />
+              <img alt="Ship" className="object-cover" src={image} />
             </Flex>
             <Flex
               direction="col"

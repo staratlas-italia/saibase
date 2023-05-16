@@ -43,7 +43,7 @@ export const ShipTable = () => {
   }, [fetchPrices, ships]);
 
   return (
-    <Card border className="relative" p={5} mdP={8} direction="col">
+    <Card className="relative" p={5} mdP={8} direction="col">
       <ButtonGroup
         items={[
           ['buy', buyTitle],

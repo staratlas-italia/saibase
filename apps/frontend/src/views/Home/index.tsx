@@ -11,7 +11,7 @@ export const HomePage = () => {
 
       <div className="space-y-10 px-5 pb-5">
         <Flex>
-          <Card px={4} py={3} className="w-full md:w-72">
+          <Card className="w-full md:w-auto">
             <Treasury />
           </Card>
         </Flex>

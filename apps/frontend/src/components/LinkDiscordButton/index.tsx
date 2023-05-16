@@ -1,4 +1,5 @@
 import { Button, ButtonProps } from '@saibase/uikit';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, PropsWithChildren, useMemo } from 'react';
@@ -33,9 +34,10 @@ export const LinkDiscordButton = ({ kind = 'primary' }: Props) => {
         as="div"
         className="rounded-xl"
         iconLeft={() => (
-          <img
+          <Image
+            width={24}
+            height={24}
             alt="Discord Link"
-            className="h-6 w-6"
             src="/images/social/discord_logo.svg"
           />
         )}

@@ -56,8 +56,7 @@ export const getShipsNfts = (
           (nft) =>
             nft.attributes.category === 'ship' &&
             (size
-              ? nft.attributes.class.toLocaleLowerCase() ===
-                size.toLocaleLowerCase()
+              ? nft.attributes.class.toLowerCase() === size.toLowerCase()
               : true)
         ),
         A.sort(sortBySize)

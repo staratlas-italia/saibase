@@ -76,7 +76,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
   }, [account.publicKey, anchorWallet, cluster, connection]);
 
   return (
-    <Card border key={addressString} p={3} justify="between">
+    <Card key={addressString} p={3} justify="between">
       <Flex direction="col" className="space-y-3">
         <InfoRow title="Swap">
           <Text color="text-white">

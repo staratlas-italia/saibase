@@ -1,3 +1,4 @@
+import { PublicRoute, getPublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Loader, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
@@ -10,7 +11,6 @@ import { useSelf } from '~/hooks/useNullableSelf';
 import { Translation } from '~/i18n/Translation';
 import { getDiscordSelf } from '~/network/discord';
 import { usePlayerStore } from '~/stores/usePlayerStore';
-import { Routes, getRoute } from '~/utils/getRoute';
 
 export const View = () => {
   const { publicKey } = useWallet();
@@ -60,7 +60,8 @@ export const View = () => {
   }, [publicKey, linkDiscord, signature]);
 
   if (self.discordId || done) {
-    const route = getRoute(pathname as Routes) || getRoute('/dashboard');
+    const route =
+      getPublicRoute(pathname as PublicRoute) || getPublicRoute('/dashboard');
 
     return <Redirect replace to={route} />;
   }

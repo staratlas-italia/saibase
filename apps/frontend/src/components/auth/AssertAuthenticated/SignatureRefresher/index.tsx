@@ -7,13 +7,14 @@ export const SignatureRefresher = () => {
 
   return (
     <Card
-      p={5}
+      py={16}
+      px={5}
       direction="col"
-      className="mx-auto space-y-3"
+      className="mx-auto space-y-8"
       justify="center"
       align="center"
     >
-      <Text size="xl" color="text-white" weight="semibold">
+      <Text size="xl" align="center" color="text-white" weight="semibold">
         <Translation id="auth.sign.description" />
       </Text>
 

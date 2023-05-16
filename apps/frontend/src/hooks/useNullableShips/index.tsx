@@ -1,19 +1,23 @@
-import { StarAtlasNft } from '@saibase/star-atlas';
+import { getApiRoute } from '@saibase/routes-api';
+import { fetchNfts } from '@saibase/star-atlas';
+import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
 import { useEffect } from 'react';
 import useSWR from 'swr';
-import { useShipContext } from '~/contexts/ShipsContext';
-import { api } from '~/network/api';
-import { getApiRoute } from '~/utils/getRoute';
+import { useShipContext } from '../../contexts/ShipsContext';
+import { promiseFromTaskEither } from '../../utils/promiseFromTaskEither';
 
-const fetcher = (url: string) => api.get<StarAtlasNft[]>(url);
+const fetcher = () =>
+  pipe(
+    fetchNfts(),
+    TE.map((resp) => resp.data),
+    promiseFromTaskEither
+  );
 
 export const useNullableShips = () => {
   const { update } = useShipContext();
 
-  const { data, error } = useSWR<StarAtlasNft[] | undefined>(
-    getApiRoute('/api/ships'),
-    fetcher
-  );
+  const { data, error } = useSWR(getApiRoute('/api/ships'), fetcher);
 
   useEffect(() => {
     if (data?.length) {

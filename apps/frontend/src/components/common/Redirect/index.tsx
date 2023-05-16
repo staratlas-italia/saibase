@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 type Props = {
   to: string;
@@ -12,9 +12,10 @@ export const Redirect = ({ to, replace = false }: Props) => {
   useEffect(() => {
     if (replace) {
       router.replace(to);
-    } else {
-      router.push(to);
+      return;
     }
+
+    router.push(to);
   }, [replace, router, to]);
 
   return null;

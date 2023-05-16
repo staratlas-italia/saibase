@@ -12,6 +12,7 @@ export const LoadingView = <T extends TranslationId>({
 }: Props<T>) => (
   <Card py={5} className="space-x-3" justify="center" align="center">
     <Loader color="text-white" />
+
     <Text size="xl" color="text-white" weight="semibold">
       <Translation id="Layout.Loader.title" />
     </Text>
