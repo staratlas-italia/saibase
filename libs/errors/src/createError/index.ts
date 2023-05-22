@@ -1,6 +1,8 @@
+import * as E from 'fp-ts/Either';
+
 export const createError =
   <T extends string>(type: T) =>
   (error: unknown) => ({
-    error: error instanceof Error ? error : new Error(String(error)),
+    error: E.toError(error),
     type,
   });
