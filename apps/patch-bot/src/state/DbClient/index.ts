@@ -5,6 +5,7 @@ import {
   Self,
   ShipStats,
   UserToken,
+  UserWallet,
 } from '../../types';
 
 export class DbClient {
@@ -20,6 +21,10 @@ export class DbClient {
 
   users() {
     return this.mongo.collection<Self>('users');
+  }
+
+  usersWallets() {
+    return this.mongo.collection<UserWallet>('users-wallets');
   }
 
   shipStats() {

@@ -1,6 +1,7 @@
 FROM node:16-alpine3.15
 WORKDIR /app
 ARG app_version
+ARG crypto_secret
 ARG discord_bot_token
 ARG features_endpoint
 ARG main_private_key
@@ -10,6 +11,7 @@ ARG sentry_url
 ARG solscan_api_token
 ENV ENVIRONMENT production
 ENV APP_VERSION $app_version
+ENV CRYPTO_SECRET $crypto_secret
 ENV DISCORD_BOT_TOKEN $discord_bot_token
 ENV FEATURES_ENDPOINT $features_endpoint
 ENV MAIN_PRIVATE_KEY $main_private_key

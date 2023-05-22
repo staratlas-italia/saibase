@@ -63,6 +63,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           build-args: |
+            crypto_secret=${{secrets.CRYPTO_SECRET}}
             discord_bot_token=${{secrets.DISCORD_BOT_TOKEN}}
             features_endpoint=${{secrets.FEATURES_ENDPOINT}}
             main_private_key=${{secrets.MAIN_PRIVATE_KEY}}

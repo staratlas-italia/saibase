@@ -1,6 +1,6 @@
 import { ShipStakingInfoExtended } from '@saibase/star-atlas';
+import { match } from 'ts-pattern';
 import { Resource } from '../../../types';
-import { assertNever } from '../../assertNever';
 import { getSecondsSinceLastRefill } from '../getSecondsSinceLastRefill';
 
 /**
@@ -17,23 +17,16 @@ export const getRemainingTimeBeforeRefillInSeconds = (
   secondsSinceLastRefill: number = getSecondsSinceLastRefill(
     ship.currentCapacityTimestamp
   )
-): number => {
+): number =>
   /*
    * armsCurrentCapacity, foodCurrentCapacity, fuelCurrentCapacity, healthCurrentCapacity
    * sono i secondi prima che una delle risorse finisca dopo l'ultimo refill effettuato.
    * Questo valore cambia solo quando si fa il refill di una o più risorse ed è calcolato in
    * base alla quantità di risorse immesse
    * */
-  switch (resource) {
-    case 'ammo':
-      return ship.armsCurrentCapacity - secondsSinceLastRefill;
-    case 'food':
-      return ship.foodCurrentCapacity - secondsSinceLastRefill;
-    case 'fuel':
-      return ship.fuelCurrentCapacity - secondsSinceLastRefill;
-    case 'tools':
-      return ship.healthCurrentCapacity - secondsSinceLastRefill;
-    default:
-      return assertNever(resource);
-  }
-};
+  match(resource)
+    .with('ammo', () => ship.armsCurrentCapacity - secondsSinceLastRefill)
+    .with('food', () => ship.foodCurrentCapacity - secondsSinceLastRefill)
+    .with('fuel', () => ship.fuelCurrentCapacity - secondsSinceLastRefill)
+    .with('tools', () => ship.healthCurrentCapacity - secondsSinceLastRefill)
+    .exhaustive();

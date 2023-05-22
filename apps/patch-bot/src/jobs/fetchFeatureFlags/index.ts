@@ -1,15 +1,16 @@
+import { FeatureDefinition } from '@growthbook/growthbook';
 import axios from 'axios';
 import invariant from 'invariant';
 import { featuresEndpoint, growthbook } from '../../constants';
 import { logger } from '../../logger';
 
-export const fetchFeatureFlags = async (name: string) => {
+export const fetchFeatureFlags = async (_: string) => {
   invariant(featuresEndpoint, 'The featureEnpoints has an invalid value');
 
   try {
-    const { data } = await axios.get<{ features: any }>(
-      `${featuresEndpoint}?t=${Date.now()}`
-    );
+    const { data } = await axios.get<{
+      features: Record<string, FeatureDefinition>;
+    }>(`${featuresEndpoint}?t=${Date.now()}`);
 
     growthbook.setFeatures(data.features);
   } catch (e) {

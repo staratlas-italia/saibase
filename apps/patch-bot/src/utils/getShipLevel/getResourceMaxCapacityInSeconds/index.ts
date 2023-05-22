@@ -1,21 +1,14 @@
 import { ShipStakingInfoExtended } from '@saibase/star-atlas';
+import { match } from 'ts-pattern';
 import { Resource } from '../../../types';
-import { assertNever } from '../../assertNever';
 
 export const getResourceMaxCapacityInSeconds = (
   ship: ShipStakingInfoExtended,
   resource: Resource
-) => {
-  switch (resource) {
-    case 'ammo':
-      return ship.armsCurrentCapacity;
-    case 'food':
-      return ship.foodCurrentCapacity;
-    case 'fuel':
-      return ship.fuelCurrentCapacity;
-    case 'tools':
-      return ship.healthCurrentCapacity;
-    default:
-      return assertNever(resource);
-  }
-};
+) =>
+  match(resource)
+    .with('ammo', () => ship.armsCurrentCapacity)
+    .with('food', () => ship.foodCurrentCapacity)
+    .with('fuel', () => ship.fuelCurrentCapacity)
+    .with('tools', () => ship.healthCurrentCapacity)
+    .exhaustive();

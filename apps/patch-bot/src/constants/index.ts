@@ -47,4 +47,9 @@ export const guildWallets = [
   'F98uoxm7QG1nyvArNfbfVM9du8c6n41YMuyRG6Tp54xD',
 ];
 
+export const minStakeSolBalance = 0.2;
+export const minStakeResourceBalance = 100_000;
+
+export const apiBaseUrl = 'https://app.staratlasitalia.com';
+
 export const connection = new Connection(rpcApiBaseUrl);

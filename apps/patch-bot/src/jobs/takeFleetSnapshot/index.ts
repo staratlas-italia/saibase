@@ -1,6 +1,12 @@
-import { fetchNfts, getEntityVwapPrice } from '@saibase/star-atlas';
+import {
+  fetchAllFleets,
+  fetchNfts,
+  getEntityVwapPrice,
+} from '@saibase/star-atlas';
 import { getNftOwner, getTokenBalanceByMint } from '@saibase/web3';
+import { captureException } from '@sentry/node';
 import { PublicKey } from '@solana/web3.js';
+import * as E from 'fp-ts/Either';
 import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/lib/function';
@@ -9,7 +15,6 @@ import { badgeMints } from '../../constants/badgeMints';
 import { logger } from '../../logger';
 import { AppState } from '../../state';
 import { ShipStats } from '../../types';
-import { getStakeShipData } from '../../utils/getStakeShipData';
 
 export const createTakeFleetSnapshopshotJobHandler =
   (state: AppState) => async (name: string) => {
@@ -59,10 +64,18 @@ export const createTakeFleetSnapshopshotJobHandler =
       logger.info(
         `Getting snapshot for user ${owner}. ${index + 1} / ${allOwners.length}`
       );
+      const player = new PublicKey(owner);
+      const result = await fetchAllFleets({ connection, player })();
 
-      const stakeInfo = await getStakeShipData(connection, owner);
+      if (E.isLeft(result)) {
+        captureException({
+          error: result.left,
+        });
 
-      for (const stake of stakeInfo) {
+        continue;
+      }
+
+      for (const stake of result.right) {
         const ship = ships.find((s) => s.mint === stake.shipMint.toString());
 
         if (ship) {
