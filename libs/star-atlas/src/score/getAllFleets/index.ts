@@ -10,7 +10,7 @@ type Param = {
   player: PublicKey;
 };
 
-export const getAllFleets = ({ connection, player }: Param) =>
+export const fetchAllFleets = ({ connection, player }: Param) =>
   pipe(
     TE.tryCatch(
       () => getAllFleetsForUserPublicKey(connection, player, saFleetProgram),
