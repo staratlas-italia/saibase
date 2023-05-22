@@ -5,6 +5,10 @@ export const saMarketplaceProgramId = new PublicKey(
   'traderDnaR5w6Tcoi3NFm53i48FTDNbGjBSZwWXDRrg'
 );
 
+export const saFactionProgram = new PublicKey(
+  'FACTNmq2FhA2QNTnGM2aWJH3i7zT3cND5CgvjYTjyVYe'
+);
+
 export const saFleetProgram = new PublicKey(
   'FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW'
 );
