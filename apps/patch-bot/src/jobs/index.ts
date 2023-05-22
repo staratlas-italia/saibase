@@ -1,3 +1,4 @@
+export * from './createStakeShipIfNeededHandler';
 export * from './createUpdateDiscordRoleHandler';
 export * from './fetchFeatureFlags';
 export * from './fleetSnapshots/takeFleetSnapshot';

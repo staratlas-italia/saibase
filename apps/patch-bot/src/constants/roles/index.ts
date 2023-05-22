@@ -21,3 +21,23 @@ export const roleIds = {
   team: environment.development ? '935121440787791892' : '917086339378323554',
   tutor: '1059604744982765627',
 };
+
+export const permisionLevels = {
+  admin: 4,
+  dev: 3,
+  tutor: 2,
+  genesis: 1,
+  citizen: 0,
+} as const;
+
+export type PermissionLevels = keyof typeof permisionLevels;
+
+export const mapRolePermissionLevels = {
+  [roleIds.citizenship.oni]: permisionLevels.citizen,
+  [roleIds.citizenship.mud]: permisionLevels.citizen,
+  [roleIds.citizenship.ustur]: permisionLevels.citizen,
+  [roleIds.genesis]: permisionLevels.genesis,
+  [roleIds.tutor]: permisionLevels.tutor,
+  [roleIds.dev]: permisionLevels.dev,
+  [roleIds.team]: permisionLevels.admin,
+};

@@ -1,4 +1,5 @@
-import { ApplicationCommandOptionType, Client } from 'discord.js';
+import { Client } from 'discord.js';
+import { availableCommands } from '../../commands';
 import { logger } from '../../logger';
 import { AppState } from '../../state';
 
@@ -30,29 +31,21 @@ export const handleClientReady = async (
 
   const commands = state.discord.application?.commands;
 
+  commands?.permissions.set;
+
   if (!commands) {
     logger.log('No command manager available');
 
     return;
   }
 
-  commands.create({
-    name: 'push',
-    description: 'Refill push notifications',
-    options: [
-      {
-        name: 'status',
-        description: 'on/off',
-        type: ApplicationCommandOptionType.String,
-        required: true,
-      },
-    ],
-  });
+  for (const command of commands.cache.values()) {
+    await command.delete();
+  }
 
-  commands.create({
-    name: 'referral',
-    description: 'Get referral server link',
-  });
+  for (const command of availableCommands) {
+    await commands.create(command);
+  }
 
   logger.log('Discord client is ready!');
 };

@@ -8,7 +8,7 @@ export const handleGuildDelete = async (guild: Guild, state: AppState) => {
     .findOne({ serverId: guild.id });
 
   if (botGuild) {
-    logger.log(`Storgin guild ${guild.name}`);
+    logger.log(`Storing guild ${guild.name}`);
 
     state.database.guilds().deleteOne({
       serverId: guild.id,

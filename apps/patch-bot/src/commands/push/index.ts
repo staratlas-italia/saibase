@@ -1,3 +1,4 @@
+import { match } from 'ts-pattern';
 import { logger } from '../../logger';
 import { updateMemberNotificationFlag } from '../../queries/updateMemberNotificationFlag';
 import { AppState } from '../../state';
@@ -14,8 +15,8 @@ export const push = async ({ user, status }: Param, state: AppState) => {
     return "Non hai l'autorizzazione necessaria per lanciare questo comando";
   }
 
-  switch (status) {
-    case 'on': {
+  return match(status)
+    .with('on', async () => {
       if (!user.notifications) {
         const updateResult = await updateMemberNotificationFlag(
           {
@@ -33,8 +34,8 @@ export const push = async ({ user, status }: Param, state: AppState) => {
       }
 
       return 'Le notifiche sono già attive';
-    }
-    case 'off': {
+    })
+    .with('off', async () => {
       if (user.notifications) {
         const disableNotificationResult = await updateMemberNotificationFlag(
           {
@@ -52,9 +53,6 @@ export const push = async ({ user, status }: Param, state: AppState) => {
       }
 
       return 'Le notifiche sono già disattivate';
-    }
-    default: {
-      return 'Valore non valido, lo status può essere solo on oppure off';
-    }
-  }
+    })
+    .exhaustive();
 };

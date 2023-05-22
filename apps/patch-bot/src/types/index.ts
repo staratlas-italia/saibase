@@ -90,6 +90,21 @@ export type Self = WithId<{
   serverId: string;
 }>;
 
+export const userWalletStatues = [
+  'SOL_AND_RESOURCES_NEEDED',
+  'PLAYER_NEEDED',
+  'READY',
+] as const;
+
+export type UserWalletStatus = (typeof userWalletStatues)[number];
+
+export type UserWallet = {
+  discordId: string;
+  publicKey: string;
+  encryptedPrivateKey: string;
+  status: UserWalletStatus;
+};
+
 export type UserToken = {
   amount: number;
   createdAt: Date;

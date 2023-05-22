@@ -8,7 +8,6 @@ import { handleClientReady } from './events/handleClientReady';
 import { handleGuildCreate } from './events/handleGuildCreate';
 import { handleGuildDelete } from './events/handleGuildDelete';
 import { handleInteractionCreate } from './events/handleInteractionCreate';
-import { handleMessageCreate } from './events/handleMessageCreate';
 import {
   createRefillCheckJobHandler,
   createTakeFleetSnapshopshotJobHandler,
@@ -63,10 +62,6 @@ const run = async () => {
 
     state.discord.on(Events.InteractionCreate, (interaction) => {
       handleInteractionCreate(interaction, state);
-    });
-
-    state.discord.on(Events.MessageCreate, (message) => {
-      handleMessageCreate(message, state);
     });
 
     state.discord.on(Events.GuildCreate, (guild) => {

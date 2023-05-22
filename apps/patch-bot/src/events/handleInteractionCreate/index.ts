@@ -1,90 +1,75 @@
-import { GuildMember, Interaction, TextChannel } from 'discord.js';
-import { push } from '../../commands/push';
-import { referral } from '../../commands/referral';
-import { logger } from '../../logger';
+import { appVersion, environment } from '@saibase/configuration';
+import { GuildMember, Interaction } from 'discord.js';
+import { match } from 'ts-pattern';
+import { CommandName } from '../../commands';
 import { AppState } from '../../state';
-import { PushCommandStatus } from '../../types';
-import { checkRoles } from '../../utils/checkPermission';
+import { handleBalanceCommand } from './handleBalanceCommand';
+import { handleLinkCommand } from './handleLinkCommand';
+import { handlePushCommand } from './handlePushCommand';
+import { handleSendCommand } from './handleSendCommand';
+import { handleSnapshotCommand } from './handleSnapshotCommand';
+import { handleStakeCommand } from './handleStakeCommand';
+import { handleUnlinkCommand } from './handleUnlinkCommand';
+import { handleUserInfo } from './handleUserInfo';
 
 export const handleInteractionCreate = async (
   interaction: Interaction,
   state: AppState
 ) => {
   if (!interaction.isChatInputCommand()) {
-    logger.error('Command not found');
+    state.logger.error('Command not found');
 
     return;
   }
 
-  const { commandName, options } = interaction;
+  const { commandName: commandNameUntyped } = interaction;
 
   const author: GuildMember = interaction.member as GuildMember;
 
   if (!author) {
-    logger.error('Author who interacted is invalid');
+    state.logger.error('Author who interacted is invalid');
 
     return;
   }
 
-  const { isNone } = checkRoles({
-    author,
-  });
+  state.logger.info(`Command name: ${commandNameUntyped} ${author.nickname}`);
 
   const memberDiscordId = author.user.id;
 
   if (!memberDiscordId) {
-    logger.error(`Invalid discord id ${memberDiscordId}`);
+    state.logger.error(`Invalid discord id ${memberDiscordId}`);
 
     return;
   }
 
-  switch (commandName) {
-    case 'push': {
-      if (isNone) {
-        interaction.reply({
-          content:
-            "Non hai l'autorizzazione necessaria per lanciare questo comando",
-        });
-        return;
-      }
+  const commandName = commandNameUntyped as CommandName;
 
-      // Consent to reply in ..1../5 minutes instead of 3 seconds
-      await interaction.deferReply({ ephemeral: true });
+  match({ commandName, interaction, state })
+    // .with({ commandName: 'config' }, () => {
+    //   state.logger.info('Config command');
 
-      const usersCollection = state.database.users();
+    //   const subcommand = interaction.options.getSubcommand();
+    //   interaction.reply({ content: 'Config command' });
+    // })
+    // Dev commands
+    .with({ commandName: 'link' }, handleLinkCommand)
+    .with({ commandName: 'send' }, handleSendCommand)
+    .with({ commandName: 'stake' }, handleStakeCommand)
+    .with({ commandName: 'unlink' }, handleUnlinkCommand)
+    .with({ commandName: 'user-info' }, handleUserInfo)
+    // Genesis commands
+    .with({ commandName: 'snapshot' }, handleSnapshotCommand)
+    .with({ commandName: 'push' }, handlePushCommand)
+    // Default commands
+    .with({ commandName: 'balance' }, handleBalanceCommand)
+    .with({ commandName: 'ping' }, () =>
+      interaction.reply({ content: `Pong!` })
+    )
+    .with({ commandName: 'version' }, () => {
+      const v = environment.development ? `${appVersion}-dev` : appVersion;
 
-      const user = await usersCollection.findOne({
-        discordId: memberDiscordId,
-      });
+      interaction.reply({ ephemeral: true, content: `v${v}` });
+    })
 
-      const status = options.getString('status') as PushCommandStatus;
-
-      const replyMessage = await push({ user, status }, state);
-
-      interaction.editReply({
-        content: replyMessage,
-      });
-      break;
-    }
-
-    case 'referral': {
-      // Consent to reply in ..1../5 minutes instead of 3 seconds
-      await interaction.deferReply({ ephemeral: true });
-
-      const replyMessage = await referral({
-        channel: interaction.channel as TextChannel,
-      });
-
-      interaction.editReply({
-        content: replyMessage,
-      });
-      break;
-    }
-
-    default: {
-      interaction.reply({
-        content: 'Il comando non è valido',
-      });
-    }
-  }
+    .exhaustive();
 };
