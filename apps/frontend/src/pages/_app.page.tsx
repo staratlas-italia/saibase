@@ -20,17 +20,10 @@ import { ModalProvider } from '~/contexts/ModalContext';
 import { ShipsProvider } from '~/contexts/ShipsContext';
 import { useTranslations } from '~/i18n/useTranslations';
 import '~/styles/globals.css';
-import { StrictReactNode } from '~/types';
 
-const WalletProvider = dynamic<{ children: StrictReactNode }>(
-  () =>
-    import('../contexts/WalletProvider').then(
-      ({ WalletProvider }) => WalletProvider
-    ),
-  {
-    ssr: false,
-  }
-);
+const WalletProvider = dynamic(() => import('../contexts/WalletProvider'), {
+  ssr: false,
+});
 
 function App({ router, ...props }: AppProps) {
   const translations = useTranslations();

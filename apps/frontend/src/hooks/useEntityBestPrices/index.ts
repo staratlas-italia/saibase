@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useShip } from "~/hooks/useShip";
-import { BestPrices, Currency } from "~/types";
-import { getEntityBestPrices } from "~/utils/getEntityBestPrices";
+import { useEffect, useState } from 'react';
+import { useShip } from '~/hooks/useShip';
+import { BestPrices, Currency } from '~/types';
+import { getEntityBestPrices } from '~/utils/getEntityBestPrices';
 
 export const useEntityBestPrices = (
-  currency: Exclude<Currency, "POLIS"> = "USDC"
+  currency: Exclude<Currency, 'POLIS' | 'NONE'> = 'USDC'
 ) => {
   const { mint } = useShip();
   const [data, setData] = useState<BestPrices>();
@@ -14,7 +14,7 @@ export const useEntityBestPrices = (
     const run = async () => {
       setLoading(true);
 
-      const result = await getEntityBestPrices(mint || "", currency);
+      const result = await getEntityBestPrices(mint || '', currency);
 
       setLoading(false);
       setData(result);

@@ -1,9 +1,9 @@
-import * as ed from "@noble/ed25519";
-import { PublicKey, Transaction } from "@solana/web3.js";
-import bs58 from "bs58";
+import * as ed from '@noble/ed25519';
+import { PublicKey, Transaction } from '@solana/web3.js';
+import bs58 from 'bs58';
 
 const MEMO_PROGRAM_ID = new PublicKey(
-  "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"
+  'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
 );
 
 export const validateLedgerAuthTx = (
@@ -44,21 +44,25 @@ type Param = {
 
 export const isSignatureValid = ({ proof, message, signer }: Param) => {
   try {
-    const signatureProof = Buffer.from(bs58.decode(proof), "utf8").toString();
+    const signatureProof = Buffer.from(bs58.decode(proof)).toString();
 
-    const [info, signature] = signatureProof.split("-");
+    const [info, signature] = signatureProof.split('-');
 
-    const decodedSignature = Buffer.from(signature, "base64");
+    const decodedSignature = Buffer.from(signature, 'base64');
 
     switch (info) {
-      case "message":
-        const messageBytes = new TextEncoder().encode(message);
-
-        return ed.sync.verify(decodedSignature, messageBytes, signer.toBytes());
-      case "tx":
-        const transaction = Transaction.from(decodedSignature);
-
-        return validateLedgerAuthTx(transaction, message, signer);
+      case 'message':
+        return ed.sync.verify(
+          decodedSignature,
+          new TextEncoder().encode(message),
+          signer.toBytes()
+        );
+      case 'tx':
+        return validateLedgerAuthTx(
+          Transaction.from(decodedSignature),
+          message,
+          signer
+        );
       default:
         return false;
     }

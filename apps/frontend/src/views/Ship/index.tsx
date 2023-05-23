@@ -93,18 +93,18 @@ export const ShipPage = () => {
             </Flex>
             <Flex direction="col" className="col-span-3">
               <ShipAttributes
-                attrs={slots?.componentSlots}
+                attrs={slots?.componentSlots ?? undefined}
                 title={componentsTranslation}
               />
 
               <ShipAttributes
-                attrs={slots?.crewSlots}
+                attrs={slots?.crewSlots ?? undefined}
                 pt={10}
                 title={crewTranslation}
               />
 
               <ShipAttributes
-                attrs={slots?.moduleSlots}
+                attrs={slots?.moduleSlots ?? undefined}
                 pt={10}
                 title={modulesTranslation}
               />

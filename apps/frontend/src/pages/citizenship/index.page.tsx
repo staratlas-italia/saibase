@@ -58,7 +58,7 @@ const Citizenship = () => {
             router.push(
               appendQueryParams(
                 fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
-                  swapAccount: accounts.mud,
+                  swapAccount: accounts.mud.toString(),
                 }),
                 query
               )
@@ -87,7 +87,7 @@ const Citizenship = () => {
             router.push(
               appendQueryParams(
                 fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
-                  swapAccount: accounts.ustur,
+                  swapAccount: accounts.ustur.toString(),
                 }),
                 query
               )
@@ -116,7 +116,7 @@ const Citizenship = () => {
             router.push(
               appendQueryParams(
                 fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
-                  swapAccount: accounts.oni,
+                  swapAccount: accounts.oni.toString(),
                 }),
                 query
               )

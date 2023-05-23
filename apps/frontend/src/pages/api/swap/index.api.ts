@@ -1,5 +1,6 @@
 import { AnchorProvider, BN, Program } from '@project-serum/anchor';
 import NodeWallet from '@project-serum/anchor/dist/cjs/nodewallet';
+import { saiTokenSwapIdl } from '@saibase/anchor-swap';
 import { mints } from '@saibase/constants';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
 import {

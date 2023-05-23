@@ -1,9 +1,8 @@
 import { ShieldCheckIcon } from '@heroicons/react/outline';
-import { Card, Flex, Text } from '@saibase/uikit';
+import { Card, Flex, Loader as LibLoader, Text } from '@saibase/uikit';
 import styled from 'styled-components';
 import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
 import { Wallet } from '~/components/Wallet';
-import { Loader as CLoader } from '~/components/common/Loader';
 import { Container } from '~/components/layout/Container';
 import { Logo } from '~/components/layout/Header';
 import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
@@ -23,7 +22,7 @@ const Loader = () => (
     className="bg-white rounded-md"
     justify="center"
   >
-    <CLoader />
+    <LibLoader />
   </LoaderContainer>
 );
 

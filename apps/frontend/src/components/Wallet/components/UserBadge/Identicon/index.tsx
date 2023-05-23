@@ -1,7 +1,7 @@
-import { PublicKey } from "@solana/web3.js";
-import bs58 from "bs58";
-import React from "react";
-import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+import { PublicKey } from '@solana/web3.js';
+import bs58 from 'bs58';
+import React from 'react';
+import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 
 type Props = {
   address?: string | PublicKey;
@@ -12,7 +12,7 @@ type Props = {
 
 export const Identicon = ({ style, className, alt, ...props }: Props) => {
   const address =
-    typeof props.address === "string"
+    typeof props.address === 'string'
       ? props.address
       : props.address?.toBase58();
 
@@ -22,7 +22,7 @@ export const Identicon = ({ style, className, alt, ...props }: Props) => {
       seed={
         address
           ? jsNumberForAddress(
-              bs58.decode(address).toString("hex").slice(5, 15)
+              Buffer.from(bs58.decode(address)).toString('hex').slice(5, 15)
             )
           : null
       }

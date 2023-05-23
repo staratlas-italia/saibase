@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from 'react';
 
 export const useCountdown = (targetDate: string) => {
   const countDownDate = useMemo(
@@ -21,7 +21,7 @@ export const useCountdown = (targetDate: string) => {
   return getReturnValues(countDown);
 };
 
-const getReturnValues = (countDown) => {
+const getReturnValues = (countDown: number) => {
   // calculate time left
   const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
   const hours = Math.floor(

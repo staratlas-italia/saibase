@@ -29,7 +29,6 @@ export const Profile = () => {
   return (
     <Flex>
       <Card
-        border
         direction="col"
         lgDirection="row"
         px={5}

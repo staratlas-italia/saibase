@@ -71,7 +71,9 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
 
       toast.success('Done.');
     } catch (e) {
-      toast.error(e.message);
+      const error = e instanceof Error ? e : new Error(String(e));
+
+      toast.error(error.message);
     }
   }, [account.publicKey, anchorWallet, cluster, connection]);
 
