@@ -171,5 +171,5 @@
   "resolutions": {
     "@solana/spl-token": "^0.3.7"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.5.1"
 }
