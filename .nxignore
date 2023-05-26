@@ -1,0 +1,10 @@
+*.md
+.env.dist
+.gitattributes
+.github
+.husky
+.vscode
+android-hosts
+commitlint.config.ts
+public/
+tsconfig.base.json

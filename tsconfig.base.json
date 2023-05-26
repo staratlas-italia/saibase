@@ -1,22 +1,5 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "paths": {
       "@saibase/anchor-swap": ["libs/anchor/swap/src/index.ts"],
       "@saibase/configuration": ["libs/configuration/src/index.ts"],
@@ -32,7 +15,55 @@
       "@saibase/uikit": ["libs/uikit/src/index.ts"],
       "@saibase/web3": ["libs/web3/src/index.ts"],
       "~/*": ["apps/frontend/src/*"]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+    },
+    "plugins": [
+      {
+        "name": "@unsplash/ts-namespace-import-plugin",
+        "namespaces": {
+          "A": {
+            "importPath": "fp-ts/ReadonlyArray"
+          },
+          "C": {
+            "importPath": "fp-ts/Console"
+          },
+          "E": {
+            "importPath": "fp-ts/Either"
+          },
+          "Icons": {
+            "importPath": "@homerun/olympus-ui-icons"
+          },
+          "IO": {
+            "importPath": "fp-ts/IO"
+          },
+          "NEA": {
+            "importPath": "fp-ts/ReadonlyNonEmptyArray"
+          },
+          "O": {
+            "importPath": "fp-ts/Option"
+          },
+          "P": {
+            "importPath": "fp-ts/Predicate"
+          },
+          "R": {
+            "importPath": "fp-ts/ReadonlyRecord"
+          },
+          "RTE": {
+            "importPath": "fp-ts/ReaderTaskEither"
+          },
+          "S": {
+            "importPath": "fp-ts/string"
+          },
+          "t": {
+            "importPath": "io-ts"
+          },
+          "T": {
+            "importPath": "fp-ts/Task"
+          },
+          "TE": {
+            "importPath": "fp-ts/TaskEither"
+          }
+        }
+      }
+    ]
+  }
 }

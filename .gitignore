@@ -51,8 +51,11 @@ Thumbs.db
 !.yarn/versions
 
 #env
-.env*
-!.env.dist
+*.local
+.android
+**/.env
+**/.env.native
+nx-cloud.env
 
 # Expo
 node_modules/
