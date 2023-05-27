@@ -30,7 +30,7 @@ const getHandler = (req: NextApiRequest, res: NextApiResponse) => {
   const stateAccountField = req.query.stateAccount as string;
   const clusterField = req.query.cluster as Cluster | undefined;
 
-  const state = getSwapState(clusterField)[stateAccountField];
+  const state = getSwapState(clusterField)[stateAccountField]!;
   const path = state.image.square;
 
   res.status(200).json({
@@ -94,7 +94,7 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     owner
   );
 
-  const state = getSwapState(clusterField)[stateAccountField];
+  const state = getSwapState(clusterField)[stateAccountField]!;
 
   const buyerInTokenAccount = await getAssociatedTokenAddress(
     state.mint,

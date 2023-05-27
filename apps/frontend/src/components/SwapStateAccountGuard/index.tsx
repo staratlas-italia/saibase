@@ -54,9 +54,16 @@ export const useSwapStateAccount = () => {
     'This hook is meant to be used insied a SwapStateAccountGuard component'
   );
 
-  return (
+  const stateAccount = (
     cluster === 'devnet'
       ? DEVNET_TOKEN_SWAP_STATE_ACCOUNTS
       : TOKEN_SWAP_STATE_ACCOUNTS
   )[swapAccount as string];
+
+  invariant(
+    stateAccount,
+    'This hook is meant to be used insied a SwapStateAccountGuard component'
+  );
+
+  return stateAccount;
 };

@@ -27,7 +27,7 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
 
   const cluster = clusterParam as Cluster;
 
-  const db = getMongoDatabase(cluster);
+  const db = getMongoDatabase();
 
   const reference = new PublicKey(referenceParam);
   const connection = new Connection(getConnectionClusterUrl(cluster));

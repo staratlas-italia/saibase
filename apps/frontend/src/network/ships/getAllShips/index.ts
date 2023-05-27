@@ -28,9 +28,11 @@ const sortBySize: Ord<StarAtlasNft> = {
   equals: (shipA, shipB) => shipA.mint === shipB.mint,
   compare: (shipA, shipB) => {
     const sizeA =
-      shipSizes[shipA.attributes.class.toLowerCase() as Lowercase<NftClass>];
+      shipSizes[shipA.attributes.class.toLowerCase() as Lowercase<NftClass>] ??
+      0;
     const sizeB =
-      shipSizes[shipB.attributes.class.toLowerCase() as Lowercase<NftClass>];
+      shipSizes[shipB.attributes.class.toLowerCase() as Lowercase<NftClass>] ??
+      0;
 
     if (sizeA === sizeB) {
       return 0;

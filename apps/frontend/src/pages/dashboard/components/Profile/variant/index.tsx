@@ -8,7 +8,6 @@ import { Referral } from './Referral';
 
 export const Profile = () => {
   const player = usePlayerStore((s) => s.player);
-  const self = usePlayerStore((state) => state.self);
 
   if (player === null) {
     return <CreatePlayerBanner />;

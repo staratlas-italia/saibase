@@ -2,6 +2,7 @@ import { mints } from '@saibase/constants';
 import {
   ShipStakingInfoExtended,
   StarAtlasNft,
+  fetchNftsByCategory,
   saFleetProgram,
 } from '@saibase/star-atlas';
 import {
@@ -18,7 +19,6 @@ import { flow, pipe } from 'fp-ts/function';
 import { chunk } from 'lodash';
 import { create } from 'zustand';
 import { fetchPlayerStakeShips } from '~/network/score';
-import { getShipsNfts } from '~/network/ships/getAllShips';
 
 type FleetData = {
   ship: StarAtlasNft;
@@ -59,7 +59,7 @@ export const useFleetStore = create<FleetStore>((set, get) => ({
       const mints = playerFleet.map((i) => i.shipMint);
 
       await pipe(
-        getShipsNfts(),
+        fetchNftsByCategory({ category: 'ship' }),
         TE.map(
           flow(
             A.filter((ship) => mints.includes(ship.mint)),
@@ -123,6 +123,8 @@ const getHarvestAllInstructions = async (
             saFleetProgram
           );
         }
+
+        return null;
       })
     )
   ).filter((ix) => !!ix);

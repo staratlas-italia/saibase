@@ -1,5 +1,5 @@
 import { BN } from '@project-serum/anchor';
-import { getAllFleets, getShipInfo } from '@saibase/star-atlas';
+import { fetchAllFleets, getShipInfo } from '@saibase/star-atlas';
 import { parsePublicKey } from '@saibase/web3';
 import { Cluster, Connection } from '@solana/web3.js';
 import { ShipStakingInfo } from '@staratlas/factory';
@@ -61,7 +61,7 @@ const handler = async (
     TE.chainW((player) =>
       pipe(
         TE.Do,
-        TE.bind('fleet', () => getAllFleets({ connection, player })),
+        TE.bind('fleet', () => fetchAllFleets({ connection, player })),
         TE.bindW('fleetVars', ({ fleet }) =>
           pipe(
             fleet,

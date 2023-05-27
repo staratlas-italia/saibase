@@ -4,11 +4,7 @@ import { getMenuItems } from '~/components/layout/SideBarLayout/components/SideB
 import { matchMethodMiddleware } from '~/middlewares/matchMethod';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const {
-    from: fromParam,
-    publicKey: publicKeyParam,
-    locale = 'it',
-  } = req.query;
+  const { publicKey: publicKeyParam, locale = 'it' } = req.query;
 
   const publicKey = publicKeyParam as string | undefined;
 
