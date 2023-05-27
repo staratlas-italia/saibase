@@ -52,7 +52,7 @@ export const SwapTrigger = () => {
         quantity
       );
 
-      transaction.instructions[0].keys.push({
+      transaction.instructions[0]!.keys.push({
         pubkey: new PublicKey(reference),
         isSigner: false,
         isWritable: false,

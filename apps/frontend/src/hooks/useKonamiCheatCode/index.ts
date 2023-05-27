@@ -28,8 +28,14 @@ export const useKonamiCheatCode = ({
     const onKeyUpHandler = (event: KeyboardEvent) => {
       const { key } = event;
 
+      const current = sequence[currentIndex];
+
+      if (!current) {
+        return;
+      }
+
       // is key in correct order otherwise reset
-      if (Buffer.from(sequence[currentIndex], 'base64').toString() !== key) {
+      if (Buffer.from(current, 'base64').toString() !== key) {
         currentIndex = 0;
         return;
       }

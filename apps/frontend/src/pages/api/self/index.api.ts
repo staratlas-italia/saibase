@@ -1,27 +1,25 @@
-import { Cluster } from "@solana/web3.js";
-import { pipe } from "fp-ts/function";
-import { NextApiRequest, NextApiResponse } from "next";
-import { matchMethodMiddleware } from "~/middlewares/matchMethod";
-import { useMongoMiddleware } from "~/middlewares/useMongo";
-import { getMongoDatabase } from "~/pages/api/mongodb";
-import { Self } from "~/types/api";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { match } from 'ts-pattern';
+import { useMongoMiddleware } from '~/middlewares/useMongo';
+import { getMongoDatabase } from '~/pages/api/mongodb';
+import { Self } from '~/types/api';
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const postHandler = useMongoMiddleware(
   async ({ body }: NextApiRequest, res: NextApiResponse) => {
-    const { cluster, self } = body;
+    const { self } = body;
 
     if (!self) {
       res.status(400).json({
         success: false,
-        error: "Invalid public key",
+        error: 'Invalid public key',
       });
       return;
     }
 
-    const db = getMongoDatabase(cluster as Cluster);
+    const db = getMongoDatabase();
 
-    const userCollection = db.collection<Self>("users");
+    const userCollection = db.collection<Self>('users');
 
     const result = await userCollection.insertOne(self);
 
@@ -38,19 +36,19 @@ const postHandler = useMongoMiddleware(
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const getHandler = useMongoMiddleware(
   async ({ query }: NextApiRequest, res: NextApiResponse) => {
-    const { cluster, publicKey } = query;
+    const { publicKey } = query;
 
     if (!publicKey) {
       res.status(400).json({
         success: false,
-        error: "Invalid public key",
+        error: 'Invalid public key',
       });
       return;
     }
 
-    const db = getMongoDatabase(cluster as Cluster);
+    const db = getMongoDatabase();
 
-    const userCollection = db.collection<Self>("users");
+    const userCollection = db.collection<Self>('users');
 
     const user = await userCollection.findOne({
       wallets: publicKey,
@@ -59,7 +57,7 @@ const getHandler = useMongoMiddleware(
     if (!user) {
       res.status(200).json({
         success: false,
-        error: "User not found.",
+        error: 'User not found.',
       });
       return;
     }
@@ -72,12 +70,12 @@ const getHandler = useMongoMiddleware(
 );
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  switch (req.method) {
-    case "GET":
-      return getHandler(req, res);
-    case "POST":
-      return postHandler(req, res);
-  }
+  match(req.method)
+    .with('GET', () => getHandler(req, res))
+    .with('POST', () => postHandler(req, res))
+    .otherwise(() =>
+      res.status(405).json({ success: false, error: 'Method not allowed' })
+    );
 };
 
-export default pipe(handler, matchMethodMiddleware(["GET", "POST"]));
+export default handler;

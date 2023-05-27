@@ -17,7 +17,7 @@ export const Kittens = ({ onComplete }: Props) => {
   const [isLoading, setLoading] = useState(false);
 
   const order = useMemo(
-    () => shuffle(new Array(9).fill(0).map((a, index) => index + 1)),
+    () => shuffle(new Array(9).fill(0).map((_, index) => index + 1)),
     []
   );
 
