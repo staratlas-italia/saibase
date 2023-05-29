@@ -17,7 +17,7 @@ import { AppState } from '../../state';
 import { ShipStats } from '../../types';
 
 export const createTakeFleetSnapshopshotJobHandler =
-  (state: AppState) => async (name: string) => {
+  (state: AppState) => async (_: string) => {
     console.time('Ships snapshot taken in');
 
     const shipsStatsCollection = state.database.shipStats();

@@ -10,7 +10,7 @@ import {
   setProvider,
   workspace,
 } from '@project-serum/anchor';
-import { mintTo } from '@solana/spl-token';
+import { mintTo } from '@solana/spl-token-latest';
 import { Keypair, PublicKey } from '@solana/web3.js';
 import { SaiTokenSwap } from '../target/types/sai_token_swap';
 import { createVaultPdas } from './createVaultPdas';

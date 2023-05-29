@@ -31,12 +31,12 @@ export const fetchTokenHolders = ({
   page = 0,
 }: Param) =>
   pipe(
-    buildRoute('/token/holders', {
+    `${apiBaseUrl}${buildRoute('/token/holders', {
       limit: limit,
       offset: limit * page,
       tokenAddress: mint.toString(),
-    }),
-    (params) => fetcher(apiToken)(apiBaseUrl + params)
+    })}`,
+    fetcher(apiToken)
   );
 
 export const fetchAllTokenHolders = ({

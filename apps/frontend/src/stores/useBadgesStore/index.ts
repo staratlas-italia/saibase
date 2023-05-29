@@ -7,7 +7,7 @@ import {
   getTokenWithMintByAddress,
 } from '@saibase/web3';
 import { captureException } from '@sentry/nextjs';
-import { getAssociatedTokenAddressSync } from '@solana/spl-token';
+import { getAssociatedTokenAddressSync } from '@solana/spl-token-latest';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { Eq } from 'fp-ts/Eq';
 import * as O from 'fp-ts/Option';

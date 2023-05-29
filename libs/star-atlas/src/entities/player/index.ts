@@ -1,5 +1,5 @@
+import { nullable } from '@saibase/io-ts';
 import * as t from 'io-ts';
-import { nullable } from '../../utils';
 
 const balanceCodec = t.type({
   _id: t.string,

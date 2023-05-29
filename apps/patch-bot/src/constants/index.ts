@@ -1,6 +1,8 @@
 import { GrowthBook } from '@growthbook/growthbook';
+import { bs58 } from '@project-serum/anchor/dist/cjs/utils/bytes';
 import { environment, rpcApiBaseUrl } from '@saibase/configuration';
-import { Connection, PublicKey } from '@solana/web3.js';
+import { Connection, Keypair, PublicKey } from '@solana/web3.js';
+import invariant from 'invariant';
 import { Faction } from '../types';
 import { roleIds } from './roles';
 
@@ -53,3 +55,9 @@ export const minStakeResourceBalance = 100_000;
 export const apiBaseUrl = 'https://app.staratlasitalia.com';
 
 export const connection = new Connection(rpcApiBaseUrl);
+
+const privateKey = process.env.MAIN_PRIVATE_KEY;
+
+invariant(privateKey, 'MAIN_PRIVATE_KEY is required');
+
+export const botKeypair = Keypair.fromSecretKey(bs58.decode(privateKey));

@@ -9,7 +9,7 @@ import { ScoreFleetResponse } from '../../types/api';
 import { getShipLevel } from '../../utils/getShipLevel';
 
 export const createRefillCheckJobHandler =
-  (state: AppState) => async (name: string) => {
+  (state: AppState) => async (_: string) => {
     const guilds = await state.database
       .guilds()
       .find({
@@ -53,7 +53,7 @@ export const createRefillCheckJobHandler =
           const id = user.discordId;
 
           if (!id) {
-            return Promise.resolve(null);
+            return;
           }
 
           for (const wallet of user.wallets) {

@@ -1,4 +1,4 @@
-export type Routes = '/token/holders';
+export type Routes = '/token/holders' | '/account/:account';
 
 type QueryParams = {
   '/token/holders': {
@@ -6,6 +6,7 @@ type QueryParams = {
     offset: number;
     tokenAddress: string;
   };
+  '/account/:account': never;
 };
 
 export type GetRouteQueryParams<T> = T extends keyof QueryParams

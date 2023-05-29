@@ -4,7 +4,7 @@ import {
   getAssociatedTokenAddress,
   getOrCreateAssociatedTokenAccount,
   mintTo,
-} from '@solana/spl-token';
+} from '@solana/spl-token-latest';
 import { BN } from 'bn.js';
 import { expect } from 'chai';
 import { createVaultPdas } from '../migrations/createVaultPdas';

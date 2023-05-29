@@ -14,6 +14,7 @@ import {
   createUpdateDiscordRoleHandler,
   fetchFeatureFlags,
 } from './jobs';
+import { createDistributeRewardsHandler } from './jobs/createDistributeRewardsHandler';
 import { state } from './state';
 import { Job } from './state/Job';
 
@@ -52,6 +53,7 @@ const run = async () => {
 
     state.discord.on(Events.ClientReady, (client) => {
       handleClientReady(client, state);
+      createDistributeRewardsHandler(state)();
     });
 
     state.discord.on(Events.InteractionCreate, (interaction) => {

@@ -77,6 +77,8 @@ export const checkStakeStatus = async (
 
         return true;
       }
+
+      return false;
     })
     .with({ status: 'READY' }, () => Promise.resolve(true))
     .exhaustive();
