@@ -1,10 +1,8 @@
-import {
-  environment,
-  environmentName,
-} from '@saibase/configuration';
+import { environment, environmentName } from '@saibase/configuration';
 import * as Sentry from '@sentry/node';
 import { Events } from 'discord.js';
 import dotenv from 'dotenv';
+import 'isomorphic-fetch';
 import { discordBotToken } from './constants';
 import { handleClientReady } from './events/handleClientReady';
 import { handleGuildCreate } from './events/handleGuildCreate';
