@@ -23611,6 +23611,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isomorphic-fetch@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "isomorphic-fetch@npm:3.0.0"
+  dependencies:
+    node-fetch: ^2.6.1
+    whatwg-fetch: ^3.4.1
+  checksum: e5ab79a56ce5af6ddd21265f59312ad9a4bc5a72cebc98b54797b42cb30441d5c5f8d17c5cd84a99e18101c8af6f90c081ecb8d12fd79e332be1778d58486d75
+  languageName: node
+  linkType: hard
+
 "isomorphic-timers-promises@npm:^1.0.1":
   version: 1.0.1
   resolution: "isomorphic-timers-promises@npm:1.0.1"
@@ -31637,6 +31647,7 @@ __metadata:
     husky: 8.0.3
     invariant: ^2.2.4
     io-ts: ^2.2.20
+    isomorphic-fetch: ^3.0.0
     jest: ^29.4.1
     jest-circus: ^29.4.1
     jest-environment-jsdom: ^29.4.1
@@ -35577,7 +35588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"whatwg-fetch@npm:^3.0.0":
+"whatwg-fetch@npm:^3.0.0, whatwg-fetch@npm:^3.4.1":
   version: 3.6.2
   resolution: "whatwg-fetch@npm:3.6.2"
   checksum: ee976b7249e7791edb0d0a62cd806b29006ad7ec3a3d89145921ad8c00a3a67e4be8f3fb3ec6bc7b58498724fd568d11aeeeea1f7827e7e1e5eae6c8a275afed

@@ -22,6 +22,8 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
     .toArray();
 
   for (const botGuild of guilds) {
+    state.logger.log('Updating roles for', botGuild.serverName);
+
     const guild =
       state.discord.guilds.cache.get(botGuild.serverId) ||
       (await state.discord.guilds.fetch(botGuild.serverId));
@@ -75,7 +77,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
 
           // removing role
           logger.info(
-            'Removing role to user',
+            `Removing role ${roleId} to user`,
             member?.user.username,
             member?.id
           );

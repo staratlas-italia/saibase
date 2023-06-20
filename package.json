@@ -54,6 +54,7 @@
     "glob": "^8.0.3",
     "invariant": "^2.2.4",
     "io-ts": "^2.2.20",
+    "isomorphic-fetch": "^3.0.0",
     "jotai": "^2.0.2",
     "jszip": "^3.10.1",
     "lodash": "^4.17.21",
