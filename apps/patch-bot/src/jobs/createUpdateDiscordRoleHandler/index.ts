@@ -1,11 +1,10 @@
-import { solscanApiToken } from '@saibase/configuration';
-import { fetchAllTokenHolders, Holder } from '@saibase/solscan-api';
+import { getAllTokenHolders } from '@saibase/web3';
 import { captureException } from '@sentry/node';
-import { flow, pipe } from 'fp-ts/function';
 import * as RA from 'fp-ts/ReadonlyArray';
 import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
-import { BADGES_MINT_ROLES } from '../../constants';
+import { flow, pipe } from 'fp-ts/function';
+import { BADGES_MINT_ROLES, connection } from '../../constants';
 import { roleIds } from '../../constants/roles';
 import { logger } from '../../logger';
 import { AppState } from '../../state';
@@ -24,6 +23,11 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
   for (const botGuild of guilds) {
     state.logger.log('Updating roles for', botGuild.serverName);
 
+    // RUN ONLY FOR SAI, SKIP other guilds
+    if (botGuild.serverId !== '917086339365744640') {
+      continue;
+    }
+
     const guild =
       state.discord.guilds.cache.get(botGuild.serverId) ||
       (await state.discord.guilds.fetch(botGuild.serverId));
@@ -34,15 +38,31 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
 
     try {
       for (const [mint, roleId] of BADGES_MINT_ROLES) {
+        // const holdersWithAtLeastOneToken = await pipe(
+        //   fetchAllTokenHolders({ mint, apiToken: solscanApiToken }),
+        //   TE.map(flow(RA.filter((h) => h.amount > 0))),
+        //   TE.fold(
+        //     () => T.fromIO(() => [] as Holder[]),
+        //     (holdersWithAtLeastOneToken) =>
+        //       T.fromIO(() => holdersWithAtLeastOneToken)
+        //   )
+        // )();
+
         const holdersWithAtLeastOneToken = await pipe(
-          fetchAllTokenHolders({ mint, apiToken: solscanApiToken }),
-          TE.map(flow(RA.filter((h) => h.amount > 0))),
+          getAllTokenHolders({ connection, mint }),
+          TE.map(flow(RA.filter((h) => h.tokenAmount.uiAmount > 0))),
           TE.fold(
-            () => T.fromIO(() => [] as Holder[]),
+            () => T.fromIO(() => []),
             (holdersWithAtLeastOneToken) =>
               T.fromIO(() => holdersWithAtLeastOneToken)
           )
         )();
+
+        state.logger.log(
+          'Found ',
+          holdersWithAtLeastOneToken.length,
+          ' holders with at least one token'
+        );
 
         const membersWithBadge = guild.roles.cache.get(roleId)?.members;
 
@@ -76,13 +96,16 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
           }
 
           // removing role
-          logger.info(
-            `Removing role ${roleId} to user`,
-            member?.user.username,
-            member?.id
-          );
 
-          member?.roles.remove(roleId);
+          if (member?.roles.cache.has(roleId)) {
+            logger.info(
+              `Removing role ${roleId} to user`,
+              member?.user.username,
+              member?.id
+            );
+
+            //member.roles.remove(roleId);
+          }
         }
 
         const holdersPublicKeys = holdersWithAtLeastOneToken.map(
@@ -106,6 +129,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
           }
 
           logger.info('Getting', probablyBadgeHolder.discordId);
+          logger.info('Getting', probablyBadgeHolder.discordId);
 
           try {
             const member =
@@ -120,7 +144,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
 
             if (!hasRole) {
               logger.info(
-                'Adding role to user',
+                `Adding role ${roleId} to user`,
                 member.user.username,
                 member.id
               );
@@ -128,6 +152,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
               member.roles.add(roleId);
             }
           } catch (err) {
+            console.log('2', err);
             captureException(err, {
               level: 'error',
             });
@@ -135,6 +160,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
         }
       }
     } catch (err) {
+      console.log('1', err);
       captureException(err, {
         level: 'error',
       });

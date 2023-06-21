@@ -1,19 +1,20 @@
 import { get, withDecoder, withHeaders } from '@saibase/fetch';
 import { PublicKey } from '@solana/web3.js';
-import { pipe } from 'fp-ts/function';
-import * as RA from 'fp-ts/ReadonlyArray';
 import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
+import { apiBaseUrl } from '../constants';
 import { buildRoute } from '../routes';
 import { holderResponseCodec } from './decoder';
 
 const fetcher = (apiToken: string) => (url: string) =>
   pipe(
     get,
-    withDecoder(holderResponseCodec),
     withHeaders({
       'Content-Type': 'application/json',
+      Accept: 'application/json',
       token: apiToken,
-    })
+    }),
+    withDecoder(holderResponseCodec)
   )(url);
 
 type Param = {
@@ -35,7 +36,7 @@ export const fetchTokenHolders = ({
       offset: limit * page,
       tokenAddress: mint.toString(),
     }),
-    fetcher(apiToken)
+    (params) => fetcher(apiToken)(apiBaseUrl + params)
   );
 
 export const fetchAllTokenHolders = ({
@@ -45,17 +46,23 @@ export const fetchAllTokenHolders = ({
 }: Omit<Param, 'page'>) =>
   pipe(
     fetchTokenHolders({ apiToken, mint, limit, page: 0 }),
-    TE.chain((res) =>
-      pipe(
-        Math.ceil(res.data.total / limit) - 1,
-        (pageNumber) => RA.makeBy(pageNumber, (i) => i + 1),
-        TE.traverseSeqArray((page) =>
-          pipe(
-            fetchTokenHolders({ apiToken, mint, limit, page }),
-            TE.map((resp) => resp.data.data)
-          )
-        ),
-        TE.map(RA.flatten)
-      )
-    )
+    TE.mapLeft((err) => {
+      console.log('[dd]', apiToken, err);
+
+      return err;
+    }),
+    TE.map((a) => a.data.data)
+    // TE.chain((res) =>
+    //   pipe(
+    //     Math.ceil(res.data.total / limit) - 1,
+    //     (pageNumber) => RA.makeBy(pageNumber, (i) => i + 1),
+    //     TE.traverseSeqArray((page) =>
+    //       pipe(
+    //         fetchTokenHolders({ apiToken, mint, limit, page }),
+    //         TE.map((resp) => resp.data.data)
+    //       )
+    //     ),
+    //     TE.map(RA.flatten)
+    //   )
+    // )
   );

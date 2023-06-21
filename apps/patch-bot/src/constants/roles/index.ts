@@ -21,10 +21,3 @@ export const roleIds = {
   team: environment.development ? '935121440787791892' : '917086339378323554',
   tutor: '1059604744982765627',
 };
-
-export const grantedRoles = [
-  roleIds.debug,
-  roleIds.dev,
-  roleIds.genesis,
-  roleIds.team,
-];
