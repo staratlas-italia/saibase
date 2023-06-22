@@ -93,8 +93,8 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-react": "^7.14.5",
-    "@commitlint/cli": "17.4.2",
-    "@commitlint/config-conventional": "17.4.2",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@commitlint/config-nx-scopes": "17.4.2",
     "@coral-xyz/xnft-cli": "^0.6.5-latest.4838",
     "@netlify/plugin-nextjs": "^4.39.0",
