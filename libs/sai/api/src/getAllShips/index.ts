@@ -8,6 +8,7 @@ import * as A from 'fp-ts/Array';
 import { Ord } from 'fp-ts/Ord';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
+import { withBody} from '@saibase/fetch';
 
 const shipSizes: Record<string, number> = {
   mini: -2,
