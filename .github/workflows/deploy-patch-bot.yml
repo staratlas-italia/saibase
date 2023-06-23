@@ -11,6 +11,9 @@ name: ci
 jobs:
   deploy-production:
     runs-on: ubuntu-latest
+    permissions:
+      actions: 'read'
+      contents: 'read'
     steps:
       - name: checkout
         uses: actions/checkout@v3

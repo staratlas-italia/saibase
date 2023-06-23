@@ -38,16 +38,6 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
 
     try {
       for (const [mint, roleId] of BADGES_MINT_ROLES) {
-        // const holdersWithAtLeastOneToken = await pipe(
-        //   fetchAllTokenHolders({ mint, apiToken: solscanApiToken }),
-        //   TE.map(flow(RA.filter((h) => h.amount > 0))),
-        //   TE.fold(
-        //     () => T.fromIO(() => [] as Holder[]),
-        //     (holdersWithAtLeastOneToken) =>
-        //       T.fromIO(() => holdersWithAtLeastOneToken)
-        //   )
-        // )();
-
         const holdersWithAtLeastOneToken = await pipe(
           getAllTokenHolders({ connection, mint }),
           TE.map(flow(RA.filter((h) => h.tokenAmount.uiAmount > 0))),
@@ -126,7 +116,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
             continue;
           }
 
-          logger.info('Getting', probablyBadgeHolder.discordId);
+          logger.info('Getting memeber: ', probablyBadgeHolder.discordId);
 
           try {
             const member =
