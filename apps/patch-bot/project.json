@@ -4,16 +4,23 @@
   "sourceRoot": "apps/patch-bot/src",
   "projectType": "application",
   "targets": {
+    "release": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["exit 0;"]
+      }
+    },
     "build": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/patch-bot",
-        "format": ["cjs"],
+        "format": ["esm"],
         "main": "apps/patch-bot/src/main.ts",
         "tsConfig": "apps/patch-bot/tsconfig.app.json",
         "assets": ["apps/patch-bot/src/assets"],
         "esbuildOptions": {
+          "splitting": true,
           "sourcemap": true,
           "outExtension": {
             ".js": ".js"
@@ -25,6 +32,7 @@
       "configurations": {
         "production": {
           "esbuildOptions": {
+            "splitting": true,
             "sourcemap": false
           }
         }
