@@ -51,7 +51,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
         state.logger.log(
           'Found ',
           holdersWithAtLeastOneToken.length,
-          ' holders with at least one token'
+          ' holders with at least one token in their wallet'
         );
 
         const membersWithBadge = guild.roles.cache.get(roleId)?.members;
