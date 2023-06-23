@@ -95,8 +95,6 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
             continue;
           }
 
-          // removing role
-
           if (member?.roles.cache.has(roleId)) {
             logger.info(
               `Removing role ${roleId} to user`,
@@ -104,7 +102,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
               member?.id
             );
 
-            //member.roles.remove(roleId);
+            member.roles.remove(roleId);
           }
         }
 
@@ -129,7 +127,6 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
           }
 
           logger.info('Getting', probablyBadgeHolder.discordId);
-          logger.info('Getting', probablyBadgeHolder.discordId);
 
           try {
             const member =
@@ -152,7 +149,6 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
               member.roles.add(roleId);
             }
           } catch (err) {
-            console.log('2', err);
             captureException(err, {
               level: 'error',
             });
@@ -160,7 +156,6 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
         }
       }
     } catch (err) {
-      console.log('1', err);
       captureException(err, {
         level: 'error',
       });
