@@ -1,13 +1,3 @@
-FROM node:16-alpine3.15 as builder
-WORKDIR /app
-RUN apk add --no-cache git make clang build-base python3
-COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
-RUN yarn --immutable
-COPY . .
-RUN yarn nx build patch-bot --prod
-
-# stage2
 FROM node:16-alpine3.15
 WORKDIR /app
 ARG app_version
@@ -27,7 +17,6 @@ ENV MONGO_DB_URI $mongo_db_uri
 ENV RPC_API_BASE_URL $rpc_api_base_url
 ENV SENTRY_URL $sentry_url
 ENV SOLSCAN_API_TOKEN $solscan_api_token
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules/ ./node_modules
+COPY ./dist ./dist
 RUN ls -la
-CMD ["node", "./dist/apps/patch-bot/main.cjs"]
+CMD ["node", "./dist/apps/patch-bot/main.js"]
