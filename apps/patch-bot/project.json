@@ -15,12 +15,11 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/patch-bot",
-        "format": ["esm"],
+        "format": ["cjs"],
         "main": "apps/patch-bot/src/main.ts",
         "tsConfig": "apps/patch-bot/tsconfig.app.json",
         "assets": ["apps/patch-bot/src/assets"],
         "esbuildOptions": {
-          "splitting": true,
           "sourcemap": true,
           "outExtension": {
             ".js": ".js"
@@ -32,7 +31,6 @@
       "configurations": {
         "production": {
           "esbuildOptions": {
-            "splitting": true,
             "sourcemap": false
           }
         }
