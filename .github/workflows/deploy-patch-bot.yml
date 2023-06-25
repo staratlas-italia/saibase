@@ -35,7 +35,7 @@ jobs:
         id: check
         run: |
           patch_is_affected="$(yarn nx print-affected --type=app --select=projects --base=HEAD~1 | grep -q 'patch-bot' && echo 'true' || echo 'false')"
-          echo ::set-output affected=$patch_is_affected
+          echo "affected=$patch_is_affected" >> "$GITHUB_OUTPUT"
 
       - name: Build patch-bot
         if: 'steps.check.outputs.affected'
