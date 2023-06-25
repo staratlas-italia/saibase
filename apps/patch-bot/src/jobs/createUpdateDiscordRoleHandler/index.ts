@@ -22,11 +22,6 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
   for (const botGuild of guilds) {
     state.logger.log('Updating roles for', botGuild.serverName);
 
-    // RUN ONLY FOR SAI, SKIP other guilds
-    if (botGuild.serverId !== '917086339365744640') {
-      continue;
-    }
-
     const guild =
       state.discord.guilds.cache.get(botGuild.serverId) ||
       (await state.discord.guilds.fetch(botGuild.serverId));
@@ -108,6 +103,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
           .find({
             wallets: { $in: holdersPublicKeys },
             discordId: { $ne: null },
+            serverId: botGuild.serverId,
           })
           .toArray();
 
