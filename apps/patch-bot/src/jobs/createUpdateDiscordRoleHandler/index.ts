@@ -6,7 +6,6 @@ import * as TE from 'fp-ts/TaskEither';
 import { flow, pipe } from 'fp-ts/function';
 import { BADGES_MINT_ROLES, connection } from '../../constants';
 import { roleIds } from '../../constants/roles';
-import { logger } from '../../logger';
 import { AppState } from '../../state';
 
 export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
@@ -64,8 +63,13 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
         const usersWithBadge = await usersCollection
           .find({
             discordId: { $in: membersWithBadgeIds },
+            serverId: botGuild.serverId,
           })
           .toArray();
+
+        state.logger.log(
+          `Found ${usersWithBadge.length} users with SAI badges`
+        );
 
         for (const userWithBadge of usersWithBadge) {
           if (
@@ -86,7 +90,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
           }
 
           if (member?.roles.cache.has(roleId)) {
-            logger.info(
+            state.logger.info(
               `Removing role ${roleId} to user`,
               member?.user.username,
               member?.id
@@ -116,7 +120,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
             continue;
           }
 
-          logger.info('Getting memeber: ', probablyBadgeHolder.discordId);
+          state.logger.info('Getting memeber: ', probablyBadgeHolder.discordId);
 
           try {
             const member =
@@ -130,7 +134,7 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
             const hasRole = member.roles.cache.has(roleId);
 
             if (!hasRole) {
-              logger.info(
+              state.logger.info(
                 `Adding role ${roleId} to user`,
                 member.user.username,
                 member.id

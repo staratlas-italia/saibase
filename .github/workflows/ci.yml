@@ -1,0 +1,32 @@
+name: Affected CI
+'on':
+  pull_request:
+
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+jobs:
+  checks:
+    name: CI Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: set nx affected shas
+        uses: nrwl/nx-set-shas@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
+      - run: yarn --immutable
+      - run: yarn nx print-affected --type=app --select=projects
+      - run: yarn nx format:check
+      - run: yarn nx affected -t lint --parallel=3
+      - run: yarn nx affected -t test --parallel=3 --configuration=ci
+      - run: yarn nx affected -t build --parallel=3

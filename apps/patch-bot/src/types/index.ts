@@ -86,6 +86,7 @@ export type Self = WithId<{
   wallets: string[];
   referral?: { code: string; createdAt: Date };
   fromReferral?: string;
+  serverId: string;
 }>;
 
 export type UserToken = {
