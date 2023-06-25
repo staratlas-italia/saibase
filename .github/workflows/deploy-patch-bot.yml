@@ -34,7 +34,7 @@ jobs:
       - name: Check if patch-bot is affected
         id: check
         run: |
-          patch_is_affected="$(yarn nx print-affected --type=app --select=projects | grep -q 'patch-bot' && echo 'true' || echo 'false')"
+          patch_is_affected="$(yarn nx print-affected --type=app --select=projects --base=HEAD~1 | grep -q 'patch-bot' && echo 'true' || echo 'false')"
           echo ::set-output affected=$patch_is_affected
 
       - name: Build patch-bot
