@@ -19,4 +19,4 @@ ENV SENTRY_URL $sentry_url
 ENV SOLSCAN_API_TOKEN $solscan_api_token
 COPY ./dist ./dist
 RUN ls -la
-CMD ["node", "./dist/apps/patch-bot/main.js"]
+CMD ["node", "./dist/apps/patch-bot/main.cjs"]
