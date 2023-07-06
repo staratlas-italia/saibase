@@ -24,6 +24,6 @@ export const fetchPlayer = (publicKey: PublicKey) =>
             )
           )
         : TE.right({ response, data: data as StarAtlasPlayer })
-    ),
-    TE.mapLeft(({ type, error }) => createError(type)(error))
+    )
+    // TE.mapLeft(({ type, error }) => createError(type)(error))
   );

@@ -41,12 +41,13 @@ export const MintPage = () => {
   }
 
   if (tier) {
-    return (
-      <LoadingView
-        title="Mint.Hyperspace.text"
-        values={{ seconds: counter.toString() }}
-      />
-    );
+    // return (
+    //   <LoadingView
+    //     title="Mint.Hyperspace.text"
+    //     values={{ seconds: counter.toString() }}
+    //   />
+    // );
+    return <LoadingView />;
   }
 
   if (!loading && !tier) {
@@ -59,5 +60,5 @@ export const MintPage = () => {
     );
   }
 
-  return <LoadingView title="Mint.CheckBadge.text" />;
+  return <LoadingView />;
 };

@@ -13,12 +13,12 @@ type AuthStore = {
 
 export const useAuthStore = create(
   persist<AuthStore>(
-    (set, get) => ({
+    (set) => ({
       signature: null,
       updatedAt: null,
       isAdmin: (publicKey: PublicKey | null) =>
         publicKey ? isAdminPublicKey(publicKey) : false,
-      updateSignature: (signature: string, isLedger?: boolean) =>
+      updateSignature: (signature: string) =>
         set({ signature, updatedAt: Date.now() }),
       clear: () => set({ signature: null, updatedAt: null }),
     }),

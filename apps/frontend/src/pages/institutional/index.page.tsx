@@ -46,7 +46,7 @@ const Tutor = () => {
       >
         {(['s', 'm', 'l'] as const).map((size) => {
           const account = accounts[size];
-          const state = states[account];
+          const state = states[account]!;
           const quantity = numberFormatter.format(state?.quantity || 0);
 
           return (

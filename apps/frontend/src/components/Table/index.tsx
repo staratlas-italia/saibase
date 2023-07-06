@@ -109,7 +109,7 @@ export const Table = <T, V>({
       <tbody className="divide-y-2 divide-primary">
         {loading
           ? null
-          : table.getRowModel().rows.map((row, i) => (
+          : table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-2">
