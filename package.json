@@ -98,6 +98,7 @@
     "@commitlint/config-conventional": "17.4.2",
     "@commitlint/config-nx-scopes": "17.4.2",
     "@coral-xyz/xnft-cli": "^0.6.5-latest.4838",
+    "@netlify/plugin-nextjs": "^4.39.0",
     "@nx/cypress": "16.3.2",
     "@nx/detox": "16.3.2",
     "@nx/esbuild": "16.3.2",
