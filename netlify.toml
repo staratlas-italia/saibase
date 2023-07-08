@@ -1,6 +1,6 @@
 [build]
   command = "yarn nx build frontend --prod"
-  publish = "dist/apps/frontend"
+  publish = "dist/apps/frontend/.next"
 
  [[plugins]]
   package = "@netlify/plugin-nextjs"
