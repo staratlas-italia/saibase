@@ -6,45 +6,6 @@ import {
 import * as t from 'io-ts';
 import { nullable, optional } from '../../utils';
 
-export const classCodec = t.union([
-  t.literal('badge'),
-  t.literal('capital'),
-  t.literal('Capital'),
-  t.literal('charm'),
-  t.literal('commander'),
-  t.literal('Commander'),
-  t.literal('consumable'),
-  t.literal('currency'),
-  t.literal('crew gear'),
-  t.literal('crew'),
-  t.literal('emote'),
-  t.literal('graphic-novel'),
-  t.literal('hab assets'),
-  t.literal('housing'),
-  t.literal('human'),
-  t.literal('large'),
-  t.literal('Large'),
-  t.literal('license'),
-  t.literal('material bundle'),
-  t.literal('medium'),
-  t.literal('Medium'),
-  t.literal('mini'),
-  t.literal('mining equipment'),
-  t.literal('pet'),
-  t.literal('poster'),
-  t.literal('skin'),
-  t.literal('small'),
-  t.literal('Small'),
-  t.literal('space station structure'),
-  t.literal('stake'),
-  t.literal('titan'),
-  t.literal('trinket'),
-  t.literal('x-small'),
-  t.literal('xx-small'),
-  t.literal('XX-Small'),
-  t.literal('xxx-small'),
-]);
-
 export const attributeCodec = t.type({
   itemType: t.union([
     t.literal('collectible'),
@@ -54,9 +15,10 @@ export const attributeCodec = t.type({
     t.literal('resource'),
     t.literal('story'),
     t.literal('currency'),
+    t.literal('memories'),
   ]),
   tier: optional(t.number),
-  class: classCodec,
+  class: t.string,
   category: optional(t.string),
   score: optional(t.number),
   rarity: t.union([
@@ -81,16 +43,47 @@ export const attributeCodec = t.type({
   ),
 });
 
+const crewCodec = t.union([
+  t.literal('medium'),
+  t.literal('x-small'),
+  t.literal('small'),
+  t.literal('large'),
+  t.literal('xx-small'),
+  t.literal('capital'),
+  t.literal('commander'),
+  t.literal('class 8'),
+  t.literal('xxx-small'),
+  t.literal('Class 8'),
+  t.literal('titan'),
+  t.literal('crew'),
+  t.literal('XX-Small'),
+]);
+
 const slotCodec = t.type({
+  crew: optional(crewCodec),
   type: t.string,
-  size: t.string,
+  size: optional(crewCodec),
   quantity: t.number,
 });
 
 const slotsCodec = t.type({
-  crewSlots: nullable(t.array(slotCodec)),
-  componentSlots: nullable(t.array(slotCodec)),
-  moduleSlots: nullable(t.array(slotCodec)),
+  crewSlots: optional(nullable(t.array(slotCodec))),
+  componentSlots: optional(nullable(t.array(slotCodec))),
+  moduleSlots: optional(nullable(t.array(slotCodec))),
+  interiorSlots: optional(
+    t.array(
+      t.type({
+        type: t.string,
+      })
+    )
+  ),
+  stationSlots: optional(
+    t.array(
+      t.type({
+        type: t.string,
+      })
+    )
+  ),
 });
 
 const airdropCodec = t.type({
@@ -150,32 +143,31 @@ const tradeSettingsCodec = t.type({
 });
 
 export const nftCodec = t.type({
-  _id: t.string,
-  deactivated: t.boolean,
-  name: t.string,
-  description: t.string,
-  image: t.string,
-  media: mediaCodec,
-  attributes: attributeCodec,
-  symbol: t.string,
-  markets: t.array(marketCodec),
-  totalSupply: optional(t.number),
-  mint: t.string,
-  network: optional(t.string),
-  tradeSettings: tradeSettingsCodec,
-  airdrops: t.array(airdropCodec),
-  primarySales: t.array(primarySaleCodec),
-  updatedAt: t.string,
-  collection: optional(collectionCodec),
-  slots: optional(slotsCodec),
-  id: t.string,
-  createdAt: optional(t.string),
   __v: optional(t.number),
+  _id: t.string,
+  airdrops: t.array(airdropCodec),
+  attributes: attributeCodec,
+  collection: optional(collectionCodec),
+  createdAt: optional(t.string),
+  deactivated: t.boolean,
+  description: t.string,
+  id: t.string,
+  image: t.string,
+  markets: t.array(marketCodec),
+  media: mediaCodec,
+  mint: t.string,
+  name: t.string,
+  network: optional(t.string),
+  primarySales: t.array(primarySaleCodec),
+  slots: optional(slotsCodec),
+  symbol: t.string,
+  totalSupply: optional(t.number),
+  tradeSettings: tradeSettingsCodec,
+  updatedAt: optional(t.string),
 });
 
 export const nftsCodec = t.array(nftCodec);
 
-export type NftClass = t.TypeOf<typeof classCodec>;
 export type NftPrimarySale = t.TypeOf<typeof primarySaleCodec>;
 export type StarAtlasNft = t.TypeOf<typeof nftCodec>;
 export type StarAtlasNftArray = t.TypeOf<typeof nftsCodec>;

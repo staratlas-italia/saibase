@@ -1,7 +1,6 @@
 export * from './constants';
 export type {
   Faction,
-  NftClass,
   NftPrimarySale,
   ScoreVarsShipInfo,
   ShipStakingInfo,

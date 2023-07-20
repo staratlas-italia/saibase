@@ -71,6 +71,7 @@ export const createTakeFleetSnapshopshotJobHandler =
             ships: {
               ...shipsStats.ships,
               [ship.mint]: {
+                belongsToGuild: guildWallets.includes(owner),
                 vwap: getEntityVwapPrice(ship.primarySales),
                 mint: ship.mint,
                 name: ship.name,
@@ -89,7 +90,8 @@ export const createTakeFleetSnapshopshotJobHandler =
         const balance = await getTokenBalanceByMint(
           connection,
           new PublicKey(owner),
-          new PublicKey(ship.mint)
+          new PublicKey(ship.mint),
+          true
         )();
 
         if (balance > 0) {

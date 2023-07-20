@@ -42,7 +42,7 @@ const jobs = [
   new Job('fleet-refill', '0 */1 * * *', createRefillCheckJobHandler(state)),
   new Job(
     'update-discord-roles',
-    '*/5 * * * *',
+    '*/10 * * * *',
     createUpdateDiscordRoleHandler(state)
   ),
 ];

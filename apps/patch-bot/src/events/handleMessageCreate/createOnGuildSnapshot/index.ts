@@ -3,25 +3,27 @@ import { chunksOf } from 'fp-ts/lib/Array';
 import { snapshot } from '../../../commands/snapshot';
 import { AppState } from '../../../state';
 
-export const createOnSnapshot =
+export const createOnGuildSnapshot =
   (message: Message, state: AppState) => async () => {
     const data = await snapshot(state);
 
     let totalUsd = 0;
 
-    const fields: EmbedField[] = Object.values(data.ships).map((item) => {
-      const totalPrice = (item.vwap || 1) * item.stakedQuantity;
-      totalUsd += totalPrice;
+    const fields: EmbedField[] = Object.values(data.ships)
+      .filter((item) => !!item.belongsToGuild)
+      .map((item) => {
+        const totalPrice = (item.vwap || 1) * item.stakedQuantity;
+        totalUsd += totalPrice;
 
-      return {
-        inline: true,
-        name: item.name,
-        value: `n. ${item.stakedQuantity} ~ ${new Intl.NumberFormat('it', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(totalPrice)}`,
-      };
-    });
+        return {
+          inline: true,
+          name: item.name,
+          value: `n. ${item.stakedQuantity} ~ ${new Intl.NumberFormat('it', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(totalPrice)}`,
+        };
+      });
 
     const chunkedFields = chunksOf(24)(fields);
 
@@ -50,7 +52,7 @@ export const createOnSnapshot =
     });
 
     (message.channel as TextChannel).send({
-      content: `<@${message.author.id}> here the requested snapshot`,
+      content: `<@${message.author.id}> here the requested guild snapshot`,
       embeds,
     });
   };
