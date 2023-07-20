@@ -24,10 +24,12 @@ export type ShipStats = {
   createdAt: Date;
   ships: Record<
     string,
-    { stakedQuantity: number; inWalletQuantity: number; vwap?: number } & Pick<
-      StarAtlasNft,
-      'attributes' | 'mint' | 'name'
-    >
+    {
+      stakedQuantity: number;
+      inWalletQuantity: number;
+      vwap?: number;
+      belongsToGuild?: boolean;
+    } & Pick<StarAtlasNft, 'attributes' | 'mint' | 'name'>
   >;
 };
 

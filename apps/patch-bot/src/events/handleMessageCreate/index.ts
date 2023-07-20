@@ -5,6 +5,7 @@ import { constVoid } from 'fp-ts/function';
 import { AppState } from '../../state';
 import { checkRoles } from '../../utils/checkPermission';
 import { createLinkDiscordCommandHandler } from './createLinkDiscordCommandHandler';
+import { createOnGuildSnapshot } from './createOnGuildSnapshot';
 import { createSendTokensHandler } from './createOnSendTokens';
 import { createOnSnapshot } from './createOnSnapshot';
 import { createOnTokensBalance } from './createOnTokensBalance';
@@ -51,8 +52,13 @@ const createProgram = (message: Message, state: AppState) => {
   if (isDev || isGenesisHolder || isCitizen || isTutor) {
     program
       .command('snapshot')
-      .description('Retrieve guild fleet stats')
+      .description('Retrieve guild and members fleet stats')
       .action(createOnSnapshot(message, state));
+
+    program
+      .command('guild-snapshot')
+      .description('Retrieve guild-only fleet stats')
+      .action(createOnGuildSnapshot(message, state));
   }
 
   program
