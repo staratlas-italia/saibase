@@ -1,6 +1,5 @@
 import { Err } from '@contactlab/appy';
 import {
-  NftClass,
   StarAtlasNft,
   StarAtlasNftArray,
   fetchNfts,
@@ -27,12 +26,8 @@ const shipSizes: Record<string, number> = {
 const sortBySize: Ord<StarAtlasNft> = {
   equals: (shipA, shipB) => shipA.mint === shipB.mint,
   compare: (shipA, shipB) => {
-    const sizeA =
-      shipSizes[shipA.attributes.class.toLowerCase() as Lowercase<NftClass>] ??
-      0;
-    const sizeB =
-      shipSizes[shipB.attributes.class.toLowerCase() as Lowercase<NftClass>] ??
-      0;
+    const sizeA = shipSizes[shipA.attributes.class.toLowerCase()] ?? 0;
+    const sizeB = shipSizes[shipB.attributes.class.toLowerCase()] ?? 0;
 
     if (sizeA === sizeB) {
       return 0;
@@ -47,7 +42,8 @@ const sortBySize: Ord<StarAtlasNft> = {
 };
 
 export const getShipsNfts = (
-  size?: NftClass
+  // TODO: add type
+  size?: string
 ): TE.TaskEither<Err, StarAtlasNftArray> =>
   pipe(
     fetchNfts(),
