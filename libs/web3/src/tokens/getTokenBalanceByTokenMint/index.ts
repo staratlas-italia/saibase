@@ -25,9 +25,10 @@ export const getTokenBalanceByTokenMint = ({
 export const getTokenBalanceByMint = (
   connection: Connection,
   owner: PublicKey,
-  mint: PublicKey
+  mint: PublicKey,
+  allowOwnerOffCurve = false
 ) =>
   pipe(
-    T.of(getAssociatedTokenAddressSync(mint, owner)),
+    T.of(getAssociatedTokenAddressSync(mint, owner, allowOwnerOffCurve)),
     T.chain((address) => getTokenBalanceByTokenAddress({ connection, address }))
   );
