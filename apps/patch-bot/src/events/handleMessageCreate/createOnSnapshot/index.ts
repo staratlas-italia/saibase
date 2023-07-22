@@ -10,7 +10,7 @@ export const createOnSnapshot =
     let totalUsd = 0;
 
     const fields: EmbedField[] = Object.values(data.ships).map((item) => {
-      const totalPrice = (item.vwap || 1) * item.stakedQuantity;
+      const totalPrice = (item.vwap || 1) * (item.stakedQuantity ?? 0);
       totalUsd += totalPrice;
 
       return {

@@ -26,6 +26,10 @@ export class DbClient {
     return this.mongo.collection<ShipStats>('ships-stats');
   }
 
+  guildShipStats() {
+    return this.mongo.collection<ShipStats>('guild-ships-stats');
+  }
+
   userTokens() {
     return this.mongo.collection<UserToken>('user-tokens');
   }

@@ -12,6 +12,7 @@ import { handleMessageCreate } from './events/handleMessageCreate';
 import {
   createRefillCheckJobHandler,
   createTakeFleetSnapshopshotJobHandler,
+  createTakeGuildFleetSnapshopshotJobHandler,
   createUpdateDiscordRoleHandler,
   fetchFeatureFlags,
 } from './jobs';
@@ -38,6 +39,11 @@ const jobs = [
     'fleet-snapshot',
     '0 1 * * *',
     createTakeFleetSnapshopshotJobHandler(state)
+  ),
+  new Job(
+    'guild-fleet-snapshot',
+    '0 1 * * *',
+    createTakeGuildFleetSnapshopshotJobHandler(state)
   ),
   new Job('fleet-refill', '0 */1 * * *', createRefillCheckJobHandler(state)),
   new Job(
