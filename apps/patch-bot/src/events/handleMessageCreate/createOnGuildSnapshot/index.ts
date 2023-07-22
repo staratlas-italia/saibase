@@ -1,35 +1,41 @@
 import { EmbedBuilder, EmbedField, Message, TextChannel } from 'discord.js';
 import { chunksOf } from 'fp-ts/lib/Array';
-import { snapshot } from '../../../commands/snapshot';
+import { guildSnapshot } from '../../../commands/guildSnapshot';
 import { AppState } from '../../../state';
 
 export const createOnGuildSnapshot =
   (message: Message, state: AppState) => async () => {
-    const data = await snapshot(state);
+    const data = await guildSnapshot(state);
 
     let totalUsd = 0;
 
-    const fields: EmbedField[] = Object.values(data.ships)
-      .filter((item) => !!item.belongsToGuild)
-      .map((item) => {
-        const totalPrice = (item.vwap || 1) * item.stakedQuantity;
-        totalUsd += totalPrice;
+    const fields: EmbedField[] = Object.values(data.ships).map((item) => {
+      const totalPrice =
+        (item.vwap || 1) * (item.stakedQuantity ?? 0) +
+        (item.vwap || 1) * (item.inWalletQuantity ?? 0);
+      totalUsd += totalPrice;
 
-        return {
-          inline: true,
-          name: item.name,
-          value: `n. ${item.stakedQuantity} ~ ${new Intl.NumberFormat('it', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(totalPrice)}`,
-        };
-      });
+      return {
+        inline: true,
+        name: item.name,
+        value: `n. ${
+          item.stakedQuantity + item.inWalletQuantity
+        } ~ ${new Intl.NumberFormat('it', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(totalPrice)}`,
+      };
+    });
 
     const chunkedFields = chunksOf(24)(fields);
 
     const embeds = chunkedFields.map((fields, index) => {
       const builder = new EmbedBuilder()
-        .setTitle(`SAI Fleet Snapshot - Page ${index + 1}`)
+        .setTitle(
+          `SAI Fleet guild-only Snapshot ${
+            chunkedFields.length > 1 ? `- Page ${index + 1}` : ''
+          }`
+        )
         .setColor('#eef35f')
         .setFields(fields);
 

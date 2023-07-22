@@ -28,7 +28,6 @@ export type ShipStats = {
       stakedQuantity: number;
       inWalletQuantity: number;
       vwap?: number;
-      belongsToGuild?: boolean;
     } & Pick<StarAtlasNft, 'attributes' | 'mint' | 'name'>
   >;
 };
