@@ -1,5 +1,5 @@
 import { createError } from '@saibase/errors';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token-latest';
 import { Connection, ParsedAccountData, PublicKey } from '@solana/web3.js';
 import * as A from 'fp-ts/Array';
 import * as R from 'fp-ts/Record';

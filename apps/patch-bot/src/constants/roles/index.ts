@@ -40,4 +40,4 @@ export const mapRolePermissionLevels = {
   [roleIds.tutor]: permisionLevels.tutor,
   [roleIds.dev]: permisionLevels.dev,
   [roleIds.team]: permisionLevels.admin,
-};
+} as const;

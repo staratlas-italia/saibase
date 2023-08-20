@@ -1,5 +1,5 @@
 import { mints } from '@saibase/constants';
-import { getAssociatedTokenAddressSync } from '@solana/spl-token';
+import { getAssociatedTokenAddressSync } from '@solana/spl-token-latest';
 import type { AnchorWallet } from '@solana/wallet-adapter-react';
 import { Connection, PublicKey, type Cluster } from '@solana/web3.js';
 import { getSaiTokenSwapPdas } from '../getSaiTokenSwapPdas';

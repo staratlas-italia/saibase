@@ -4,6 +4,7 @@ import { match } from 'ts-pattern';
 import { CommandName } from '../../commands';
 import { AppState } from '../../state';
 import { handleBalanceCommand } from './handleBalanceCommand';
+import { handleGuildSnapshotCommand } from './handleGuildSnapshotCommand';
 import { handleLinkCommand } from './handleLinkCommand';
 import { handlePushCommand } from './handlePushCommand';
 import { handleSendCommand } from './handleSendCommand';
@@ -59,6 +60,7 @@ export const handleInteractionCreate = async (
     .with({ commandName: 'user-info' }, handleUserInfo)
     // Genesis commands
     .with({ commandName: 'snapshot' }, handleSnapshotCommand)
+    .with({ commandName: 'guild-snapshot' }, handleGuildSnapshotCommand)
     .with({ commandName: 'push' }, handlePushCommand)
     // Default commands
     .with({ commandName: 'balance' }, handleBalanceCommand)

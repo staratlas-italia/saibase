@@ -18,7 +18,7 @@ export const createUserWallet = async ({ state, discordId }: Param) => {
     discordId,
     publicKey: keypair.publicKey.toString(),
     encryptedPrivateKey: encryptedPrivateKey,
-    status: 'SOL_NEEDED',
+    status: 'SOL_AND_RESOURCES_NEEDED',
   });
 
   const insertedUserWallet = await state.database

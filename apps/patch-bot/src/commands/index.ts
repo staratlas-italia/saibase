@@ -121,6 +121,10 @@ export const availableCommands = [
     description: 'Get SAI fleet snapshot',
   },
   {
+    name: 'guild-snapshot' as const,
+    description: 'Get SAI fleet guild snapshot',
+  },
+  {
     name: 'stake' as const,
     description: 'Stake your SA ships with SAI',
   },

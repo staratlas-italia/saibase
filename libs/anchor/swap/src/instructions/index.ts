@@ -1,6 +1,6 @@
 import { BN } from '@project-serum/anchor';
 import { mints } from '@saibase/constants';
-import { getAssociatedTokenAddress } from '@solana/spl-token';
+import { getAssociatedTokenAddress } from '@solana/spl-token-latest';
 import { AnchorWallet } from '@solana/wallet-adapter-react';
 import { Cluster, Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { AnchorTypes } from '@staratlas/factory/dist/anchor/types';

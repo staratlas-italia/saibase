@@ -25,10 +25,15 @@
     "@react-navigation/native": "6.0.10",
     "@react-navigation/native-stack": "6.6.1",
     "@react-navigation/stack": "6.2.1",
+    "@saberhq/anchor-contrib": "^1.14.11",
+    "@saberhq/merkle-distributor": "^0.3.5",
+    "@saberhq/solana-contrib": "^1.14.11",
+    "@saberhq/token-utils": "^1.14.11",
     "@sentry/nextjs": "^7.14.2",
     "@sentry/node": "^7.41.0",
     "@solana/pay": "^0.2.4",
-    "@solana/spl-token": "^0.3.7",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/spl-token-latest": "npm:@solana/spl-token@^0.3.7",
     "@solana/wallet-adapter-base": "^0.9.20",
     "@solana/wallet-adapter-react": "^0.15.28",
     "@solana/wallet-adapter-wallets": "^0.19.11",
@@ -183,9 +188,6 @@
   },
   "scripts": {
     "postinstall": "husky install"
-  },
-  "resolutions": {
-    "@solana/spl-token": "^0.3.7"
   },
   "packageManager": "yarn@3.5.1"
 }

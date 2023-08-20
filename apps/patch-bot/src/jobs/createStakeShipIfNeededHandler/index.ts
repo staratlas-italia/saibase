@@ -7,13 +7,14 @@ import {
   getInitialDepositInstruction,
 } from '@saibase/star-atlas';
 import {
-  buildTransaction,
+  createVersionedTransaction,
+  getLatestBlockhash,
   getSolBalanceByOwner,
   getTokensByOwner,
   parsePublicKey,
 } from '@saibase/web3';
 import { captureException } from '@sentry/node';
-import { getAssociatedTokenAddressSync } from '@solana/spl-token';
+import { getAssociatedTokenAddressSync } from '@solana/spl-token-latest';
 import { Keypair, PublicKey } from '@solana/web3.js';
 import * as R from 'fp-ts/Record';
 import * as T from 'fp-ts/Task';
@@ -77,15 +78,24 @@ const getInitialDepositTx = ({
   shipMint: PublicKey;
 }) =>
   pipe(
-    getInitialDepositInstruction({
-      connection,
-      player: owner,
-      shipMint,
-      shipTokenAccount: getAssociatedTokenAddressSync(shipMint, owner),
-      shipQuantity: amount,
-    }),
-    TE.map((ix) => [ix]),
-    TE.chainW(buildTransaction({ connection, feePayer: owner }))
+    TE.Do,
+    TE.bind('ix', () =>
+      getInitialDepositInstruction({
+        connection,
+        player: owner,
+        shipMint,
+        shipTokenAccount: getAssociatedTokenAddressSync(shipMint, owner),
+        shipQuantity: amount,
+      })
+    ),
+    TE.bindW('recentBlockhash', () => getLatestBlockhash(connection)),
+    TE.map(({ ix, recentBlockhash }) =>
+      createVersionedTransaction({
+        feePayer: owner,
+        instructions: [ix],
+        recentBlockhash: recentBlockhash.blockhash,
+      })
+    )
   );
 
 const getStakeDepositTx = ({

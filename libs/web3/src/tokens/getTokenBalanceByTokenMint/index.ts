@@ -1,4 +1,4 @@
-import { getAssociatedTokenAddressSync } from '@solana/spl-token';
+import { getAssociatedTokenAddressSync } from '@solana/spl-token-latest';
 import { Connection, PublicKey } from '@solana/web3.js';
 import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';

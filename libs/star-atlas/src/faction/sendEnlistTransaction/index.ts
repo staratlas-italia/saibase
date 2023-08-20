@@ -1,5 +1,5 @@
 import { createError } from '@saibase/errors';
-import { buildTransaction } from '@saibase/web3';
+import { createVersionedTransaction, getLatestBlockhash } from '@saibase/web3';
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { FactionType } from '@staratlas/factory';
 import * as TE from 'fp-ts/TaskEither';
@@ -20,9 +20,18 @@ export const sendEnlistTransaction = ({
   signers,
 }: Param) =>
   pipe(
-    getEnlistInstruction({ connection, factionId, player }),
-    TE.map((ix) => [ix]),
-    TE.chainW(buildTransaction({ connection, feePayer: player })),
+    TE.Do,
+    TE.bind('ix', () =>
+      getEnlistInstruction({ connection, factionId, player })
+    ),
+    TE.bindW('recentBlockhash', () => getLatestBlockhash(connection)),
+    TE.map(({ ix, recentBlockhash }) =>
+      createVersionedTransaction({
+        feePayer: player,
+        instructions: [ix],
+        recentBlockhash: recentBlockhash.blockhash,
+      })
+    ),
     TE.map((tx) => {
       tx.sign(signers);
 

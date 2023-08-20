@@ -1,10 +1,10 @@
 import { BN } from '@project-serum/anchor';
+import { nullable, optional } from '@saibase/io-ts';
 import {
   ScoreVarsShipInfo as SaScoreVarsShipInfo,
   ShipStakingInfo as SaShipStakingInfo,
 } from '@staratlas/factory';
 import * as t from 'io-ts';
-import { nullable, optional } from '../../utils';
 
 export const attributeCodec = t.type({
   itemType: t.union([
