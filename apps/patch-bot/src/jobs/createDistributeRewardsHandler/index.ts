@@ -139,7 +139,8 @@ export const createDistributeRewardsHandler = (state: AppState) => async () => {
           tokenMint: mints.atlas,
         });
 
-        const d = await sdk.loadDistributor(distributor);
+        // const d = await sdk.loadDistributor(distributor);
+        await sdk.loadDistributor(distributor);
 
         await tx.simulateTable();
 

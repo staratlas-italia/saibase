@@ -31,17 +31,27 @@ export const handleClientReady = async (
 
   const commands = state.discord.application?.commands;
 
-  commands?.permissions.set;
-
   if (!commands) {
     logger.log('No command manager available');
 
     return;
   }
 
-  for (const command of commands.cache.values()) {
-    await command.delete();
-  }
+  const allCommands = await client.application?.commands.fetch();
+
+  const commandNames: string[] = availableCommands.map(
+    (command) => command.name
+  );
+
+  allCommands.forEach(async (command) => {
+    state.logger.log('Available command', command.name);
+
+    if (!commandNames.includes(command.name)) {
+      state.logger.log('Deleting command', command.name);
+
+      await command.delete();
+    }
+  });
 
   for (const command of availableCommands) {
     await commands.create(command);

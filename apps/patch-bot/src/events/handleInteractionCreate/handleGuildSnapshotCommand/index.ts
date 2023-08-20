@@ -77,5 +77,5 @@ const handleGuildSnapshotCommandHandler = async ({
 
 export const handleGuildSnapshotCommand = withPermissions(
   handleGuildSnapshotCommandHandler,
-  'admin'
+  'dev'
 );
