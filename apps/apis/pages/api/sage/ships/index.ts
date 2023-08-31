@@ -3,7 +3,7 @@ import { Connection } from '@solana/web3.js';
 import { GmClientService } from '@staratlas/factory';
 import * as E from 'fp-ts/Either';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { mongo } from '../../../mongodb';
+import { mongo } from '../../../../mongodb';
 
 type SageShipsStats = {
   mint: string;
@@ -35,9 +35,7 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
   const shipsEither = await fetchNftsByCategory({ category: 'ship' })();
 
   if (E.isLeft(shipsEither)) {
-    return res
-      .status(400)
-      .json({ success: false, error: shipsEither.left.error.message });
+    return res.status(400).json([]);
   }
 
   const ships = shipsEither.right;
@@ -50,43 +48,55 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
   const result = ships.map((ship) => {
     const shipStats = shipsStats.find((stats) => stats.mint === ship.mint);
 
+    const vwap = ship.tradeSettings?.vwap
+      ? Math.round(ship.tradeSettings.vwap * 100) / 100
+      : 0;
+
+    const originationPrice = ship.tradeSettings?.msrp?.value
+      ? Math.round(ship.tradeSettings.msrp.value * 100) / 100
+      : 0;
+
+    const bestUsdcBidPrice = Math.min(
+      ...(orderbooks.usdc.sell[ship.mint]?.map((o) => o.uiPrice) || [0])
+    );
+    const bestUsdcAskPrice = Math.max(
+      ...(orderbooks.usdc.buy[ship.mint]?.map((o) => o.uiPrice) || [0])
+    );
+
+    const bestUsdcBidPriceVsVwap =
+      bestUsdcBidPrice && vwap > 0
+        ? Math.round((1 - bestUsdcBidPrice / vwap) * 10000 * -1) / 100
+        : undefined;
+
+    const bestUsdcAskPriceVsVwap = bestUsdcAskPrice
+      ? Math.round((1 - bestUsdcAskPrice / vwap) * 10000 * -1) / 100
+      : undefined;
+
     return {
       mint: ship.mint,
       name: ship.name,
+      symbol: ship.symbol,
+      model: ship.attributes.model,
+      manufacturer: ship.attributes.make,
       image: ship.image,
-      data: {
-        info: {
-          model: ship.attributes.model,
-          symbol: ship.symbol,
-          class: ship.attributes.class,
-          description: ship.description,
-          rarity: ship.attributes.rarity,
-          spec: ship.attributes.spec,
-          manufacturer: ship.attributes.make,
-          width: ship.attributes.unitWidth,
-          height: ship.attributes.unitHeight,
-          length: ship.attributes.unitLength,
-        },
-        components: {},
-        modules: [],
-        combat: {},
-        crew: [],
-        media: {},
-      },
-      sai: {
-        specBadge: '',
-      },
-      market: {
-        vwap: ship.tradeSettings?.vwap || 0,
-        originationPrice: ship.tradeSettings.msrp?.value || 0,
-        bestUsdcBidPrice: Math.min(
-          ...(orderbooks.usdc.sell[ship.mint]?.map((o) => o.uiPrice) || [0])
-        ),
-      },
-      score: {},
-      sage: shipStats,
+      class: ship.attributes.class,
+      rarity: ship.attributes.rarity,
+      spec: ship.attributes.spec,
+      saiSpecBadge: '',
+      modules: ship.slots?.moduleSlots,
+      crew: ship.slots?.crewSlots,
+      firepower: 0,
+      vwap,
+      originationPrice,
+      currentSupply: ship.totalSupply,
+      bestUsdcBidPrice,
+      bestUsdcBidPriceVsVwap,
+      bestUsdcAskPrice,
+      bestUsdcAskPriceVsVwap,
+      ...shipStats,
+      classSize: shipStats?.class,
     };
   });
 
-  res.status(200).json({ success: true, data: result });
+  res.status(200).json(result);
 }
