@@ -73,6 +73,8 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
       : undefined;
 
     return {
+      ...shipStats,
+      classSize: shipStats?.class,
       mint: ship.mint,
       name: ship.name,
       symbol: ship.symbol,
@@ -93,8 +95,6 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
       bestUsdcBidPriceVsVwap,
       bestUsdcAskPrice,
       bestUsdcAskPriceVsVwap,
-      ...shipStats,
-      classSize: shipStats?.class,
     };
   });
 
