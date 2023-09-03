@@ -1,4 +1,4 @@
-🇬🇧 &nbsp; [English](https://github.com/staratlas-italia/candy-machine/blob/main/docs/README_EN.md)
+🇬🇧 &nbsp; [English](https://github.com/staratlas-italia/saibase/README_EN.md)
 
 ![React](https://img.shields.io/badge/react-blue?style=flat&logo=react&logoColor=white&color=61DAFB)
 ![Typescript](https://img.shields.io/badge/typescript-blue?style=flat&logo=typescript&color=eee)

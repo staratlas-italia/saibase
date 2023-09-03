@@ -16,10 +16,7 @@
         "name": "next"
       }
     ],
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["jest","node"],
     "lib": [
       "dom",
       "dom.iterable",
