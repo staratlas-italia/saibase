@@ -1,4 +1,5 @@
 export * from './constants';
+export { factionsCodec, nftCodec, playerCodec } from './entities';
 export type {
   Faction,
   NftPrimarySale,
@@ -8,7 +9,6 @@ export type {
   StarAtlasNft,
   StarAtlasNftArray,
   StarAtlasPlayer,
-  factions,
 } from './entities';
 export * from './faction';
 export * from './fetchNfts';
