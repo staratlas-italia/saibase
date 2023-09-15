@@ -10,18 +10,21 @@ ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
 type Param = {
   proof: string;
   message: string;
-  signer: PublicKey;
 };
 
-export const isSignatureLegit = ({ proof, message, signer }: Param) =>
-  pipe(
-    O.tryCatch(() => bs58.decode(proof)),
-    O.map((decodedSignature) =>
-      ed.verify(
-        decodedSignature,
-        new TextEncoder().encode(message),
-        signer.toBytes()
-      )
-    ),
-    O.getOrElse(() => false)
-  );
+export const isSignatureLegit =
+  ({ proof, message }: Param) =>
+  (signer: PublicKey) =>
+    pipe(
+      O.tryCatch(() => bs58.decode(proof)),
+      O.chain((decodedSignature) =>
+        O.tryCatch(() =>
+          ed.verify(
+            decodedSignature,
+            new TextEncoder().encode(message),
+            signer.toBytes()
+          )
+        )
+      ),
+      O.getOrElse(() => false)
+    );
