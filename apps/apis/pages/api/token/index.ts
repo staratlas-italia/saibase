@@ -28,46 +28,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     );
 
-    /* const refreshToken = jwt.sign(
-    { publicKey },
-    process.env.JWT_REFRESH_SECRET ?? '',
-    {
-      expiresIn: '7d',
-    }
-  );
-
-  const expiryDate = new Date();
-  expiryDate.setDate(expiryDate.getDate() + 7);
-
-  try {
-    const saveRefreshToken = await collection.insertOne({
-      token: refreshToken,
-      userId: publicKey,
-      expires: expiryDate,
-    });
-
-    if (!saveRefreshToken.insertedId) {
-      res
-        .status(400)
-        .json({ status: 400, error: 'The operation encountered an error' });
-      return;
-    }
-  } catch (err) {
-    res.status(500).json({ status: 500, error: 'Internal Server Error' });
-    return;
-  }
-
-  res.setHeader(
-    'Set-Cookie',
-    serialize('refreshToken', refreshToken, {
-      httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60,
-      path: '/api/token/refresh',
-      secure: true,
-      sameSite: 'strict',
-    })
-  ); */
-
     res.setHeader(
       'Set-Cookie',
       serialize('accessToken', accessToken, {
