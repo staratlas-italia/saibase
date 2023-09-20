@@ -8,6 +8,7 @@ export type {
   ShipStakingInfoExtended,
   StarAtlasNft,
   StarAtlasNftArray,
+  StarAtlasNftSlot,
   StarAtlasPlayer,
 } from './entities';
 export * from './faction';

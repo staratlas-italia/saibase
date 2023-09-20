@@ -169,6 +169,7 @@ export const nftCodec = t.type({
 export const nftsCodec = t.array(nftCodec);
 
 export type NftPrimarySale = t.TypeOf<typeof primarySaleCodec>;
+export type StarAtlasNftSlot = t.TypeOf<typeof slotCodec>;
 export type StarAtlasNft = t.TypeOf<typeof nftCodec>;
 export type StarAtlasNftArray = t.TypeOf<typeof nftsCodec>;
 
