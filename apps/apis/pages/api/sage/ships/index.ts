@@ -40,10 +40,16 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 
   const ships = shipsEither.right;
 
-  const orderbooks = await getOrderBooks({
+  const orderbooksEither = await getOrderBooks({
     gmClientService: new GmClientService(),
     connection: new Connection(process.env.RPC_API_BASE_URL),
-  });
+  })();
+
+  if (E.isLeft(orderbooksEither)) {
+    return res.status(500).json([]);
+  }
+
+  const orderbooks = orderbooksEither.right;
 
   const result = ships.map((ship) => {
     const shipStats = shipsStats.find((stats) => stats.mint === ship.mint);

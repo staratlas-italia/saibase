@@ -1,7 +1,12 @@
 import { mints } from '@saibase/constants';
+import { createError } from '@saibase/errors';
 import { Connection } from '@solana/web3.js';
 import { GmClientService, Order } from '@staratlas/factory';
-import { groupBy } from 'lodash';
+import * as A from 'fp-ts/Array';
+import * as E from 'fp-ts/Either';
+import * as NEA from 'fp-ts/NonEmptyArray';
+import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/function';
 import { saMarketplaceProgramId } from '../../constants';
 
 type Param = {
@@ -9,38 +14,63 @@ type Param = {
   gmClientService: GmClientService;
 };
 
-// TODO: refactor using fp-ts
-export const getOrderBooks = async ({ gmClientService, connection }: Param) => {
-  const usdcOrders = await gmClientService.getOpenOrdersForCurrency(
-    connection,
-    mints.usdc,
-    saMarketplaceProgramId
+const groupByOrderMint = (orders: Order[]) =>
+  pipe(
+    orders,
+    NEA.groupBy((order) => order.orderMint)
   );
 
-  const atlasOrders = await gmClientService.getOpenOrdersForCurrency(
-    connection,
-    mints.atlas,
-    saMarketplaceProgramId
+const groupByOrderType = (orders: Order[]) =>
+  pipe(
+    orders,
+    A.partitionMap((order) =>
+      order.orderType === 'buy' ? E.right(order) : E.left(order)
+    ),
+    ({ left: buyOrders, right: sellOrders }) => ({
+      buy: buyOrders,
+      sell: sellOrders,
+    })
   );
 
-  const atlasOrdersByType = groupBy(atlasOrders, 'orderType') as Record<
-    'buy' | 'sell',
-    Order[]
-  >;
-
-  const usdcOrdersByType = groupBy(usdcOrders, 'orderType') as Record<
-    'buy' | 'sell',
-    Order[]
-  >;
-
-  return {
-    atlas: {
-      buy: groupBy(atlasOrdersByType.buy, 'orderMint'),
-      sell: groupBy(atlasOrdersByType.sell, 'orderMint'),
-    },
-    usdc: {
-      buy: groupBy(usdcOrdersByType.buy, 'orderMint'),
-      sell: groupBy(usdcOrdersByType.sell, 'orderMint'),
-    },
-  };
-};
+export const getOrderBooks = ({ gmClientService, connection }: Param) =>
+  pipe(
+    TE.Do,
+    TE.bind('usdcOrders', () =>
+      TE.tryCatch(
+        () =>
+          gmClientService.getOpenOrdersForCurrency(
+            connection,
+            mints.usdc,
+            saMarketplaceProgramId
+          ),
+        createError('GetUsdcOpenOrdersError')
+      )
+    ),
+    TE.bindW('atlasOrders', () =>
+      TE.tryCatch(
+        () =>
+          gmClientService.getOpenOrdersForCurrency(
+            connection,
+            mints.atlas,
+            saMarketplaceProgramId
+          ),
+        createError('GetAtlasOpenOrdersError')
+      )
+    ),
+    TE.bindW('usdc', ({ usdcOrders }) =>
+      TE.right(groupByOrderType(usdcOrders))
+    ),
+    TE.bindW('atlas', ({ atlasOrders }) =>
+      TE.right(groupByOrderType(atlasOrders))
+    ),
+    TE.map(({ atlas, usdc }) => ({
+      atlas: {
+        buy: groupByOrderMint(atlas.buy),
+        sell: groupByOrderMint(atlas.sell),
+      },
+      usdc: {
+        buy: groupByOrderMint(usdc.buy),
+        sell: groupByOrderMint(usdc.sell),
+      },
+    }))
+  );

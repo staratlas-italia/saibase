@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import { ComponentType } from 'react';
 import styled from 'styled-components';
 import { Padding, PaddingProps } from '../Padding';
 import { Flexbox, LgFlexbox, MdFlexbox, XlFlexbox } from './types';
@@ -10,9 +9,8 @@ import { getJustifyClasses } from './utils/getJustifyClasses';
 import { getShrinkClasses } from './utils/getShrinkClasses';
 import { getWrapClasses } from './utils/getWrapClasses';
 
-export type FlexProps = React.HTMLAttributes<HTMLDivElement> & {
-  as?: ComponentType | string;
-} & Partial<PaddingProps & Flexbox & MdFlexbox & LgFlexbox & XlFlexbox>;
+export type FlexProps = React.HTMLAttributes<HTMLDivElement> &
+  Partial<PaddingProps & Flexbox & MdFlexbox & LgFlexbox & XlFlexbox>;
 
 export const Flex = styled(Padding)
   .withConfig({

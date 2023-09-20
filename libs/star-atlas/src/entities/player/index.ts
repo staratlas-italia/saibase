@@ -1,5 +1,5 @@
+import { nullable } from '@saibase/io-ts';
 import * as t from 'io-ts';
-import { nullable } from '../../utils';
 
 const balanceCodec = t.type({
   _id: t.string,
@@ -41,9 +41,13 @@ export const playerCodec = t.type({
 
 export const playerResponseCodec = t.union([playerCodec, t.type({})]);
 
-export const factions = ['ONI', 'MUD', 'USTUR'] as const;
+export const factionsCodec = t.union([
+  t.literal('ONI'),
+  t.literal('MUD'),
+  t.literal('USTUR'),
+]);
 
-export type Faction = (typeof factions)[number];
+export type Faction = t.TypeOf<typeof factionsCodec>;
 
 export type FactionWithNone = Faction | 'NONE';
 

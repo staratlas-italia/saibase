@@ -1,4 +1,4 @@
-import { citizenship } from '@saibase/constants';
+import { citizenship } from '@saibase/sai-citizenship';
 
 export const getHueByFactionStyle = (badgeMint: string) => {
   switch (badgeMint) {

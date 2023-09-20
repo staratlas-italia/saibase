@@ -1,7 +1,7 @@
 import { GrowthBook } from '@growthbook/growthbook';
 import { environment, rpcApiBaseUrl } from '@saibase/configuration';
+import { Faction } from '@saibase/star-atlas';
 import { Connection, PublicKey } from '@solana/web3.js';
-import { Faction } from '../types';
 import { roleIds } from './roles';
 
 export const TUTOR_SWAP_TOKEN_MINT = new PublicKey(

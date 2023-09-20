@@ -1,5 +1,6 @@
 import { PublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Text } from '@saibase/uikit';
+import { isSignatureLegit } from '@saibase/web3';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Wallet } from '~/components/Wallet';
 import { SignatureRefresher } from '~/components/auth/AssertAuthenticated/SignatureRefresher';
@@ -8,7 +9,6 @@ import { Translation } from '~/i18n/Translation';
 import { useAuthStore } from '~/stores/useAuthStore';
 import { StrictReactNode } from '~/types';
 import { getProofMessage } from '~/utils/getProofMessage';
-import { isSignatureValid } from '~/utils/isSignatureValid';
 
 type Props = {
   adminOnly?: boolean;
@@ -49,11 +49,10 @@ export const AssertAuthenticated = ({
   if (
     !signature ||
     !publicKey ||
-    !isSignatureValid({
+    !isSignatureLegit({
       proof: signature,
       message: getProofMessage(),
-      signer: publicKey,
-    })
+    })(publicKey)
   ) {
     return <>{fallback}</>;
   }

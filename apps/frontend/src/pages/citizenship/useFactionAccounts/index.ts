@@ -1,4 +1,4 @@
-import { citizenship } from '@saibase/constants';
+import { citizenship } from '@saibase/sai-citizenship';
 import { useCluster } from '~/components/ClusterProvider';
 import { useNullableSelf } from '~/hooks/useNullableSelf';
 
