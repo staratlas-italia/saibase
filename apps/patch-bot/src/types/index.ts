@@ -1,4 +1,4 @@
-import { StarAtlasNft } from '@saibase/star-atlas';
+import { Faction, StarAtlasNft } from '@saibase/star-atlas';
 import { ObjectId, WithId } from 'mongodb';
 
 export type Resource = 'food' | 'tools' | 'ammo' | 'fuel';
@@ -53,10 +53,6 @@ export type Transaction<Meta = Record<string, string | number>> = {
   reference: string;
   status: TransactionStatus;
 };
-
-export const factions = ['ONI', 'MUD', 'USTUR'] as const;
-
-export type Faction = (typeof factions)[number];
 
 export type FactionWithNone = Faction | 'NONE';
 
