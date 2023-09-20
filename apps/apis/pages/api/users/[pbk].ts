@@ -4,7 +4,8 @@ import * as E from 'fp-ts/Either';
 import { pipe } from 'fp-ts/lib/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { User } from '../../../common/types';
-import { matchApiTokenMiddleware } from '../../../middlewares/matchApiToken';
+import { corsMiddleware } from '../../../middlewares/cors';
+import { matchApiKeyMiddleware } from '../../../middlewares/matchApiKey';
 import { matchMethodMiddleware } from '../../../middlewares/matchMethod';
 import { mongo } from '../../../mongodb';
 import { handleErrors } from '../../../utils/handleErrors';
@@ -63,6 +64,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default matchApiTokenMiddleware(
-  pipe(handler, matchMethodMiddleware(['GET', 'POST']))
+export default pipe(
+  handler,
+  corsMiddleware,
+  matchMethodMiddleware(['GET', 'POST']),
+  matchApiKeyMiddleware
 );

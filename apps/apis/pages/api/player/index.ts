@@ -13,12 +13,6 @@ import { matchMethodMiddleware } from '../../../middlewares/matchMethod';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const token = req.cookies.accessToken!;
 
-  /* if (!pbk) {
-    res.status(404).json({
-      error: 'Invalid player pbk',
-    });
-  } */
-
   const payload = jwt.decode(token) as JwtUserPayload;
   const pbk = payload.publicKey;
 
@@ -36,6 +30,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json(result.right);
 };
 
-export default corsMiddleware(
-  pipe(handler, matchMethodMiddleware(['GET']), authenticateMiddleware)
+export default pipe(
+  handler,
+  corsMiddleware,
+  matchMethodMiddleware(['GET']),
+  authenticateMiddleware
 );

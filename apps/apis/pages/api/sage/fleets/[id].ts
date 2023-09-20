@@ -8,6 +8,7 @@ import {
   sageScopes,
 } from '../../../../common/types';
 import { authenticateMiddleware } from '../../../../middlewares/authenticate';
+import { corsMiddleware } from '../../../../middlewares/cors';
 import { matchMethodMiddleware } from '../../../../middlewares/matchMethod';
 import { mongo } from '../../../../mongodb';
 import { handleErrors } from '../../../../utils/handleErrors';
@@ -108,6 +109,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export default pipe(
   handler,
+  corsMiddleware,
   matchMethodMiddleware(['GET', 'PUT', 'DELETE']),
   authenticateMiddleware
 );

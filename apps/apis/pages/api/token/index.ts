@@ -47,6 +47,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default corsMiddleware(
-  pipe(handler, matchMethodMiddleware(['POST']), matchSignatureMiddleware)
+export default pipe(
+  handler,
+  corsMiddleware,
+  matchMethodMiddleware(['POST']),
+  matchSignatureMiddleware
 );

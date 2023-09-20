@@ -1,6 +1,6 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
-export const matchApiTokenMiddleware =
+export const matchApiKeyMiddleware =
   (handler: NextApiHandler) =>
   async (req: NextApiRequest, res: NextApiResponse) => {
     const authHeader = req.headers.authorization;
