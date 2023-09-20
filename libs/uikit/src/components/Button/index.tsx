@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ComponentType, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 import { iconRenderProp } from '../../types';
 import { Flex, FlexProps } from '../Flex';
@@ -12,7 +12,7 @@ type ButtonKind = 'neutral' | 'primary' | 'secondary' | 'dark' | 'tertiary';
 type ButtonSize = 'small' | 'regular' | 'large';
 
 export type ButtonProps = PropsWithChildren<{
-  as?: keyof JSX.IntrinsicElements | ComponentType<any>;
+  as?: any;
   kind?: ButtonKind;
   className?: string;
   disabled?: boolean;
