@@ -2,6 +2,7 @@ import { AnchorProvider, BN, Program } from '@project-serum/anchor';
 import NodeWallet from '@project-serum/anchor/dist/cjs/nodewallet';
 import { saiTokenSwapIdl } from '@saibase/anchor-swap';
 import { mints } from '@saibase/constants';
+import { matchMethodMiddleware } from '@saibase/middlewares';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
 import {
   Cluster,
@@ -18,7 +19,6 @@ import {
   SAI_TOKEN_SWAP_PROGRAM_ID,
   TOKEN_SWAP_STATE_ACCOUNTS,
 } from '~/common/constants';
-import { matchMethodMiddleware } from '~/middlewares/matchMethod';
 import { getConnectionClusterUrl } from '~/utils/connection';
 
 const getSwapState = (cluster?: Cluster) =>

@@ -42,12 +42,6 @@ export type Player = {
 
 export type Currency = 'ATLAS' | 'POLIS' | 'USDC' | 'NONE';
 
-export type ShipSlot = {
-  type: string;
-  size: string;
-  quantity: number;
-};
-
 export type PromiseContent<PromiseLike> = PromiseLike extends Promise<infer U>
   ? U
   : never;

@@ -1,73 +1,66 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { match } from 'ts-pattern';
-import { useMongoMiddleware } from '~/middlewares/useMongo';
 import { getMongoDatabase } from '~/pages/api/mongodb';
 import { Self } from '~/types/api';
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const postHandler = useMongoMiddleware(
-  async ({ body }: NextApiRequest, res: NextApiResponse) => {
-    const { self } = body;
+const postHandler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
+  const { self } = body;
 
-    if (!self) {
-      res.status(400).json({
-        success: false,
-        error: 'Invalid public key',
-      });
-      return;
-    }
-
-    const db = getMongoDatabase();
-
-    const userCollection = db.collection<Self>('users');
-
-    const result = await userCollection.insertOne(self);
-
-    res.json({
-      success: true,
-      user: {
-        _id: result.insertedId.toString(),
-        ...self,
-      },
+  if (!self) {
+    res.status(400).json({
+      success: false,
+      error: 'Invalid public key',
     });
+    return;
   }
-);
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const getHandler = useMongoMiddleware(
-  async ({ query }: NextApiRequest, res: NextApiResponse) => {
-    const { publicKey } = query;
+  const db = getMongoDatabase();
 
-    if (!publicKey) {
-      res.status(400).json({
-        success: false,
-        error: 'Invalid public key',
-      });
-      return;
-    }
+  const userCollection = db.collection<Self>('users');
 
-    const db = getMongoDatabase();
+  const result = await userCollection.insertOne(self);
 
-    const userCollection = db.collection<Self>('users');
+  res.json({
+    success: true,
+    user: {
+      _id: result.insertedId.toString(),
+      ...self,
+    },
+  });
+};
 
-    const user = await userCollection.findOne({
-      wallets: publicKey,
+const getHandler = async ({ query }: NextApiRequest, res: NextApiResponse) => {
+  const { publicKey } = query;
+
+  if (!publicKey) {
+    res.status(400).json({
+      success: false,
+      error: 'Invalid public key',
     });
+    return;
+  }
 
-    if (!user) {
-      res.status(200).json({
-        success: false,
-        error: 'User not found.',
-      });
-      return;
-    }
+  const db = getMongoDatabase();
 
+  const userCollection = db.collection<Self>('users');
+
+  const user = await userCollection.findOne({
+    wallets: publicKey,
+  });
+
+  if (!user) {
     res.status(200).json({
-      success: true,
-      user,
+      success: false,
+      error: 'User not found.',
     });
+    return;
   }
-);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+};
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   match(req.method)

@@ -10,7 +10,6 @@ import { TextInput } from '~/components/TextInput';
 import { BaseModal } from '~/components/modals/BaseModal';
 import { useModal } from '~/contexts/ModalContext';
 import { useTranslation } from '~/i18n/useTranslation';
-
 import { shortenAddress } from '~/utils/shortenAddress';
 
 type Form = {

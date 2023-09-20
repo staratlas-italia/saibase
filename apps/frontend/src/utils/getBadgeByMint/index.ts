@@ -1,4 +1,4 @@
-import { citizenship } from '@saibase/constants';
+import { citizenship } from '@saibase/sai-citizenship';
 import { PublicKey } from '@solana/web3.js';
 import { values } from 'lodash';
 import { tier1BadgeMints } from '~/utils/getBadgeByMint/tier1';

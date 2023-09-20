@@ -4,6 +4,7 @@ import {
   getOrderBooks,
 } from '@saibase/star-atlas';
 import { Connection } from '@solana/web3.js';
+import * as E from 'fp-ts/Either';
 import { create } from 'zustand';
 import { gmClientService } from '~/common/constants';
 import { getConnectionClusterUrl } from '~/utils/connection';
@@ -48,7 +49,16 @@ export const useShipsDealsStore = create<ShipsDealsStore>((set, get) => ({
 
     const connection = new Connection(getConnectionClusterUrl('mainnet-beta'));
 
-    const orderbooks = await getOrderBooks({ connection, gmClientService });
+    const orderbooksEither = await getOrderBooks({
+      connection,
+      gmClientService,
+    })();
+
+    if (E.isLeft(orderbooksEither)) {
+      return;
+    }
+
+    const orderbooks = orderbooksEither.right;
 
     const atlasPrice = await getAtlasMarketPrice();
 

@@ -1,5 +1,5 @@
 import { Nft, NftWithToken, Sft, SftWithToken } from '@metaplex-foundation/js';
-import { citizenship } from '@saibase/constants';
+import { citizenship } from '@saibase/sai-citizenship';
 import { fetchNfts } from '@saibase/star-atlas';
 import {
   getAllNftsByMintList,

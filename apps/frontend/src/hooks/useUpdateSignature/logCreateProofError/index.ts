@@ -1,18 +1,15 @@
-import { captureException } from "@sentry/nextjs";
-import { constVoid, pipe } from "fp-ts/function";
-import * as IO from "fp-ts/IO";
-import { CreateProofError } from "~/hooks/useUpdateSignature/createProof";
-import { match } from "../match";
+import { captureException } from '@sentry/nextjs';
+import * as IO from 'fp-ts/IO';
+import { constVoid, pipe } from 'fp-ts/function';
+import { CreateProofError } from '~/hooks/useUpdateSignature/createProof';
+import { match } from '../match';
 
 const getErrorFingerprint = (e: CreateProofError) =>
   pipe(
     e,
     match({
-      RetrieveLatestBlockhashError: ({ error, type }) => [type, error.message],
       SignMessageError: ({ error, type }) => [type, error.message],
       SignMessageUnsupported: ({ error, type }) => [type, error.message],
-      SignTransactionError: ({ error, type }) => [type, error.message],
-      SignTransactionUnsupported: ({ error, type }) => [type, error.message],
       UserAbortError: () => [],
     })
   );
@@ -26,10 +23,10 @@ const logOnSentry =
         extra: {
           error: e.error,
         },
-        fingerprint: ["auth-sign", ...getErrorFingerprint(e)],
-        level: "warning",
+        fingerprint: ['auth-sign', ...getErrorFingerprint(e)],
+        level: 'warning',
         tags: {
-          scope: "sign-error",
+          scope: 'sign-error',
         },
       },
     });

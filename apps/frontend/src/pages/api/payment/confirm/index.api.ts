@@ -1,3 +1,4 @@
+import { matchMethodMiddleware } from '@saibase/middlewares';
 import { isPublicKey } from '@saibase/web3';
 import { captureException } from '@sentry/nextjs';
 import {
@@ -8,8 +9,6 @@ import {
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { matchMethodMiddleware } from '~/middlewares/matchMethod';
-import { useMongoMiddleware } from '~/middlewares/useMongo';
 import { getMongoDatabase } from '~/pages/api/mongodb';
 import { Transaction } from '~/types/api';
 import { getConnectionClusterUrl } from '~/utils/connection';
@@ -103,8 +102,4 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   });
 };
 
-export default pipe(
-  handler,
-  matchMethodMiddleware(['POST']),
-  useMongoMiddleware
-);
+export default pipe(handler, matchMethodMiddleware(['POST']));

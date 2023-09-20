@@ -1,4 +1,4 @@
-import { citizenship } from '@saibase/constants';
+import { citizenship } from '@saibase/sai-citizenship';
 import { Faction } from '@saibase/star-atlas';
 import { Cluster } from '@solana/web3.js';
 import { SwapSetting } from '../types';

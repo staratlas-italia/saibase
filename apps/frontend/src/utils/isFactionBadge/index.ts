@@ -1,4 +1,4 @@
-import { citizenship } from '@saibase/constants';
+import { citizenship } from '@saibase/sai-citizenship';
 import { PublicKey } from '@solana/web3.js';
 
 export const isFactionBadge = (badgeMint: PublicKey) => {

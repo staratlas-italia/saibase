@@ -1,10 +1,9 @@
+import { matchMethodMiddleware } from '@saibase/middlewares';
 import { isPublicKey } from '@saibase/web3';
 import { captureException } from '@sentry/nextjs';
 import { pipe } from 'fp-ts/function';
 import { isEqual } from 'lodash';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { matchMethodMiddleware } from '~/middlewares/matchMethod';
-import { useMongoMiddleware } from '~/middlewares/useMongo';
 import { getMongoDatabase } from '~/pages/api/mongodb';
 import { Self } from '~/types/api';
 
@@ -65,8 +64,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default pipe(
-  handler,
-  matchMethodMiddleware(['POST']),
-  useMongoMiddleware
-);
+export default pipe(handler, matchMethodMiddleware(['POST']));
