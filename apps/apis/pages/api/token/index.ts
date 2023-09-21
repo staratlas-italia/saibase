@@ -1,55 +1,38 @@
-import { parsePublicKey } from '@saibase/web3';
-import { serialize } from 'cookie';
-import * as E from 'fp-ts/Either';
-import { pipe } from 'fp-ts/lib/function';
-import jwt from 'jsonwebtoken';
+import { allowedOrigins } from '@saibase/constants';
+import {
+  corsMiddleware,
+  matchMethodMiddleware,
+  matchSignatureMiddleware,
+} from '@saibase/middlewares';
+import { pipe } from 'fp-ts/function';
+import * as t from 'io-ts';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { corsMiddleware } from '../../../middlewares/cors';
-import { matchMethodMiddleware } from '../../../middlewares/matchMethod';
-import { matchSignatureMiddleware } from '../../../middlewares/matchSignature';
-import { handleErrors } from '../../../utils/handleErrors';
+import { isSignatureExpired } from '../../../utils/isSignatureExpired';
 
-// const collection = mongo.collection<RefreshToken>('sage-tokens');
+export const messageCodec = t.type({
+  timestamp: t.string,
+});
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const pbk = req.body.publicKey as string;
-  const realPbkEither = parsePublicKey(pbk);
+const handler = matchSignatureMiddleware(
+  ({ signature, publicKey, message: base64Message }) =>
+    async (_: NextApiRequest, res: NextApiResponse) => {
+      const isMessageInvalidOrExpired = isSignatureExpired(base64Message);
 
-  try {
-    if (!pbk || E.isLeft(realPbkEither)) {
-      throw new Error('MissingInvalidParam');
-    }
-
-    const accessToken = jwt.sign(
-      { publicKey: pbk },
-      process.env.JWT_ACCESS_SECRET ?? '',
-      {
-        expiresIn: '1d',
+      if (isMessageInvalidOrExpired) {
+        return res
+          .status(400)
+          .json({ status: 400, error: 'This signature is expired' });
       }
-    );
 
-    res.setHeader(
-      'Set-Cookie',
-      serialize('accessToken', accessToken, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60,
-        path: '/',
-        secure: true,
-        sameSite: 'strict',
-      })
-    );
-
-    res.json({});
-  } catch (err) {
-    err instanceof Error
-      ? handleErrors(err, res)
-      : handleErrors(new Error('An unexpected error occurred.'), res);
-  }
-};
+      return res.status(200).json({
+        status: 200,
+        token: `${base64Message}.${publicKey}.${signature}`,
+      });
+    }
+);
 
 export default pipe(
   handler,
-  corsMiddleware,
-  matchMethodMiddleware(['POST']),
-  matchSignatureMiddleware
+  corsMiddleware([...allowedOrigins]),
+  matchMethodMiddleware(['POST'])
 );

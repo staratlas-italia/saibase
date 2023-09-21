@@ -1,12 +1,12 @@
+import { allowedOrigins } from '@saibase/constants';
+import { corsMiddleware, matchMethodMiddleware } from '@saibase/middlewares';
 import { parsePublicKey } from '@saibase/web3';
 import crypto from 'crypto';
 import * as E from 'fp-ts/Either';
 import { pipe } from 'fp-ts/lib/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { User } from '../../../common/types';
-import { corsMiddleware } from '../../../middlewares/cors';
 import { matchApiKeyMiddleware } from '../../../middlewares/matchApiKey';
-import { matchMethodMiddleware } from '../../../middlewares/matchMethod';
 import { mongo } from '../../../mongodb';
 import { handleErrors } from '../../../utils/handleErrors';
 
@@ -23,16 +23,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     switch (req.method) {
       case 'GET': {
-        const users = await collection.find({ publicKey: pbk }).toArray();
+        const user = await collection.findOne({ publicKey: pbk });
 
-        if (users.length === 0) {
-          res.status(200).json({});
+        if (!user) {
+          res.status(404).json({ error: 'User not found' });
           return;
         }
 
         res.status(200).json({
-          publicKey: users[0].publicKey,
-          currentNonce: users[0].currentNonce,
+          publicKey: user.publicKey,
+          currentNonce: user.currentNonce,
         });
         break;
       }
@@ -66,7 +66,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export default pipe(
   handler,
-  corsMiddleware,
+  corsMiddleware([...allowedOrigins]),
   matchMethodMiddleware(['GET', 'POST']),
   matchApiKeyMiddleware
 );

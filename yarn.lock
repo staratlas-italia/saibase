@@ -19186,13 +19186,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crypto@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "crypto@npm:1.0.1"
-  checksum: 087fe3165bd94c333a49e6ed66a0193911f63eac38a24f379b3001a5fe260a59c413646e53a0f67875ba13902b2686d81dc703cb2c147a4ec727dcdc04e5645e
-  languageName: node
-  linkType: hard
-
 "css-box-model@npm:1.2.1":
   version: 1.2.1
   resolution: "css-box-model@npm:1.2.1"
@@ -34334,7 +34327,6 @@ __metadata:
     commander: ^10.0.0
     cookie: ^0.5.0
     cron: ^2.2.0
-    crypto-browserify: ^3.12.0
     cypress: 12.17.4
     detox: 20.11.4
     discord.js: ^14.7.1
@@ -34371,6 +34363,7 @@ __metadata:
     jest-expo: 49.0.0
     jotai: ^2.0.2
     jsdom: ~22.1.0
+    jsonwebtoken: ^9.0.2
     jszip: ^3.10.1
     lodash: ^4.17.21
     lodash.debounce: ^4.0.8

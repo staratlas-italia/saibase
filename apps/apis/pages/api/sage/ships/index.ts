@@ -1,10 +1,10 @@
+import { matchMethodMiddleware } from '@saibase/middlewares';
 import { fetchNftsByCategory, getOrderBooks } from '@saibase/star-atlas';
 import { Connection } from '@solana/web3.js';
 import { GmClientService } from '@staratlas/factory';
 import * as E from 'fp-ts/Either';
 import { pipe } from 'fp-ts/lib/function';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { matchMethodMiddleware } from '../../../../middlewares/matchMethod';
 import { mongo } from '../../../../mongodb';
 import { handleErrors } from '../../../../utils/handleErrors';
 

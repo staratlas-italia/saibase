@@ -26,11 +26,6 @@ export type JwtUserPayload = {
 };
  */
 
-export type SignInMessage = {
-  message: string;
-  timestamp: number;
-};
-
 export const sageScopes = new Set(['Sage', 'Score']);
 
 export const sageGoals = new Set([
