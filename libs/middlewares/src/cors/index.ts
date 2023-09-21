@@ -1,8 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
-const allowedOrigins = ['https://saiplugintest.bubbleapps.io'];
-
 export const corsMiddleware =
+  (allowedOrigins: string[]) =>
   (handler: NextApiHandler) =>
   async (req: NextApiRequest, res: NextApiResponse) => {
     const origin = req.headers.origin;

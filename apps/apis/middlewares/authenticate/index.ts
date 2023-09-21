@@ -1,29 +1,37 @@
-import jwt from 'jsonwebtoken';
+import { isSignatureLegit } from '@saibase/web3';
+import { PublicKey } from '@solana/web3.js';
+import { pipe } from 'fp-ts/lib/function';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { isSignatureExpired } from '../../utils/isSignatureExpired';
 
 export const authenticateMiddleware =
-  (handler: NextApiHandler) =>
-  async (req: NextApiRequest, res: NextApiResponse) => {
-    //const token = req.cookies.accessToken;
+  (handler: (_: { publicKey: string }) => NextApiHandler) =>
+  (req: NextApiRequest, res: NextApiResponse) => {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!authHeader || !authHeader.startsWith('Bearer')) {
       return res
         .status(401)
         .json({ status: 401, error: 'Missing authorization header' });
     }
 
-    const token = authHeader.split(' ')[1];
+    const [, token] = authHeader.split(' ');
 
-    if (!token)
-      return res.status(401).json({ status: 401, error: 'Access denied' });
+    const [base64Message, publicKey, signature] = token.split('.');
 
-    try {
-      // verifica il jwt
-      jwt.verify(token, process.env.JWT_ACCESS_SECRET ?? '');
-    } catch (error) {
-      res.status(400).json({ status: 400, error: 'Invalid token' });
+    const isValid = pipe(
+      new PublicKey(publicKey),
+      isSignatureLegit({
+        message: base64Message,
+        proof: signature,
+      })
+    );
+
+    const isMessageInvalidOrExpired = isSignatureExpired(base64Message);
+
+    if (!isValid || isMessageInvalidOrExpired || !publicKey) {
+      return res.status(401).json({ status: 401, error: 'Not authorized.' });
     }
 
-    return handler(req, res);
+    return handler({ publicKey })(req, res);
   };
