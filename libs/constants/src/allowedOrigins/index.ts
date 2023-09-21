@@ -1,4 +1,6 @@
 export const allowedOrigins = [
-  'app.staratlasitalia.com',
-  'fleet.staratlasitalia.com',
+  'https://app.staratlasitalia.com',
+  'https://fleet.staratlasitalia.com',
+  'https://saiplugintest.bubbleapps.io',
+  'http://localhost:4200',
 ] as const;
