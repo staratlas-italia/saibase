@@ -15,17 +15,6 @@ export type User = {
   premium: boolean;
 };
 
-export type JwtUserPayload = {
-  publicKey: string;
-};
-
-/* export type RefreshToken = {
-  token: string;
-  userId: string;
-  expires: Date;
-};
- */
-
 export const sageScopes = new Set(['Sage', 'Score']);
 
 export const sageGoals = new Set([
