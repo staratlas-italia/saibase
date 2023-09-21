@@ -6,10 +6,10 @@ import * as E from 'fp-ts/Either';
 import { pipe } from 'fp-ts/lib/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { User } from '../../../common/types';
-import { matchApiKeyMiddleware } from '../../../middlewares/matchApiKey';
 import { mongo } from '../../../mongodb';
 import { handleErrors } from '../../../utils/handleErrors';
 
+// TODO: move this di @saibase/sai-database
 const collection = mongo.collection<User>('sage-users');
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -67,6 +67,5 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 export default pipe(
   handler,
   corsMiddleware([...allowedOrigins]),
-  matchMethodMiddleware(['GET', 'POST']),
-  matchApiKeyMiddleware
+  matchMethodMiddleware(['GET', 'POST'])
 );

@@ -32,6 +32,7 @@ type SageShipsStats = {
   foodScan: number;
 };
 
+// TODO: move this di @saibase/sai-database
 const collection = mongo.collection<SageShipsStats>('sage-ships-stats');
 
 const handler = async (_: NextApiRequest, res: NextApiResponse) => {
