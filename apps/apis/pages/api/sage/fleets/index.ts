@@ -7,6 +7,7 @@ import { authenticateMiddleware } from '../../../../middlewares/authenticate';
 import { mongo } from '../../../../mongodb';
 import { handleErrors } from '../../../../utils/handleErrors';
 
+// TODO: move this di @saibase/sai-database
 const collection = mongo.collection<Fleet>('sage-fleets');
 
 const handler = authenticateMiddleware(
