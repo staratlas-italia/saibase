@@ -1,8 +1,13 @@
-import md5 from "md5";
+import { pipe } from 'fp-ts/lib/function';
+import { decodeUTF8, encodeBase64 } from 'tweetnacl-util';
 
 export const getProofMessage = (timestamp?: number) =>
-  md5(
-    (timestamp ? new Date(timestamp) : new Date())
-      .setHours(0, 0, 0, 0)
-      .toString()
+  pipe(
+    JSON.stringify({
+      timestamp: (timestamp ? new Date(timestamp) : new Date())
+        .setHours(0, 0, 0, 0)
+        .toString(),
+    }),
+    decodeUTF8,
+    encodeBase64
   );
