@@ -109,7 +109,7 @@ const mediaCodec = t.type({
   qrFacebook: optional(t.string),
   sketchfab: optional(t.string),
   audio: optional(t.string),
-  thumbnailUrl: t.string,
+  thumbnailUrl: optional(t.string),
   gallery: optional(nullable(t.array(t.string))),
 });
 
@@ -137,9 +137,9 @@ const tradeSettingsCodec = t.type({
   expireTime: optional(t.union([t.string, t.number])),
   saleTime: optional(t.union([t.string, t.number])),
   vwap: optional(t.number),
-  msrp: optional(msrpCodec),
-  saleType: optional(t.string),
-  limited: optional(t.string),
+  msrp: optional(nullable(msrpCodec)),
+  saleType: optional(nullable(t.string)),
+  limited: optional(nullable(t.string)),
 });
 
 export const nftCodec = t.type({

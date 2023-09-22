@@ -54,6 +54,7 @@
     "glob": "^8.0.3",
     "invariant": "^2.2.4",
     "io-ts": "^2.2.20",
+    "io-ts-reporters": "^2.0.1",
     "isomorphic-fetch": "^3.0.0",
     "jotai": "^2.0.2",
     "jsonwebtoken": "^9.0.2",
