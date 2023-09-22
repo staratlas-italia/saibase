@@ -42,7 +42,7 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
     const shipsEither = await fetchNftsByCategory({ category: 'ship' })();
 
     if (E.isLeft(shipsEither)) {
-      return res.status(200).json([]);
+      return res.status(400).json({ status: 400, error: 'Cannot get ships' });
     }
 
     const orderbooksEither = await getOrderBooks({
@@ -51,7 +51,9 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
     })();
 
     if (E.isLeft(orderbooksEither)) {
-      return res.status(200).json([]);
+      return res
+        .status(400)
+        .json({ status: 400, error: 'Cannot get orderbooks' });
     }
 
     const orderbooks = orderbooksEither.right;

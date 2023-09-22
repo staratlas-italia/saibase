@@ -1,10 +1,13 @@
 import type { Req } from '@contactlab/appy';
 import * as D from '@contactlab/appy/combinators/decoder';
 import type { Decoder } from 'io-ts';
-import { failure } from 'io-ts/PathReporter';
+import { formatValidationErrors } from 'io-ts-reporters';
 
 function fromIoTs<A>(d: Decoder<unknown, A>): D.Decoder<A> {
-  return D.toDecoder(d.decode, (e) => new Error(failure(e).join('\n')));
+  return D.toDecoder(
+    d.decode,
+    (e) => new Error(formatValidationErrors(e).join('\n'))
+  );
 }
 
 /**
