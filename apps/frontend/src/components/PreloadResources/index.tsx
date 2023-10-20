@@ -1,3 +1,3 @@
-import { ResourcesRetriever } from "~/components/ResourcesRetriever";
+import { ResourcesRetriever } from "../ResourcesRetriever";
 
 export const PreloadResources = () => <ResourcesRetriever />;

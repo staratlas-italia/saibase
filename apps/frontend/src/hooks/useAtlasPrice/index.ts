@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAtlasMarketPrice } from "~/utils/getAtlasMarketPrice";
+import { getAtlasMarketPrice } from "../../utils/getAtlasMarketPrice";
 
 export const useAtlasPrice = () => {
   const [price, setPrice] = useState<number>();

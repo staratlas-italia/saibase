@@ -72,7 +72,7 @@ export const FallingSpaceships: React.FC<
 > = ({ count = 30, iterations = Infinity, duration = 10 }) => {
   const spaceships = [...Array(count)].map((_, index) => (
     // eslint-disable-next-line react/no-array-index-key
-    <Wrapper
+    (<Wrapper
       key={String(index)}
       position={Math.random() * 100}
       iterations={iterations}
@@ -81,7 +81,7 @@ export const FallingSpaceships: React.FC<
       <span role="img" className="text-4xl">
         🚀
       </span>
-    </Wrapper>
+    </Wrapper>)
   ));
 
   return <div>{spaceships}</div>;

@@ -2,7 +2,7 @@ import { mints } from '@saibase/constants';
 import { getTokenBalanceByMint, isPublicKey } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getConnectionClusterUrl } from '~/utils/connection';
+import { getConnectionClusterUrl } from "../../../utils/connection";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const {

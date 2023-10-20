@@ -1,8 +1,8 @@
 import { getApiRoute } from '@saibase/routes-api';
 import { captureException } from '@sentry/nextjs';
-import { api } from '~/network/api';
-import { Self } from '~/types/api';
-import { getProofMessage } from '~/utils/getProofMessage';
+import { api } from "../api";
+import { Self } from "../../types/api";
+import { getProofMessage } from "../../utils/getProofMessage";
 
 type Response =
   | {

@@ -1,4 +1,4 @@
-import { ATLAS_DECIMAL, ONE_DAY_IN_MILLISECONDS } from "~/common/constants";
+import { ATLAS_DECIMAL, ONE_DAY_IN_MILLISECONDS } from "../../common/constants";
 
 export const resDailyCostInAtlas = (
   resourcePrice: number,

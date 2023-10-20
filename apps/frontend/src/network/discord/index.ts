@@ -1,7 +1,7 @@
 import { captureException } from "@sentry/nextjs";
-import { DISCORD_API_URL } from "~/common/constants";
-import { createApiClient } from "~/network/api";
-import { DiscordUser } from "~/types/api";
+import { DISCORD_API_URL } from "../../common/constants";
+import { createApiClient } from "../api";
+import { DiscordUser } from "../../types/api";
 
 const discordClient = createApiClient(DISCORD_API_URL);
 

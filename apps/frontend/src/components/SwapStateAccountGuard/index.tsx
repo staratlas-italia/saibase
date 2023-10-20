@@ -6,12 +6,12 @@ import { PropsWithChildren } from 'react';
 import {
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
   TOKEN_SWAP_STATE_ACCOUNTS,
-} from '~/common/constants';
-import { isCitizenshipSwap } from '~/common/constants/citizenship';
-import { isTutorSwap } from '~/common/constants/tutor';
-import { useCluster } from '~/components/ClusterProvider';
-import { Redirect } from '~/components/common/Redirect';
-import { isValidSwapStateAccount } from '~/utils/isValidSwapStateAccount';
+} from "../../common/constants";
+import { isCitizenshipSwap } from "../../common/constants/citizenship";
+import { isTutorSwap } from "../../common/constants/tutor";
+import { useCluster } from "../ClusterProvider";
+import { Redirect } from "../common/Redirect";
+import { isValidSwapStateAccount } from "../../utils/isValidSwapStateAccount";
 
 export const SwapStateAccountGuard = ({
   children,

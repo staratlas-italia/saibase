@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useNullableBadges } from "~/hooks/useNullableBadges";
+import { useNullableBadges } from "../../hooks/useNullableBadges";
 
 type Props = {
   loader?: ReactNode;

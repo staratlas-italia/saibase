@@ -1,8 +1,8 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import invariant from "invariant";
 import { useEffect } from "react";
-import { useCluster } from "~/components/ClusterProvider";
-import { usePlayerStore } from "~/stores/usePlayerStore";
+import { useCluster } from "../../components/ClusterProvider";
+import { usePlayerStore } from "../../stores/usePlayerStore";
 
 export const useNullableSelf = () => {
   const { publicKey } = useWallet();

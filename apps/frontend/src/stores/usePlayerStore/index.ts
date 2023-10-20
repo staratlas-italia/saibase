@@ -2,13 +2,13 @@ import { mints } from '@saibase/constants';
 import { getTokenBalanceByMint } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { create } from 'zustand';
-import { fetchPlayer } from '~/network/player';
-import { fetchOrCreateSelf, linkDiscordId } from '~/network/self';
-import { Avatar, Player } from '~/types';
-import { Self } from '~/types/api';
-import { getConnectionClusterUrl } from '~/utils/connection';
-import { getAvatarImageUrl } from '~/utils/getAvatarImageUrl';
-import { toTuple } from '~/utils/toTuple';
+import { fetchPlayer } from "../../network/player";
+import { fetchOrCreateSelf, linkDiscordId } from "../../network/self";
+import { Avatar, Player } from "../../types";
+import { Self } from "../../types/api";
+import { getConnectionClusterUrl } from "../../utils/connection";
+import { getAvatarImageUrl } from "../../utils/getAvatarImageUrl";
+import { toTuple } from "../../utils/toTuple";
 
 type PlayerStore = {
   self: Self | null;

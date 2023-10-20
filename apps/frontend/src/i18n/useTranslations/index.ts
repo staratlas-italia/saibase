@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getTranslations } from "~/i18n/getTranslations";
-import { PromiseContent } from "~/types";
+import { getTranslations } from "../getTranslations";
+import { PromiseContent } from "../../types";
 
 export const useTranslations = () => {
   const { locale } = useRouter();

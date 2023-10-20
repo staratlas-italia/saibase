@@ -1,4 +1,4 @@
-import { APP_BASE_URL } from "~/common/constants";
+import { APP_BASE_URL } from "../../common/constants";
 
 const request = async <Res>(
   url: string,

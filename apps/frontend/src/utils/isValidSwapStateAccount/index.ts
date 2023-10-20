@@ -2,7 +2,7 @@ import { Cluster } from "@solana/web3.js";
 import {
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
   TOKEN_SWAP_STATE_ACCOUNTS,
-} from "~/common/constants";
+} from "../../common/constants";
 
 export const isValidSwapStateAccount = (
   cluster: Cluster,

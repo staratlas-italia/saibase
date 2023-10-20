@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useNullableFleet } from "~/hooks/useNullableFleet";
+import { useNullableFleet } from "../../hooks/useNullableFleet";
 
 type Props = {
   loader?: ReactNode;

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { SwapStateAccountGuard } from "~/components/SwapStateAccountGuard";
-import { useRefreshAlert } from "~/hooks/useRefreshAlert";
-import { SwapProgramPriceRetriever } from "~/hooks/useSwapProgramPrice";
+import { SwapStateAccountGuard } from "../../../../components/SwapStateAccountGuard";
+import { useRefreshAlert } from "../../../../hooks/useRefreshAlert";
+import { SwapProgramPriceRetriever } from "../../../../hooks/useSwapProgramPrice";
 
 import { View } from "./components/View";
 

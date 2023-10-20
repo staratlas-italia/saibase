@@ -1,4 +1,4 @@
-import { ONE_DAY_IN_MILLISECONDS } from "~/common/constants";
+import { ONE_DAY_IN_MILLISECONDS } from "../../common/constants";
 
 export const resDailyConsumption = (
   burnRate: number,

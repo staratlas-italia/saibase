@@ -1,6 +1,6 @@
 import { StarAtlasNft } from '@saibase/star-atlas';
 import { PropsWithChildren, createContext, useContext } from 'react';
-import { useLocalStorage } from '~/hooks/useLocalStorage';
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export type ShipsContextState = {
   ships: StarAtlasNft[];

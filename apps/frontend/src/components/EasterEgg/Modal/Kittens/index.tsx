@@ -5,7 +5,7 @@ import { shuffle } from 'lodash';
 import md5 from 'md5';
 import { useCallback, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
-import { api } from '~/network/api';
+import { api } from "../../../../network/api";
 
 type Props = {
   onComplete: () => void;

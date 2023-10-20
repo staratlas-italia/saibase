@@ -1,8 +1,8 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback, useState } from "react";
-import { createReferral, redeemReferral } from "~/network/referral";
-import { useAuthStore } from "~/stores/useAuthStore";
-import { Self } from "~/types/api";
+import { createReferral, redeemReferral } from "../../network/referral";
+import { useAuthStore } from "../../stores/useAuthStore";
+import { Self } from "../../types/api";
 
 export const useReferral = () => {
   const [code, setCode] = useState<string | null>(null);

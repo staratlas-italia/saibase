@@ -16,8 +16,8 @@ import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
 import { create } from 'zustand';
-import { TUTOR_SWAP_TOKEN_MINT } from '~/common/constants/tutor';
-import { getBadgeByMint } from '~/utils/getBadgeByMint';
+import { TUTOR_SWAP_TOKEN_MINT } from "../../common/constants/tutor";
+import { getBadgeByMint } from "../../utils/getBadgeByMint";
 
 type BadgesStore = {
   badges: readonly (Nft | Sft | NftWithToken | SftWithToken)[] | null;

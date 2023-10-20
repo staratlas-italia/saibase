@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { GetTranslationValues, TranslationId } from '~/i18n/translations/types';
+import { GetTranslationValues, TranslationId } from "../translations/types";
 
 export const useTranslation = (
   id: TranslationId,

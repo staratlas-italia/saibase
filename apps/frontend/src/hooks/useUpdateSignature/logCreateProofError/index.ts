@@ -1,7 +1,7 @@
 import { captureException } from '@sentry/nextjs';
 import * as IO from 'fp-ts/IO';
 import { constVoid, pipe } from 'fp-ts/function';
-import { CreateProofError } from '~/hooks/useUpdateSignature/createProof';
+import { CreateProofError } from "../createProof";
 import { match } from '../match';
 
 const getErrorFingerprint = (e: CreateProofError) =>

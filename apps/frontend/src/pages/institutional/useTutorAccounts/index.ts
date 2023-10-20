@@ -2,8 +2,8 @@ import {
   DEVNET_TUTOR_TO_TOKEN_SWAP_STATE_ACCOUNTS,
   tutorAccounts,
   TUTOR_TO_TOKEN_SWAP_STATE_ACCOUNTS,
-} from "~/common/constants/tutor";
-import { useCluster } from "~/components/ClusterProvider";
+} from "../../../common/constants/tutor";
+import { useCluster } from "../../../components/ClusterProvider";
 
 export const useTutorAccounts = () => {
   const { cluster } = useCluster();

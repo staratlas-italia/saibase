@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useShip } from '~/hooks/useShip';
-import { BestPrices, Currency } from '~/types';
-import { getEntityBestPrices } from '~/utils/getEntityBestPrices';
+import { useShip } from "../useShip";
+import { BestPrices, Currency } from "../../types";
+import { getEntityBestPrices } from "../../utils/getEntityBestPrices";
 
 export const useEntityBestPrices = (
   currency: Exclude<Currency, 'POLIS' | 'NONE'> = 'USDC'

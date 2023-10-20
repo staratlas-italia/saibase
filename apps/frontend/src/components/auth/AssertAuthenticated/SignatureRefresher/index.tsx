@@ -1,6 +1,6 @@
 import { Button, Card, Text } from '@saibase/uikit';
-import { useUpdateSignature } from '~/hooks/useUpdateSignature';
-import { Translation } from '~/i18n/Translation';
+import { useUpdateSignature } from "../../../../hooks/useUpdateSignature";
+import { Translation } from "../../../../i18n/Translation";
 
 export const SignatureRefresher = () => {
   const updateSignature = useUpdateSignature();

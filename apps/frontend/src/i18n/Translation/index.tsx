@@ -1,5 +1,5 @@
 import { FormattedMessage } from "react-intl";
-import { GetTranslationValues, TranslationId } from "~/i18n/translations/types";
+import { GetTranslationValues, TranslationId } from "../translations/types";
 
 type Props<Id> = {
   id: Id;

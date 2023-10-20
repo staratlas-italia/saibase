@@ -1,7 +1,7 @@
 import { Button, Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
-import { Translation } from '~/i18n/Translation';
-import { HumanImage } from '~/views/Home/components/EnlistBanner/HumanImage';
+import { Translation } from "../../../../i18n/Translation";
+import { HumanImage } from "./HumanImage";
 
 export const EnlistBanner = () => (
   <Flex

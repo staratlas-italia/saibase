@@ -1,5 +1,5 @@
 import invariant from "invariant";
-import { useAuthStore } from "~/stores/useAuthStore";
+import { useAuthStore } from "../../../../stores/useAuthStore";
 
 export const useSignature = () => {
   const signature = useAuthStore((s) => s.signature);

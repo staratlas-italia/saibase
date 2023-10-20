@@ -1,4 +1,4 @@
-import { ATLAS_DECIMAL } from "~/common/constants";
+import { ATLAS_DECIMAL } from "../../common/constants";
 
 export const grossDailyRewardInAtlas = (
   rewardRatePerSecond: number,

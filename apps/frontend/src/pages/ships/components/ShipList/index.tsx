@@ -1,14 +1,14 @@
 import { Button, Flex, StarAtlasShip } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useShips } from '~/hooks/useShips';
-import { Translation } from '~/i18n/Translation';
+import { useShips } from "../../../../hooks/useShips";
+import { Translation } from "../../../../i18n/Translation";
 
 export const ShipList = () => {
   const { ships } = useShips();
   const { locale } = useRouter();
   return (
-    <Flex
+    (<Flex
       justify="center"
       direction="col"
       className="grid grid-cols-1 xl:grid-cols-2 gap-5"
@@ -60,6 +60,6 @@ export const ShipList = () => {
           />
         );
       })}
-    </Flex>
+    </Flex>)
   );
 };

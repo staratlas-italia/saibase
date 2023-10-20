@@ -1,5 +1,5 @@
 import { Card, Price } from '@saibase/uikit';
-import { usePlayerStore } from '~/stores/usePlayerStore';
+import { usePlayerStore } from "../../../../../stores/usePlayerStore";
 
 export const TokenAmounts = () => {
   const amouts = usePlayerStore((s) => s.amounts);

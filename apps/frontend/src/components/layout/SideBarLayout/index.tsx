@@ -1,10 +1,10 @@
 import { Flex } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import React, { PropsWithChildren } from 'react';
-import { SelfRetriever } from '~/components/SelfRetriever';
-import { BaseLayout } from '~/components/layout/BaseLayout';
-import { Container } from '~/components/layout/Container';
-import { Header } from '~/components/layout/Header';
+import { SelfRetriever } from "../../SelfRetriever";
+import { BaseLayout } from "../BaseLayout";
+import { Container } from "../Container";
+import { Header } from "../Header";
 import { Provider } from './components/Provider';
 import { SideBar } from './components/SideBar';
 import { SidebarToggle } from './components/SidebarToggle';

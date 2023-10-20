@@ -1,11 +1,11 @@
 import { DuplicateIcon, PlusIcon } from '@heroicons/react/solid';
 import { Button, Flex, Text } from '@saibase/uikit';
-import { APP_BASE_URL } from '~/common/constants';
-import { AssertAuthenticated } from '~/components/auth/AssertAuthenticated';
-import { useSelf } from '~/hooks/useNullableSelf';
-import { useReferral } from '~/hooks/useReferral';
-import { copyTextToClipboard } from '~/utils/copyToClipboard';
-import { shortenAddress } from '~/utils/shortenAddress';
+import { APP_BASE_URL } from "../../../../../../../common/constants";
+import { AssertAuthenticated } from "../../../../../../../components/auth/AssertAuthenticated";
+import { useSelf } from "../../../../../../../hooks/useNullableSelf";
+import { useReferral } from "../../../../../../../hooks/useReferral";
+import { copyTextToClipboard } from "../../../../../../../utils/copyToClipboard";
+import { shortenAddress } from "../../../../../../../utils/shortenAddress";
 
 export const Code = () => {
   const self = useSelf();

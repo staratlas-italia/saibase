@@ -1,7 +1,7 @@
 import { getApiRoute } from '@saibase/routes-api';
 import { Cluster } from '@solana/web3.js';
-import { api } from '~/network/api';
-import { ConfirmPaymentResponse } from '~/types/api';
+import { api } from "../../api";
+import { ConfirmPaymentResponse } from "../../../types/api";
 
 type Param = {
   amount: number;

@@ -1,4 +1,4 @@
-import { FactionWithNone } from "~/types";
+import { FactionWithNone } from "../../types";
 
 export const getFactionName = (faction: null | 0 | 1 | 2): FactionWithNone => {
   switch (faction) {

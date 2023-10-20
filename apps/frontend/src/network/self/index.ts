@@ -1,13 +1,13 @@
 import { getApiRoute } from '@saibase/routes-api';
 import { Cluster } from '@solana/web3.js';
 import type { WithoutId } from 'mongodb';
-import { api } from '~/network/api';
-import { fetchPlayer } from '~/network/player';
-import { Player } from '~/types';
-import { Self } from '~/types/api';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { getFactionName } from '~/utils/getFactionName';
-import { getProofMessage } from '~/utils/getProofMessage';
+import { api } from "../api";
+import { fetchPlayer } from "../player";
+import { Player } from "../../types";
+import { Self } from "../../types/api";
+import { appendQueryParams } from "../../utils/appendQueryParams";
+import { getFactionName } from "../../utils/getFactionName";
+import { getProofMessage } from "../../utils/getProofMessage";
 
 const buildDefaultSelf = (
   publicKey: string,

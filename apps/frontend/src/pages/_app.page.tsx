@@ -9,17 +9,17 @@ import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FEATURES_ENDPOINT, growthbook } from '~/common/constants';
-import { ClusterProvider, useCluster } from '~/components/ClusterProvider';
-import { EasterEgg } from '~/components/EasterEgg';
-import { EasterEggModal } from '~/components/EasterEgg/Modal';
-import { HtmlComment } from '~/components/HtmlComment';
-import { PreloadResources } from '~/components/PreloadResources';
-import { MainLayout } from '~/components/layout/MainLayout';
-import { ModalProvider } from '~/contexts/ModalContext';
-import { ShipsProvider } from '~/contexts/ShipsContext';
-import { useTranslations } from '~/i18n/useTranslations';
-import '~/styles/globals.css';
+import { FEATURES_ENDPOINT, growthbook } from "../common/constants";
+import { ClusterProvider, useCluster } from "../components/ClusterProvider";
+import { EasterEgg } from "../components/EasterEgg";
+import { EasterEggModal } from "../components/EasterEgg/Modal";
+import { HtmlComment } from "../components/HtmlComment";
+import { PreloadResources } from "../components/PreloadResources";
+import { MainLayout } from "../components/layout/MainLayout";
+import { ModalProvider } from "../contexts/ModalContext";
+import { ShipsProvider } from "../contexts/ShipsContext";
+import { useTranslations } from "../i18n/useTranslations";
+import "../styles/globals.css";
 
 const WalletProvider = dynamic(() => import('../contexts/WalletProvider'), {
   ssr: false,

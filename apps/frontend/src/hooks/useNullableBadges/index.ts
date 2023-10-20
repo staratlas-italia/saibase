@@ -1,7 +1,7 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import invariant from "invariant";
 import { useEffect } from "react";
-import { useBadgesStore } from "~/stores/useBadgesStore";
+import { useBadgesStore } from "../../stores/useBadgesStore";
 
 export const useNullableBadges = () => {
   const { connection } = useConnection();

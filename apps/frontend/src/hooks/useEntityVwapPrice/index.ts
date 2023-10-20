@@ -1,6 +1,6 @@
 import { getEntityVwapPrice } from '@saibase/star-atlas';
 import { useMemo } from 'react';
-import { useShip } from '~/hooks/useShip';
+import { useShip } from "../useShip";
 
 export const useEntityVwapPrice = () => {
   const { primarySales } = useShip();

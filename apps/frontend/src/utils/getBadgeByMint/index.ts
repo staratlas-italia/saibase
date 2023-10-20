@@ -1,9 +1,9 @@
 import { citizenship } from '@saibase/sai-citizenship';
 import { PublicKey } from '@solana/web3.js';
 import { values } from 'lodash';
-import { tier1BadgeMints } from '~/utils/getBadgeByMint/tier1';
-import { tier2BadgeMints } from '~/utils/getBadgeByMint/tier2';
-import { tier3BadgeMints } from '~/utils/getBadgeByMint/tier3';
+import { tier1BadgeMints } from "./tier1";
+import { tier2BadgeMints } from "./tier2";
+import { tier3BadgeMints } from "./tier3";
 
 export const allGenesisBadgeMints = [
   ...tier1BadgeMints,

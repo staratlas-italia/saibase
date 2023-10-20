@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { match } from 'ts-pattern';
-import { getMongoDatabase } from '~/pages/api/mongodb';
-import { Self } from '~/types/api';
+import { getMongoDatabase } from "../mongodb";
+import { Self } from "../../../types/api";
 
 const postHandler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   const { self } = body;

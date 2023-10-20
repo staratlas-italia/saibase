@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useNullableSelf } from "~/hooks/useNullableSelf";
+import { useNullableSelf } from "../../hooks/useNullableSelf";
 
 type Props = {
   loader?: ReactNode;

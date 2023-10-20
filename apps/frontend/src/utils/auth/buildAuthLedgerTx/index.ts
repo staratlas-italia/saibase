@@ -1,5 +1,5 @@
 import { Transaction, TransactionInstruction } from "@solana/web3.js";
-import { MEMO_PROGRAM_ID } from "~/common/constants";
+import { MEMO_PROGRAM_ID } from "../../../common/constants";
 
 export const buildAuthLedgerTx = (nonce: string): Transaction => {
   const tx = new Transaction();

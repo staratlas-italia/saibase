@@ -3,9 +3,9 @@ import { useWallet } from '@solana/wallet-adapter-react';
 
 import { Button, Flex, Text } from '@saibase/uikit';
 import styled from 'styled-components';
-import { Identicon } from '~/components/Wallet/components/UserBadge/Identicon';
-import { useModal } from '~/contexts/ModalContext';
-import { shortenAddress } from '~/utils/shortenAddress';
+import { Identicon } from "./Identicon";
+import { useModal } from "../../../../contexts/ModalContext";
+import { shortenAddress } from "../../../../utils/shortenAddress";
 
 type Props = {
   iconSize?: number;

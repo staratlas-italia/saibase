@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { getHueByFactionStyle } from '~/utils/getHueByFaction';
+import { getHueByFactionStyle } from "../../../utils/getHueByFaction";
 
 type Props = {
   show?: boolean;

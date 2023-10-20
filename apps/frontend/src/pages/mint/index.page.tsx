@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { MintPage } from "~/views/Mint";
+import { MintPage } from "../../views/Mint";
 
 const Mint = () => {
   return (

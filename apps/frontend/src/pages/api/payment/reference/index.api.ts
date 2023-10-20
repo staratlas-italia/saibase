@@ -2,8 +2,8 @@ import { matchMethodMiddleware } from '@saibase/middlewares';
 import { Keypair } from '@solana/web3.js';
 import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMongoDatabase } from '~/pages/api/mongodb';
-import { Self, Transaction } from '~/types/api';
+import { getMongoDatabase } from "../../mongodb";
+import { Self, Transaction } from "../../../../types/api";
 
 const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   const { swapAccount, publicKey } = body;

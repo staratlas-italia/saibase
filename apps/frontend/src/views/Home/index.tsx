@@ -1,8 +1,8 @@
 import { Card, Flex } from '@saibase/uikit';
-import { Header } from '~/components/layout/Header';
-import { Treasury } from '~/components/layout/Header/components/Treasury';
-import { EnlistBanner } from '~/views/Home/components/EnlistBanner';
-import { WelcomeBanner } from '~/views/Home/components/WelcomeBanner';
+import { Header } from "../../components/layout/Header";
+import { Treasury } from "../../components/layout/Header/components/Treasury";
+import { EnlistBanner } from "./components/EnlistBanner";
+import { WelcomeBanner } from "./components/WelcomeBanner";
 
 export const HomePage = () => {
   return (

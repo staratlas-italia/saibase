@@ -2,7 +2,7 @@ import { Cluster } from "@solana/web3.js";
 import invariant from "invariant";
 import { useRouter } from "next/router";
 import { createContext, PropsWithChildren, useContext, useMemo } from "react";
-import { EndpointInfo, getConnectionContext } from "~/utils/connection";
+import { EndpointInfo, getConnectionContext } from "../../utils/connection";
 
 const Context = createContext<EndpointInfo | null>(null);
 

@@ -18,8 +18,8 @@ import {
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
   SAI_TOKEN_SWAP_PROGRAM_ID,
   TOKEN_SWAP_STATE_ACCOUNTS,
-} from '~/common/constants';
-import { getConnectionClusterUrl } from '~/utils/connection';
+} from "../../../common/constants";
+import { getConnectionClusterUrl } from "../../../utils/connection";
 
 const getSwapState = (cluster?: Cluster) =>
   cluster === 'devnet'

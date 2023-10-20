@@ -1,10 +1,10 @@
 import { Card, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
-import { LoadingView } from '~/components/LoadingView';
-import { ConnectButton } from '~/components/Wallet/components/ConnectButton';
-import { Redirect } from '~/components/common/Redirect';
-import { Translation } from '~/i18n/Translation';
+import { LoadingView } from "../../components/LoadingView";
+import { ConnectButton } from "../../components/Wallet/components/ConnectButton";
+import { Redirect } from "../../components/common/Redirect";
+import { Translation } from "../../i18n/Translation";
 import { useAirdropToken } from './useAirdropToken';
 
 export const MintPage = () => {

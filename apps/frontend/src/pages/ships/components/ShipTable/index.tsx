@@ -3,11 +3,11 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Table } from '~/components/Table';
+import { Table } from "../../../../components/Table";
 
-import { useShips } from '~/hooks/useShips';
-import { useTranslation } from '~/i18n/useTranslation';
-import { ShipTableRow, useShipsDealsStore } from '~/stores/useShipsDealsStore';
+import { useShips } from "../../../../hooks/useShips";
+import { useTranslation } from "../../../../i18n/useTranslation";
+import { ShipTableRow, useShipsDealsStore } from "../../../../stores/useShipsDealsStore";
 import { columns } from './columns';
 
 export type MarketAction = 'buy' | 'sell';
