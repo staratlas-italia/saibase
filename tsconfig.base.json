@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
     "paths": {
-      "@saibase/anchor-swap": ["libs/anchor/swap/src/index.ts"],
-      "@saibase/configuration": ["libs/configuration/src/index.ts"],
-      "@saibase/constants": ["libs/constants/src/index.ts"],
-      "@saibase/errors": ["libs/errors/src/index.ts"],
-      "@saibase/fetch": ["libs/fetch/src/index.ts"],
-      "@saibase/io-ts": ["libs/io-ts/src/index.ts"],
-      "@saibase/logger": ["libs/logger/src/index.ts"],
-      "@saibase/middlewares": ["libs/middlewares/src/index.ts"],
-      "@saibase/routes-api": ["libs/routes/api/src/index.ts"],
-      "@saibase/routes-public": ["libs/routes/public/src/index.ts"],
-      "@saibase/sai-citizenship": ["libs/sai/citizenship/src/index.ts"],
-      "@saibase/sai-database": ["libs/sai/database/src/index.ts"],
-      "@saibase/sai-entities": ["libs/sai/entities/src/index.ts"],
-      "@saibase/solscan-api": ["libs/solscan-api/src/index.ts"],
-      "@saibase/star-atlas": ["libs/star-atlas/src/index.ts"],
-      "@saibase/uikit": ["libs/uikit/src/index.ts"],
-      "@saibase/web3": ["libs/web3/src/index.ts"],
-      "~/*": ["apps/frontend/src/*"]
+      "@saibase/anchor-swap": ["./libs/anchor/swap/src/index.ts"],
+      "@saibase/configuration": ["./libs/configuration/src/index.ts"],
+      "@saibase/constants": ["./libs/constants/src/index.ts"],
+      "@saibase/errors": ["./libs/errors/src/index.ts"],
+      "@saibase/fetch": ["./libs/fetch/src/index.ts"],
+      "@saibase/io-ts": ["./libs/io-ts/src/index.ts"],
+      "@saibase/logger": ["./libs/logger/src/index.ts"],
+      "@saibase/middlewares": ["./libs/middlewares/src/index.ts"],
+      "@saibase/routes-api": ["./libs/routes/api/src/index.ts"],
+      "@saibase/routes-public": ["./libs/routes/public/src/index.ts"],
+      "@saibase/sai-citizenship": ["./libs/sai/citizenship/src/index.ts"],
+      "@saibase/sai-database": ["./libs/sai/database/src/index.ts"],
+      "@saibase/sai-entities": ["./libs/sai/entities/src/index.ts"],
+      "@saibase/solscan-api": ["./libs/solscan-api/src/index.ts"],
+      "@saibase/star-atlas": ["./libs/star-atlas/src/index.ts"],
+      "@saibase/uikit": ["./libs/uikit/src/index.ts"],
+      "@saibase/web3": ["./libs/web3/src/index.ts"],
+      "~/*": ["./apps/frontend/src/*"]
     },
     "plugins": [
       {

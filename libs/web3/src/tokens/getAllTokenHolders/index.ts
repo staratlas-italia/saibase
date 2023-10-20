@@ -6,7 +6,7 @@ import { constVoid, pipe } from 'fp-ts/function';
 
 type Param = { connection: Connection; mint: PublicKey };
 
-type TokenInfo = {
+export type TokenInfo = {
   isNative: false;
   mint: string;
   owner: string;
