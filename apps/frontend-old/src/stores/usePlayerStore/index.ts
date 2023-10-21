@@ -1,20 +1,20 @@
-import { Cluster, Connection, PublicKey } from "@solana/web3.js";
-import create, { State } from "zustand";
+import { Cluster, Connection, PublicKey } from '@solana/web3.js';
+import { create } from 'zustand';
 import {
   ATLAS_TOKEN_MINT,
   POLIS_TOKEN_MINT,
   USDC_TOKEN_MINT,
-} from "../../common/constants";
-import { fetchPlayer } from "../../network/player";
-import { fetchOrCreateSelf, linkDiscordId } from "../../network/self";
-import { Avatar, Player } from "../../types";
-import { Self } from "../../types/api";
-import { getConnectionClusterUrl } from "../../utils/connection";
-import { getAvatarImageUrl } from "../../utils/getAvatarImageUrl";
-import { getTokenBalanceByMint } from "../../utils/getTokenBalanceByMint";
-import { toTuple } from "../../utils/toTuple";
+} from '../../common/constants';
+import { fetchPlayer } from '../../network/player';
+import { fetchOrCreateSelf, linkDiscordId } from '../../network/self';
+import { Avatar, Player } from '../../types';
+import { Self } from '../../types/api';
+import { getConnectionClusterUrl } from '../../utils/connection';
+import { getAvatarImageUrl } from '../../utils/getAvatarImageUrl';
+import { getTokenBalanceByMint } from '../../utils/getTokenBalanceByMint';
+import { toTuple } from '../../utils/toTuple';
 
-type PlayerStore = State & {
+type PlayerStore = {
   self: Self | null;
   player: Player | null;
   isFetching: boolean;
