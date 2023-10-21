@@ -1,4 +1,4 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { BadgesRetriever } from '../../../../components/BadgesRetriever';
 import { FleetRetriever } from '../../../../components/FleetRetriever';
@@ -6,7 +6,6 @@ import { LoadingView } from '../../../../components/LoadingView';
 import { SelfRetriever } from '../../../../components/SelfRetriever';
 import { Heading } from '../../../../components/common/Heading';
 import { BlurBackground } from '../../../../components/layout/BlurBackground';
-import { Flex } from '../../../../components/layout/Flex';
 import { Translation } from '../../../../i18n/Translation';
 import { Badges } from '../Badges';
 import { Fleet } from '../Fleet';

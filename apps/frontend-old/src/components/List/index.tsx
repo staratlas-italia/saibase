@@ -1,7 +1,7 @@
-import { Spacing } from "../../common/spacing";
-import { Flex } from "../layout/Flex";
-import { Item, ItemProps } from "./components/Item";
-import { Section } from "./components/Section";
+import { Flex } from '@saibase/uikit';
+import { Spacing } from '../../common/spacing';
+import { Item, ItemProps } from './components/Item';
+import { Section } from './components/Section';
 
 export type ListSectons = [string, ItemProps[]][];
 

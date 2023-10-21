@@ -1,4 +1,4 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -7,7 +7,6 @@ import { DiscordLink } from '../../../../../components/LinkDiscordButton';
 import { InfoRow } from '../../../../../components/common/Info';
 import { Price } from '../../../../../components/common/Price';
 import { BlurBackground } from '../../../../../components/layout/BlurBackground';
-import { Flex } from '../../../../../components/layout/Flex';
 import { useSelf } from '../../../../../hooks/useNullableSelf';
 import { usePlayerStore } from '../../../../../stores/usePlayerStore';
 import { shortenAddress } from '../../../../../utils/shortenAddress';

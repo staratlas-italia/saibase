@@ -1,4 +1,4 @@
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -17,7 +17,6 @@ import { appendQueryParams } from '../../../../../utils/appendQueryParams';
 import { shortenAddress } from '../../../../../utils/shortenAddress';
 import { useCluster } from '../../../../ClusterProvider';
 import { List, ListSectons } from '../../../../List';
-import { Flex } from '../../../../layout/Flex';
 
 export const ConnectedContent = () => {
   const { disconnect, publicKey, wallet } = useWallet();

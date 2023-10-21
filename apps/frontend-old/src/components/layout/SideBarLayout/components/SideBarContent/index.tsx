@@ -1,10 +1,9 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { appendQueryParams } from '../../../../../utils/appendQueryParams';
-import { Flex } from '../../../Flex';
 import { MenuItem } from '../SideBar/types';
 import { getMenuItems } from './getMenuItems';
 

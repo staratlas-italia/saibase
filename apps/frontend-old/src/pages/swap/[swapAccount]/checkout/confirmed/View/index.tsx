@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
@@ -9,7 +9,6 @@ import { DEV_EMAIL } from '../../../../../../common/constants';
 import { useSwapStateAccount } from '../../../../../../components/SwapStateAccountGuard';
 import { BlurBackground } from '../../../../../../components/layout/BlurBackground';
 import { Container } from '../../../../../../components/layout/Container';
-import { Flex } from '../../../../../../components/layout/Flex';
 import { Logo } from '../../../../../../components/layout/Header';
 import { Translation } from '../../../../../../i18n/Translation';
 import { getRoute } from '../../../../../../utils/getRoute';

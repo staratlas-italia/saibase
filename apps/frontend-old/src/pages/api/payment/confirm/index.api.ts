@@ -1,18 +1,18 @@
-import { captureException } from "@sentry/nextjs";
+import { captureException } from '@sentry/nextjs';
 import {
   findReference,
   FindReferenceError,
   ValidateTransferError,
-} from "@solana/pay";
-import { Cluster, Connection, PublicKey } from "@solana/web3.js";
-import { pipe } from "fp-ts/function";
-import { NextApiRequest, NextApiResponse } from "next";
-import { matchMethodMiddleware } from "../../../../middlewares/matchMethod";
-import { useMongoMiddleware } from "../../../../middlewares/useMongo";
-import { getMongoDatabase } from "../../mongodb";
-import { Transaction } from "../../../../types/api";
-import { getConnectionClusterUrl } from "../../../../utils/connection";
-import { isPublicKey } from "../../../../utils/pubkey";
+} from '@solana/pay';
+import { Cluster, Connection, PublicKey } from '@solana/web3.js';
+import { pipe } from 'fp-ts/function';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { matchMethodMiddleware } from '../../../../middlewares/matchMethod';
+import { useMongoMiddleware } from '../../../../middlewares/useMongo';
+import { Transaction } from '../../../../types/api';
+import { getConnectionClusterUrl } from '../../../../utils/connection';
+import { isPublicKey } from '../../../../utils/pubkey';
+import { getMongoDatabase } from '../../mongodb';
 
 const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   const { cluster: clusterParam, reference: referenceParam, publicKey } = body;
@@ -20,21 +20,21 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   if (!referenceParam || !isPublicKey(publicKey)) {
     res.status(400).json({
       success: false,
-      error: "Invalid parameters supplied.",
+      error: 'Invalid parameters supplied.',
     });
     return;
   }
 
   const cluster = clusterParam as Cluster;
 
-  const db = getMongoDatabase(cluster);
+  const db = getMongoDatabase();
 
   const reference = new PublicKey(referenceParam);
   const connection = new Connection(getConnectionClusterUrl(cluster));
 
   try {
     const signatureInfo = await findReference(connection, reference, {
-      finality: "confirmed",
+      finality: 'confirmed',
     });
 
     const status = await connection.getSignatureStatus(
@@ -45,11 +45,11 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
     );
 
     if (status.value?.err) {
-      throw new ValidateTransferError("Transaction failed");
+      throw new ValidateTransferError('Transaction failed');
     }
 
-    if (status.value?.confirmationStatus === "processed") {
-      throw new FindReferenceError("Not finalized yet");
+    if (status.value?.confirmationStatus === 'processed') {
+      throw new FindReferenceError('Not finalized yet');
     }
   } catch (e) {
     if (e instanceof FindReferenceError) {
@@ -62,37 +62,37 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
     }
 
     if (e instanceof ValidateTransferError) {
-      captureException(e, { level: "error" });
+      captureException(e, { level: 'error' });
 
       res.status(200).json({
         success: false,
-        error: "Invalid transaction",
+        error: 'Invalid transaction',
       });
       return;
     }
 
-    captureException(e, { level: "error" });
+    captureException(e, { level: 'error' });
 
     console.log(JSON.stringify(e));
 
     res.status(200).json({
       success: false,
-      error: "Generic error",
+      error: 'Generic error',
     });
 
     return;
   }
 
-  const transactionsCollection = db.collection<Transaction>("transactions");
+  const transactionsCollection = db.collection<Transaction>('transactions');
 
   await transactionsCollection.findOneAndUpdate(
     {
       reference: referenceParam,
-      status: "PENDING",
+      status: 'PENDING',
     },
     {
       $set: {
-        status: "ACCEPTED",
+        status: 'ACCEPTED',
       },
     }
   );
@@ -105,6 +105,6 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
 
 export default pipe(
   handler,
-  matchMethodMiddleware(["POST"]),
+  matchMethodMiddleware(['POST']),
   useMongoMiddleware
 );

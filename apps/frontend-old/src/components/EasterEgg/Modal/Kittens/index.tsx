@@ -1,4 +1,4 @@
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { shuffle } from 'lodash';
 import md5 from 'md5';
@@ -6,7 +6,6 @@ import { useCallback, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../../../../network/api';
 import { getApiRoute } from '../../../../utils/getRoute';
-import { Flex } from '../../../layout/Flex';
 
 type Props = {
   onComplete: () => void;
@@ -18,7 +17,7 @@ export const Kittens = ({ onComplete }: Props) => {
   const [isLoading, setLoading] = useState(false);
 
   const order = useMemo(
-    () => shuffle(new Array(9).fill(0).map((a, index) => index + 1)),
+    () => shuffle(new Array(9).fill(0).map((_, index) => index + 1)),
     []
   );
 

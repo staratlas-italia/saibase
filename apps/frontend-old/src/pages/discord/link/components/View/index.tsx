@@ -1,4 +1,4 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import { Wallet } from '../../../../../components/Wallet';
@@ -7,7 +7,6 @@ import { Loader } from '../../../../../components/common/Loader';
 import { Redirect } from '../../../../../components/common/Redirect';
 import { BlurBackground } from '../../../../../components/layout/BlurBackground';
 import { Container } from '../../../../../components/layout/Container';
-import { Flex } from '../../../../../components/layout/Flex';
 import { Logo } from '../../../../../components/layout/Header';
 import { useSelf } from '../../../../../hooks/useNullableSelf';
 import { Translation } from '../../../../../i18n/Translation';

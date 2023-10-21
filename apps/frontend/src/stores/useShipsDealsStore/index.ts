@@ -6,13 +6,13 @@ import {
 import { Connection } from '@solana/web3.js';
 import * as E from 'fp-ts/Either';
 import { create } from 'zustand';
-import { gmClientService } from "../../common/constants";
-import { getConnectionClusterUrl } from "../../utils/connection";
-import { getAtlasMarketPrice } from "../../utils/getAtlasMarketPrice";
+import { gmClientService } from '../../common/constants';
+import { getConnectionClusterUrl } from '../../utils/connection';
+import { getAtlasMarketPrice } from '../../utils/getAtlasMarketPrice';
 
 export type ShipTableRow = {
   id: string;
-  imageUrl: string;
+  imageUrl: string | undefined;
   name: string;
   vwapPrice: number;
   atlasBuyPrice: number;

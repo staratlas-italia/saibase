@@ -1,36 +1,29 @@
-import { GrowthBookProvider } from "@growthbook/growthbook-react";
-import { ConnectionProvider } from "@solana/wallet-adapter-react";
-import { AppProps } from "next/app";
-import dynamic from "next/dynamic";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import Script from "next/script";
-import { useEffect } from "react";
-import { IntlProvider } from "react-intl";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { FEATURES_ENDPOINT, growthbook } from "../common/constants";
-import { ClusterProvider, useCluster } from "../components/ClusterProvider";
-import { EasterEgg } from "../components/EasterEgg";
-import { EasterEggModal } from "../components/EasterEgg/Modal";
-import { HtmlComment } from "../components/HtmlComment";
-import { MainLayout } from "../components/layout/MainLayout";
-import { PreloadResources } from "../components/PreloadResources";
-import { ModalProvider } from "../contexts/ModalContext";
-import { ShipsProvider } from "../contexts/ShipsContext";
-import { useTranslations } from "../i18n/useTranslations";
-import "../styles/globals.css";
-import { StrictReactNode } from "../types";
+import { GrowthBookProvider } from '@growthbook/growthbook-react';
+import { ConnectionProvider } from '@solana/wallet-adapter-react';
+import { AppProps } from 'next/app';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import { useEffect } from 'react';
+import { IntlProvider } from 'react-intl';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FEATURES_ENDPOINT, growthbook } from '../common/constants';
+import { ClusterProvider, useCluster } from '../components/ClusterProvider';
+import { EasterEgg } from '../components/EasterEgg';
+import { EasterEggModal } from '../components/EasterEgg/Modal';
+import { HtmlComment } from '../components/HtmlComment';
+import { PreloadResources } from '../components/PreloadResources';
+import { MainLayout } from '../components/layout/MainLayout';
+import { ModalProvider } from '../contexts/ModalContext';
+import { ShipsProvider } from '../contexts/ShipsContext';
+import { useTranslations } from '../i18n/useTranslations';
+import '../styles/globals.css';
 
-const WalletProvider = dynamic<{ children: StrictReactNode }>(
-  () =>
-    import("../contexts/WalletProvider").then(
-      ({ WalletProvider }) => WalletProvider
-    ),
-  {
-    ssr: false,
-  }
-);
+const WalletProvider = dynamic(() => import('../contexts/WalletProvider'), {
+  ssr: false,
+});
 
 function App({ router, ...props }: AppProps) {
   const translations = useTranslations();
@@ -42,7 +35,7 @@ function App({ router, ...props }: AppProps) {
       return;
     }
 
-    fetch(FEATURES_ENDPOINT, { cache: "no-store" })
+    fetch(FEATURES_ENDPOINT, { cache: 'no-store' })
       .then((res) => res.json())
       .then((json) => {
         growthbook.setFeatures(json.features);
@@ -60,7 +53,7 @@ function App({ router, ...props }: AppProps) {
       <ClusterProvider>
         <IntlProvider
           messages={translations}
-          locale={locale || "it"}
+          locale={locale || 'it'}
           defaultLocale="it"
         >
           <ModalProvider>
@@ -83,7 +76,7 @@ function App({ router, ...props }: AppProps) {
   );
 }
 
-const Pages = ({ Component, pageProps }: Omit<AppProps, "router">) => {
+const Pages = ({ Component, pageProps }: Omit<AppProps, 'router'>) => {
   const endpoint = useCluster();
 
   return (
@@ -98,12 +91,12 @@ const Pages = ({ Component, pageProps }: Omit<AppProps, "router">) => {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${process.env.GOOGLE_ANALYTICS_KEY}'); 
+          gtag('config', '${process.env.GOOGLE_ANALYTICS_KEY}');
         `}
       </Script>
 
       <Script strategy="lazyOnload" id="hotjar">
-        {`  
+        {`
           (function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
               h._hjSettings={hjid:3054503,hjsv:6};

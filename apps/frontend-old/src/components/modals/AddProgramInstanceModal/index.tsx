@@ -1,4 +1,4 @@
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -10,7 +10,6 @@ import { initilizeSwap } from '../../../programs';
 import { isPublicKey } from '../../../utils/pubkey';
 import { shortenAddress } from '../../../utils/shortenAddress';
 import { TextInput } from '../../TextInput';
-import { Flex } from '../../layout/Flex';
 import { BaseModal } from '../BaseModal';
 
 type Form = {

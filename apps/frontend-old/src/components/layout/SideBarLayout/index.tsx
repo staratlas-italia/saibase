@@ -1,9 +1,9 @@
+import { Flex } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import React, { PropsWithChildren } from 'react';
 import { SelfRetriever } from '../../SelfRetriever';
 import { BaseLayout } from '../BaseLayout';
 import { Container } from '../Container';
-import { Flex } from '../Flex';
 import { Header } from '../Header';
 import { Provider } from './components/Provider';
 import { SideBar } from './components/SideBar';

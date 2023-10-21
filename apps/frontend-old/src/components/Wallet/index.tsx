@@ -1,7 +1,7 @@
-import { Flex } from "../layout/Flex";
-import { WalletModal } from "../modals/WalletModal";
-import { ConnectButton } from "./components/ConnectButton";
-import { UserBadge } from "./components/UserBadge";
+import { Flex } from '@saibase/uikit';
+import { WalletModal } from '../modals/WalletModal';
+import { ConnectButton } from './components/ConnectButton';
+import { UserBadge } from './components/UserBadge';
 
 type Props = {
   hideSettings?: boolean;

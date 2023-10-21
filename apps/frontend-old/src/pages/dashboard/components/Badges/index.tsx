@@ -1,8 +1,7 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { EmptyView } from '../../../../components/EmptyView';
 import { BlurBackground } from '../../../../components/layout/BlurBackground';
-import { Flex } from '../../../../components/layout/Flex';
 import { useBadges } from '../../../../hooks/useNullableBadges';
 
 export const Badges = () => {

@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import { TextColor } from "../Text/types";
+import { TextColor } from '@saibase/uikit';
+import classNames from 'classnames';
 
 type Props = {
   color?: TextColor;
@@ -8,7 +8,7 @@ type Props = {
 export const Loader = ({ color }: Props) => {
   return (
     <svg
-      className={classNames("animate-spin h-5 w-5", color)}
+      className={classNames('animate-spin h-5 w-5', color)}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

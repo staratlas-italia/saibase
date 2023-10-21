@@ -1,7 +1,6 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Flex } from '../../components/layout/Flex';
 import { Translation } from '../../i18n/Translation';
 import { appendQueryParams } from '../../utils/appendQueryParams';
 import { fillUrlParameters } from '../../utils/fillUrlParameters';

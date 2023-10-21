@@ -1,8 +1,8 @@
 import { Flex } from '@saibase/uikit';
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { Background } from "../Background";
-import { Footer } from "../Footer";
+import { Background } from '../Background';
+import { Footer } from '../Footer';
 
 type Props = { hasSidebar?: boolean };
 

@@ -1,19 +1,16 @@
-import { Text } from '@saibase/uikit';
-import { useIntl } from 'react-intl';
+import { Text, TextColor } from '@saibase/uikit';
 import { Countdown } from '../../../../../../components/Countdown';
 import { Progress } from '../../../../../../components/Progress';
-import type { TextColor } from '../../../../../../components/common/Text/types';
+
+import { StarAtlasNft } from '@saibase/star-atlas';
+import { Flex } from '@saibase/uikit';
 import { BlurBackground } from '../../../../../../components/layout/BlurBackground';
-import { Flex } from '../../../../../../components/layout/Flex';
-import {
-  NormalizedShipStakingInfoExtended,
-  StarAtlasEntity,
-} from '../../../../../../types';
+import { NormalizedShipStakingInfoExtended } from '../../../../../../types';
 import { Heading } from './components/Heading';
 import { Image } from './components/Image';
 
 type Props = {
-  ship?: StarAtlasEntity;
+  ship?: StarAtlasNft;
   stakeInfo?: NormalizedShipStakingInfoExtended;
 };
 
@@ -28,8 +25,6 @@ const shipColors: Record<string, TextColor> = {
 };
 
 export const Card = ({ ship, stakeInfo }: Props) => {
-  const intl = useIntl();
-
   if (!ship) {
     return null;
   }

@@ -1,8 +1,7 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useMemo } from 'react';
 import { InfoRow } from '../../../../components/common/Info';
 import { Price } from '../../../../components/common/Price';
-import { Flex } from '../../../../components/layout/Flex';
 import { useAtlasPrice } from '../../../../hooks/useAtlasPrice';
 import { useEntityBestPrices } from '../../../../hooks/useEntityBestPrices';
 import { useEntityVwapPrice } from '../../../../hooks/useEntityVwapPrice';

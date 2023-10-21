@@ -1,7 +1,6 @@
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { BlurBackground } from '../../../../components/layout/BlurBackground';
-import { Flex } from '../../../../components/layout/Flex';
 import { Translation } from '../../../../i18n/Translation';
 import { HumanImage } from './HumanImage';
 

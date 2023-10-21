@@ -1,9 +1,8 @@
 import { appVersion } from '@saibase/configuration';
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { Translation } from '../../../../../../../i18n/Translation';
 import { LocaleSelector } from '../../../../../../LocaleSelector';
-import { Flex } from '../../../../../Flex';
 import { SocialLinks } from '../SocialLinks';
 
 export const Footer = () => (

@@ -1,7 +1,5 @@
-import { Text, iconRenderProp } from '@saibase/uikit';
+import { ColorName, Flex, Text, iconRenderProp } from '@saibase/uikit';
 import classNames from 'classnames';
-import { Flex } from '../../../layout/Flex';
-import { ColorName } from '../../../layout/Pane';
 
 export type ItemProps = {
   bordered?: boolean;

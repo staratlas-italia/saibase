@@ -1,75 +1,66 @@
-import { pipe } from "fp-ts/function";
-import md5 from "md5";
-import { NextApiRequest, NextApiResponse } from "next";
-import { matchMethodMiddleware } from "../../../../middlewares/matchMethod";
-import { matchSignatureMiddleware } from "../../../../middlewares/matchSignature";
-import { getMongoDatabase, mongoClient } from "../../mongodb";
-import { Self } from "../../../../types/api";
+import { matchSignatureMiddleware } from '@saibase/middlewares';
+import { pipe } from 'fp-ts/function';
+import md5 from 'md5';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { matchMethodMiddleware } from '../../../../middlewares/matchMethod';
+import { Self } from '../../../../types/api';
+import { getMongoDatabase, mongoClient } from '../../mongodb';
 
-const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
-  const { publicKey } = body;
+const handler = matchSignatureMiddleware(
+  ({ publicKey }) =>
+    async (_: NextApiRequest, res: NextApiResponse) => {
+      try {
+        await mongoClient.connect();
+      } catch (e) {
+        console.log('Cannot connect to mongo...', JSON.stringify(e));
+        res.status(500).json({
+          error: 'Cannot connect to DB.',
+        });
+      }
 
-  if (!publicKey) {
-    res.status(404).json({
-      error: "Invalid referral code public key",
-    });
-  }
+      const db = getMongoDatabase();
 
-  try {
-    await mongoClient.connect();
-  } catch (e) {
-    console.log("Cannot connect to mongo...", JSON.stringify(e));
-    res.status(500).json({
-      error: "Cannot connect to DB.",
-    });
-  }
+      const userCollection = db.collection<Self>('users');
 
-  const db = getMongoDatabase();
+      const user = await userCollection.findOne({
+        wallets: { $in: [publicKey] },
+      });
 
-  const userCollection = db.collection<Self>("users");
+      if (!user) {
+        res.status(200).json({
+          success: false,
+          error: 'User not found.',
+        });
+        return;
+      }
 
-  const user = await userCollection.findOne({
-    wallets: { $in: [publicKey] },
-  });
+      if (user.referral) {
+        res.status(200).json({
+          success: false,
+          error: 'Already had a referral code',
+        });
+        return;
+      }
 
-  if (!user) {
-    res.status(200).json({
-      success: false,
-      error: "User not found.",
-    });
-    return;
-  }
+      const referralCode = md5(user._id.toString()).toString().toUpperCase();
 
-  if (user.referral) {
-    res.status(200).json({
-      success: false,
-      error: "Already had a referral code",
-    });
-    return;
-  }
+      await userCollection.updateOne(
+        { _id: user._id },
+        {
+          $set: {
+            referral: {
+              code: referralCode,
+              createdAt: new Date(),
+            },
+          },
+        }
+      );
 
-  const referralCode = md5(user._id.toString()).toString().toUpperCase();
-
-  await userCollection.updateOne(
-    { _id: user._id },
-    {
-      $set: {
-        referral: {
-          code: referralCode,
-          createdAt: new Date(),
-        },
-      },
+      res.status(200).json({
+        success: true,
+        code: referralCode,
+      });
     }
-  );
-
-  res.status(200).json({
-    success: true,
-    code: referralCode,
-  });
-};
-
-export default pipe(
-  handler,
-  matchMethodMiddleware(["POST"]),
-  matchSignatureMiddleware
 );
+
+export default pipe(handler, matchMethodMiddleware(['POST']));
