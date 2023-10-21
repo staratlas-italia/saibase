@@ -2,12 +2,12 @@ import type {
   ShipStakingInfoExtended,
   StarAtlasNft,
 } from '@saibase/star-atlas';
+import { Text } from '@saibase/uikit';
 import { default as NextImage } from 'next/image';
 import { Card } from '../Card';
 import { Countdown } from '../Countdown';
 import { Flex } from '../Flex';
 import { Progress } from '../Progress';
-import { Text } from '../Text';
 import { TextColor } from '../Text/types';
 import { Description } from './components/Description';
 import { Heading } from './components/Heading';

@@ -7,3 +7,5 @@
 /applications/*/android/app/build
 /applications/*/ios/build
 /applications/*/ios/Pods
+
+/.nx/cache

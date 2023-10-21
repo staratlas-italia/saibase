@@ -1,3 +1,4 @@
+import { Text } from '@saibase/uikit';
 import classNames from 'classnames';
 import { PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
@@ -5,7 +6,6 @@ import { iconRenderProp } from '../../types';
 import { Flex, FlexProps } from '../Flex';
 import { Loader } from '../Loader';
 import { PaddingProps } from '../Padding';
-import { Text } from '../Text';
 import { TextColor } from '../Text/types';
 
 type ButtonKind = 'neutral' | 'primary' | 'secondary' | 'dark' | 'tertiary';
