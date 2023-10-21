@@ -1,11 +1,10 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-dom-confetti';
 import { usePlayerStore } from '../../../../stores/usePlayerStore';
 import { useCluster } from '../../../ClusterProvider';
-import { Flex } from '../../../layout/Flex';
 
 const confettiConfig = {
   angle: 90,

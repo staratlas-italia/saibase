@@ -1,6 +1,5 @@
-import { Text } from '@saibase/uikit';
+import { Text, TextColor } from '@saibase/uikit';
 import cx from 'classnames';
-import { TextColor } from '../../../../../../components/common/Text/types';
 
 type Props = {
   color: TextColor;

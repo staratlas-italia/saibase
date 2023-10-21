@@ -1,4 +1,4 @@
-import { Button } from '@saibase/uikit';
+import { Button, ButtonProps } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, PropsWithChildren, useMemo } from 'react';

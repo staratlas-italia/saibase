@@ -1,4 +1,4 @@
-import { Button } from '@saibase/uikit';
+import { Button, Flex } from '@saibase/uikit';
 import {
   useAnchorWallet,
   useConnection,
@@ -9,7 +9,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useCluster } from '../../../components/ClusterProvider';
 import { Heading } from '../../../components/common/Heading';
-import { Flex } from '../../../components/layout/Flex';
 import { AddProgramInstanceModal } from '../../../components/modals/AddProgramInstanceModal';
 import { useModal } from '../../../contexts/ModalContext';
 import { useTransactionToast } from '../../../hooks/useTransactionToast';

@@ -12,7 +12,7 @@ import { getAtlasMarketPrice } from '../../utils/getAtlasMarketPrice';
 
 export type ShipTableRow = {
   id: string;
-  imageUrl: string;
+  imageUrl: string | undefined;
   name: string;
   vwapPrice: number;
   atlasBuyPrice: number;

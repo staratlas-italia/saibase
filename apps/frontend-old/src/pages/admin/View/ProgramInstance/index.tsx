@@ -1,4 +1,4 @@
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
@@ -9,7 +9,6 @@ import {
 import { useCluster } from '../../../../components/ClusterProvider';
 import { InfoRow } from '../../../../components/common/Info';
 import { Price } from '../../../../components/common/Price';
-import { Flex } from '../../../../components/layout/Flex';
 import { useTokenBalance } from '../../../../hooks/useTokenBalance';
 import { withdrawProceeds } from '../../../../programs';
 import { StateAccount } from './..';
@@ -55,7 +54,9 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
 
       toast.success('Done.');
     } catch (e) {
-      toast.error(e.message);
+      const error = e instanceof Error ? e : new Error(String(e));
+
+      toast.error(error.message);
     }
   }, [account.publicKey, anchorWallet, cluster, connection]);
 

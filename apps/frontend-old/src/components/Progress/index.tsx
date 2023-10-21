@@ -1,6 +1,5 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import classNames from 'classnames';
-import { Flex } from '../layout/Flex';
 
 type Props = {
   title: string | JSX.Element;

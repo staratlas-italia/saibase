@@ -1,3 +1,4 @@
+import { StarAtlasNft, fetchNftsByCategory } from '@saibase/star-atlas';
 import {
   Cluster,
   Connection,
@@ -6,18 +7,16 @@ import {
   TransactionInstruction,
 } from '@solana/web3.js';
 import { createHarvestInstruction } from '@staratlas/factory';
+import { pipe } from 'fp-ts/function';
 import { chunk } from 'lodash';
 import { create } from 'zustand';
 import { ATLAS_TOKEN_MINT, SA_FLEET_PROGRAM } from '../../common/constants';
 import { fetchPlayerStakeShips } from '../../network/score';
-import { getAllShips } from '../../network/ships/getAllShips';
-import {
-  NormalizedShipStakingInfoExtended,
-  StarAtlasEntity,
-} from '../../types';
+import { NormalizedShipStakingInfoExtended } from '../../types';
+import { promiseFromTaskEither } from '../../utils/promiseFromTaskEither';
 
 type FleetData = {
-  ship: StarAtlasEntity;
+  ship: StarAtlasNft;
   stakeInfo?: NormalizedShipStakingInfoExtended;
 };
 
@@ -52,7 +51,10 @@ export const useFleetStore = create<FleetStore>((set, get) => ({
 
     if (response.success) {
       const { data: playerFleet } = response;
-      const ships = await getAllShips();
+      const ships = await pipe(
+        fetchNftsByCategory({ category: 'ship' }),
+        promiseFromTaskEither
+      );
 
       const mints = playerFleet.map((i) => i.shipMint);
       const fleetShips = ships.filter((item) => mints.includes(item.mint));
@@ -112,6 +114,8 @@ const getHarvestAllInstructions = async (
             SA_FLEET_PROGRAM
           );
         }
+
+        return null;
       })
     )
   ).filter((ix) => !!ix);

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { EasterEggDone } from "./Done";
-import { Kittens } from "./Kittens";
-import { Flex } from "../../layout/Flex";
-import { BaseModal } from "../../modals/BaseModal";
+import { Flex } from '@saibase/uikit';
+import { BaseModal } from '../../modals/BaseModal';
+import { EasterEggDone } from './Done';
+import { Kittens } from './Kittens';
 
 export const EasterEggModal = () => {
   const [done, setDone] = useState(false);
@@ -11,7 +11,7 @@ export const EasterEggModal = () => {
   return (
     <BaseModal
       id="easter-egg"
-      size={done ? "regular" : "large"}
+      size={done ? 'regular' : 'large'}
       onClose={() => setDone(false)}
     >
       <Flex direction="col" px={5} py={8}>

@@ -1,9 +1,8 @@
-import { Text } from '@saibase/uikit';
+import { StarAtlasNftSlot } from '@saibase/star-atlas';
+import { Flex, FlexProps, Text } from '@saibase/uikit';
 import { InfoRow } from '../../../../components/common/Info';
-import { Flex, FlexProps } from '../../../../components/layout/Flex';
-import { ShipSlot } from '../../../../types';
 
-type Props = FlexProps & { title: string; attrs?: ShipSlot[] };
+type Props = FlexProps & { title: string; attrs?: StarAtlasNftSlot[] };
 
 export const ShipAttributes = ({ attrs = [], title, ...props }: Props) => (
   <Flex direction="col" {...props}>

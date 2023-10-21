@@ -1,6 +1,5 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { BlurBackground } from '../../../../../../components/layout/BlurBackground';
-import { Flex } from '../../../../../../components/layout/Flex';
 import { Translation } from '../../../../../../i18n/Translation';
 import { Code } from './Code';
 

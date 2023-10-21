@@ -1,10 +1,9 @@
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BlurBackground } from '../../components/layout/BlurBackground';
 import { Container } from '../../components/layout/Container';
-import { Flex } from '../../components/layout/Flex';
 import { useShip } from '../../hooks/useShip';
 import { Translation } from '../../i18n/Translation';
 import { TranslationId } from '../../i18n/translations/types';
@@ -95,18 +94,18 @@ export const ShipPage = () => {
             </Flex>
             <Flex direction="col" className="col-span-3">
               <ShipAttributes
-                attrs={slots?.componentSlots}
+                attrs={slots?.componentSlots ?? []}
                 title={componentsTranslation}
               />
 
               <ShipAttributes
-                attrs={slots?.crewSlots}
+                attrs={slots?.crewSlots ?? []}
                 pt={10}
                 title={crewTranslation}
               />
 
               <ShipAttributes
-                attrs={slots?.moduleSlots}
+                attrs={slots?.moduleSlots ?? []}
                 pt={10}
                 title={modulesTranslation}
               />

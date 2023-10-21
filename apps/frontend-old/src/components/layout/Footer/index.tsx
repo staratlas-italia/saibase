@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
-import { Flex } from "../Flex";
-import { Disclaimer } from "./components/Disclaimer";
-import { Links } from "./components/Links";
-import { getRoute } from "../../../utils/getRoute";
+import { Flex } from '@saibase/uikit';
+import { useRouter } from 'next/router';
+import { getRoute } from '../../../utils/getRoute';
+import { Disclaimer } from './components/Disclaimer';
+import { Links } from './components/Links';
 
 export const Footer = () => {
   const { pathname } = useRouter();
 
-  if (pathname === getRoute("/mint")) {
+  if (pathname === getRoute('/mint')) {
     return null;
   }
 

@@ -1,12 +1,11 @@
 import { ShieldCheckIcon } from '@heroicons/react/outline';
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import styled from 'styled-components';
 import { useSwapStateAccount } from '../../../../../../components/SwapStateAccountGuard';
 import { Wallet } from '../../../../../../components/Wallet';
 import { Loader as CLoader } from '../../../../../../components/common/Loader';
 import { BlurBackground } from '../../../../../../components/layout/BlurBackground';
 import { Container } from '../../../../../../components/layout/Container';
-import { Flex } from '../../../../../../components/layout/Flex';
 import { Logo } from '../../../../../../components/layout/Header';
 import { useSwapProgramPrice } from '../../../../../../hooks/useSwapProgramPrice';
 import { Translation } from '../../../../../../i18n/Translation';

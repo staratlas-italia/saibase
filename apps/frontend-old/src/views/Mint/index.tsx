@@ -1,11 +1,10 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import { LoadingView } from '../../components/LoadingView';
 import { ConnectButton } from '../../components/Wallet/components/ConnectButton';
 import { Redirect } from '../../components/common/Redirect';
 import { BlurBackground } from '../../components/layout/BlurBackground';
-import { Flex } from '../../components/layout/Flex';
 import { Translation } from '../../i18n/Translation';
 import { useAirdropToken } from './useAirdropToken';
 
@@ -43,12 +42,7 @@ export const MintPage = () => {
   }
 
   if (tier) {
-    return (
-      <LoadingView
-        title="Mint.Hyperspace.text"
-        values={{ seconds: counter.toString() }}
-      />
-    );
+    return <LoadingView />;
   }
 
   if (!loading && !tier) {
@@ -61,5 +55,5 @@ export const MintPage = () => {
     );
   }
 
-  return <LoadingView title="Mint.CheckBadge.text" />;
+  return <LoadingView />;
 };

@@ -1,8 +1,7 @@
 import { DuplicateIcon, PlusIcon } from '@heroicons/react/solid';
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { APP_BASE_URL } from '../../../../../../../common/constants';
 import { AssertAuthenticated } from '../../../../../../../components/auth/AssertAuthenticated';
-import { Flex } from '../../../../../../../components/layout/Flex';
 import { useSelf } from '../../../../../../../hooks/useNullableSelf';
 import { useReferral } from '../../../../../../../hooks/useReferral';
 import { copyTextToClipboard } from '../../../../../../../utils/copyToClipboard';

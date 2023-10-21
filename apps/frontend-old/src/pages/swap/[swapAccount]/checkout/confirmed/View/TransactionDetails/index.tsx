@@ -1,7 +1,6 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { useMemo } from 'react';
 import { useSwapStateAccount } from '../../../../../../../components/SwapStateAccountGuard';
-import { Flex } from '../../../../../../../components/layout/Flex';
 import { useSwapProgramPrice } from '../../../../../../../hooks/useSwapProgramPrice';
 import { Translation } from '../../../../../../../i18n/Translation';
 import { useTranslation } from '../../../../../../../i18n/useTranslation';

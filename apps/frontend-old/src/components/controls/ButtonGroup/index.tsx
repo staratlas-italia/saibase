@@ -1,8 +1,7 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import classNames from 'classnames';
 import { Translation } from '../../../i18n/Translation';
 import { TranslationId } from '../../../i18n/translations/types';
-import { Flex } from '../../layout/Flex';
 
 type Props = {
   items: [string, TranslationId][];

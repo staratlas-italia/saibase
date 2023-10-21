@@ -1,10 +1,9 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text, TextProps } from '@saibase/uikit';
 import classNames from 'classnames';
 import { FormattedNumber } from 'react-intl';
 import styled from 'styled-components';
 import { Currency } from '../../../types';
 import { isNullOrUndefined } from '../../../utils/isNullOrUndefined';
-import { Flex } from '../../layout/Flex';
 
 type Props = TextProps & {
   inverse?: boolean;

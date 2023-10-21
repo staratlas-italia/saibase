@@ -1,10 +1,9 @@
 import { CogIcon } from '@heroicons/react/outline';
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import styled from 'styled-components';
 import { useModal } from '../../../../contexts/ModalContext';
 import { shortenAddress } from '../../../../utils/shortenAddress';
-import { Flex } from '../../../layout/Flex';
 import { Identicon } from './Identicon';
 
 type Props = {

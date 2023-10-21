@@ -1,11 +1,11 @@
-import Image from "next/image";
-import { Flex } from "../../../../../components/layout/Flex";
-import { useSelf } from "../../../../../hooks/useNullableSelf";
+import { Flex } from '@saibase/uikit';
+import Image from 'next/image';
+import { useSelf } from '../../../../../hooks/useNullableSelf';
 
 export const Badges = () => {
   const self = useSelf();
 
-  const isCatLover = self.tags?.includes("cat-lover");
+  const isCatLover = self.tags?.includes('cat-lover');
 
   return (
     <>

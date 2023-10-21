@@ -1,8 +1,8 @@
-import { Text } from '@saibase/uikit';
 import classNames from 'classnames';
 import { FormattedNumber } from 'react-intl';
 import styled from 'styled-components';
 import { Flex } from '../Flex';
+import { Text, TextProps } from '../Text';
 
 export type Currency = 'ATLAS' | 'POLIS' | 'USDC' | 'NONE';
 

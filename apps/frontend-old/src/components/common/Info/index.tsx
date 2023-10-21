@@ -1,8 +1,6 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text, TextColor } from '@saibase/uikit';
 import { PropsWithChildren } from 'react';
-import { Flex } from '../../layout/Flex';
 import { Loader } from '../Loader';
-import { TextColor } from '../Text/types';
 
 type Props = PropsWithChildren<{
   color?: TextColor;

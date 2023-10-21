@@ -9,7 +9,7 @@ import {
 } from '@solana/wallet-adapter-wallets';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 
-export const WalletProvider = ({ children }: PropsWithChildren) => {
+const WalletProvider = ({ children }: PropsWithChildren) => {
   const wallets = useMemo(
     () => [
       new LedgerWalletAdapter(),
@@ -31,3 +31,5 @@ export const WalletProvider = ({ children }: PropsWithChildren) => {
     </BaseWalletProvider>
   );
 };
+
+export default WalletProvider;

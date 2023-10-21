@@ -1,4 +1,4 @@
-import { Button, Text } from '@saibase/uikit';
+import { Button, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,7 +6,6 @@ import { useMemo } from 'react';
 import { DEV_EMAIL } from '../../../../../../common/constants';
 import { BlurBackground } from '../../../../../../components/layout/BlurBackground';
 import { Container } from '../../../../../../components/layout/Container';
-import { Flex } from '../../../../../../components/layout/Flex';
 import { Translation } from '../../../../../../i18n/Translation';
 import { TranslationId } from '../../../../../../i18n/translations/types';
 import { getRoute } from '../../../../../../utils/getRoute';

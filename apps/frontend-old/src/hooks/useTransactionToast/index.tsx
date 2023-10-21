@@ -1,4 +1,4 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import { captureException } from '@sentry/nextjs';
 import {
   WalletNotConnectedError,
@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useCluster } from '../../components/ClusterProvider';
-import { Flex } from '../../components/layout/Flex';
 import { useTranslation } from '../../i18n/useTranslation';
 
 type Options = {

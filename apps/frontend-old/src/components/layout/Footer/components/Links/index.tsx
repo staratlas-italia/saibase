@@ -1,7 +1,6 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { Translation } from '../../../../../i18n/Translation';
-import { Flex } from '../../../Flex';
 
 export const Links = () => {
   return (

@@ -48,7 +48,7 @@ export const usePaymentStore = create<PaymentStore>((set, get) => ({
   },
   fetchReference: async ({ publicKey, swapAccount }) => {
     if (get().isFetchingReference) {
-      return null;
+      return;
     }
 
     set({ isFetchingReference: true });

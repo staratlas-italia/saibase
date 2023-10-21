@@ -1,15 +1,14 @@
-import { Text } from '@saibase/uikit';
+import { Flex, Text } from '@saibase/uikit';
+import { isSignatureLegit } from '@saibase/web3';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Translation } from '../../../i18n/Translation';
 import { useAuthStore } from '../../../stores/useAuthStore';
 import { StrictReactNode } from '../../../types';
 import { getProofMessage } from '../../../utils/getProofMessage';
 import { Routes } from '../../../utils/getRoute';
-import { isSignatureValid } from '../../../utils/isSignatureValid';
 import { Wallet } from '../../Wallet';
 import { Redirect } from '../../common/Redirect';
 import { BlurBackground } from '../../layout/BlurBackground';
-import { Flex } from '../../layout/Flex';
 import { SignatureRefresher } from './SignatureRefresher';
 
 type Props = {
@@ -51,11 +50,10 @@ export const AssertAuthenticated = ({
   if (
     !signature ||
     !publicKey ||
-    !isSignatureValid({
+    !isSignatureLegit({
       proof: signature,
       message: getProofMessage(),
-      signer: publicKey,
-    })
+    })(publicKey)
   ) {
     return <>{fallback}</>;
   }

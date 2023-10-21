@@ -1,4 +1,4 @@
-import { Button } from '@saibase/uikit';
+import { Button, ButtonProps } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useCallback } from 'react';
 import { useModal } from '../../../../contexts/ModalContext';
