@@ -1,8 +1,8 @@
 import { getPublicRoute } from '@saibase/routes-public';
 import { Flex } from '@saibase/uikit';
 import { useRouter } from 'next/router';
-import { Disclaimer } from '~/components/layout/Footer/components/Disclaimer';
-import { Links } from '~/components/layout/Footer/components/Links';
+import { Disclaimer } from "./components/Disclaimer";
+import { Links } from "./components/Links";
 
 export const Footer = () => {
   const { pathname } = useRouter();

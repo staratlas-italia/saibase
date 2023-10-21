@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { LoadingView } from '~/components/LoadingView';
-import { useNullableShips } from '~/hooks/useNullableShips';
+import { LoadingView } from "../LoadingView";
+import { useNullableShips } from "../../hooks/useNullableShips";
 
 export const ShipsRetriever = ({ children }: PropsWithChildren) => {
   const { error, loading } = useNullableShips();

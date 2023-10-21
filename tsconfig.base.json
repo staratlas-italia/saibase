@@ -17,8 +17,7 @@
       "@saibase/solscan-api": ["libs/solscan-api/src/index.ts"],
       "@saibase/star-atlas": ["libs/star-atlas/src/index.ts"],
       "@saibase/uikit": ["libs/uikit/src/index.ts"],
-      "@saibase/web3": ["libs/web3/src/index.ts"],
-      "~/*": ["apps/frontend/src/*"]
+      "@saibase/web3": ["libs/web3/src/index.ts"]
     },
     "plugins": [
       {

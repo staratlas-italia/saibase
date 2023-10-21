@@ -5,15 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
-import { useCluster } from '~/components/ClusterProvider';
-import { List, ListSectons } from '~/components/List';
-import { useModal } from '~/contexts/ModalContext';
-import { useClearAllStores } from '~/hooks/useClearAllStores';
-import { Translation } from '~/i18n/Translation';
-import { useTranslation } from '~/i18n/useTranslation';
-import { useAppStore, useHueAnimation } from '~/stores/useAppStore';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { shortenAddress } from '~/utils/shortenAddress';
+import { useCluster } from "../../../../ClusterProvider";
+import { List, ListSectons } from "../../../../List";
+import { useModal } from "../../../../../contexts/ModalContext";
+import { useClearAllStores } from "../../../../../hooks/useClearAllStores";
+import { Translation } from "../../../../../i18n/Translation";
+import { useTranslation } from "../../../../../i18n/useTranslation";
+import { useAppStore, useHueAnimation } from "../../../../../stores/useAppStore";
+import { appendQueryParams } from "../../../../../utils/appendQueryParams";
+import { shortenAddress } from "../../../../../utils/shortenAddress";
 
 export const ConnectedContent = () => {
   const { disconnect, publicKey, wallet } = useWallet();

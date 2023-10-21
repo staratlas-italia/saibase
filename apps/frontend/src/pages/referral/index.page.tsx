@@ -3,10 +3,10 @@ import { getPublicRoute } from '@saibase/routes-public';
 import { Button, Card, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/router';
-import { AssertAuthenticated } from '~/components/auth/AssertAuthenticated';
-import { Redirect } from '~/components/common/Redirect';
-import { useReferral } from '~/hooks/useReferral';
-import { Translation } from '~/i18n/Translation';
+import { AssertAuthenticated } from "../../components/auth/AssertAuthenticated";
+import { Redirect } from "../../components/common/Redirect";
+import { useReferral } from "../../hooks/useReferral";
+import { Translation } from "../../i18n/Translation";
 
 const ReferralCodePage = () => {
   const isReferralSystemDisabled = useFeature(

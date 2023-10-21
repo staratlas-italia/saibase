@@ -1,5 +1,5 @@
 import { Card, Flex, Text } from '@saibase/uikit';
-import { Translation } from '~/i18n/Translation';
+import { Translation } from "../../../../../../i18n/Translation";
 import { Code } from './Code';
 
 export const Referral = () => {

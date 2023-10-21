@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { appendQueryParams } from '~/utils/appendQueryParams';
+import { appendQueryParams } from "../../../../../utils/appendQueryParams";
 import { MenuItem } from '../SideBar/types';
 import { getMenuItems } from './getMenuItems';
 

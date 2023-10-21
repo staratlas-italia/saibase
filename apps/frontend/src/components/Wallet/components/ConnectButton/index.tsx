@@ -1,8 +1,8 @@
 import { Button, ButtonProps } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useCallback } from 'react';
-import { useModal } from '~/contexts/ModalContext';
-import { Translation } from '~/i18n/Translation';
+import { useModal } from "../../../../contexts/ModalContext";
+import { Translation } from "../../../../i18n/Translation";
 
 export const ConnectButton = ({
   kind = 'neutral',

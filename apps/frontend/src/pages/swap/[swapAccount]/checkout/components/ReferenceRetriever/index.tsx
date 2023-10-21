@@ -4,8 +4,8 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import invariant from 'invariant';
 import { useRouter } from 'next/router';
 import { PropsWithChildren, ReactNode, useEffect } from 'react';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { usePaymentStore } from '~/stores/usePaymentStore';
+import { useSwapStateAccount } from "../../../../../../components/SwapStateAccountGuard";
+import { usePaymentStore } from "../../../../../../stores/usePaymentStore";
 
 type Props = {
   loader?: ReactNode;

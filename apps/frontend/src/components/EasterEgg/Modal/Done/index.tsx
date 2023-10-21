@@ -3,8 +3,8 @@ import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-dom-confetti';
-import { useCluster } from '~/components/ClusterProvider';
-import { usePlayerStore } from '~/stores/usePlayerStore';
+import { useCluster } from "../../../ClusterProvider";
+import { usePlayerStore } from "../../../../stores/usePlayerStore";
 
 const confettiConfig = {
   angle: 90,

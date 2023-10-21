@@ -2,7 +2,7 @@ import { mints } from '@saibase/constants';
 import { getTokenBalanceByMint } from '@saibase/web3';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
-import { Tier } from '~/types';
+import { Tier } from "../../../types";
 
 export const useAirdropToken = () => {
   const { connection } = useConnection();

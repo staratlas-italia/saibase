@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import Confetti from 'react-dom-confetti';
 import styled from 'styled-components';
-import { DEV_EMAIL } from '~/common/constants';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { Container } from '~/components/layout/Container';
-import { Logo } from '~/components/layout/Header';
-import { Translation } from '~/i18n/Translation';
+import { DEV_EMAIL } from "../../../../../../common/constants";
+import { useSwapStateAccount } from "../../../../../../components/SwapStateAccountGuard";
+import { Container } from "../../../../../../components/layout/Container";
+import { Logo } from "../../../../../../components/layout/Header";
+import { Translation } from "../../../../../../i18n/Translation";
 import { TransactionDetails } from './TransactionDetails';
 
 const confettiConfig = {

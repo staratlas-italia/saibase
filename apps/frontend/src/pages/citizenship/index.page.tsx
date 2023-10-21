@@ -3,9 +3,9 @@ import { Card, Flex, Text } from '@saibase/uikit';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Translation } from '~/i18n/Translation';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { Translation } from "../../i18n/Translation";
+import { appendQueryParams } from "../../utils/appendQueryParams";
+import { fillUrlParameters } from "../../utils/fillUrlParameters";
 import { useFactionAccounts } from './useFactionAccounts';
 
 const FactionBlock = styled(Card).attrs({

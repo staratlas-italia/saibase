@@ -3,8 +3,8 @@ import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
 import { useCallback, useMemo } from 'react';
-import { useAuthStore } from '~/stores/useAuthStore';
-import { getProofMessage } from '~/utils/getProofMessage';
+import { useAuthStore } from "../../stores/useAuthStore";
+import { getProofMessage } from "../../utils/getProofMessage";
 import { createProof } from './createProof';
 import { logCreateProofError } from './logCreateProofError';
 

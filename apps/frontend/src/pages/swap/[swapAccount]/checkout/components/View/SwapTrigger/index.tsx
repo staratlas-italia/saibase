@@ -9,10 +9,10 @@ import {
 } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { useCallback, useState } from 'react';
-import { useCluster } from '~/components/ClusterProvider';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { useTransactionToast } from '~/hooks/useTransactionToast';
-import { Translation } from '~/i18n/Translation';
+import { useCluster } from "../../../../../../../components/ClusterProvider";
+import { useSwapStateAccount } from "../../../../../../../components/SwapStateAccountGuard";
+import { useTransactionToast } from "../../../../../../../hooks/useTransactionToast";
+import { Translation } from "../../../../../../../i18n/Translation";
 import { usePaymentReference } from '../../ReferenceRetriever';
 
 export const SwapTrigger = () => {

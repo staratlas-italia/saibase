@@ -8,7 +8,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
+import { useSwapStateAccount } from "../../components/SwapStateAccountGuard";
 
 const Context = createContext<{ price: number } | null>(null);
 

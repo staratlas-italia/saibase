@@ -4,10 +4,10 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { DEV_EMAIL } from '~/common/constants';
-import { Container } from '~/components/layout/Container';
-import { Translation } from '~/i18n/Translation';
-import { TranslationId } from '~/i18n/translations/types';
+import { DEV_EMAIL } from "../../../../../../common/constants";
+import { Container } from "../../../../../../components/layout/Container";
+import { Translation } from "../../../../../../i18n/Translation";
+import { TranslationId } from "../../../../../../i18n/translations/types";
 
 export const View = () => {
   const { publicKey } = useWallet();

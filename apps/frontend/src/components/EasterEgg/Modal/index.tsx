@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { Flex } from '@saibase/uikit';
-import { EasterEggDone } from '~/components/EasterEgg/Modal/Done';
-import { Kittens } from '~/components/EasterEgg/Modal/Kittens';
-import { BaseModal } from '~/components/modals/BaseModal';
+import { EasterEggDone } from "./Done";
+import { Kittens } from "./Kittens";
+import { BaseModal } from "../../modals/BaseModal";
 
 export const EasterEggModal = () => {
   const [done, setDone] = useState(false);

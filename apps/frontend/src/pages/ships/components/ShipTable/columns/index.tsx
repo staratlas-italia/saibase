@@ -4,8 +4,8 @@ import { Flex, Price, Text } from '@saibase/uikit';
 import { createColumnHelper } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShipTableRow } from '~/stores/useShipsDealsStore';
-import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { ShipTableRow } from "../../../../../stores/useShipsDealsStore";
+import { fillUrlParameters } from "../../../../../utils/fillUrlParameters";
 import { MarketAction } from '..';
 
 type Param = {

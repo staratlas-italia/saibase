@@ -18,7 +18,7 @@ import * as TE from 'fp-ts/TaskEither';
 import { flow, pipe } from 'fp-ts/function';
 import { chunk } from 'lodash';
 import { create } from 'zustand';
-import { fetchPlayerStakeShips } from '~/network/score';
+import { fetchPlayerStakeShips } from "../../network/score";
 
 type FleetData = {
   ship: StarAtlasNft;

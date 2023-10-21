@@ -1,10 +1,10 @@
 import { PublicKey } from '@solana/web3.js';
 import { createIntl, createIntlCache } from 'react-intl';
-import { APP_BASE_URL, FLEET_WEBSITE_URL } from '~/common/constants';
-import { MenuItem } from '~/components/layout/SideBarLayout/components/SideBar/types';
-import { getTranslations } from '~/i18n/getTranslations';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { isAdminPublicKey } from '~/utils/isAdminPublicKey';
+import { APP_BASE_URL, FLEET_WEBSITE_URL } from "../../../../../../common/constants";
+import { MenuItem } from "../../SideBar/types";
+import { getTranslations } from "../../../../../../i18n/getTranslations";
+import { appendQueryParams } from "../../../../../../utils/appendQueryParams";
+import { isAdminPublicKey } from "../../../../../../utils/isAdminPublicKey";
 
 export const getMenuItems = async (
   locale = 'it',

@@ -13,12 +13,12 @@ import {
 import { PublicKey, Transaction } from '@solana/web3.js';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useCluster } from '~/components/ClusterProvider';
-import { AddProgramInstanceModal } from '~/components/modals/AddProgramInstanceModal';
-import { useModal } from '~/contexts/ModalContext';
-import { useTransactionToast } from '~/hooks/useTransactionToast';
-import { Translation } from '~/i18n/Translation';
-import { ProgramInstance } from '~/pages/admin/View/ProgramInstance';
+import { useCluster } from "../../../components/ClusterProvider";
+import { AddProgramInstanceModal } from "../../../components/modals/AddProgramInstanceModal";
+import { useModal } from "../../../contexts/ModalContext";
+import { useTransactionToast } from "../../../hooks/useTransactionToast";
+import { Translation } from "../../../i18n/Translation";
+import { ProgramInstance } from "./ProgramInstance";
 
 type UnwrapPromiseType<T> = T extends Promise<infer U> ? U : never;
 

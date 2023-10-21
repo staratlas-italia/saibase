@@ -1,8 +1,8 @@
 import { Button, Flex } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Image from 'next/image';
-import { useModal } from '~/contexts/ModalContext';
-import { Translation } from '~/i18n/Translation';
+import { useModal } from "../../../../../contexts/ModalContext";
+import { Translation } from "../../../../../i18n/Translation";
 
 export const DisconnectedContent = () => {
   const { close } = useModal('wallet-modal');

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { useShips } from '~/hooks/useShips';
+import { useShips } from "../useShips";
 
 export const useShip = () => {
   const {

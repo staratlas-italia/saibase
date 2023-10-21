@@ -1,5 +1,5 @@
 import { PublicKey } from '@solana/web3.js';
-import { TranslationId } from '~/i18n/translations/types';
+import { TranslationId } from "../../../i18n/translations/types";
 
 export type SwapSetting = {
   size?: string;

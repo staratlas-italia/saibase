@@ -7,16 +7,16 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { LinkDiscordButton } from '~/components/LinkDiscordButton';
-import { LocaleSelector } from '~/components/LocaleSelector';
-import { SelfRetriever } from '~/components/SelfRetriever';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { Wallet } from '~/components/Wallet';
-import { Container } from '~/components/layout/Container';
-import { Logo } from '~/components/layout/Header';
-import { Translation } from '~/i18n/Translation';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { LinkDiscordButton } from "../../../../../components/LinkDiscordButton";
+import { LocaleSelector } from "../../../../../components/LocaleSelector";
+import { SelfRetriever } from "../../../../../components/SelfRetriever";
+import { useSwapStateAccount } from "../../../../../components/SwapStateAccountGuard";
+import { Wallet } from "../../../../../components/Wallet";
+import { Container } from "../../../../../components/layout/Container";
+import { Logo } from "../../../../../components/layout/Header";
+import { Translation } from "../../../../../i18n/Translation";
+import { appendQueryParams } from "../../../../../utils/appendQueryParams";
+import { fillUrlParameters } from "../../../../../utils/fillUrlParameters";
 
 const ImageContainer = styled.div`
   width: 100%;

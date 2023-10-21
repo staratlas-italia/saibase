@@ -1,7 +1,7 @@
 import { Cluster, PublicKey } from '@solana/web3.js';
 import { create } from 'zustand';
-import { confirmPayment } from '~/network/payments/confirm';
-import { fetchPaymentReference } from '~/network/payments/reference';
+import { confirmPayment } from "../../network/payments/confirm";
+import { fetchPaymentReference } from "../../network/payments/reference";
 
 type PaymentStore = {
   reference: string | null;

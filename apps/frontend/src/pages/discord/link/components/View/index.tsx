@@ -2,15 +2,15 @@ import { PublicRoute, getPublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Loader, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
-import { Wallet } from '~/components/Wallet';
-import { useSignature } from '~/components/auth/AssertAuthenticated/useSignature';
-import { Redirect } from '~/components/common/Redirect';
-import { Container } from '~/components/layout/Container';
-import { Logo } from '~/components/layout/Header';
-import { useSelf } from '~/hooks/useNullableSelf';
-import { Translation } from '~/i18n/Translation';
-import { getDiscordSelf } from '~/network/discord';
-import { usePlayerStore } from '~/stores/usePlayerStore';
+import { Wallet } from "../../../../../components/Wallet";
+import { useSignature } from "../../../../../components/auth/AssertAuthenticated/useSignature";
+import { Redirect } from "../../../../../components/common/Redirect";
+import { Container } from "../../../../../components/layout/Container";
+import { Logo } from "../../../../../components/layout/Header";
+import { useSelf } from "../../../../../hooks/useNullableSelf";
+import { Translation } from "../../../../../i18n/Translation";
+import { getDiscordSelf } from "../../../../../network/discord";
+import { usePlayerStore } from "../../../../../stores/usePlayerStore";
 
 export const View = () => {
   const { publicKey } = useWallet();

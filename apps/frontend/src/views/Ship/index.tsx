@@ -3,13 +3,13 @@ import { getPublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Container } from '~/components/layout/Container';
-import { useShip } from '~/hooks/useShip';
-import { Translation } from '~/i18n/Translation';
-import { TranslationId } from '~/i18n/translations/types';
-import { useTranslation } from '~/i18n/useTranslation';
-import { ShipAttributes } from '~/views/Ship/components/ShipAttributes';
-import { ShipPrices } from '~/views/Ship/components/ShipPrices';
+import { Container } from "../../components/layout/Container";
+import { useShip } from "../../hooks/useShip";
+import { Translation } from "../../i18n/Translation";
+import { TranslationId } from "../../i18n/translations/types";
+import { useTranslation } from "../../i18n/useTranslation";
+import { ShipAttributes } from "./components/ShipAttributes";
+import { ShipPrices } from "./components/ShipPrices";
 
 export const ShipPage = () => {
   const {
@@ -32,7 +32,7 @@ export const ShipPage = () => {
   const modulesTranslation = useTranslation('Ships.Details.Modules.title');
 
   return (
-    <Container>
+    (<Container>
       <Flex pt={8}>
         <Card direction="col" className="space-y-5" p={5}>
           <Link href={getPublicRoute('/ships')} locale={locale}>
@@ -126,6 +126,6 @@ export const ShipPage = () => {
           </Flex>
         </Card>
       </Flex>
-    </Container>
+    </Container>)
   );
 };

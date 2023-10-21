@@ -1,10 +1,10 @@
 import { getApiRoute } from '@saibase/routes-api';
 import { captureException } from '@sentry/nextjs';
 import { Cluster } from '@solana/web3.js';
-import { api } from '~/network/api';
-import { ScoreFleetResponse } from '~/types/api';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { api } from "../api";
+import { ScoreFleetResponse } from "../../types/api";
+import { appendQueryParams } from "../../utils/appendQueryParams";
+import { fillUrlParameters } from "../../utils/fillUrlParameters";
 
 export const fetchPlayerStakeShips = async (
   cluster: Cluster,

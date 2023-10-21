@@ -1,9 +1,9 @@
 import { Flex, Text } from '@saibase/uikit';
 import { useMemo } from 'react';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
-import { Translation } from '~/i18n/Translation';
-import { useTranslation } from '~/i18n/useTranslation';
+import { useSwapStateAccount } from "../../../../../../../components/SwapStateAccountGuard";
+import { useSwapProgramPrice } from "../../../../../../../hooks/useSwapProgramPrice";
+import { Translation } from "../../../../../../../i18n/Translation";
+import { useTranslation } from "../../../../../../../i18n/useTranslation";
 
 const Item = ({ title, value }: { title: string; value: string }) => (
   <Flex justify="between">

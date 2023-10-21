@@ -5,8 +5,8 @@ import {
 import { pipe } from 'fp-ts/function';
 import md5 from 'md5';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMongoDatabase, mongoClient } from '~/pages/api/mongodb';
-import { Self } from '~/types/api';
+import { getMongoDatabase, mongoClient } from "../../mongodb";
+import { Self } from "../../../../types/api";
 
 const handler = matchSignatureMiddleware(
   ({ publicKey }) =>

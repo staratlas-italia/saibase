@@ -2,10 +2,10 @@ import { useCallback, useState } from 'react';
 import {
   FallingSpaceships,
   FallingSpaceshipsProps,
-} from '~/components/EasterEgg/FallingSpaceships';
-import { HtmlComment } from '~/components/HtmlComment';
-import { useModal } from '~/contexts/ModalContext';
-import { useKonamiCheatCode } from '~/hooks/useKonamiCheatCode';
+} from "./FallingSpaceships";
+import { HtmlComment } from "../HtmlComment";
+import { useModal } from "../../contexts/ModalContext";
+import { useKonamiCheatCode } from "../../hooks/useKonamiCheatCode";
 
 const Content = ({ onUnlock }: { onUnlock: () => void }) => {
   useKonamiCheatCode({ onUnlock });

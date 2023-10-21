@@ -6,11 +6,11 @@ import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { TextInput } from '~/components/TextInput';
-import { BaseModal } from '~/components/modals/BaseModal';
-import { useModal } from '~/contexts/ModalContext';
-import { useTranslation } from '~/i18n/useTranslation';
-import { shortenAddress } from '~/utils/shortenAddress';
+import { TextInput } from "../../TextInput";
+import { BaseModal } from "../BaseModal";
+import { useModal } from "../../../contexts/ModalContext";
+import { useTranslation } from "../../../i18n/useTranslation";
+import { shortenAddress } from "../../../utils/shortenAddress";
 
 type Form = {
   price: number;

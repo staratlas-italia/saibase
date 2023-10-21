@@ -1,9 +1,9 @@
 import { Button, Flex, Heading, Loader } from '@saibase/uikit';
 import Head from 'next/head';
-import { ShipsRetriever } from '~/components/ShipsRetriever';
-import { useShips } from '~/hooks/useShips';
-import { Translation } from '~/i18n/Translation';
-import { useShipsDealsStore } from '~/stores/useShipsDealsStore';
+import { ShipsRetriever } from "../../../components/ShipsRetriever";
+import { useShips } from "../../../hooks/useShips";
+import { Translation } from "../../../i18n/Translation";
+import { useShipsDealsStore } from "../../../stores/useShipsDealsStore";
 import { ShipTable } from '../components/ShipTable';
 
 const Refresh = () => {

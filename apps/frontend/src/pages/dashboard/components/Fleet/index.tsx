@@ -1,6 +1,6 @@
 import { Flex, StarAtlasShip } from '@saibase/uikit';
-import { EmptyView } from '~/components/EmptyView';
-import { useFleet } from '~/hooks/useNullableFleet';
+import { EmptyView } from "../../../../components/EmptyView";
+import { useFleet } from "../../../../hooks/useNullableFleet";
 
 export const Fleet = () => {
   const fleet = useFleet();

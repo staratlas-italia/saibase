@@ -7,11 +7,11 @@ import { toast } from 'react-toastify';
 import {
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
   TOKEN_SWAP_STATE_ACCOUNTS,
-} from '~/common/constants';
-import { useCluster } from '~/components/ClusterProvider';
-import { InfoRow } from '~/components/common/Info';
-import { useTokenBalance } from '~/hooks/useTokenBalance';
-import { StateAccount } from '~/pages/admin/View';
+} from "../../../../common/constants";
+import { useCluster } from "../../../../components/ClusterProvider";
+import { InfoRow } from "../../../../components/common/Info";
+import { useTokenBalance } from "../../../../hooks/useTokenBalance";
+import { StateAccount } from "./..";
 
 type Props = {
   account: StateAccount;

@@ -1,6 +1,6 @@
 import * as E from 'fp-ts/Either';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getShipsNfts } from '~/network/ships/getAllShips';
+import { getShipsNfts } from "../../../network/ships/getAllShips";
 
 const handler = async (_: NextApiRequest, res: NextApiResponse) => {
   const result = await getShipsNfts()();

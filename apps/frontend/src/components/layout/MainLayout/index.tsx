@@ -1,8 +1,8 @@
 import { PublicRoute } from '@saibase/routes-public';
 import { useRouter } from 'next/router';
 import { PropsWithChildren, useMemo } from 'react';
-import { BaseLayout } from '~/components/layout/BaseLayout';
-import { SideBarLayout } from '~/components/layout/SideBarLayout';
+import { BaseLayout } from "../BaseLayout";
+import { SideBarLayout } from "../SideBarLayout";
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
   const { pathname } = useRouter();

@@ -1,9 +1,9 @@
 import { appVersion } from '@saibase/configuration';
 import { Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
-import { LocaleSelector } from '~/components/LocaleSelector';
-import { SocialLinks } from '~/components/layout/SideBarLayout/components/SideBar/components/SocialLinks';
-import { Translation } from '~/i18n/Translation';
+import { Translation } from '../../../../../../../i18n/Translation';
+import { LocaleSelector } from '../../../../../../LocaleSelector';
+import { SocialLinks } from '../SocialLinks';
 
 export const Footer = () => (
   <Flex direction="col">

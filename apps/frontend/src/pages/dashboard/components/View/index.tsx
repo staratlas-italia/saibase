@@ -1,11 +1,11 @@
 import { Card, Flex, Heading, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { BadgesRetriever } from '~/components/BadgesRetriever';
-import { FleetRetriever } from '~/components/FleetRetriever';
-import { LoadingView } from '~/components/LoadingView';
-import { SelfRetriever } from '~/components/SelfRetriever';
-import { Translation } from '~/i18n/Translation';
-import { Badges } from '~/pages/dashboard/components/Badges';
+import { BadgesRetriever } from "../../../../components/BadgesRetriever";
+import { FleetRetriever } from "../../../../components/FleetRetriever";
+import { LoadingView } from "../../../../components/LoadingView";
+import { SelfRetriever } from "../../../../components/SelfRetriever";
+import { Translation } from "../../../../i18n/Translation";
+import { Badges } from "../Badges";
 import { Fleet } from '../Fleet';
 import { Profile } from '../Profile';
 import { ClaimAll } from './ClaimAll';

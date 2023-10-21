@@ -9,9 +9,9 @@ import {
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMongoDatabase } from '~/pages/api/mongodb';
-import { Transaction } from '~/types/api';
-import { getConnectionClusterUrl } from '~/utils/connection';
+import { getMongoDatabase } from "../../mongodb";
+import { Transaction } from "../../../../types/api";
+import { getConnectionClusterUrl } from "../../../../utils/connection";
 
 const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   const { cluster: clusterParam, reference: referenceParam, publicKey } = body;

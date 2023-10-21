@@ -1,9 +1,9 @@
 import { Flex, Price, Text } from '@saibase/uikit';
 import { useMemo } from 'react';
-import { InfoRow } from '~/components/common/Info';
-import { useAtlasPrice } from '~/hooks/useAtlasPrice';
-import { useEntityBestPrices } from '~/hooks/useEntityBestPrices';
-import { useEntityVwapPrice } from '~/hooks/useEntityVwapPrice';
+import { InfoRow } from "../../../../components/common/Info";
+import { useAtlasPrice } from "../../../../hooks/useAtlasPrice";
+import { useEntityBestPrices } from "../../../../hooks/useEntityBestPrices";
+import { useEntityVwapPrice } from "../../../../hooks/useEntityVwapPrice";
 
 export const ShipPrices = () => {
   const vwap = useEntityVwapPrice();

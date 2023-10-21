@@ -2,8 +2,8 @@ import { ArrowRightIcon } from '@heroicons/react/solid';
 import { Button, Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Translation } from '~/i18n/Translation';
-import { ShipImage } from '~/views/Home/components/WelcomeBanner/ShipImage';
+import { Translation } from "../../../../i18n/Translation";
+import { ShipImage } from "./ShipImage";
 
 export const WelcomeBanner = () => {
   const { locale } = useRouter();

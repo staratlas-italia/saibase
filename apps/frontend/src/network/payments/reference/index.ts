@@ -1,7 +1,7 @@
 import { getApiRoute } from '@saibase/routes-api';
 import { Cluster } from '@solana/web3.js';
-import { api } from '~/network/api';
-import { PaymentReferenceResponse } from '~/types/api';
+import { api } from "../../api";
+import { PaymentReferenceResponse } from "../../../types/api";
 
 type Param = {
   cluster?: Cluster;

@@ -3,7 +3,7 @@ import { isPublicKey } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import { getShipStakingAccountInfo } from '@staratlas/factory';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getConnectionClusterUrl } from '~/utils/connection';
+import { getConnectionClusterUrl } from "../../../../utils/connection";
 
 export type ResponseData =
   | {

@@ -1,7 +1,7 @@
 import { getApiRoute } from '@saibase/routes-api';
-import { api } from '~/network/api';
-import { Player } from '~/types';
-import { appendQueryParams } from '~/utils/appendQueryParams';
+import { api } from "../api";
+import { Player } from "../../types";
+import { appendQueryParams } from "../../utils/appendQueryParams";
 
 export const fetchPlayer = async (pubkey: string) => {
   try {

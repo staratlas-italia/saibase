@@ -13,14 +13,14 @@ import {
   FOOD_PRICE,
   FUEL_PRICE,
   TOOLKIT_PRICE,
-} from '~/common/constants';
-import { ScoreFleetResponse } from '~/types/api';
-import { getConnectionClusterUrl } from '~/utils/connection';
-import { dailyMaintenanceCostInAtlas } from '~/utils/dailyMaintenanceCostInAtlas';
-import { grossDailyRewardInAtlas } from '~/utils/grossDailyRewardInAtlas';
-import { netDailyRewardInAtlas } from '~/utils/netDailyRewardInAtlas';
-import { resDailyConsumption } from '~/utils/resDailyConsumption';
-import { resDailyCostInAtlas } from '~/utils/resDailyCostInAtlas';
+} from "../../../common/constants";
+import { ScoreFleetResponse } from "../../../types/api";
+import { getConnectionClusterUrl } from "../../../utils/connection";
+import { dailyMaintenanceCostInAtlas } from "../../../utils/dailyMaintenanceCostInAtlas";
+import { grossDailyRewardInAtlas } from "../../../utils/grossDailyRewardInAtlas";
+import { netDailyRewardInAtlas } from "../../../utils/netDailyRewardInAtlas";
+import { resDailyConsumption } from "../../../utils/resDailyConsumption";
+import { resDailyCostInAtlas } from "../../../utils/resDailyCostInAtlas";
 
 const getReward = (fleet: ShipStakingInfo, rewardRate: number) => {
   const now = Date.now() / 1000;

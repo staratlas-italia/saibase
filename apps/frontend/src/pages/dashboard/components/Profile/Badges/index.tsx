@@ -1,6 +1,6 @@
 import { Flex } from '@saibase/uikit';
 import Image from 'next/image';
-import { useSelf } from '~/hooks/useNullableSelf';
+import { useSelf } from "../../../../../hooks/useNullableSelf";
 
 export const Badges = () => {
   const self = useSelf();

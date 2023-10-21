@@ -4,8 +4,8 @@ import { captureException } from '@sentry/nextjs';
 import { pipe } from 'fp-ts/function';
 import { isEqual } from 'lodash';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMongoDatabase } from '~/pages/api/mongodb';
-import { Self } from '~/types/api';
+import { getMongoDatabase } from "../mongodb";
+import { Self } from "../../../types/api";
 
 const rightOrder = [
   '100A97787B9FD5A42492099419E18A2E',

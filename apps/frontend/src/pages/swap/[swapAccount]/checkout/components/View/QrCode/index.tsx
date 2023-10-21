@@ -4,12 +4,12 @@ import { createQR, encodeURL } from '@solana/pay';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/router';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useCluster } from '~/components/ClusterProvider';
-import { useSwapStateAccount } from '~/components/SwapStateAccountGuard';
-import { useSwapProgramPrice } from '~/hooks/useSwapProgramPrice';
-import { usePaymentStore } from '~/stores/usePaymentStore';
-import { appendQueryParams } from '~/utils/appendQueryParams';
-import { fillUrlParameters } from '~/utils/fillUrlParameters';
+import { useCluster } from "../../../../../../../components/ClusterProvider";
+import { useSwapStateAccount } from "../../../../../../../components/SwapStateAccountGuard";
+import { useSwapProgramPrice } from "../../../../../../../hooks/useSwapProgramPrice";
+import { usePaymentStore } from "../../../../../../../stores/usePaymentStore";
+import { appendQueryParams } from "../../../../../../../utils/appendQueryParams";
+import { fillUrlParameters } from "../../../../../../../utils/fillUrlParameters";
 import { usePaymentReference } from '../../ReferenceRetriever';
 
 export const QrCode = memo(() => {

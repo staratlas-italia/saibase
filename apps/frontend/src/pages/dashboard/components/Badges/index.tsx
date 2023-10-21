@@ -1,7 +1,7 @@
 import { Card, Flex, Text } from '@saibase/uikit';
 import Link from 'next/link';
-import { EmptyView } from '~/components/EmptyView';
-import { useBadges } from '~/hooks/useNullableBadges';
+import { EmptyView } from "../../../../components/EmptyView";
+import { useBadges } from "../../../../hooks/useNullableBadges";
 
 export const Badges = () => {
   const badges = useBadges();

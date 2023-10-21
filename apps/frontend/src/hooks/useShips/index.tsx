@@ -1,7 +1,7 @@
 import { StarAtlasNft } from '@saibase/star-atlas';
 import invariant from 'invariant';
 import { useMemo } from 'react';
-import { useShipContext } from '~/contexts/ShipsContext';
+import { useShipContext } from "../../contexts/ShipsContext";
 
 const saleIsNotBegin = (item: StarAtlasNft) => {
   const now = Math.floor(Date.now() / 1000);

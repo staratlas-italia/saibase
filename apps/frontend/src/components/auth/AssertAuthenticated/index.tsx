@@ -2,13 +2,13 @@ import { PublicRoute } from '@saibase/routes-public';
 import { Card, Flex, Text } from '@saibase/uikit';
 import { isSignatureLegit } from '@saibase/web3';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Wallet } from '~/components/Wallet';
-import { SignatureRefresher } from '~/components/auth/AssertAuthenticated/SignatureRefresher';
-import { Redirect } from '~/components/common/Redirect';
-import { Translation } from '~/i18n/Translation';
-import { useAuthStore } from '~/stores/useAuthStore';
-import { StrictReactNode } from '~/types';
-import { getProofMessage } from '~/utils/getProofMessage';
+import { Wallet } from "../../Wallet";
+import { SignatureRefresher } from "./SignatureRefresher";
+import { Redirect } from "../../common/Redirect";
+import { Translation } from "../../../i18n/Translation";
+import { useAuthStore } from "../../../stores/useAuthStore";
+import { StrictReactNode } from "../../../types";
+import { getProofMessage } from "../../../utils/getProofMessage";
 
 type Props = {
   adminOnly?: boolean;

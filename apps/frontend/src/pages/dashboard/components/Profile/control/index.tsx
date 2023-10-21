@@ -3,11 +3,11 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { Fragment, useMemo } from 'react';
-import { DiscordLink } from '~/components/LinkDiscordButton';
-import { InfoRow } from '~/components/common/Info';
-import { useSelf } from '~/hooks/useNullableSelf';
-import { usePlayerStore } from '~/stores/usePlayerStore';
-import { shortenAddress } from '~/utils/shortenAddress';
+import { DiscordLink } from "../../../../../components/LinkDiscordButton";
+import { InfoRow } from "../../../../../components/common/Info";
+import { useSelf } from "../../../../../hooks/useNullableSelf";
+import { usePlayerStore } from "../../../../../stores/usePlayerStore";
+import { shortenAddress } from "../../../../../utils/shortenAddress";
 import { Badges } from '../Badges';
 import { CreatePlayerBanner } from '../CreatePlayerBanner';
 

@@ -1,7 +1,7 @@
 import { PublicKey } from '@solana/web3.js';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { isAdminPublicKey } from '~/utils/isAdminPublicKey';
+import { isAdminPublicKey } from "../../utils/isAdminPublicKey";
 
 type AuthStore = {
   signature: string | null;

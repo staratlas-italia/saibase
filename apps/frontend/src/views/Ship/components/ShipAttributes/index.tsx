@@ -1,6 +1,6 @@
 import { StarAtlasNftSlot } from '@saibase/star-atlas';
 import { Flex, FlexProps, Text } from '@saibase/uikit';
-import { InfoRow } from '~/components/common/Info';
+import { InfoRow } from "../../../../components/common/Info";
 
 type Props = FlexProps & { title: string; attrs?: StarAtlasNftSlot[] };
 

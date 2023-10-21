@@ -3,7 +3,7 @@ import { isPublicKey } from '@saibase/web3';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import * as E from 'fp-ts/Either';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getConnectionClusterUrl } from '~/utils/connection';
+import { getConnectionClusterUrl } from "../../../../utils/connection";
 
 export type ResponseData =
   | {

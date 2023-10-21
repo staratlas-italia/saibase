@@ -1,7 +1,7 @@
 import { matchMethodMiddleware } from '@saibase/middlewares';
 import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMenuItems } from '~/components/layout/SideBarLayout/components/SideBarContent/getMenuItems';
+import { getMenuItems } from "../../../components/layout/SideBarLayout/components/SideBarContent/getMenuItems";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { publicKey: publicKeyParam, locale = 'it' } = req.query;

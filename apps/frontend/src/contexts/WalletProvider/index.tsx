@@ -5,7 +5,6 @@ import {
   MathWalletAdapter,
   PhantomWalletAdapter,
   SolflareWalletAdapter,
-  SolletWalletAdapter,
   SolongWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
@@ -17,7 +16,6 @@ const WalletProvider = ({ children }: PropsWithChildren) => {
       new MathWalletAdapter(),
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
-      new SolletWalletAdapter(),
       new SolongWalletAdapter(),
     ],
     []

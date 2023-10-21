@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, PropsWithChildren, useMemo } from 'react';
-import { DISCORD_OAUTH_URL } from '~/common/constants';
-import { useSelf } from '~/hooks/useNullableSelf';
+import { DISCORD_OAUTH_URL } from "../../common/constants";
+import { useSelf } from "../../hooks/useNullableSelf";
 
 export const DiscordLink = ({ children }: PropsWithChildren<unknown>) => {
   const router = useRouter();
