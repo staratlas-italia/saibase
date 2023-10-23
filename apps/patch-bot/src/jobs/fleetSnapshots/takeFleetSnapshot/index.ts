@@ -2,7 +2,7 @@ import { getNftOwner } from '@saibase/web3';
 import { PublicKey } from '@solana/web3.js';
 import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { connection, guildWallets } from '../../../constants';
 import { badgeMints } from '../../../constants/badgeMints';
 import { logger } from '../../../logger';

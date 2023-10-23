@@ -1,5 +1,5 @@
 import { EmbedBuilder, EmbedField, Message, TextChannel } from 'discord.js';
-import { chunksOf } from 'fp-ts/lib/Array';
+import { chunksOf } from 'fp-ts/Array';
 import { guildSnapshot } from '../../../commands/guildSnapshot';
 import { AppState } from '../../../state';
 

@@ -2,11 +2,11 @@ import {
   matchMethodMiddleware,
   matchSignatureMiddleware,
 } from '@saibase/middlewares';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { getMongoDatabase, mongoClient } from "../../mongodb";
-import { Self } from "../../../../types/api";
+import { Self } from '../../../../types/api';
+import { getMongoDatabase, mongoClient } from '../../mongodb';
 
 const handler = matchSignatureMiddleware(
   ({ publicKey }) =>

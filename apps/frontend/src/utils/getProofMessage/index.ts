@@ -1,4 +1,4 @@
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { decodeUTF8, encodeBase64 } from 'tweetnacl-util';
 
 export const getProofMessage = (timestamp?: number) =>

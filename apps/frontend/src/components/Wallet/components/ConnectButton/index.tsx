@@ -1,8 +1,9 @@
 import { Button, ButtonProps } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
+import { constVoid } from 'fp-ts/function';
 import { useCallback } from 'react';
-import { useModal } from "../../../../contexts/ModalContext";
-import { Translation } from "../../../../i18n/Translation";
+import { useModal } from '../../../../contexts/ModalContext';
+import { Translation } from '../../../../i18n/Translation';
 
 export const ConnectButton = ({
   kind = 'neutral',
@@ -13,7 +14,7 @@ export const ConnectButton = ({
   const { wallet, connect, connected } = useWallet();
 
   const handleClick = useCallback(() => {
-    wallet ? connect().catch(() => {}) : open();
+    wallet ? connect().catch(constVoid) : open();
   }, [wallet, connect, open]);
 
   if (!wallet || !connected) {

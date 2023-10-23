@@ -8,8 +8,8 @@ import { useConnection } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
-import { useCluster } from "../../components/ClusterProvider";
-import { useTranslation } from "../../i18n/useTranslation";
+import { useCluster } from '../../components/ClusterProvider';
+import { useTranslation } from '../../i18n/useTranslation';
 
 type Options = {
   pendingMessage?: string;
@@ -118,7 +118,7 @@ export const useTransactionToast = () => {
           return;
         }
 
-        showErrorToast;
+        showErrorToast();
       }
     },
     [

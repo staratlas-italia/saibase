@@ -1,50 +1,53 @@
-import { BellIcon } from "@heroicons/react/solid";
-import { useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { BellIcon } from '@heroicons/react/solid';
+import { useEffect } from 'react';
 
 export const NewsButton = () => {
   useEffect(() => {
     (function (w, d, i, s) {
       function l() {
         if (!d.getElementById(i)) {
-          var f = d.getElementsByTagName(s)[0],
+          const f = d.getElementsByTagName(s)[0],
             e = d.createElement(s);
           // @ts-ignore
-          (e.type = "text/javascript"),
+          (e.type = 'text/javascript'),
             // @ts-ignore
             (e.async = !0),
             // @ts-ignore
-            (e.src = "https://canny.io/sdk.js"),
+            (e.src = 'https://canny.io/sdk.js'),
             // @ts-ignore
             f.parentNode.insertBefore(e, f);
         }
       }
 
       // @ts-ignore
-      if ("function" != typeof w.Canny) {
-        var c = function () {
+      if ('function' != typeof w.Canny) {
+        const c = function () {
           // @ts-ignore
-
+          // eslint-disable-next-line prefer-rest-params
           c.q.push(arguments);
         };
+
         // @ts-ignore
         (c.q = []),
           // @ts-ignore
           (w.Canny = c),
-          "complete" === d.readyState
+          'complete' === d.readyState
             ? l()
             : // @ts-ignore
             w.attachEvent
             ? // @ts-ignore
-              w.attachEvent("onload", l)
-            : w.addEventListener("load", l, !1);
+              w.attachEvent('onload', l)
+            : w.addEventListener('load', l, !1);
       }
-    })(window, document, "canny-jssdk", "script");
+    })(window, document, 'canny-jssdk', 'script');
 
     // @ts-ignore
-    Canny("initChangelog", {
-      appID: "6238fbad0030ab6b975368cf",
-      position: "bottom",
-      align: "right",
+    Canny('initChangelog', {
+      appID: '6238fbad0030ab6b975368cf',
+      position: 'bottom',
+      align: 'right',
     });
   }, []);
 

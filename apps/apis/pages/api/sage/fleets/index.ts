@@ -1,6 +1,6 @@
 import { allowedOrigins } from '@saibase/constants';
 import { corsMiddleware, matchMethodMiddleware } from '@saibase/middlewares';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Fleet, sageGoals, sageScopes } from '../../../../common/types';
 import { authenticateMiddleware } from '../../../../middlewares/authenticate';

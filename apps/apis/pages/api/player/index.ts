@@ -4,7 +4,7 @@ import { fetchPlayer } from '@saibase/star-atlas';
 import { parsePublicKey } from '@saibase/web3';
 import * as E from 'fp-ts/Either';
 import * as TE from 'fp-ts/TaskEither';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authenticateMiddleware } from '../../../middlewares/authenticate';
 

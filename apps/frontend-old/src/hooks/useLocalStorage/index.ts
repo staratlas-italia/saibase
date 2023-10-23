@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export const useLocalStorage = <T extends unknown>(
+export const useLocalStorage = <T>(
   key: string,
   initialValue: T
 ): [T, (value: T) => void] => {
