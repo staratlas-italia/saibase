@@ -15,8 +15,8 @@ export const ReadyProvider = ({
   }, []);
 
   if (!didConnect) {
-    return <>{fallback}</>;
+    return fallback;
   }
 
-  return <>{children}</>;
+  return children;
 };

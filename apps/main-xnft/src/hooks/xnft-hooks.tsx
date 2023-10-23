@@ -1,5 +1,6 @@
 import { Event, XnftMetadata } from '@coral-xyz/common-public';
 import { Connection, PublicKey } from '@solana/web3.js';
+import { Lazy } from 'fp-ts/lib/function';
 import { useEffect, useState } from 'react';
 
 declare global {
@@ -123,14 +124,14 @@ export function useDimensions(debounceMs = 0) {
     width: window.innerWidth,
   });
 
-  const debounce = (fn: Function) => {
+  const debounce = (fn: Lazy<void>) => {
     let timer: ReturnType<typeof setTimeout>;
     return function () {
       clearTimeout(timer);
       timer = setTimeout(() => {
         clearTimeout(timer);
-        // @ts-ignore
-        fn.apply(this, arguments);
+
+        fn();
       }, debounceMs);
     };
   };

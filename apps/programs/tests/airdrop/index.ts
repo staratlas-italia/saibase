@@ -7,7 +7,7 @@ export const airdrop = async (
 ) => {
   const provider = program.provider as anchor.AnchorProvider;
 
-  let txFund = new anchor.web3.Transaction();
+  const txFund = new anchor.web3.Transaction();
 
   txFund.add(
     anchor.web3.SystemProgram.transfer({
@@ -17,5 +17,5 @@ export const airdrop = async (
     })
   );
 
-  const tx = await provider.sendAndConfirm(txFund);
+  await provider.sendAndConfirm(txFund);
 };

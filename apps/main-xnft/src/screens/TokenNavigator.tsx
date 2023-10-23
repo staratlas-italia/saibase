@@ -13,7 +13,6 @@ import {
   View,
 } from 'react-native';
 import tw from 'twrnc';
-
 import { Screen } from '../components/Screen';
 import { TokenRow } from '../components/TokenRow';
 
@@ -39,6 +38,7 @@ async function fetchTokenData(count = 20) {
 
 function useTokenData() {
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
