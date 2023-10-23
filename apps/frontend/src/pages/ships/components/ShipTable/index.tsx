@@ -18,7 +18,7 @@ export const ShipTable = () => {
   const { ships } = useShips();
   const fetchPrices = useShipsDealsStore((s) => s.fetch);
 
-  const { data, atlasPrice } = useShipsDealsStore();
+  const { data, atlasPrice, isFetching } = useShipsDealsStore();
 
   const [action, setAction] = useState<MarketAction>('buy');
 
@@ -60,7 +60,12 @@ export const ShipTable = () => {
         direction="col"
         justify="center"
       >
-        <Table columns={cols} data={data} fetchData={fetch} />
+        <Table
+          columns={cols}
+          data={data}
+          fetchData={fetch}
+          loading={isFetching}
+        />
       </Flex>
     </Card>
   );

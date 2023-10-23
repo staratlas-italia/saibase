@@ -1,12 +1,12 @@
 import {
   StarAtlasNft,
   getEntityVwapPrice,
-  getOrderBooks,
+  getOrdersByType,
 } from '@saibase/star-atlas';
 import { Connection } from '@solana/web3.js';
+import { BN } from 'bn.js';
 import * as E from 'fp-ts/Either';
 import { create } from 'zustand';
-import { gmClientService } from '../../common/constants';
 import { getConnectionClusterUrl } from '../../utils/connection';
 import { getAtlasMarketPrice } from '../../utils/getAtlasMarketPrice';
 
@@ -49,36 +49,44 @@ export const useShipsDealsStore = create<ShipsDealsStore>((set, get) => ({
 
     const connection = new Connection(getConnectionClusterUrl('mainnet-beta'));
 
-    const orderbooksEither = await getOrderBooks({
+    const ordersEtiher = await getOrdersByType({
       connection,
-      gmClientService,
     })();
 
-    if (E.isLeft(orderbooksEither)) {
+    if (E.isLeft(ordersEtiher)) {
       return;
     }
 
-    const orderbooks = orderbooksEither.right;
+    const orders = ordersEtiher.right;
 
     const atlasPrice = await getAtlasMarketPrice();
 
     const data = ships.map((ship) => {
-      const vwapPrice = getEntityVwapPrice(ship.primarySales);
+      const vwapPrice =
+        ship.tradeSettings.vwap ?? getEntityVwapPrice(ship.primarySales);
 
       const buyPrice = Math.min(
-        ...(orderbooks.usdc.sell[ship.mint]?.map((o) => o.uiPrice) || [0])
+        ...(orders.usdc.sell
+          .filter((order) => order.assetMint.toString() === ship.mint)
+          ?.map((o) => o.price.div(new BN(1_000_000)).toNumber()) || [0])
       );
 
       const sellPrice = Math.max(
-        ...(orderbooks.usdc.buy[ship.mint]?.map((o) => o.uiPrice) || [0])
+        ...(orders.usdc.buy
+          .filter((order) => order.assetMint.toString() === ship.mint)
+          ?.map((o) => o.price.div(new BN(1_000_000)).toNumber()) || [0])
       );
 
       const atlasBuyPrice = Math.min(
-        ...(orderbooks.atlas.sell[ship.mint]?.map((o) => o.uiPrice) || [0])
+        ...(orders.atlas.sell
+          .filter((order) => order.assetMint.toString() === ship.mint)
+          ?.map((o) => o.price.div(new BN(100_000_000)).toNumber()) || [0])
       );
 
       const atlasSellPrice = Math.max(
-        ...(orderbooks.atlas.buy[ship.mint]?.map((o) => o.uiPrice) || [0])
+        ...(orders.atlas.buy
+          .filter((order) => order.assetMint.toString() === ship.mint)
+          ?.map((o) => o.price.div(new BN(100_000_000)).toNumber()) || [0])
       );
 
       return {

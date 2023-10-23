@@ -3,7 +3,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { getAllFleetsForUserPublicKey } from '@staratlas/factory';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
-import { saFleetProgram } from '../../constants';
+import { saScoreProgram } from '../../constants';
 
 type Param = {
   connection: Connection;
@@ -13,7 +13,7 @@ type Param = {
 export const fetchAllFleets = ({ connection, player }: Param) =>
   pipe(
     TE.tryCatch(
-      () => getAllFleetsForUserPublicKey(connection, player, saFleetProgram),
+      () => getAllFleetsForUserPublicKey(connection, player, saScoreProgram),
       createError('FetchFleetError')
     )
   );

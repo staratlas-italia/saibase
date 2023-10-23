@@ -14,6 +14,7 @@ export type {
 export * from './faction';
 export * from './fetchNfts';
 export * from './fetchPlayer';
+export * from './galactic-marketplace/getOrders';
 export * from './market/getEntityOrderBook';
 export * from './market/getOrderbooks';
 export * from './score/getAllFleets';
