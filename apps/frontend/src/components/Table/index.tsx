@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { LoadingText } from '../LoadingView';
 type Props<T, V> = {
   columns: ColumnDef<T, V>[];
   data: T[];
@@ -109,7 +110,9 @@ export const Table = <T, V>({
       <tbody className="divide-y-2 divide-primary">
         {loading ? (
           <tr>
-            <td>Loading...</td>
+            <td colSpan={6}>
+              <LoadingText />
+            </td>
           </tr>
         ) : (
           table.getRowModel().rows.map((row) => (
