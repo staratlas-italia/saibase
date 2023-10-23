@@ -2,8 +2,8 @@ import { ExclamationCircleIcon } from '@heroicons/react/solid';
 import { Flex, Text } from '@saibase/uikit';
 import {
   Controller,
-  get,
   RegisterOptions,
+  get,
   useFormContext,
 } from 'react-hook-form';
 import { BaseTextInput, BaseTextInputProps } from '../BaseTextInput';

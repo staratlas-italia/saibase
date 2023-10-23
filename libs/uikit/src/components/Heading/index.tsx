@@ -1,7 +1,7 @@
-import { Text } from '@saibase/uikit';
 import { PropsWithChildren, ReactNode } from 'react';
 import { Card } from '../Card';
 import { Flex } from '../Flex';
+import { Text } from '../Text';
 
 type Props = PropsWithChildren<{ rightContent?: ReactNode }>;
 

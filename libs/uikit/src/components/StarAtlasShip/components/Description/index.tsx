@@ -1,4 +1,4 @@
-import { Text } from '@saibase/uikit';
+import { Text } from '../../../Text';
 
 type Props = {
   text: string;

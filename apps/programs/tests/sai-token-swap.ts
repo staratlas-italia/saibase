@@ -178,7 +178,7 @@ describe('sai-token-swap', () => {
       price * Math.pow(10, 6)
     );
 
-    let state = await program.account.state.fetch(stateAccount.publicKey);
+    const state = await program.account.state.fetch(stateAccount.publicKey);
 
     expect(state.active).eq(false);
 
