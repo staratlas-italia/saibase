@@ -2,7 +2,7 @@ import { createError } from '@saibase/errors';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { getScoreVarsShipInfo } from '@staratlas/factory';
 import * as TE from 'fp-ts/TaskEither';
-import { saFleetProgram } from '../../constants';
+import { saScoreProgram } from '../../constants';
 
 type Param = {
   connection: Connection;
@@ -11,6 +11,6 @@ type Param = {
 
 export const getShipInfo = ({ connection, shipMint }: Param) =>
   TE.tryCatch(
-    () => getScoreVarsShipInfo(connection, saFleetProgram, shipMint),
+    () => getScoreVarsShipInfo(connection, saScoreProgram, shipMint),
     createError('FetchShipVarsError')
   );

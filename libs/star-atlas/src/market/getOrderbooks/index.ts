@@ -7,7 +7,7 @@ import * as E from 'fp-ts/Either';
 import * as NEA from 'fp-ts/NonEmptyArray';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
-import { saMarketplaceProgramId } from '../../constants';
+import { saGalacticMarketplaceProgramId } from '../../constants';
 
 type Param = {
   connection: Connection;
@@ -41,7 +41,7 @@ export const getOrderBooks = ({ gmClientService, connection }: Param) =>
           gmClientService.getOpenOrdersForCurrency(
             connection,
             mints.usdc,
-            saMarketplaceProgramId
+            saGalacticMarketplaceProgramId
           ),
         createError('GetUsdcOpenOrdersError')
       )
@@ -52,7 +52,7 @@ export const getOrderBooks = ({ gmClientService, connection }: Param) =>
           gmClientService.getOpenOrdersForCurrency(
             connection,
             mints.atlas,
-            saMarketplaceProgramId
+            saGalacticMarketplaceProgramId
           ),
         createError('GetAtlasOpenOrdersError')
       )

@@ -8428,6 +8428,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@project-serum/anchor@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "@project-serum/anchor@npm:0.25.0"
+  dependencies:
+    "@project-serum/borsh": ^0.2.5
+    "@solana/web3.js": ^1.36.0
+    base64-js: ^1.5.1
+    bn.js: ^5.1.2
+    bs58: ^4.0.1
+    buffer-layout: ^1.2.2
+    camelcase: ^5.3.1
+    cross-fetch: ^3.1.5
+    crypto-hash: ^1.3.0
+    eventemitter3: ^4.0.7
+    js-sha256: ^0.9.0
+    pako: ^2.0.3
+    snake-case: ^3.0.4
+    superstruct: ^0.15.4
+    toml: ^3.0.0
+  checksum: 38c2f463a4b698c52f6334cd991cf1cafd5c8f772811f369adb914b217f819fb3d22acb881b6ad94b49f62b738c5ac3f7a087ae5e9bb1a9c1b9485dff380d060
+  languageName: node
+  linkType: hard
+
 "@project-serum/anchor@npm:^0.26.0":
   version: 0.26.0
   resolution: "@project-serum/anchor@npm:0.26.0"
@@ -10072,7 +10095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/web3.js@npm:^1.15.0, @solana/web3.js@npm:^1.32.0, @solana/web3.js@npm:^1.36.0, @solana/web3.js@npm:^1.37.1, @solana/web3.js@npm:^1.44.3, @solana/web3.js@npm:^1.56.2, @solana/web3.js@npm:^1.61.0, @solana/web3.js@npm:^1.63.1, @solana/web3.js@npm:^1.66.2, @solana/web3.js@npm:^1.68.0, @solana/web3.js@npm:^1.73.2, @solana/web3.js@npm:^1.77.3":
+"@solana/web3.js@npm:^1.15.0, @solana/web3.js@npm:^1.32.0, @solana/web3.js@npm:^1.36.0, @solana/web3.js@npm:^1.37.1, @solana/web3.js@npm:^1.44.3, @solana/web3.js@npm:^1.56.2, @solana/web3.js@npm:^1.61.0, @solana/web3.js@npm:^1.63.1, @solana/web3.js@npm:^1.66.2, @solana/web3.js@npm:^1.68.0, @solana/web3.js@npm:^1.74.0, @solana/web3.js@npm:^1.77.3, @solana/web3.js@npm:^1.87.2":
   version: 1.87.2
   resolution: "@solana/web3.js@npm:1.87.2"
   dependencies:
@@ -10293,6 +10316,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@staratlas/data-source@npm:^0.6.3":
+  version: 0.6.5
+  resolution: "@staratlas/data-source@npm:0.6.5"
+  dependencies:
+    "@project-serum/anchor": ^0.25.0
+    "@solana/spl-token": ^0.3.7
+    "@solana/web3.js": ^1.74.0
+    bs58: ^5.0.0
+    camelcase: ^7.0.0
+    lodash: ^4.17.21
+    neverthrow: ^6.0.0
+  checksum: 43c2d799b0a04afda076b90f34316525ec2dbb8addff914fbf590b6800442f9da138c3f6a660ceaae9b5f5dd111d9d2dfe2be931d0ecc33f605cbfcbe41ebc16
+  languageName: node
+  linkType: hard
+
 "@staratlas/factory@npm:^0.4.4":
   version: 0.4.4
   resolution: "@staratlas/factory@npm:0.4.4"
@@ -10308,6 +10346,18 @@ __metadata:
     mobx: ^6.3.13
     mobx-utils: ^6.0.5
   checksum: e486ff95ffa95aa1abc3d16c8f0f85e244bfbd2849ee0fc48c5febb9d625e325a469940fabc2cac249a0053fcf51267769d1b991407abd2bde909f92175d27b9
+  languageName: node
+  linkType: hard
+
+"@staratlas/galactic-marketplace@npm:^0.9.7":
+  version: 0.9.7
+  resolution: "@staratlas/galactic-marketplace@npm:0.9.7"
+  dependencies:
+    "@project-serum/anchor": ^0.25.0
+    "@solana/spl-token": ^0.3.7
+    "@solana/web3.js": ^1.74.0
+    "@staratlas/data-source": ^0.6.3
+  checksum: b81d8fed43495687eaddb70bebc6bdc74df964a3033baa29bd12ccdfd82150a2b684861ff65691744f3de07119cb91a3acbd70b3ae8ccece569debb7b10a7e8c
   languageName: node
   linkType: hard
 
@@ -15210,6 +15260,13 @@ __metadata:
   version: 6.3.0
   resolution: "camelcase@npm:6.3.0"
   checksum: 8c96818a9076434998511251dcb2761a94817ea17dbdc37f47ac080bd088fc62c7369429a19e2178b993497132c8cbcf5cc1f44ba963e76782ba469c0474938d
+  languageName: node
+  linkType: hard
+
+"camelcase@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "camelcase@npm:7.0.1"
+  checksum: 86ab8f3ebf08bcdbe605a211a242f00ed30d8bfb77dab4ebb744dd36efbc84432d1c4adb28975ba87a1b8be40a80fbd1e60e2f06565315918fa7350011a26d3d
   languageName: node
   linkType: hard
 
@@ -26844,6 +26901,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"neverthrow@npm:^6.0.0":
+  version: 6.1.0
+  resolution: "neverthrow@npm:6.1.0"
+  checksum: 75e04c5fecd8d7089085ca443d3ca67691947be2111aa67271082d495465d249002a6387ec61c12b6148304092e6ef5b1d00629756f3436b8686ea30351f1399
+  languageName: node
+  linkType: hard
+
 "next-transpile-modules@npm:^10.0.0":
   version: 10.0.1
   resolution: "next-transpile-modules@npm:10.0.1"
@@ -31500,8 +31564,9 @@ download-git-repo@latest:
     "@solana/wallet-adapter-base": ^0.9.23
     "@solana/wallet-adapter-react": ^0.15.35
     "@solana/wallet-adapter-wallets": ^0.19.23
-    "@solana/web3.js": ^1.73.2
+    "@solana/web3.js": ^1.87.2
     "@staratlas/factory": ^0.4.4
+    "@staratlas/galactic-marketplace": ^0.9.7
     "@svgr/rollup": 8.0.1
     "@swc/cli": 0.1.62
     "@swc/core": 1.3.93

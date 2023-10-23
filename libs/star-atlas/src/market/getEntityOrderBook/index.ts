@@ -7,7 +7,7 @@ import * as A from 'fp-ts/ReadonlyArray';
 import * as RNEA from 'fp-ts/ReadonlyNonEmptyArray';
 import * as TE from 'fp-ts/TaskEither';
 import { flow, pipe } from 'fp-ts/function';
-import { saMarketplaceProgramId } from '../../constants';
+import { saGalacticMarketplaceProgramId } from '../../constants';
 
 type Param = {
   connection: Connection;
@@ -26,7 +26,7 @@ export const getEntityOrderBook = ({
         gmClientService.getOpenOrdersForAsset(
           connection,
           mint,
-          saMarketplaceProgramId
+          saGalacticMarketplaceProgramId
         ),
       createError('FetchOpenOrdersError')
     ),

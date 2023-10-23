@@ -3,7 +3,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { createInitialDepositInstruction } from '@staratlas/factory';
 import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/function';
-import { saFleetProgram } from '../../constants';
+import { saScoreProgram } from '../../constants';
 
 type Param = {
   connection: Connection;
@@ -29,7 +29,7 @@ export const getInitialDepositInstruction = ({
           shipQuantity,
           shipMint,
           shipTokenAccount,
-          saFleetProgram
+          saScoreProgram
         ),
       createError('CreateInitialDepositInstructionError')
     )
