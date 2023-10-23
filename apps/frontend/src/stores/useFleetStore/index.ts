@@ -3,7 +3,7 @@ import {
   ShipStakingInfoExtended,
   StarAtlasNft,
   fetchNftsByCategory,
-  saFleetProgram,
+  saScoreProgram,
 } from '@saibase/star-atlas';
 import {
   Cluster,
@@ -18,7 +18,7 @@ import * as TE from 'fp-ts/TaskEither';
 import { flow, pipe } from 'fp-ts/function';
 import { chunk } from 'lodash';
 import { create } from 'zustand';
-import { fetchPlayerStakeShips } from "../../network/score";
+import { fetchPlayerStakeShips } from '../../network/score';
 
 type FleetData = {
   ship: StarAtlasNft;
@@ -120,7 +120,7 @@ const getHarvestAllInstructions = async (
             player,
             mints.atlas,
             new PublicKey(fleet.ship.mint),
-            saFleetProgram
+            saScoreProgram
           );
         }
 

@@ -1,4 +1,4 @@
-import { saFleetProgram } from '@saibase/star-atlas';
+import { saScoreProgram } from '@saibase/star-atlas';
 import { captureException } from '@sentry/node';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { getAllFleetsForUserPublicKey } from '@staratlas/factory';
@@ -8,7 +8,7 @@ export const getStakeShipData = async (connection: Connection, pbk: string) => {
     const accounts = await getAllFleetsForUserPublicKey(
       connection,
       new PublicKey(pbk),
-      saFleetProgram
+      saScoreProgram
     );
 
     return accounts;
