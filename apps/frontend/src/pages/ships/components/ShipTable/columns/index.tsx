@@ -4,9 +4,9 @@ import { Flex, Price, Text } from '@saibase/uikit';
 import { createColumnHelper } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShipTableRow } from "../../../../../stores/useShipsDealsStore";
-import { fillUrlParameters } from "../../../../../utils/fillUrlParameters";
 import { MarketAction } from '..';
+import { ShipTableRow } from '../../../../../stores/useShipsDealsStore';
+import { fillUrlParameters } from '../../../../../utils/fillUrlParameters';
 
 type Param = {
   action: MarketAction;
@@ -47,11 +47,14 @@ export const columns = ({
     header: formatMessage({
       id: 'Ships.Table.Column.price',
     }),
-    cell: (info) => (
-      <Flex justify="end" grow={1}>
-        <Price currency="USDC" value={info.getValue()} />
-      </Flex>
-    ),
+    cell: (info) =>
+      info.getValue() && isFinite(info.getValue() as number) ? (
+        <Flex justify="end" grow={1}>
+          <Price currency="USDC" value={info.getValue()} />
+        </Flex>
+      ) : (
+        '-'
+      ),
   }),
   columnHelper.accessor(action === 'buy' ? 'atlasBuyPrice' : 'atlasSellPrice', {
     minSize: 175,
@@ -60,7 +63,7 @@ export const columns = ({
     }),
     cell: (info) => (
       <Flex justify="end">
-        {info.getValue() ? (
+        {info.getValue() && isFinite(info.getValue() as number) ? (
           <Flex align="end" className="space-y-1" direction="col">
             <Price currency={'ATLAS'} value={info.getValue()} />
 
@@ -79,11 +82,14 @@ export const columns = ({
     header: formatMessage({
       id: 'Ships.Table.Column.vwap',
     }),
-    cell: (info) => (
-      <Flex justify="end">
-        <Price currency="USDC" value={info.getValue()} />
-      </Flex>
-    ),
+    cell: (info) =>
+      info.getValue() && isFinite(info.getValue() as number) ? (
+        <Flex justify="end">
+          <Price currency="USDC" value={info.getValue()} />
+        </Flex>
+      ) : (
+        '-'
+      ),
   }),
   columnHelper.accessor(
     action === 'buy' ? 'buyPriceVsVwapPrice' : 'sellPriceVsVwapPrice',
@@ -104,8 +110,8 @@ export const columns = ({
             }
             className="px-4 py-2"
           >
-            {info.getValue() ? (
-              <>{Math.abs(info.getValue() as number).toFixed(2)}%</>
+            {info.getValue() && isFinite(info.getValue() as number) ? (
+              <>{Math.abs(info.getValue() as number).toFixed(3)}%</>
             ) : (
               '-'
             )}
@@ -133,8 +139,8 @@ export const columns = ({
             }
             className="px-4 py-2"
           >
-            {info.getValue() ? (
-              <>{Math.abs(info.getValue() as number).toFixed(2)}%</>
+            {info.getValue() && isFinite(info.getValue() as number) ? (
+              <>{Math.abs(info.getValue() as number).toFixed(3)}%</>
             ) : (
               '-'
             )}
