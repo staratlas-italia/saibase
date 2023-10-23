@@ -2,8 +2,8 @@ import { matchMethodMiddleware } from '@saibase/middlewares';
 import { Keypair } from '@solana/web3.js';
 import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMongoDatabase } from "../../mongodb";
-import { Self, Transaction } from "../../../../types/api";
+import { Self, Transaction } from '../../../../types/api';
+import { getMongoDatabase } from '../../mongodb';
 
 const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
   const { swapAccount, publicKey } = body;
@@ -31,7 +31,7 @@ const handler = async ({ body }: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  let pendingTransaction = await transactionsCollection.findOne({
+  const pendingTransaction = await transactionsCollection.findOne({
     publicKey,
     'meta.swapAccount': swapAccount,
     status: 'PENDING',

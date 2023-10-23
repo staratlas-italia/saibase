@@ -108,13 +108,11 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
 
         <Flex direction="col">
           <Button loading={loading} onClick={onToggle}>
-            <Text color="text-white">
-              {account.account.active ? 'Disable' : 'Enable'}
-            </Text>
+            {account.account.active ? 'Disable' : 'Enable'}
           </Button>
 
           <Button loading={loading} onClick={handleWithdraw}>
-            <Text color="text-white">Withdraw proceeds</Text>
+            Withdraw proceeds
           </Button>
         </Flex>
       </Flex>

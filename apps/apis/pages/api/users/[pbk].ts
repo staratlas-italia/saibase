@@ -3,7 +3,7 @@ import { corsMiddleware, matchMethodMiddleware } from '@saibase/middlewares';
 import { parsePublicKey } from '@saibase/web3';
 import crypto from 'crypto';
 import * as E from 'fp-ts/Either';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { User } from '../../../common/types';
 import { mongo } from '../../../mongodb';

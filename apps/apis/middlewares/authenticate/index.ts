@@ -1,6 +1,6 @@
 import { isSignatureLegit } from '@saibase/web3';
 import { PublicKey } from '@solana/web3.js';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { isSignatureExpired } from '../../utils/isSignatureExpired';
 

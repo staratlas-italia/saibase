@@ -1,7 +1,7 @@
 import { Metaplex } from '@metaplex-foundation/js';
 import { createError } from '@saibase/errors';
 import { Cluster, Connection, PublicKey } from '@solana/web3.js';
-import { pipe } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/function';
 import * as TE from 'fp-ts/TaskEither';
 
 type Param = {

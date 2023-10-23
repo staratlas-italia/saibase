@@ -44,7 +44,7 @@ export const ClaimAll = () => {
         signedTxs.map(async (s) => connection.sendRawTransaction(s.serialize()))
       );
 
-      for (let [index, signature] of signatures.entries()) {
+      for (const [index, signature] of signatures.entries()) {
         await showTransactionToast(() => Promise.resolve(signature), {
           pendingMessage: pendingMessage
             .replace('%i', (index + 1).toString())

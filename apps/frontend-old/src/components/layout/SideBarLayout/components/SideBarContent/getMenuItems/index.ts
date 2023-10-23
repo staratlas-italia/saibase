@@ -1,13 +1,16 @@
-import { PublicKey } from "@solana/web3.js";
-import { createIntl, createIntlCache } from "react-intl";
-import { APP_BASE_URL, FLEET_WEBSITE_URL } from "../../../../../../common/constants";
-import { MenuItem } from "../../SideBar/types";
-import { getTranslations } from "../../../../../../i18n/getTranslations";
-import { appendQueryParams } from "../../../../../../utils/appendQueryParams";
-import { isAdminPublicKey } from "../../../../../../utils/isAdminPublicKey";
+import { PublicKey } from '@solana/web3.js';
+import { createIntl, createIntlCache } from 'react-intl';
+import {
+  APP_BASE_URL,
+  FLEET_WEBSITE_URL,
+} from '../../../../../../common/constants';
+import { getTranslations } from '../../../../../../i18n/getTranslations';
+import { appendQueryParams } from '../../../../../../utils/appendQueryParams';
+import { isAdminPublicKey } from '../../../../../../utils/isAdminPublicKey';
+import { MenuItem } from '../../SideBar/types';
 
 export const getMenuItems = async (
-  locale: string = "it",
+  locale = 'it',
   publicKey?: string
 ): Promise<MenuItem[]> => {
   const { default: messages } = await getTranslations(locale);
@@ -18,7 +21,7 @@ export const getMenuItems = async (
   let routes: MenuItem[] = [
     {
       name: intl.formatMessage({
-        id: "Layout.Sidebar.Dashboard.title",
+        id: 'Layout.Sidebar.Dashboard.title',
       }),
       route: `${APP_BASE_URL}/dashboard`,
       icon: `${APP_BASE_URL}/images/icons/flask-solid.svg`,
@@ -28,7 +31,7 @@ export const getMenuItems = async (
   if (publicKey && isAdminPublicKey(new PublicKey(publicKey))) {
     routes.push({
       name: intl.formatMessage({
-        id: "Layout.Sidebar.Stats.title",
+        id: 'Layout.Sidebar.Stats.title',
       }),
       route: `${APP_BASE_URL}/admin`,
       icon: `${APP_BASE_URL}/images/icons/toolbox-solid.svg`,
@@ -38,14 +41,14 @@ export const getMenuItems = async (
   routes = routes.concat([
     {
       name: intl.formatMessage({
-        id: "Layout.Sidebar.Ships.title",
+        id: 'Layout.Sidebar.Ships.title',
       }),
       route: `${APP_BASE_URL}/ships`,
       icon: `${APP_BASE_URL}/images/icons/rocket-solid.svg`,
     },
     {
       name: intl.formatMessage({
-        id: "Layout.Sidebar.ShipsDeals.title",
+        id: 'Layout.Sidebar.ShipsDeals.title',
       }),
       route: `${APP_BASE_URL}/ships/deals`,
       icon: `${APP_BASE_URL}/images/icons/comments-dollar-solid.svg`,
@@ -56,22 +59,22 @@ export const getMenuItems = async (
     routes = routes.concat([
       {
         name: intl.formatMessage({
-          id: "Layout.Sidebar.FleetSim.title",
+          id: 'Layout.Sidebar.FleetSim.title',
         }),
         icon: `${APP_BASE_URL}/images/icons/wrench-solid.svg`,
         route: appendQueryParams(FLEET_WEBSITE_URL, {
-          view: "sim",
+          view: 'sim',
           pbk: publicKey,
           lang: locale,
         }),
       },
       {
         name: intl.formatMessage({
-          id: "Layout.Sidebar.ScoreTool.title",
+          id: 'Layout.Sidebar.ScoreTool.title',
         }),
         icon: `${APP_BASE_URL}/images/icons/chart-pie-solid.svg`,
         route: appendQueryParams(FLEET_WEBSITE_URL, {
-          view: "score",
+          view: 'score',
           pbk: publicKey,
           lang: locale,
         }),
@@ -80,14 +83,14 @@ export const getMenuItems = async (
   }
 
   routes.push({
-    name: "Fleet composer",
+    name: 'Fleet composer',
     icon: `${APP_BASE_URL}/images/icons/rocket-solid.svg`,
-    route: "https://fleet.staratlasitalia.com/fleet-composer",
+    route: 'https://fleet.staratlasitalia.com/fleet-composer',
   });
 
   routes.push({
     name: intl.formatMessage({
-      id: "Layout.Sidebar.Resources.title",
+      id: 'Layout.Sidebar.Resources.title',
     }),
     icon: `${APP_BASE_URL}/images/icons/book-solid.svg`,
     route: `https://staratlasitalia.com/rubriche`,

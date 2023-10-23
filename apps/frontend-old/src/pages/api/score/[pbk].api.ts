@@ -1,11 +1,11 @@
-import { BN } from "@project-serum/anchor";
-import { Cluster, Connection, PublicKey } from "@solana/web3.js";
+import { BN } from '@project-serum/anchor';
+import { Cluster, Connection, PublicKey } from '@solana/web3.js';
 import {
+  ShipStakingInfo,
   getAllFleetsForUserPublicKey,
   getScoreVarsShipInfo,
-  ShipStakingInfo,
-} from "@staratlas/factory";
-import type { NextApiRequest, NextApiResponse } from "next";
+} from '@staratlas/factory';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import {
   AMMO_TOKEN_MINT_ID,
   ARMS_PRICE,
@@ -16,16 +16,16 @@ import {
   SA_FLEET_PROGRAM,
   TOOLKIT_PRICE,
   TOOL_TOKEN_MINT_ID,
-} from "../../../common/constants";
-import { ScoreFleetResponse } from "../../../types/api";
-import { getConnectionClusterUrl } from "../../../utils/connection";
-import { dailyMaintenanceCostInAtlas } from "../../../utils/dailyMaintenanceCostInAtlas";
-import { getEntityBestPrices } from "../../../utils/getEntityBestPrices";
-import { grossDailyRewardInAtlas } from "../../../utils/grossDailyRewardInAtlas";
-import { netDailyRewardInAtlas } from "../../../utils/netDailyRewardInAtlas";
-import { isPublicKey } from "../../../utils/pubkey";
-import { resDailyConsumption } from "../../../utils/resDailyConsumption";
-import { resDailyCostInAtlas } from "../../../utils/resDailyCostInAtlas";
+} from '../../../common/constants';
+import { ScoreFleetResponse } from '../../../types/api';
+import { getConnectionClusterUrl } from '../../../utils/connection';
+import { dailyMaintenanceCostInAtlas } from '../../../utils/dailyMaintenanceCostInAtlas';
+import { getEntityBestPrices } from '../../../utils/getEntityBestPrices';
+import { grossDailyRewardInAtlas } from '../../../utils/grossDailyRewardInAtlas';
+import { netDailyRewardInAtlas } from '../../../utils/netDailyRewardInAtlas';
+import { isPublicKey } from '../../../utils/pubkey';
+import { resDailyConsumption } from '../../../utils/resDailyConsumption';
+import { resDailyCostInAtlas } from '../../../utils/resDailyCostInAtlas';
 
 const getReward = (fleet: ShipStakingInfo, rewardRate: number) => {
   const now = Date.now() / 1000;
@@ -33,7 +33,7 @@ const getReward = (fleet: ShipStakingInfo, rewardRate: number) => {
   const tripStart = fleet.currentCapacityTimestamp.toNumber();
   const timePass = now - tripStart;
 
-  let pendingReward = fleet.shipQuantityInEscrow
+  const pendingReward = fleet.shipQuantityInEscrow
     .mul(fleet.totalTimeStaked.sub(fleet.stakedTimePaid).add(new BN(timePass)))
     .mul(new BN(rewardRate))
     .toNumber();
@@ -56,7 +56,7 @@ const handler = async (
   if (!pbk || !isPublicKey(pbk as string)) {
     res.status(200).json({
       success: false,
-      error: "Invalid pubkey",
+      error: 'Invalid pubkey',
     });
     return;
   }
@@ -82,16 +82,16 @@ const handler = async (
   );
 
   const foodPrice =
-    (await getEntityBestPrices(FOOD_TOKEN_MINT_ID, "ATLAS"))?.bestAskPrice ??
+    (await getEntityBestPrices(FOOD_TOKEN_MINT_ID, 'ATLAS'))?.bestAskPrice ??
     FOOD_PRICE;
   const fuelPrice =
-    (await getEntityBestPrices(FUEL_TOKEN_MINT_ID, "ATLAS"))?.bestAskPrice ??
+    (await getEntityBestPrices(FUEL_TOKEN_MINT_ID, 'ATLAS'))?.bestAskPrice ??
     FUEL_PRICE;
   const ammoPrice =
-    (await getEntityBestPrices(AMMO_TOKEN_MINT_ID, "ATLAS"))?.bestAskPrice ??
+    (await getEntityBestPrices(AMMO_TOKEN_MINT_ID, 'ATLAS'))?.bestAskPrice ??
     ARMS_PRICE;
   const toolsPrice =
-    (await getEntityBestPrices(TOOL_TOKEN_MINT_ID, "ATLAS"))?.bestAskPrice ??
+    (await getEntityBestPrices(TOOL_TOKEN_MINT_ID, 'ATLAS'))?.bestAskPrice ??
     TOOLKIT_PRICE;
 
   res.status(200).json({

@@ -118,7 +118,7 @@ export const useTransactionToast = () => {
           return;
         }
 
-        showErrorToast;
+        showErrorToast();
       }
     },
     [
