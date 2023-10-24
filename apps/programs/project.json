@@ -17,7 +17,7 @@
         "command": "anchor build"
       }
     },
-    "test": {
+    "test-programs": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/programs",

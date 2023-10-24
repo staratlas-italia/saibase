@@ -1,39 +1,49 @@
-import { request } from '@contactlab/appy'
-import { pipe } from 'fp-ts/function'
-import { withCredentials } from '..'
+import { request } from '@contactlab/appy';
+import { pipe } from 'fp-ts/function';
+import { withCredentials } from '..';
 
-const fakeFetch = jest.fn()
+const fakeFetch = jest.fn();
 
-window.fetch = fakeFetch
+window.fetch = fakeFetch;
 
 describe('withCredentials', () => {
-	afterEach(() => {
-		fakeFetch.mockRestore()
-	})
+  afterEach(() => {
+    fakeFetch.mockRestore();
+  });
 
-	it('Sets the provided credentials configuration to the fetch request init', () => {
-		const endpoint = 'https://staging.prontopro.it/api/fake'
-		const response = new Response()
+  it('Sets the provided credentials configuration to the fetch request init', () => {
+    const endpoint = 'https://dev.saibase.it/api/fake';
+    const response = new Response();
 
-		fakeFetch.mockResolvedValueOnce(response)
+    fakeFetch.mockResolvedValueOnce(response);
 
-		const doRequest = pipe(request, withCredentials('same-origin'))(endpoint)
+    const doRequest = pipe(request, withCredentials('same-origin'))(endpoint);
 
-		return doRequest().then(() => {
-			expect(fakeFetch).toHaveBeenCalledWith(endpoint, expect.objectContaining({ credentials: 'same-origin' }))
-		})
-	})
+    return doRequest().then(() => {
+      expect(fakeFetch).toHaveBeenCalledWith(
+        endpoint,
+        expect.objectContaining({ credentials: 'same-origin' })
+      );
+    });
+  });
 
-	it('Applies the last provided credentials configuration if set more than once', () => {
-		const endpoint = 'https://staging.prontopro.it/api/fake'
-		const response = new Response()
+  it('Applies the last provided credentials configuration if set more than once', () => {
+    const endpoint = 'https://dev.saibase.it/api/fake';
+    const response = new Response();
 
-		fakeFetch.mockResolvedValueOnce(response)
+    fakeFetch.mockResolvedValueOnce(response);
 
-		const doRequest = pipe(request, withCredentials('same-origin'), withCredentials('omit'))(endpoint)
+    const doRequest = pipe(
+      request,
+      withCredentials('same-origin'),
+      withCredentials('omit')
+    )(endpoint);
 
-		return doRequest().then(() => {
-			expect(fakeFetch).toHaveBeenCalledWith(endpoint, expect.objectContaining({ credentials: 'omit' }))
-		})
-	})
-})
+    return doRequest().then(() => {
+      expect(fakeFetch).toHaveBeenCalledWith(
+        endpoint,
+        expect.objectContaining({ credentials: 'omit' })
+      );
+    });
+  });
+});

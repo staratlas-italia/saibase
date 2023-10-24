@@ -1,4 +1,4 @@
-import { createError } from '.';
+import { createError } from '..';
 
 describe('createError', () => {
   it('returns an object with a type and an error if an error message is provided', () => {

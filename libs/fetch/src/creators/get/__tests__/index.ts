@@ -1,24 +1,28 @@
-import { get } from '..'
+import { get } from '..';
 
-const fakeFetch = jest.fn()
+const fakeFetch = jest.fn();
 
-window.fetch = fakeFetch
+window.fetch = fakeFetch;
 
 describe('get', () => {
-	it('creates a GET request', () => {
-		const endpoint = 'https://prontopro.it/api/fake'
+  it('creates a GET request', () => {
+    const endpoint = 'https://saibase.it/api/fake';
 
-		const response = new Response()
+    const response = new Response();
 
-		fakeFetch.mockResolvedValueOnce(response)
+    fakeFetch.mockResolvedValueOnce(response);
 
-		const doRequest = get(endpoint)
+    const doRequest = get(endpoint);
 
-		return doRequest().then(() => {
-			expect(fakeFetch).toHaveBeenCalledWith(
-				endpoint,
-				expect.objectContaining<RequestInit>({ cache: 'no-store', credentials: 'same-origin', method: 'GET' }),
-			)
-		})
-	})
-})
+    return doRequest().then(() => {
+      expect(fakeFetch).toHaveBeenCalledWith(
+        endpoint,
+        expect.objectContaining<RequestInit>({
+          cache: 'no-store',
+          credentials: 'same-origin',
+          method: 'GET',
+        })
+      );
+    });
+  });
+});
