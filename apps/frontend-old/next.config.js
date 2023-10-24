@@ -69,7 +69,12 @@ const nextConfig = withTM({
   // },
 });
 
-const sentryWebpackPluginOptions = {
+const plugins = [
+  // Add more Next.js plugins to this list if needed.
+  withNx,
+];
+
+module.exports = withSentryConfig(composePlugins(...plugins)(nextConfig), {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that
   // the following options are set automatically, and overriding them is not
   // recommended:
@@ -81,15 +86,4 @@ const sentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
   org: 'sai-ib',
   project: 'sai-frontend',
-};
-
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-  (
-    /** @type {import('next').NextConfig} */
-    config
-  ) => withSentryConfig(config, sentryWebpackPluginOptions),
-];
-
-module.exports = composePlugins(...plugins)(nextConfig);
+});
