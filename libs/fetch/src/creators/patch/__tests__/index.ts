@@ -1,23 +1,27 @@
-import { patch } from '..'
+import { patch } from '..';
 
-const fakeFetch = jest.fn()
+const fakeFetch = jest.fn();
 
-window.fetch = fakeFetch
+window.fetch = fakeFetch;
 
 describe('patch', () => {
-	it('creates a PATCH request', () => {
-		const endpoint = 'https://prontopro.it/api/fake'
-		const response = new Response()
+  it('creates a PATCH request', () => {
+    const endpoint = 'https://saibase.it/api/fake';
+    const response = new Response();
 
-		fakeFetch.mockResolvedValueOnce(response)
+    fakeFetch.mockResolvedValueOnce(response);
 
-		const doRequest = patch(endpoint)
+    const doRequest = patch(endpoint);
 
-		return doRequest().then(() => {
-			expect(fakeFetch).toHaveBeenCalledWith(
-				endpoint,
-				expect.objectContaining<RequestInit>({ cache: 'no-store', credentials: 'same-origin', method: 'PATCH' }),
-			)
-		})
-	})
-})
+    return doRequest().then(() => {
+      expect(fakeFetch).toHaveBeenCalledWith(
+        endpoint,
+        expect.objectContaining<RequestInit>({
+          cache: 'no-store',
+          credentials: 'same-origin',
+          method: 'PATCH',
+        })
+      );
+    });
+  });
+});

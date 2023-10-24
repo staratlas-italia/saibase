@@ -1,21 +1,21 @@
-import { Flex, Text } from '@saibase/uikit';
+import { useFeature } from '@growthbook/growthbook-react';
+import { PublicRoute } from '@saibase/routes-public';
+import { Card, Flex, Text } from '@saibase/uikit';
 import { isSignatureLegit } from '@saibase/web3';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Translation } from '../../../i18n/Translation';
 import { useAuthStore } from '../../../stores/useAuthStore';
 import { StrictReactNode } from '../../../types';
 import { getProofMessage } from '../../../utils/getProofMessage';
-import { Routes } from '../../../utils/getRoute';
 import { Wallet } from '../../Wallet';
 import { Redirect } from '../../common/Redirect';
-import { BlurBackground } from '../../layout/BlurBackground';
 import { SignatureRefresher } from './SignatureRefresher';
 
 type Props = {
   adminOnly?: boolean;
   children: StrictReactNode;
   fallback?: StrictReactNode;
-  redirectUri?: Routes;
+  redirectUri?: PublicRoute;
 };
 
 export const AssertAuthenticated = ({
@@ -24,14 +24,16 @@ export const AssertAuthenticated = ({
   redirectUri = '/dashboard',
   fallback = <SignatureRefresher />,
 }: Props) => {
-  const isAdmin = useAuthStore((s) => s.isAdmin);
-  const signature = useAuthStore((s) => s.signature);
-
   const { publicKey } = useWallet();
+
+  const adminPbks = useFeature<string[]>('sai-frontend-admins-pbks').value;
+
+  const isAdmin = adminPbks?.includes(publicKey?.toString() || '');
+  const signature = useAuthStore((s) => s.signature);
 
   if (!publicKey) {
     <Flex pt={32}>
-      <BlurBackground p={5} justify="center" className="mx-auto">
+      <Card p={5} justify="center" className="mx-auto">
         <Text align="center" color="text-white" size="4xl">
           <Translation id="Dashboard.Profile.Placeholder.title" />
         </Text>
@@ -39,11 +41,11 @@ export const AssertAuthenticated = ({
         <Flex pt={5}>
           <Wallet />
         </Flex>
-      </BlurBackground>
+      </Card>
     </Flex>;
   }
 
-  if (adminOnly && !isAdmin(publicKey)) {
+  if (adminOnly && !isAdmin) {
     return <Redirect replace to={redirectUri} />;
   }
 

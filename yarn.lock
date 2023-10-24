@@ -9250,7 +9250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/nextjs@npm:^7.14.2":
+"@sentry/nextjs@npm:^7.74.1":
   version: 7.74.1
   resolution: "@sentry/nextjs@npm:7.74.1"
   dependencies:
@@ -16483,7 +16483,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:^3.1.5":
+"cross-fetch@npm:^3.0.4, cross-fetch@npm:^3.1.5":
   version: 3.1.8
   resolution: "cross-fetch@npm:3.1.8"
   dependencies:
@@ -23567,6 +23567,16 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"jest-fetch-mock@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "jest-fetch-mock@npm:3.0.3"
+  dependencies:
+    cross-fetch: ^3.0.4
+    promise-polyfill: ^8.1.3
+  checksum: fb052f7e0ef1c8192a9c15efdd1b18d281ab68fc6b1648b30bff8880fe24418bdf12190ea79b1996932dc15417c3c01f5b2d77ef7104a7e7943e7cbe8d61071d
+  languageName: node
+  linkType: hard
+
 "jest-get-type@npm:^29.6.3":
   version: 29.6.3
   resolution: "jest-get-type@npm:29.6.3"
@@ -29628,6 +29638,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"promise-polyfill@npm:^8.1.3":
+  version: 8.3.0
+  resolution: "promise-polyfill@npm:8.3.0"
+  checksum: 206373802076c77def0805758d0a8ece64120dfa6603f092404a1004211f8f2f67f33cadbc35953fc2a8ed0b0d38c774e88bdf01e20ce7a920723a60df84b7a5
+  languageName: node
+  linkType: hard
+
 "promise-retry@npm:2.0.1, promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -31557,7 +31574,7 @@ download-git-repo@latest:
     "@react-navigation/native-stack": 6.6.1
     "@react-navigation/stack": 6.2.1
     "@rollup/plugin-url": ^7.0.0
-    "@sentry/nextjs": ^7.14.2
+    "@sentry/nextjs": ^7.74.1
     "@sentry/node": ^7.41.0
     "@solana/pay": ^0.2.4
     "@solana/spl-token": ^0.3.7
@@ -31647,6 +31664,7 @@ download-git-repo@latest:
     jest-environment-jsdom: ^29.4.1
     jest-environment-node: ^29.4.1
     jest-expo: 49.0.0
+    jest-fetch-mock: ^3.0.3
     jotai: ^2.0.2
     jsdom: ~22.1.0
     jsonwebtoken: ^9.0.2
