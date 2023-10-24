@@ -74,3 +74,5 @@ cache/
 
 apps/main-xnft-e2e/artifacts
 .nx/cache
+# Sentry Config File
+.sentryclirc

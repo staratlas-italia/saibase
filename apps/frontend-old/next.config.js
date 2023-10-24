@@ -20,7 +20,7 @@ const withTM = require('next-transpile-modules')([
   '@solana/wallet-adapter-torus',
 ]);
 
-// const { withSentryConfig } = require("@sentry/nextjs");
+const { withSentryConfig } = require('@sentry/nextjs');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -69,9 +69,27 @@ const nextConfig = withTM({
   // },
 });
 
+const sentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, org, project, authToken, configFile, stripPrefix,
+  //   urlPrefix, include, ignore
+
+  silent: true, // Suppresses all logs
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+  org: 'sai-ib',
+  project: 'sai-frontend',
+};
+
 const plugins = [
   // Add more Next.js plugins to this list if needed.
   withNx,
+  (
+    /** @type {import('next').NextConfig} */
+    config
+  ) => withSentryConfig(config, sentryWebpackPluginOptions),
 ];
 
 module.exports = composePlugins(...plugins)(nextConfig);
