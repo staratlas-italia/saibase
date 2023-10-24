@@ -1,11 +1,9 @@
 import * as Sentry from '@sentry/node';
-import axios, { AxiosResponse } from 'axios';
 import { TextChannel } from 'discord.js';
 import { logger } from '../../logger';
 import { getMembersWhoAllowedNotifications } from '../../queries/getMembersWhoAllowedNotifications';
 import { AppState } from '../../state';
 import { ScoreFleetResponse } from '../../types/api';
-
 import { getShipLevel } from '../../utils/getShipLevel';
 
 export const createRefillCheckJobHandler =
@@ -46,7 +44,7 @@ export const createRefillCheckJobHandler =
 
       const usersNeedToRefill = new Set<string>();
 
-      let fleet: AxiosResponse<ScoreFleetResponse>;
+      let fleet: ScoreFleetResponse;
 
       await Promise.all(
         users.map(async (user) => {
@@ -60,9 +58,9 @@ export const createRefillCheckJobHandler =
             logger.info(`Checking ${wallet} fleet of user ${user.discordId}`);
 
             try {
-              fleet = await axios.get(
+              fleet = await fetch(
                 `https://app.staratlasitalia.com/api/score/${wallet}`
-              );
+              ).then((res) => res.json());
             } catch (e) {
               Sentry.captureException(e, {
                 level: 'error',
@@ -71,8 +69,8 @@ export const createRefillCheckJobHandler =
               continue;
             }
 
-            if (fleet.data.success) {
-              for (const ship of fleet.data.data) {
+            if (fleet.success) {
+              for (const ship of fleet.data) {
                 if (usersNeedToRefill.has(id)) {
                   break;
                 }
