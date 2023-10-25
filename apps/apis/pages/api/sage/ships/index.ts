@@ -1,9 +1,7 @@
 import { matchMethodMiddleware } from '@saibase/middlewares';
-import { fetchNftsByCategory, getOrderBooks } from '@saibase/star-atlas';
-import { Connection } from '@solana/web3.js';
-import { GmClientService } from '@staratlas/factory';
+import { fetchNftsByCategory } from '@saibase/star-atlas';
 import * as E from 'fp-ts/Either';
-import { pipe } from 'fp-ts/function';
+import { pipe } from 'fp-ts/lib/function';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { mongo } from '../../../../mongodb';
 import { handleErrors } from '../../../../utils/handleErrors';
@@ -45,19 +43,6 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ status: 400, error: 'Cannot get ships' });
     }
 
-    const orderbooksEither = await getOrderBooks({
-      gmClientService: new GmClientService(),
-      connection: new Connection(process.env.RPC_API_BASE_URL),
-    })();
-
-    if (E.isLeft(orderbooksEither)) {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'Cannot get orderbooks' });
-    }
-
-    const orderbooks = orderbooksEither.right;
-
     const ships = shipsEither.right;
 
     const result = ships.map((ship) => {
@@ -70,22 +55,6 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
       const originationPrice = ship.tradeSettings?.msrp?.value
         ? Math.round(ship.tradeSettings.msrp.value * 100) / 100
         : 0;
-
-      const bestUsdcBidPrice = Math.min(
-        ...(orderbooks.usdc.sell[ship.mint]?.map((o) => o.uiPrice) || [0])
-      );
-      const bestUsdcAskPrice = Math.max(
-        ...(orderbooks.usdc.buy[ship.mint]?.map((o) => o.uiPrice) || [0])
-      );
-
-      const bestUsdcBidPriceVsVwap =
-        bestUsdcBidPrice && vwap > 0
-          ? Math.round((1 - bestUsdcBidPrice / vwap) * 10000 * -1) / 100
-          : undefined;
-
-      const bestUsdcAskPriceVsVwap = bestUsdcAskPrice
-        ? Math.round((1 - bestUsdcAskPrice / vwap) * 10000 * -1) / 100
-        : undefined;
 
       return {
         ...shipStats,
@@ -106,10 +75,6 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
         vwap,
         originationPrice,
         currentSupply: ship.totalSupply,
-        bestUsdcBidPrice,
-        bestUsdcBidPriceVsVwap,
-        bestUsdcAskPrice,
-        bestUsdcAskPriceVsVwap,
       };
     });
 
