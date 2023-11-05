@@ -238,7 +238,7 @@ export type SwapSetting = {
   discounted?: boolean;
   mint: PublicKey;
   name: string;
-  quantity?: number;
+  quantity?: { type: 'fixed'; value: number } | { type: 'user-defined' };
   swapAccount: PublicKey;
   prices?: {
     real: number;

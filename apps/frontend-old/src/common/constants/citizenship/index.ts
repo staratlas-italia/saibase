@@ -1,49 +1,49 @@
-import { Cluster, PublicKey } from "@solana/web3.js";
-import { Faction, SwapSetting } from "../../../types";
+import { Cluster, PublicKey } from '@solana/web3.js';
+import { Faction, SwapSetting } from '../../../types';
 
 export const CITIZEN_TOKEN_MINT_PER_FACTION: Record<
   Lowercase<Faction>,
   PublicKey
 > = {
-  oni: new PublicKey("oniMqPYgTypbvTJqu8mL94pQM5QDdMF2fXcyweNJePQ"),
-  mud: new PublicKey("mudS4YjsuhGAgoihdhT64762iGTYaqKZN92bwhcGAGr"),
-  ustur: new PublicKey("ustuRPvoFHcmoonK7on8tc6MaUQeuzUxx2ioFeuXLyn"),
+  oni: new PublicKey('oniMqPYgTypbvTJqu8mL94pQM5QDdMF2fXcyweNJePQ'),
+  mud: new PublicKey('mudS4YjsuhGAgoihdhT64762iGTYaqKZN92bwhcGAGr'),
+  ustur: new PublicKey('ustuRPvoFHcmoonK7on8tc6MaUQeuzUxx2ioFeuXLyn'),
 };
 
 export const DEVNET_CITIZEN_TOKEN_MINT_PER_FACTION: Record<
   Lowercase<Faction>,
   PublicKey
 > = {
-  oni: new PublicKey("FCNy7oyjevsCbHbL2cgDJeWrmd3wWTDeq4u4uafCNUuu"),
-  mud: new PublicKey("EVWyAZNy32GnB9GZEcnGsawii4NfnC6KPsaRCGM7g8sx"),
-  ustur: new PublicKey("7n4rgd4WVNvzFom7UFqjCa9fpMB9apP8Gz3zX3aS6VEr"),
+  oni: new PublicKey('FCNy7oyjevsCbHbL2cgDJeWrmd3wWTDeq4u4uafCNUuu'),
+  mud: new PublicKey('EVWyAZNy32GnB9GZEcnGsawii4NfnC6KPsaRCGM7g8sx'),
+  ustur: new PublicKey('7n4rgd4WVNvzFom7UFqjCa9fpMB9apP8Gz3zX3aS6VEr'),
 };
 
 export const DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS: Record<
   Lowercase<Faction>,
   string
 > = {
-  oni: "BtpXkPQoAc2eeoFoSmjqJxssM2GUcLScbEJQr3ACvDT9",
-  mud: "FQpDeHQZ4csh7dkyYGFPDq4mvW6KZH4uTBxohxPG3K8b",
-  ustur: "2w1DbkC4XcreYJquUz2vz2uhV9pKaik4j6w11uWjFUso",
+  oni: 'BtpXkPQoAc2eeoFoSmjqJxssM2GUcLScbEJQr3ACvDT9',
+  mud: 'FQpDeHQZ4csh7dkyYGFPDq4mvW6KZH4uTBxohxPG3K8b',
+  ustur: '2w1DbkC4XcreYJquUz2vz2uhV9pKaik4j6w11uWjFUso',
 };
 
 export const FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED: Record<
   Lowercase<Faction>,
   string
 > = {
-  oni: "D9Nq8DSbTvDWTHnG9jEgkcoLKmfTaGds6UgdE9c1Y4hz",
-  mud: "BXkoZquRBwbscxLit57CQCJGa9LwE2TByQpvSp9afhFe",
-  ustur: "9Pb1mbD6tkxsRPauNZPZ5fta7TUMPjN6ZXpujTjkQNko",
+  oni: 'D9Nq8DSbTvDWTHnG9jEgkcoLKmfTaGds6UgdE9c1Y4hz',
+  mud: 'BXkoZquRBwbscxLit57CQCJGa9LwE2TByQpvSp9afhFe',
+  ustur: '9Pb1mbD6tkxsRPauNZPZ5fta7TUMPjN6ZXpujTjkQNko',
 };
 
 export const FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS: Record<
   Lowercase<Faction>,
   string
 > = {
-  oni: "J6cvRe9S7D6RtsKxLeQDYmRLdhAwCEw6jXCUCsLFEWmC",
-  mud: "3CKAvF1v9hCXzZHPG68CMPtTuuX7gAE1dmvW6xBdnVNH",
-  ustur: "AKPxHQyA7rzPwcfx8udQjisaWm45qopMoji8cC8tiMBJ",
+  oni: 'J6cvRe9S7D6RtsKxLeQDYmRLdhAwCEw6jXCUCsLFEWmC',
+  mud: '3CKAvF1v9hCXzZHPG68CMPtTuuX7gAE1dmvW6xBdnVNH',
+  ustur: 'AKPxHQyA7rzPwcfx8udQjisaWm45qopMoji8cC8tiMBJ',
 };
 
 type CitizenShipAccounts = {
@@ -52,63 +52,63 @@ type CitizenShipAccounts = {
 };
 
 type ClusterCitizenShipAccounts = Record<
-  Exclude<Cluster, "testnet">,
+  Exclude<Cluster, 'testnet'>,
   CitizenShipAccounts
 >;
 
-export const citizenshipSwapTranslations: SwapSetting["sections"] = {
+export const citizenshipSwapTranslations: SwapSetting['sections'] = {
   intro: {
-    title: "citizenship.intro.title",
-    description: "citizenship.intro.description",
+    title: 'citizenship.intro.title',
+    description: 'citizenship.intro.description',
   },
   checkout: {
-    title: "citizenship.checkout.title",
-    subtitle: "citizenship.checkout.subtitle",
+    title: 'citizenship.checkout.title',
+    subtitle: 'citizenship.checkout.subtitle',
   },
   confirmed: {
-    description: "citizenship.checkout.confirmed.subtitle",
+    description: 'citizenship.checkout.confirmed.subtitle',
   },
 };
 
 export const citizenShipAccounts: ClusterCitizenShipAccounts = {
-  "mainnet-beta": {
+  'mainnet-beta': {
     normal: {
       [FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.oni]: {
         discounted: true,
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: CITIZEN_TOKEN_MINT_PER_FACTION.oni,
-        name: "Badge ONI",
+        name: 'Badge ONI',
         swapAccount: new PublicKey(FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.oni),
-        vaultCurrency: "USDC",
+        vaultCurrency: 'USDC',
         image: {
-          normal: "/images/cards/card-oni.webp",
-          square: "/images/cards/card-square-oni.webp",
+          normal: '/images/cards/card-oni.webp',
+          square: '/images/cards/card-square-oni.webp',
         },
         sections: citizenshipSwapTranslations,
       },
       [FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.mud]: {
         discounted: true,
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: CITIZEN_TOKEN_MINT_PER_FACTION.mud,
-        name: "Badge MUD",
+        name: 'Badge MUD',
         swapAccount: new PublicKey(FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.mud),
-        vaultCurrency: "USDC",
+        vaultCurrency: 'USDC',
         image: {
-          normal: "/images/cards/card-mud.webp",
-          square: "/images/cards/card-square-mud.webp",
+          normal: '/images/cards/card-mud.webp',
+          square: '/images/cards/card-square-mud.webp',
         },
         sections: citizenshipSwapTranslations,
       },
       [FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.ustur]: {
         discounted: true,
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: CITIZEN_TOKEN_MINT_PER_FACTION.ustur,
-        name: "Badge USTUR",
+        name: 'Badge USTUR',
         swapAccount: new PublicKey(FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.ustur),
-        vaultCurrency: "USDC",
+        vaultCurrency: 'USDC',
         image: {
-          normal: "/images/cards/card-ustur.webp",
-          square: "/images/cards/card-square-ustur.webp",
+          normal: '/images/cards/card-ustur.webp',
+          square: '/images/cards/card-square-ustur.webp',
         },
         sections: citizenshipSwapTranslations,
       },
@@ -116,46 +116,46 @@ export const citizenShipAccounts: ClusterCitizenShipAccounts = {
     discounted: {
       [FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED.oni]: {
         discounted: true,
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: CITIZEN_TOKEN_MINT_PER_FACTION.oni,
-        name: "Badge ONI discounted",
+        name: 'Badge ONI discounted',
         swapAccount: new PublicKey(
           FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED.oni
         ),
-        vaultCurrency: "USDC",
+        vaultCurrency: 'USDC',
         image: {
-          normal: "/images/cards/card-oni.webp",
-          square: "/images/cards/card-square-oni.webp",
+          normal: '/images/cards/card-oni.webp',
+          square: '/images/cards/card-square-oni.webp',
         },
         sections: citizenshipSwapTranslations,
       },
       [FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED.mud]: {
         discounted: true,
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: CITIZEN_TOKEN_MINT_PER_FACTION.mud,
-        name: "Badge MUD discounted",
+        name: 'Badge MUD discounted',
         swapAccount: new PublicKey(
           FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED.mud
         ),
-        vaultCurrency: "USDC",
+        vaultCurrency: 'USDC',
         image: {
-          normal: "/images/cards/card-mud.webp",
-          square: "/images/cards/card-square-mud.webp",
+          normal: '/images/cards/card-mud.webp',
+          square: '/images/cards/card-square-mud.webp',
         },
         sections: citizenshipSwapTranslations,
       },
       [FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED.ustur]: {
         discounted: true,
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: CITIZEN_TOKEN_MINT_PER_FACTION.ustur,
-        name: "Badge USTUR discounted",
+        name: 'Badge USTUR discounted',
         swapAccount: new PublicKey(
           FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS_DISCOUNTED.ustur
         ),
-        vaultCurrency: "USDC",
+        vaultCurrency: 'USDC',
         image: {
-          normal: "/images/cards/card-ustur.webp",
-          square: "/images/cards/card-square-ustur.webp",
+          normal: '/images/cards/card-ustur.webp',
+          square: '/images/cards/card-square-ustur.webp',
         },
         sections: citizenshipSwapTranslations,
       },
@@ -164,44 +164,44 @@ export const citizenShipAccounts: ClusterCitizenShipAccounts = {
   devnet: {
     normal: {
       [DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.oni]: {
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: DEVNET_CITIZEN_TOKEN_MINT_PER_FACTION.oni,
-        name: "Badge ONI DEVNET",
+        name: 'Badge ONI DEVNET',
         swapAccount: new PublicKey(
           DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.oni
         ),
-        vaultCurrency: "USDC-Dev",
+        vaultCurrency: 'USDC-Dev',
         image: {
-          normal: "/images/cards/card-oni.webp",
-          square: "/images/cards/card-square-oni.webp",
+          normal: '/images/cards/card-oni.webp',
+          square: '/images/cards/card-square-oni.webp',
         },
         sections: citizenshipSwapTranslations,
       },
       [DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.mud]: {
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: DEVNET_CITIZEN_TOKEN_MINT_PER_FACTION.mud,
-        name: "Badge MUD DEVNET",
+        name: 'Badge MUD DEVNET',
         swapAccount: new PublicKey(
           DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.mud
         ),
-        vaultCurrency: "USDC-Dev",
+        vaultCurrency: 'USDC-Dev',
         image: {
-          normal: "/images/cards/card-mud.webp",
-          square: "/images/cards/card-square-mud.webp",
+          normal: '/images/cards/card-mud.webp',
+          square: '/images/cards/card-square-mud.webp',
         },
         sections: citizenshipSwapTranslations,
       },
       [DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.ustur]: {
-        quantity: 1,
+        quantity: { type: 'fixed', value: 1 },
         mint: DEVNET_CITIZEN_TOKEN_MINT_PER_FACTION.ustur,
-        name: "Badge USTUR DEVNET",
+        name: 'Badge USTUR DEVNET',
         swapAccount: new PublicKey(
           DEVNET_FACTION_TO_TOKEN_SWAP_STATE_ACCOUNTS.ustur
         ),
-        vaultCurrency: "USDC-Dev",
+        vaultCurrency: 'USDC-Dev',
         image: {
-          normal: "/images/cards/card-ustur.webp",
-          square: "/images/cards/card-square-ustur.webp",
+          normal: '/images/cards/card-ustur.webp',
+          square: '/images/cards/card-square-ustur.webp',
         },
         sections: citizenshipSwapTranslations,
       },

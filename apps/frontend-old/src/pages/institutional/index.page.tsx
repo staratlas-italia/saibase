@@ -1,6 +1,7 @@
 import { Flex, Text } from '@saibase/uikit';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { match } from 'ts-pattern';
 import { Translation } from '../../i18n/Translation';
 import { appendQueryParams } from '../../utils/appendQueryParams';
 import { fillUrlParameters } from '../../utils/fillUrlParameters';
@@ -47,7 +48,12 @@ const Tutor = () => {
         {(['s', 'm', 'l'] as const).map((size) => {
           const account = accounts[size];
           const state = states[account];
-          const quantity = numberFormatter.format(state?.quantity || 0);
+          const quantity = match(state.quantity)
+            .with({ type: 'fixed' }, ({ value }) =>
+              numberFormatter.format(value)
+            )
+            .with({ type: 'user-defined' }, undefined, () => '0')
+            .exhaustive();
 
           return (
             <BadgeBlock
@@ -163,7 +169,7 @@ const Tutor = () => {
                                   id="tutor.badgeSelector.pieces"
                                   values={{
                                     items: numberFormatter.format(
-                                      (state.quantity || 1) -
+                                      (Number(quantity) || 1) -
                                         state.prices.real / 0.1
                                     ),
                                   }}
