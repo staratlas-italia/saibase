@@ -1,6 +1,6 @@
 🇮🇹 &nbsp; [Italiano](https://github.com/staratlas-italia/saibase)
 
-# Candy Machine
+# Saibase
 
 Hi there! The [StarAtlas](https://staratlas.com/) biggest Italian commuty is here for you!
 
