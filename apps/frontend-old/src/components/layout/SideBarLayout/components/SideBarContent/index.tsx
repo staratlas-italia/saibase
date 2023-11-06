@@ -30,7 +30,7 @@ export const SideBarContent = () => {
       justify="center"
       direction="col"
       lgPx={5}
-      className="lg:space-y-5 space-y-10"
+      className="lg:space-y-5 space-y-6 overflow-auto"
     >
       {menuItems.map((item, index) => (
         <Link
@@ -45,18 +45,18 @@ export const SideBarContent = () => {
             align="center"
             px={4}
             py={2}
-            className="space-x-10 lg:space-x-5 hover:bg-gray-200 hover:bg-opacity-10 rounded-3xl "
+            className="space-x-10 lg:space-x-5 hover:bg-gray-200 hover:bg-opacity-10 rounded-3xl"
           >
             <Image
               alt="sidebar icon"
               src={item.icon}
               width={20}
               height={20}
-              className="lg:h-5 lg:w-5 h-10 w-10"
+              className="lg:h-5 lg:w-5 h-8 w-8"
             />
 
             <Text
-              className="lg:text-base text-5xl lg:font-moedium font-semibold"
+              className="lg:text-base text-xl lg:font-medium font-semibold"
               color="text-white"
             >
               {item.name}
