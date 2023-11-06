@@ -33,16 +33,12 @@ type Props = {
 };
 
 export const Header = ({ showLogo = false }: Props) => (
-  <div className="w-full pb-10 sticky top-0 z-50">
+  <div className="w-full pb-10 z-50">
     <Flex align="center" grow={1} py={5} px={5} justify="center">
       <Flex className="z-10 w-full" justify="between">
-        {showLogo ? (
-          <Flex lgPx={8}>
-            <LogoLink />
-          </Flex>
-        ) : (
-          <Flex />
-        )}
+        <Flex className={showLogo ? undefined : 'lg:invisible'} lgPx={8}>
+          <LogoLink />
+        </Flex>
 
         <Flex align="center" className="space-x-3">
           <NewsButton />
