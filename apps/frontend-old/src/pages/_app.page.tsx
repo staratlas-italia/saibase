@@ -50,6 +50,7 @@ function App({ router, ...props }: AppProps) {
   return (
     <GrowthBookProvider growthbook={growthbook}>
       <HtmlComment text="You're looking at the right place?" />
+
       <ClusterProvider>
         <IntlProvider
           messages={translations}

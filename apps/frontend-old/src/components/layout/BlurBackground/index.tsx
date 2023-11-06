@@ -16,7 +16,7 @@ export const BlurBackground = ({
     <Flex
       className={classNames(
         className,
-        'bg-black z-10 backdrop-filter backdrop-blur-xl',
+        'bg-black  backdrop-filter backdrop-blur-xl',
         {
           'rounded-3xl': !disableRound,
           'bg-opacity-40': !isF,

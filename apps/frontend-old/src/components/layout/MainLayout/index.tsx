@@ -1,3 +1,4 @@
+import { Flex } from '@saibase/uikit';
 import { useRouter } from 'next/router';
 import { PropsWithChildren, useMemo } from 'react';
 import { Routes } from '../../../utils/getRoute';
@@ -21,5 +22,9 @@ export const MainLayout = ({ children }: PropsWithChildren) => {
     }
   }, [route]);
 
-  return <Layout>{children}</Layout>;
+  return (
+    <Flex className="h-screen overflow-hidden">
+      <Layout>{children}</Layout>
+    </Flex>
+  );
 };

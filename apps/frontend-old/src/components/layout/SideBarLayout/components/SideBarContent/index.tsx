@@ -1,5 +1,6 @@
 import { Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -25,36 +26,43 @@ export const SideBarContent = () => {
 
   return (
     <Flex
-      className="lg:space-y-6 grid grid-cols-2 lg:grid-cols-none"
-      lgAlign="start"
+      align="start"
       justify="center"
-      mdJustify="start"
-      lgDirection="col"
+      direction="col"
       lgPx={5}
+      className="lg:space-y-5 space-y-10"
     >
       {menuItems.map((item, index) => (
-        <Flex key={index.toString()} align="center">
-          <Link
-            href={appendQueryParams(
-              item.route,
-              query as Record<string, string | number>
-            )}
-            target={item.external ? '_blank' : undefined}
+        <Link
+          key={index.toString()}
+          href={appendQueryParams(
+            item.route,
+            query as Record<string, string | number>
+          )}
+          target={item.external ? '_blank' : undefined}
+        >
+          <Flex
+            align="center"
+            px={4}
+            py={2}
+            className="space-x-10 lg:space-x-5 hover:bg-gray-200 hover:bg-opacity-10 rounded-3xl "
           >
-            <Flex
-              align="center"
-              px={4}
-              py={2}
-              className="space-x-3 lg:space-x-6 hover:bg-gray-200 hover:bg-opacity-10 rounded-3xl"
-            >
-              <img src={item.icon} className="h-5 w-5 text-white" />
+            <Image
+              alt="sidebar icon"
+              src={item.icon}
+              width={20}
+              height={20}
+              className="lg:h-5 lg:w-5 h-10 w-10"
+            />
 
-              <Text color="text-white" size="base" weight="medium">
-                {item.name}
-              </Text>
-            </Flex>
-          </Link>
-        </Flex>
+            <Text
+              className="lg:text-base text-5xl lg:font-moedium font-semibold"
+              color="text-white"
+            >
+              {item.name}
+            </Text>
+          </Flex>
+        </Link>
       ))}
     </Flex>
   );
