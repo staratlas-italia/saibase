@@ -31,7 +31,7 @@ export const getMenuItems = async (
   if (publicKey && isAdminPublicKey(new PublicKey(publicKey))) {
     routes.push({
       name: intl.formatMessage({
-        id: 'Layout.Sidebar.Stats.title',
+        id: 'Layout.Sidebar.Admin.title',
       }),
       route: `${APP_BASE_URL}/admin`,
       icon: `${APP_BASE_URL}/images/icons/toolbox-solid.svg`,

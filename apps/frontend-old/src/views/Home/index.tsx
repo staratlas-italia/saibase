@@ -8,7 +8,7 @@ import { WelcomeBanner } from './components/WelcomeBanner';
 export const HomePage = () => {
   return (
     <div className="container mx-auto">
-      <Header fluid />
+      <Header showLogo />
 
       <div className="space-y-10 px-5 pb-5">
         <Flex>

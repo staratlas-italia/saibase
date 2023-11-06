@@ -1,5 +1,4 @@
 import { Flex } from '@saibase/uikit';
-import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,10 +8,10 @@ import { NewsButton } from './components/NewsButton';
 export const Logo = () => (
   <Image
     priority
-    src="/images/logo.webp"
+    src="/images/logo.png"
     height={55.8}
     width={155}
-    alt={'Start Atlas Italia'}
+    alt="Start Atlas Italia"
   />
 );
 
@@ -29,22 +28,21 @@ export const LogoLink = () => {
   );
 };
 
-type Props = { fluid?: boolean; fixed?: boolean };
+type Props = {
+  showLogo?: boolean;
+};
 
-export const Header = ({ fluid, fixed }: Props) => (
-  <div
-    className={classNames('z-20 w-full pb-10', {
-      'lg:fixed': fixed,
-    })}
-  >
+export const Header = ({ showLogo = false }: Props) => (
+  <div className="w-full pb-10 sticky top-0 z-50">
     <Flex align="center" grow={1} py={5} px={5} justify="center">
-      <Flex
-        className={classNames('z-10 w-full', { container: !fluid })}
-        justify="between"
-      >
-        <Flex lgPx={8}>
-          <LogoLink />
-        </Flex>
+      <Flex className="z-10 w-full" justify="between">
+        {showLogo ? (
+          <Flex lgPx={8}>
+            <LogoLink />
+          </Flex>
+        ) : (
+          <Flex />
+        )}
 
         <Flex align="center" className="space-x-3">
           <NewsButton />

@@ -24,10 +24,11 @@ export const Badges = () => {
             >
               <Flex
                 key={badge.mintAddress.toString()}
-                className="w-44 h-44 rounded-lg overflow-hidden"
+                className="w-44 h-44 rounded-lg overflow-hidden relative"
               >
                 <img alt="badge" src={metadata?.image} />
               </Flex>
+
               <Flex justify="center" shrink={1} py={2} px={1}>
                 <Link
                   href={`https://solscan.io/account/${badge.mintAddress.toString()}`}

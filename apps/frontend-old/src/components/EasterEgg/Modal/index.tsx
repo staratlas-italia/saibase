@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 import { Flex } from '@saibase/uikit';
+import { useState } from 'react';
 import { BaseModal } from '../../modals/BaseModal';
 import { EasterEggDone } from './Done';
 import { Kittens } from './Kittens';
