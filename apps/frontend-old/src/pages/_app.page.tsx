@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import { GrowthBookProvider } from '@growthbook/growthbook-react';
 import { ConnectionProvider } from '@solana/wallet-adapter-react';
 import { AppProps } from 'next/app';
@@ -108,6 +109,8 @@ const Pages = ({ Component, pageProps }: Omit<AppProps, 'router'>) => {
           })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         `}
       </Script>
+
+      <Script src="https://terminal.jup.ag/main-v1.js" data-preload />
 
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />

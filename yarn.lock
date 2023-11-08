@@ -1703,7 +1703,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.20.0, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.22.6, @babel/runtime@npm:^7.23.1, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.20.0, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.22.6, @babel/runtime@npm:^7.23.1, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.23.2
   resolution: "@babel/runtime@npm:7.23.2"
   dependencies:
@@ -3217,6 +3217,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@coral-xyz/anchor@npm:0.28.1-beta.2":
+  version: 0.28.1-beta.2
+  resolution: "@coral-xyz/anchor@npm:0.28.1-beta.2"
+  dependencies:
+    "@coral-xyz/borsh": ^0.28.0
+    "@noble/hashes": ^1.3.1
+    "@solana/web3.js": ^1.68.0
+    base64-js: ^1.5.1
+    bn.js: ^5.1.2
+    bs58: ^4.0.1
+    buffer-layout: ^1.2.2
+    camelcase: ^6.3.0
+    cross-fetch: ^3.1.5
+    crypto-hash: ^1.3.0
+    eventemitter3: ^4.0.7
+    pako: ^2.0.3
+    snake-case: ^3.0.4
+    superstruct: ^0.15.4
+    toml: ^3.0.0
+  checksum: 5d286277b7401105c77cea2c83758e0dedbf583377593e4546a97024d83dd1279d43cef37c7162c948d79421bfd995fb19e11680581aa1e00ddf20221411aaa8
+  languageName: node
+  linkType: hard
+
 "@coral-xyz/anchor@npm:^0.28.0":
   version: 0.28.0
   resolution: "@coral-xyz/anchor@npm:0.28.0"
@@ -3540,7 +3563,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:11.11.1":
+"@emotion/react@npm:11.11.1, @emotion/react@npm:^11.10.5":
   version: 11.11.1
   resolution: "@emotion/react@npm:11.11.1"
   dependencies:
@@ -3581,7 +3604,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:11.11.0":
+"@emotion/styled@npm:11.11.0, @emotion/styled@npm:^11.10.5":
   version: 11.11.0
   resolution: "@emotion/styled@npm:11.11.0"
   dependencies:
@@ -6178,6 +6201,68 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jup-ag/api@npm:~6.0.5":
+  version: 6.0.6
+  resolution: "@jup-ag/api@npm:6.0.6"
+  checksum: 3438ac34675b3f5250755d4d61460b811a64a401bd52b51090c369077f9880f9f02dcbf732a13c5114765daed3711c60461019f66737c46adfda95a766de3f6f
+  languageName: node
+  linkType: hard
+
+"@jup-ag/common@npm:6.0.0-beta.0":
+  version: 6.0.0-beta.0
+  resolution: "@jup-ag/common@npm:6.0.0-beta.0"
+  dependencies:
+    "@coral-xyz/anchor": 0.28.1-beta.2
+    "@mercurial-finance/optimist": 0.3.0
+    "@solana/spl-token": 0.1.8
+    bs58: ^4.0.1
+    jsbi: 4.3.0
+  peerDependencies:
+    "@solana/web3.js": ">=1.78.3"
+  checksum: 61cca70fc142f27670694e2db9a2d125161860ff2017e392bcf4f171b8f6811eb8784edc0f4d997f71409d7eb5beb0ff0cfdb738180169378eb86c82442f3a25
+  languageName: node
+  linkType: hard
+
+"@jup-ag/react-hook@npm:^6.0.0-beta.2":
+  version: 6.0.0
+  resolution: "@jup-ag/react-hook@npm:6.0.0"
+  dependencies:
+    "@jup-ag/api": ~6.0.5
+    "@jup-ag/common": 6.0.0-beta.0
+    "@mercurial-finance/optimist": 0.3.0
+    "@solana/spl-token": 0.1.8
+    superstruct: ~1.0.3
+  peerDependencies:
+    "@project-serum/serum": ">=0.13.60"
+    "@solana/web3.js": ">=1.15.0"
+    bn.js: ">=5.2.0"
+    react: ">=16"
+  checksum: 3b0dbb2429435f40d5d54465d1b9bbda89b3ab18e28d1987708770db9d7f48c887f25246e2f6105f96da2070e393a9fc61c81a51ba72cb31ccc04ff9b4db0c36
+  languageName: node
+  linkType: hard
+
+"@jup-ag/wallet-adapter@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@jup-ag/wallet-adapter@npm:0.1.3"
+  dependencies:
+    "@emotion/react": ^11.10.5
+    "@emotion/styled": ^11.10.5
+    "@solana-mobile/wallet-adapter-mobile": ^2.0.0
+    "@solana/wallet-adapter-base": 0.9.23
+    "@solana/wallet-adapter-react": 0.15.35
+    react-use: ">=17.2.4"
+  peerDependencies:
+    "@emotion/react": ^11.10.5
+    "@emotion/styled": ^11.10.5
+    "@solana/spl-token": "*"
+    "@solana/web3.js": ">=1.77.3"
+    decimal.js: ">=10.4.3"
+    react: ">=18"
+    styled-components: "*"
+  checksum: fc5107824748c41b3c186f26f9b6e0bbcab014bcfd8c1c71d8a23ea2f82f161bca0f285e2f7f0cfae1d7a9a75d9a879b8a3d69da21b7fabafa2376de93953788
+  languageName: node
+  linkType: hard
+
 "@keystonehq/bc-ur-registry-sol@npm:^0.3.1":
   version: 0.3.1
   resolution: "@keystonehq/bc-ur-registry-sol@npm:0.3.1"
@@ -6306,6 +6391,21 @@ __metadata:
   version: 2.0.4
   resolution: "@leichtgewicht/ip-codec@npm:2.0.4"
   checksum: 468de1f04d33de6d300892683d7c8aecbf96d1e2c5fe084f95f816e50a054d45b7c1ebfb141a1447d844b86a948733f6eebd92234da8581c84a1ad4de2946a2d
+  languageName: node
+  linkType: hard
+
+"@mercurial-finance/optimist@npm:0.3.0":
+  version: 0.3.0
+  resolution: "@mercurial-finance/optimist@npm:0.3.0"
+  dependencies:
+    "@metaplex-foundation/mpl-token-metadata": ~2.13.0
+    promise-retry: 2.0.1
+  peerDependencies:
+    "@coral-xyz/anchor": ">=0.28.0"
+    "@solana/spl-token": <0.2.0
+    "@solana/web3.js": ">=1.15.0"
+    bn.js: ">=5.2.0"
+  checksum: 153e8fc9f06d53f78cb47a2e5e4c5152c1b4a35746be1ce80e70d08f3bd764d8fe97ac6f8830628c01b2799bb0fedfa17dd0046247575cb443cac248587f818b
   languageName: node
   linkType: hard
 
@@ -6479,7 +6579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metaplex-foundation/mpl-token-metadata@npm:^2.8.6":
+"@metaplex-foundation/mpl-token-metadata@npm:^2.8.6, @metaplex-foundation/mpl-token-metadata@npm:~2.13.0":
   version: 2.13.0
   resolution: "@metaplex-foundation/mpl-token-metadata@npm:2.13.0"
   dependencies:
@@ -9526,7 +9626,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/spl-token@npm:^0.3.7":
+"@solana/spl-token@npm:^0.3.8":
   version: 0.3.8
   resolution: "@solana/spl-token@npm:0.3.8"
   dependencies:
@@ -9561,7 +9661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/wallet-adapter-base@npm:^0.9.17, @solana/wallet-adapter-base@npm:^0.9.2, @solana/wallet-adapter-base@npm:^0.9.23, @solana/wallet-adapter-base@npm:^0.9.9":
+"@solana/wallet-adapter-base@npm:0.9.23, @solana/wallet-adapter-base@npm:^0.9.17, @solana/wallet-adapter-base@npm:^0.9.2, @solana/wallet-adapter-base@npm:^0.9.23, @solana/wallet-adapter-base@npm:^0.9.9":
   version: 0.9.23
   resolution: "@solana/wallet-adapter-base@npm:0.9.23"
   dependencies:
@@ -9804,7 +9904,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/wallet-adapter-react@npm:^0.15.35":
+"@solana/wallet-adapter-react@npm:0.15.35, @solana/wallet-adapter-react@npm:^0.15.35":
   version: 0.15.35
   resolution: "@solana/wallet-adapter-react@npm:0.15.35"
   dependencies:
@@ -11608,6 +11708,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-cookie@npm:^2.2.6":
+  version: 2.2.7
+  resolution: "@types/js-cookie@npm:2.2.7"
+  checksum: 851f47e94ca1fc43661d8f51614d67a613e7810c91b876d0a3b311ce72f7df800107fd02a08cb6948184e12c120b4f058edca2f50424d8798bdcffd6627281e3
+  languageName: node
+  linkType: hard
+
 "@types/jsdom@npm:^20.0.0":
   version: 20.0.1
   resolution: "@types/jsdom@npm:20.0.1"
@@ -12883,6 +12990,13 @@ __metadata:
   version: 0.7.13
   resolution: "@xmldom/xmldom@npm:0.7.13"
   checksum: b4054078530e5fa8ede9677425deff0fce6d965f4c477ca73f8490d8a089e60b8498a15560425a1335f5ff99ecb851ed2c734b0a9a879299a5694302f212f37a
+  languageName: node
+  linkType: hard
+
+"@xobotyi/scrollbar-width@npm:^1.9.5":
+  version: 1.9.5
+  resolution: "@xobotyi/scrollbar-width@npm:1.9.5"
+  checksum: e880c8696bd6c7eedaad4e89cc7bcfcd502c22dc6c061288ffa7f5a4fe5dab4aa2358bdd68e7357bf0334dc8b56724ed9bee05e010b60d83a3bb0d855f3d886f
   languageName: node
   linkType: hard
 
@@ -16982,7 +17096,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.11, csstype@npm:^3.0.2, csstype@npm:^3.1.2":
+"csstype@npm:^3.0.11, csstype@npm:^3.0.2, csstype@npm:^3.0.6, csstype@npm:^3.1.2":
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
@@ -20173,6 +20287,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"fast-shallow-equal@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "fast-shallow-equal@npm:1.0.0"
+  checksum: ae89318ce43c0c46410d9511ac31520d59cfe675bad3d0b1cb5f900b2d635943d788b8370437178e91ae0d0412decc394229c03e69925ade929a8c02da241610
+  languageName: node
+  linkType: hard
+
 "fast-stable-stringify@npm:^1.0.0":
   version: 1.0.0
   resolution: "fast-stable-stringify@npm:1.0.0"
@@ -20188,6 +20309,13 @@ download-git-repo@latest:
   bin:
     fxparser: src/cli/cli.js
   checksum: d507ce2efa5fd13d0a5ba28bd76dd68f2fc30ad8748357c37b70f360d19417866d79e35a688af067d5bceaaa796033fa985206aef9692f7a421e1326b6e73309
+  languageName: node
+  linkType: hard
+
+"fastest-stable-stringify@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "fastest-stable-stringify@npm:2.0.2"
+  checksum: 5e2cb166c7bb6f16ac25a1e4be17f6b8d2923234c80739e12c9d21dea376b3128b2c63f90aa2aae7746cfec4dcf188d1d4eb6a964bb484ca133f17c8e9acfacc
   languageName: node
   linkType: hard
 
@@ -22380,7 +22508,7 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
-"inline-style-prefixer@npm:^6.0.1":
+"inline-style-prefixer@npm:^6.0.0, inline-style-prefixer@npm:^6.0.1":
   version: 6.0.4
   resolution: "inline-style-prefixer@npm:6.0.4"
   dependencies:
@@ -24007,6 +24135,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"js-cookie@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "js-cookie@npm:2.2.1"
+  checksum: 9b1fb980a1c5e624fd4b28ea4867bb30c71e04c4484bb3a42766344c533faa684de9498e443425479ec68609e96e27b60614bfe354877c449c631529b6d932f2
+  languageName: node
+  linkType: hard
+
 "js-message@npm:1.0.7":
   version: 1.0.7
   resolution: "js-message@npm:1.0.7"
@@ -24071,6 +24206,13 @@ download-git-repo@latest:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: bef146085f472d44dee30ec34e5cf36bf89164f5d585435a3d3da89e52622dff0b188a580e4ad091c3341889e14cb88cac6e4deb16dc5b1e9623bb0601fc255c
+  languageName: node
+  linkType: hard
+
+"jsbi@npm:4.3.0":
+  version: 4.3.0
+  resolution: "jsbi@npm:4.3.0"
+  checksum: 27c4f178eb7fd9d1756144066fdebc62f4a0176e877f55e646e8ce84075c13551bd575a316b9959ccdcca9d5dc05a81c9907cfa09f0cfeb43c9777797e36b0e9
   languageName: node
   linkType: hard
 
@@ -26748,6 +26890,25 @@ download-git-repo@latest:
   dependencies:
     node-gyp: latest
   checksum: 4fe42f58456504eab3105c04a5cffb72066b5f22bd45decf33523cb17e7d6abc33cca2a19829407b9000539c5cb25f410312d4dc5b30220167a3594896ea6a0a
+  languageName: node
+  linkType: hard
+
+"nano-css@npm:^5.3.1":
+  version: 5.3.5
+  resolution: "nano-css@npm:5.3.5"
+  dependencies:
+    css-tree: ^1.1.2
+    csstype: ^3.0.6
+    fastest-stable-stringify: ^2.0.2
+    inline-style-prefixer: ^6.0.0
+    rtl-css-js: ^1.14.0
+    sourcemap-codec: ^1.4.8
+    stacktrace-js: ^2.0.2
+    stylis: ^4.0.6
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+  checksum: 8d4e59a2a29477221af47320d850a7dcee1ac51774fb5a0dce6ee59b22174c7149f75108235de85559581fbb2b93aa222a2b32ea53c93ba3f5d322c4d098c355
   languageName: node
   linkType: hard
 
@@ -30555,6 +30716,41 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"react-universal-interface@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "react-universal-interface@npm:0.6.2"
+  peerDependencies:
+    react: "*"
+    tslib: "*"
+  checksum: 070a7e9e3cdd8b0ec91a2ac9ac0a8df6bcb3fd183d2775bf0f439b9870fc1faf5b4fa9fe9741abd5187f0a35be645cb4004e1c9ebda9ada7e5d0a624f94910cb
+  languageName: node
+  linkType: hard
+
+"react-use@npm:>=17.2.4":
+  version: 17.4.0
+  resolution: "react-use@npm:17.4.0"
+  dependencies:
+    "@types/js-cookie": ^2.2.6
+    "@xobotyi/scrollbar-width": ^1.9.5
+    copy-to-clipboard: ^3.3.1
+    fast-deep-equal: ^3.1.3
+    fast-shallow-equal: ^1.0.0
+    js-cookie: ^2.2.1
+    nano-css: ^5.3.1
+    react-universal-interface: ^0.6.2
+    resize-observer-polyfill: ^1.5.1
+    screenfull: ^5.1.0
+    set-harmonic-interval: ^1.0.1
+    throttle-debounce: ^3.0.1
+    ts-easing: ^0.2.0
+    tslib: ^2.1.0
+  peerDependencies:
+    react: ^16.8.0  || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
+  checksum: 0889da919b49a186de375ec15d2778b954ae981c523acd17dd496e4a4da7b6190efe7993491e1b85fdd6de3e745d08a4eaba4caa35408d570b5f1de550f35d11
+  languageName: node
+  linkType: hard
+
 "react-xnft@npm:^0.2.0-latest.3375":
   version: 0.2.0-latest.3375
   resolution: "react-xnft@npm:0.2.0-latest.3375"
@@ -31011,6 +31207,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"resize-observer-polyfill@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "resize-observer-polyfill@npm:1.5.1"
+  checksum: 57e7f79489867b00ba43c9c051524a5c8f162a61d5547e99333549afc23e15c44fd43f2f318ea0261ea98c0eb3158cca261e6f48d66e1ed1cd1f340a43977094
+  languageName: node
+  linkType: hard
+
 "resolve-alpn@npm:^1.0.0":
   version: 1.2.1
   resolution: "resolve-alpn@npm:1.2.1"
@@ -31422,6 +31625,15 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"rtl-css-js@npm:^1.14.0":
+  version: 1.16.1
+  resolution: "rtl-css-js@npm:1.16.1"
+  dependencies:
+    "@babel/runtime": ^7.1.2
+  checksum: 7d9ab942098eee565784ccf957f6b7dfa78ea1eec7c6bffedc6641575d274189e90752537c7bdba1f43ae6534648144f467fd6d581527455ba626a4300e62c7a
+  languageName: node
+  linkType: hard
+
 "run-async@npm:^2.4.0":
   version: 2.4.1
   resolution: "run-async@npm:2.4.1"
@@ -31550,6 +31762,8 @@ download-git-repo@latest:
     "@growthbook/growthbook-react": ^0.9.0
     "@headlessui/react": ^1.6.6
     "@heroicons/react": ^1.0.5
+    "@jup-ag/react-hook": ^6.0.0-beta.2
+    "@jup-ag/wallet-adapter": ^0.1.3
     "@metaplex-foundation/js": ^0.18.1
     "@netlify/plugin-nextjs": ^4.39.0
     "@noble/ed25519": ^2.0.0
@@ -31577,7 +31791,7 @@ download-git-repo@latest:
     "@sentry/nextjs": ^7.74.1
     "@sentry/node": ^7.41.0
     "@solana/pay": ^0.2.4
-    "@solana/spl-token": ^0.3.7
+    "@solana/spl-token": ^0.3.8
     "@solana/wallet-adapter-base": ^0.9.23
     "@solana/wallet-adapter-react": ^0.15.35
     "@solana/wallet-adapter-wallets": ^0.19.23
@@ -31866,6 +32080,13 @@ download-git-repo@latest:
     ajv-formats: ^2.1.1
     ajv-keywords: ^5.1.0
   checksum: 26a0463d47683258106e6652e9aeb0823bf0b85843039e068b57da1892f7ae6b6b1094d48e9ed5ba5cbe9f7166469d880858b9d91abe8bd249421eb813850cde
+  languageName: node
+  linkType: hard
+
+"screenfull@npm:^5.1.0":
+  version: 5.2.0
+  resolution: "screenfull@npm:5.2.0"
+  checksum: 21eae33b780eb4679ea0ea2d14734b11168cf35049c45a2bf24ddeb39c67a788e7a8fb46d8b61ca6d8367fd67ce9dd4fc8bfe476489249c7189c2a79cf83f51a
   languageName: node
   linkType: hard
 
@@ -32168,6 +32389,13 @@ download-git-repo@latest:
     functions-have-names: ^1.2.3
     has-property-descriptors: ^1.0.0
   checksum: 4975d17d90c40168eee2c7c9c59d023429f0a1690a89d75656306481ece0c3c1fb1ebcc0150ea546d1913e35fbd037bace91372c69e543e51fc5d1f31a9fa126
+  languageName: node
+  linkType: hard
+
+"set-harmonic-interval@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "set-harmonic-interval@npm:1.0.1"
+  checksum: c122b831c2e0b1fb812e5e9d065094b9d174bd0576f9a779ab7a7d8881c8f6dd7d5fcab9a2553da15eea670eb598f9dd4d5162b626d45cc9c529706aa1444a84
   languageName: node
   linkType: hard
 
@@ -32615,6 +32843,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"source-map@npm:0.5.6":
+  version: 0.5.6
+  resolution: "source-map@npm:0.5.6"
+  checksum: 390b3f5165c9631a74fb6fb55ba61e62a7f9b7d4026ae0e2bfc2899c241d71c1bccb8731c496dc7f7cb79a5f523406eb03d8c5bebe8448ee3fc38168e2d209c8
+  languageName: node
+  linkType: hard
+
 "source-map@npm:^0.5.6, source-map@npm:^0.5.7":
   version: 0.5.7
   resolution: "source-map@npm:0.5.7"
@@ -32798,6 +33033,15 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"stack-generator@npm:^2.0.5":
+  version: 2.0.10
+  resolution: "stack-generator@npm:2.0.10"
+  dependencies:
+    stackframe: ^1.3.4
+  checksum: 4fc3978a934424218a0aa9f398034e1f78153d5ff4f4ff9c62478c672debb47dd58de05b09fc3900530cbb526d72c93a6e6c9353bacc698e3b1c00ca3dda0c47
+  languageName: node
+  linkType: hard
+
 "stack-utils@npm:^2.0.3":
   version: 2.0.6
   resolution: "stack-utils@npm:2.0.6"
@@ -32818,6 +33062,27 @@ download-git-repo@latest:
   version: 1.3.4
   resolution: "stackframe@npm:1.3.4"
   checksum: bae1596873595c4610993fa84f86a3387d67586401c1816ea048c0196800c0646c4d2da98c2ee80557fd9eff05877efe33b91ba6cd052658ed96ddc85d19067d
+  languageName: node
+  linkType: hard
+
+"stacktrace-gps@npm:^3.0.4":
+  version: 3.1.2
+  resolution: "stacktrace-gps@npm:3.1.2"
+  dependencies:
+    source-map: 0.5.6
+    stackframe: ^1.3.4
+  checksum: 85daa232d138239b6ae0f4bcdd87d15d302a045d93625db17614030945b5314e204b5fbcf9bee5b6f4f9e6af5fca05f65c27fe910894b861ef6853b99470aa1c
+  languageName: node
+  linkType: hard
+
+"stacktrace-js@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "stacktrace-js@npm:2.0.2"
+  dependencies:
+    error-stack-parser: ^2.0.6
+    stack-generator: ^2.0.5
+    stacktrace-gps: ^3.0.4
+  checksum: 081e786d56188ac04ac6604c09cd863b3ca2b4300ec061366cf68c3e4ad9edaa34fb40deea03cc23a05f442aa341e9171f47313f19bd588f9bec6c505a396286
   languageName: node
   linkType: hard
 
@@ -33361,6 +33626,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"stylis@npm:^4.0.6":
+  version: 4.3.0
+  resolution: "stylis@npm:4.3.0"
+  checksum: 6120de3f03eacf3b5adc8e7919c4cca991089156a6badc5248752a3088106afaaf74996211a6817a7760ebeadca09004048eea31875bd8d4df51386365c50025
+  languageName: node
+  linkType: hard
+
 "sucrase@npm:^3.20.0, sucrase@npm:^3.32.0":
   version: 3.34.0
   resolution: "sucrase@npm:3.34.0"
@@ -33414,7 +33686,7 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
-"superstruct@npm:^1.0.3":
+"superstruct@npm:^1.0.3, superstruct@npm:~1.0.3":
   version: 1.0.3
   resolution: "superstruct@npm:1.0.3"
   checksum: 761790bb111e6e21ddd608299c252f3be35df543263a7ebbc004e840d01fcf8046794c274bcb351bdf3eae4600f79d317d085cdbb19ca05803a4361840cc9bb1
@@ -33836,6 +34108,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"throttle-debounce@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "throttle-debounce@npm:3.0.1"
+  checksum: e34ef638e8df3a9154249101b68afcbf2652a139c803415ef8a2f6a8bc577bcd4d79e4bb914ad3cd206523ac78b9fb7e80885bfa049f64fbb1927f99d98b5736
+  languageName: node
+  linkType: hard
+
 "throttleit@npm:^1.0.0":
   version: 1.0.0
   resolution: "throttleit@npm:1.0.0"
@@ -34153,6 +34432,13 @@ download-git-repo@latest:
   version: 2.1.2
   resolution: "ts-adt@npm:2.1.2"
   checksum: c137cba73b215aa9c2d152fcceb0c25ee11dc718847ffec6297e2371c08b881e5ff59a0d200cb1f197941385e3827846477aafaac501cad80006a088404c51f0
+  languageName: node
+  linkType: hard
+
+"ts-easing@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "ts-easing@npm:0.2.0"
+  checksum: e67ee862acca3b2e2718e736f31999adcef862d0df76d76a0e138588728d8a87dfec9978556044640bd0e90203590ad88ac2fe8746d0e9959b8d399132315150
   languageName: node
   linkType: hard
 

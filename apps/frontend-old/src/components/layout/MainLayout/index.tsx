@@ -16,6 +16,7 @@ export const MainLayout = ({ children }: PropsWithChildren) => {
       case '/dashboard':
       case '/ships':
       case '/ships/deals':
+      case '/swapp':
         return SideBarLayout;
       default:
         return BaseLayout;
