@@ -38,7 +38,7 @@ function Swapper() {
       integratedTargetId: 'integrated-terminal',
       defaultExplorer: 'Solscan',
       platformFeeAndAccounts: {
-        feeBps: 20,
+        feeBps: 5,
         feeAccounts,
       },
     });
