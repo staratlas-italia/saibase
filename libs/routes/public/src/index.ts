@@ -7,6 +7,7 @@ export type PublicRoute =
   | '/ships'
   | '/ships/:shipId'
   | '/ships/deals'
+  | '/swapp'
   | '/swap/:swapAccount'
   | '/swap/:swapAccount/checkout'
   | '/swap/:swapAccount/checkout/confirmed'

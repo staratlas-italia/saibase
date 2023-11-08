@@ -1,10 +1,13 @@
 import { PublicKey } from '@solana/web3.js';
 import { createIntl, createIntlCache } from 'react-intl';
-import { APP_BASE_URL, FLEET_WEBSITE_URL } from "../../../../../../common/constants";
-import { MenuItem } from "../../SideBar/types";
-import { getTranslations } from "../../../../../../i18n/getTranslations";
-import { appendQueryParams } from "../../../../../../utils/appendQueryParams";
-import { isAdminPublicKey } from "../../../../../../utils/isAdminPublicKey";
+import {
+  APP_BASE_URL,
+  FLEET_WEBSITE_URL,
+} from '../../../../../../common/constants';
+import { getTranslations } from '../../../../../../i18n/getTranslations';
+import { appendQueryParams } from '../../../../../../utils/appendQueryParams';
+import { isAdminPublicKey } from '../../../../../../utils/isAdminPublicKey';
+import { MenuItem } from '../../SideBar/types';
 
 export const getMenuItems = async (
   locale = 'it',
@@ -36,6 +39,11 @@ export const getMenuItems = async (
   }
 
   routes = routes.concat([
+    {
+      name: 'Token swap',
+      route: `${APP_BASE_URL}/swapp`,
+      icon: `${APP_BASE_URL}/images/icons/arrow-path.svg`,
+    },
     {
       name: intl.formatMessage({
         id: 'Layout.Sidebar.Ships.title',
