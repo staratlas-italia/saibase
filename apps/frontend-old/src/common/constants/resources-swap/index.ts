@@ -75,7 +75,7 @@ export const resourceAccounts: ClusterResourcesAccounts = {
           ...resourcesSwapTranslations,
           intro: {
             ...introTranslations,
-            description: 'tutor.intro.description.s',
+            description: 'resource.intro.description.arco',
           },
         },
       },
