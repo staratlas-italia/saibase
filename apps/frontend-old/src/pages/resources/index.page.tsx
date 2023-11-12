@@ -5,7 +5,7 @@ import { Translation } from '../../i18n/Translation';
 import { appendQueryParams } from '../../utils/appendQueryParams';
 import { fillUrlParameters } from '../../utils/fillUrlParameters';
 import { getRoute } from '../../utils/getRoute';
-import { useTutorAccounts } from './useResourcesAccounts';
+import { useResourcesAccounts } from './useResourcesAccounts';
 
 const BadgeBlock = styled(Flex).attrs({
   className:
@@ -14,14 +14,12 @@ const BadgeBlock = styled(Flex).attrs({
   position: relative;
 `;
 
-const numberFormatter = new Intl.NumberFormat();
-
-const Tutor = () => {
+const Resource = () => {
   const router = useRouter();
 
   const query = router.query as Record<string, string | number>;
 
-  const { accounts, states } = useTutorAccounts();
+  const { accounts, states } = useResourcesAccounts();
 
   return (
     <>
@@ -60,6 +58,7 @@ const Tutor = () => {
               }
             >
               {resource}
+              {state.name}
             </BadgeBlock>
           );
         })}
@@ -68,4 +67,4 @@ const Tutor = () => {
   );
 };
 
-export default Tutor;
+export default Resource;

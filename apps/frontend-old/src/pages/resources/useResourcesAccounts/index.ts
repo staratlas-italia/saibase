@@ -5,7 +5,7 @@ import {
 } from '../../../common/constants/resources-swap';
 import { useCluster } from '../../../components/ClusterProvider';
 
-export const useTutorAccounts = () => {
+export const useResourcesAccounts = () => {
   const { cluster } = useCluster();
 
   if (cluster === 'devnet') {
@@ -20,3 +20,5 @@ export const useTutorAccounts = () => {
     states: resourceAccounts['mainnet-beta'].normal,
   };
 };
+
+export default useResourcesAccounts;
