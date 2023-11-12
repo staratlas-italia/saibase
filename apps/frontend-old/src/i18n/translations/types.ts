@@ -159,6 +159,7 @@ export type TranslationValues = {
     nTokens: string;
     quantity: string;
   };
+  'resource.resourceSelector.pieces': { items: string };
 };
 
 export type TranslationValuesId = keyof TranslationValues;
