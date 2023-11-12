@@ -7,6 +7,10 @@ import { fillUrlParameters } from '../../utils/fillUrlParameters';
 import { getRoute } from '../../utils/getRoute';
 import { useResourcesAccounts } from './useResourcesAccounts';
 
+const TitleWrapper = styled(Flex).attrs({
+  className: 'bg-white overflow-hidden divide-y',
+})``;
+
 const BadgeBlock = styled(Flex).attrs({
   className:
     'overflow-hidden cursor-pointer max-w-md w-full rounded-2xl transition-all md:hover:scale-105',
@@ -19,7 +23,7 @@ const Resource = () => {
 
   const query = router.query as Record<string, string | number>;
 
-  const { accounts, states } = useResourcesAccounts();
+  const { accounts } = useResourcesAccounts();
 
   return (
     <>
@@ -40,8 +44,6 @@ const Resource = () => {
       >
         {(['arco'] as const).map((resource) => {
           const account = accounts[resource];
-          const state = states[account];
-
           return (
             <BadgeBlock
               direction="col"
@@ -57,8 +59,59 @@ const Resource = () => {
                 )
               }
             >
-              {resource}
-              {state.name}
+              <Flex>
+                <img alt={``} src={``} />
+              </Flex>
+
+              <TitleWrapper direction="col">
+                <Flex direction="col">
+                  <Flex direction="col" py={4} px={4} className="md:py-3">
+                    <Text size="3xl" weight="semibold"></Text>
+
+                    <Flex pt={2}>
+                      <Text size="xl">
+                        <Translation
+                          id="resource.resourceSelector.pieces"
+                          values={{
+                            items: 'XXtogetfromedit',
+                          }}
+                        />
+                      </Text>
+                    </Flex>
+                  </Flex>
+
+                  <Flex direction="col" p={5} className="md:py-3">
+                    <Text size="lg">
+                      <Translation id="tutor.badgeSelector.whatYouReceive" />
+                    </Text>
+
+                    <ul className="list-disc pl-5">
+                      <li>{resource}</li>
+                    </ul>
+                  </Flex>
+                </Flex>
+
+                <Flex direction="col" px={6} py={8}>
+                  {
+                    <Flex direction="col">
+                      <Text
+                        transform="uppercase"
+                        weight="semibold"
+                        color="text-gray-400"
+                      >
+                        <Translation
+                          id="resource.resourceSelector.resume"
+                          values={{
+                            nTokens: '1',
+                            quantity: '10',
+                          }}
+                        />
+                        {resource}
+                      </Text>
+                    </Flex>
+                  }
+                </Flex>
+              </TitleWrapper>
             </BadgeBlock>
           );
         })}

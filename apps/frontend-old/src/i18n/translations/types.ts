@@ -142,7 +142,9 @@ export type TranslationId =
   | 'resource.checkout.title'
   | 'resource.checkout.subtitle'
   | 'resource.checkout.confirmed.subtitle'
-  | 'resource.intro.description.arco';
+  | 'resource.intro.description.arco'
+  | 'resource.resourceSelector.pieces'
+  | 'resource.resourceSelector.resume';
 
 export type TranslationValues = {
   'citizenship.banner.pre.subtitle': { countdown: string };
@@ -153,6 +155,10 @@ export type TranslationValues = {
   'tutor.citizenship.badge': { quantity: string };
   'tutor.dao.shares': { quantity: string };
   'tutor.discount.perc': { discount: string };
+  'resource.resourceSelector.resume': {
+    nTokens: string;
+    quantity: string;
+  };
 };
 
 export type TranslationValuesId = keyof TranslationValues;

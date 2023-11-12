@@ -142,5 +142,7 @@
   "resource.checkout.title": "TODO",
   "resource.checkout.subtitle": "TODO",
   "resource.checkout.confirmed.subtitle": "TODO",
-  "resource.intro.description.arco": "TODO"
+  "resource.intro.description.arco": "TODO",
+  "resource.resourceSelector.pieces": "{items} tokens",
+  "resource.resourceSelector.resume": "{nTokens} tokens for {quantity} "
 }
