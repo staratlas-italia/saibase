@@ -39,7 +39,11 @@ export const attributeCodec = t.type({
   seriesName: optional(t.literal('core')),
   episode: optional(t.number),
   edition: optional(
-    t.union([t.literal('star-atlas'), t.literal('magic-eden')])
+    t.union([
+      t.literal('star-atlas'),
+      t.literal('magic-eden'),
+      t.literal('alternate-cover'),
+    ])
   ),
 });
 
