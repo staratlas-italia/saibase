@@ -1,90 +1,64 @@
+import { mints } from '@saibase/constants';
+import { BestPrices, getEntityBestPrices } from '@saibase/star-atlas';
+import { Connection } from '@solana/web3.js';
 import { NextApiRequest, NextApiResponse } from 'next';
-import {
-  AMMO_TOKEN_MINT_ID,
-  ARCO_TOKEN_MINT_ID,
-  BIOMASS_TOKEN_MINT_ID,
-  CARBON_TOKEN_MINT_ID,
-  COPPERORE_TOKEN_MINT_ID,
-  COPPER_TOKEN_MINT_ID,
-  COPPER_WIRE_TOKEN_MINT_ID,
-  CRYSTAL_LATTICE_TOKEN_MINT_ID,
-  DIAMOND_TOKEN_MINT_ID,
-  ELECTROMAGNET_TOKEN_MINT_ID,
-  ELECTRONICS_TOKEN_MINT_ID,
-  ENERGY_SUBSTRATE_TOKEN_MINT_ID,
-  FOOD_TOKEN_MINT_ID,
-  FRAMEWORK_TOKEN_MINT_ID,
-  FUEL_TOKEN_MINT_ID,
-  GOLDEN_TICKET_TOKEN_MINT_ID,
-  GRAPHENE_TOKEN_MINT_ID,
-  HYDROCARBON_TOKEN_MINT_ID,
-  HYDROGEN_TOKEN_MINT_ID,
-  IRONORE_TOKEN_MINT_ID,
-  IRON_TOKEN_MINT_ID,
-  LUMANITE_TOKEN_MINT_ID,
-  MAGNET_TOKEN_MINT_ID,
-  PARTICLE_ACCELERATOR_TOKEN_MINT_ID,
-  POLYMER_TOKEN_MINT_ID,
-  POWER_SOURCE_TOKEN_MINT_ID,
-  RADIATION_ABSORBER_TOKEN_MINT_ID,
-  ROCHINOL_TOKEN_MINT_ID,
-  SDU_TOKEN_MINT_ID,
-  STEEL_TOKEN_MINT_ID,
-  STRANGE_EMITTER_TOKEN_MINT_ID,
-  SUPER_CONDUCTOR_TOKEN_MINT_ID,
-  TOOL_TOKEN_MINT_ID,
-} from '../../../../common/constants/index';
-import { DataPrices } from '../../../../common/types';
-import { getEntityBestPrices } from '../../../../utils/getEntityBestPrices';
+import { getConnectionClusterUrl } from '../../../../utils/connection';
+
+interface DataPrices {
+  [key: string]: BestPrices;
+}
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const page = parseInt(req.query.page as string) || 1;
   const limit = parseInt(req.query.limit as string) || 4;
   const startIndex = (page - 1) * limit;
+  const connection = new Connection(getConnectionClusterUrl('mainnet-beta'));
 
   const tokenMintItems = [
-    { id: FOOD_TOKEN_MINT_ID, name: 'food' },
-    { id: FUEL_TOKEN_MINT_ID, name: 'fuel' },
-    { id: AMMO_TOKEN_MINT_ID, name: 'ammo' },
-    { id: TOOL_TOKEN_MINT_ID, name: 'tools' },
-    { id: ARCO_TOKEN_MINT_ID, name: 'arco' },
-    { id: BIOMASS_TOKEN_MINT_ID, name: 'biomass' },
-    { id: CARBON_TOKEN_MINT_ID, name: 'carbon' },
-    { id: DIAMOND_TOKEN_MINT_ID, name: 'diamond' },
-    { id: HYDROGEN_TOKEN_MINT_ID, name: 'hydrogen' },
-    { id: IRONORE_TOKEN_MINT_ID, name: 'ironOre' },
-    { id: COPPERORE_TOKEN_MINT_ID, name: 'copperOre' },
-    { id: LUMANITE_TOKEN_MINT_ID, name: 'lumanite' },
-    { id: ROCHINOL_TOKEN_MINT_ID, name: 'rochinol' },
-    { id: SDU_TOKEN_MINT_ID, name: 'sdu' },
-    { id: CRYSTAL_LATTICE_TOKEN_MINT_ID, name: 'crystalLattice' },
-    { id: COPPER_WIRE_TOKEN_MINT_ID, name: 'copperWire' },
-    { id: COPPER_TOKEN_MINT_ID, name: 'copper' },
-    { id: ELECTRONICS_TOKEN_MINT_ID, name: 'electronics' },
-    { id: GRAPHENE_TOKEN_MINT_ID, name: 'graphene' },
-    { id: HYDROCARBON_TOKEN_MINT_ID, name: 'hydrocarbon' },
-    { id: IRON_TOKEN_MINT_ID, name: 'iron' },
-    { id: MAGNET_TOKEN_MINT_ID, name: 'magnet' },
-    { id: POLYMER_TOKEN_MINT_ID, name: 'polymer' },
-    { id: STEEL_TOKEN_MINT_ID, name: 'steel' },
-    { id: ENERGY_SUBSTRATE_TOKEN_MINT_ID, name: 'energySubstrate' },
-    { id: ELECTROMAGNET_TOKEN_MINT_ID, name: 'electromagnet' },
-    { id: FRAMEWORK_TOKEN_MINT_ID, name: 'framework' },
-    { id: PARTICLE_ACCELERATOR_TOKEN_MINT_ID, name: 'particleAccelerator' },
-    { id: POWER_SOURCE_TOKEN_MINT_ID, name: 'powerSource' },
-    { id: RADIATION_ABSORBER_TOKEN_MINT_ID, name: 'radiationAbsorber' },
-    { id: STRANGE_EMITTER_TOKEN_MINT_ID, name: 'strangeEmitter' },
-    { id: SUPER_CONDUCTOR_TOKEN_MINT_ID, name: 'superConductor' },
-    { id: GOLDEN_TICKET_TOKEN_MINT_ID, name: 'goldenTicket' },
+    { mint: mints.food, name: 'food' },
+    { mint: mints.fuel, name: 'fuel' },
+    { mint: mints.ammo, name: 'ammo' },
+    { mint: mints.toolkit, name: 'tools' },
+    { mint: mints.arco, name: 'arco' },
+    { mint: mints.biomass, name: 'biomass' },
+    { mint: mints.carbon, name: 'carbon' },
+    { mint: mints.diamond, name: 'diamond' },
+    { mint: mints.hydrogen, name: 'hydrogen' },
+    { mint: mints.ironOre, name: 'ironOre' },
+    { mint: mints.copperOre, name: 'copperOre' },
+    { mint: mints.lumanite, name: 'lumanite' },
+    { mint: mints.rochinol, name: 'rochinol' },
+    { mint: mints.sdu, name: 'sdu' },
+    { mint: mints.crystalLattice, name: 'crystalLattice' },
+    { mint: mints.copperWire, name: 'copperWire' },
+    { mint: mints.copper, name: 'copper' },
+    { mint: mints.electronics, name: 'electronics' },
+    { mint: mints.graphene, name: 'graphene' },
+    { mint: mints.hydrocarbon, name: 'hydrocarbon' },
+    { mint: mints.iron, name: 'iron' },
+    { mint: mints.magnet, name: 'magnet' },
+    { mint: mints.polymer, name: 'polymer' },
+    { mint: mints.steel, name: 'steel' },
+    { mint: mints.energySubstrate, name: 'energySubstrate' },
+    { mint: mints.electromagnet, name: 'electromagnet' },
+    { mint: mints.framework, name: 'framework' },
+    { mint: mints.particleAccelerator, name: 'particleAccelerator' },
+    { mint: mints.powerSource, name: 'powerSource' },
+    { mint: mints.radiationAbsorber, name: 'radiationAbsorber' },
+    { mint: mints.strangeEmitter, name: 'strangeEmitter' },
+    { mint: mints.superConductor, name: 'superConductor' },
+    { mint: mints.goldenTicket, name: 'goldenTicket' },
   ];
 
   const paginatedItems = tokenMintItems.slice(startIndex, startIndex + limit);
 
   const pricePromises = paginatedItems.map((item) =>
-    getEntityBestPrices(item.id, 'ATLAS').then((prices) => ({
-      name: item.name,
-      prices,
-    }))
+    getEntityBestPrices(connection, item.mint.toBase58(), 'ATLAS').then(
+      (prices) => ({
+        name: item.name,
+        prices,
+      })
+    )
   );
   const results = await Promise.all(pricePromises);
 

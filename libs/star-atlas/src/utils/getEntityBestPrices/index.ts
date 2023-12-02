@@ -1,15 +1,15 @@
-import { getEntityOrderBook } from '@saibase/star-atlas';
 import { Connection, PublicKey } from '@solana/web3.js';
+import { GmClientService } from '@staratlas/factory';
 import * as E from 'fp-ts/Either';
-import { gmClientService } from '../../common/constants';
-import { BestPrices, Currency } from '../../common/types';
-import { getConnectionClusterUrl } from '../connection';
+import { BestPrices, Currency } from '../../entities';
+import { getEntityOrderBook } from '../../market/getEntityOrderBook';
 
 export const getEntityBestPrices = async (
+  connection: Connection,
   mint: string,
   currency: Exclude<Currency, 'POLIS' | 'NONE'> = 'USDC'
 ): Promise<BestPrices> => {
-  const connection = new Connection(getConnectionClusterUrl('mainnet-beta'));
+  const gmClientService = new GmClientService();
 
   const result = await getEntityOrderBook({
     gmClientService,

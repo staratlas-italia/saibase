@@ -1,6 +1,8 @@
 export * from './constants';
 export { factionsCodec, nftCodec, playerCodec } from './entities';
 export type {
+  BestPrices,
+  Currency,
   Faction,
   NftPrimarySale,
   ScoreVarsShipInfo,
@@ -20,4 +22,5 @@ export * from './market/getOrderbooks';
 export * from './score/getAllFleets';
 export * from './score/getInitialDepositInstruction';
 export * from './score/getShipInfo';
+export * from './utils/getEntityBestPrices';
 export * from './utils/getEntityVwapPrice';

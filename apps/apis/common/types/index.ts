@@ -25,15 +25,3 @@ export const sageGoals = new Set([
   'Resources',
   'Atlas',
 ]);
-
-export type BestPrices = {
-  avgPrice: number;
-  bestAskPrice: number;
-  bestBidPrice: number;
-};
-
-export type Currency = 'ATLAS' | 'POLIS' | 'USDC' | 'NONE';
-
-export interface DataPrices {
-  [key: string]: BestPrices;
-}
