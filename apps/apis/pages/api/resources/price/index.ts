@@ -8,10 +8,17 @@ interface DataPrices {
   [key: string]: BestPrices;
 }
 
+const MAX_LIMIT = 10;
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const queryPage = parseInt(req.query.page as string);
   const page = queryPage ? (queryPage <= 0 ? 1 : queryPage) : 1;
-  const limit = 4;
+  const queryLimit = parseInt(req.query.limit as string);
+  const limit = queryLimit
+    ? queryLimit <= 0 || queryLimit > MAX_LIMIT
+      ? 4
+      : queryLimit
+    : 4;
   const startIndex = (page - 1) * limit;
   const connection = new Connection(rpcApiBaseUrl);
 
