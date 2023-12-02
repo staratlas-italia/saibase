@@ -1,8 +1,8 @@
+import { rpcApiBaseUrl } from '@saibase/configuration';
 import { mints } from '@saibase/constants';
 import { BestPrices, getEntityBestPrices } from '@saibase/star-atlas';
 import { Connection } from '@solana/web3.js';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getConnectionClusterUrl } from '../../../../utils/connection';
 
 interface DataPrices {
   [key: string]: BestPrices;
@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const page = parseInt(req.query.page as string) || 1;
   const limit = parseInt(req.query.limit as string) || 4;
   const startIndex = (page - 1) * limit;
-  const connection = new Connection(getConnectionClusterUrl('mainnet-beta'));
+  const connection = new Connection(rpcApiBaseUrl);
 
   const tokenMintItems = [
     { mint: mints.food, name: 'food' },
