@@ -9,8 +9,9 @@ interface DataPrices {
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 4;
+  const queryPage = parseInt(req.query.page as string);
+  const page = queryPage ? (queryPage <= 0 ? 1 : queryPage) : 1;
+  const limit = 4;
   const startIndex = (page - 1) * limit;
   const connection = new Connection(rpcApiBaseUrl);
 
