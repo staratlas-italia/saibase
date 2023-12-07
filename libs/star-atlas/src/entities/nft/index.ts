@@ -124,7 +124,7 @@ const msrpCodec = t.type({
 
 const primarySaleCodec = t.type({
   listTimestamp: t.number,
-  id: nullable(t.string),
+  id: optional(nullable(t.string)),
   _id: optional(t.string),
   supply: optional(t.number),
   price: optional(t.number),
@@ -155,7 +155,7 @@ export const nftCodec = t.type({
   createdAt: optional(t.string),
   deactivated: t.boolean,
   description: t.string,
-  id: t.string,
+  id: optional(t.string),
   image: t.string,
   markets: t.array(marketCodec),
   media: mediaCodec,
