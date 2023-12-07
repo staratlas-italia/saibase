@@ -40,7 +40,6 @@ const handler = async (_: NextApiRequest, res: NextApiResponse) => {
     const shipsEither = await fetchNftsByCategory({ category: 'ship' })();
 
     if (E.isLeft(shipsEither)) {
-      console.log(shipsEither.left);
       return res.status(400).json({ status: 400, error: 'Cannot get ships' });
     }
 
