@@ -61,7 +61,7 @@ export const ProgramInstance = ({ account, onToggle, loading }: Props) => {
   }, [account.publicKey, anchorWallet, cluster, connection]);
 
   return (
-    <Flex direction="col" key={addressString}>
+    <Flex direction="col" key={addressString} className="z-10">
       <Flex className="bg-blue-900 rounded" p={3} justify="between">
         <Flex direction="col" className="space-y-3">
           <InfoRow title="Swap">
