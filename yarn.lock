@@ -20154,7 +20154,7 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
-"extract-zip@npm:2.0.1":
+"extract-zip@npm:2.0.1, extract-zip@npm:^2.0.1":
   version: 2.0.1
   resolution: "extract-zip@npm:2.0.1"
   dependencies:
@@ -21991,6 +21991,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"hpagent@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "hpagent@npm:0.1.2"
+  checksum: 1918518ab937d9fa615a47b94489e23662547bc1edf27069ee9bf40bfefb94da65eb142b6f42336b4b0752fce87f66c284d92b97340fd2a90b24aa3616b5450d
+  languageName: node
+  linkType: hard
+
 "html-encoding-sniffer@npm:^3.0.0":
   version: 3.0.0
   resolution: "html-encoding-sniffer@npm:3.0.0"
@@ -22269,7 +22276,7 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
-"husky@npm:8.0.3":
+"husky@npm:^8.0.0":
   version: 8.0.3
   resolution: "husky@npm:8.0.3"
   bin:
@@ -27149,6 +27156,25 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"ngrok@npm:^5.0.0-beta.2":
+  version: 5.0.0-beta.2
+  resolution: "ngrok@npm:5.0.0-beta.2"
+  dependencies:
+    extract-zip: ^2.0.1
+    got: ^11.8.5
+    hpagent: ^0.1.2
+    lodash.clonedeep: ^4.5.0
+    uuid: ^7.0.0 || ^8.0.0
+    yaml: ^2.2.2
+  dependenciesMeta:
+    hpagent:
+      optional: true
+  bin:
+    ngrok: bin/ngrok
+  checksum: 9e8510e8f1a5644a0ce3077f51b879fec2ba2274e3395d56c98674794df402c7df88b681237d73df36720aafb68b32b847b965e9b25981d30cc50b47b330e5f1
+  languageName: node
+  linkType: hard
+
 "nice-try@npm:^1.0.4":
   version: 1.0.5
   resolution: "nice-try@npm:1.0.5"
@@ -31867,7 +31893,7 @@ download-git-repo@latest:
     fp-ts: ^2.13.1
     framer-motion: ^6
     glob: ^8.0.3
-    husky: 8.0.3
+    husky: ^8.0.0
     invariant: ^2.2.4
     io-ts: ^2.2.20
     io-ts-reporters: ^2.0.1
@@ -31891,6 +31917,7 @@ download-git-repo@latest:
     mongodb: ^5.1.0
     next: 13.4.1
     next-transpile-modules: ^10.0.0
+    ngrok: ^5.0.0-beta.2
     nx: 17.0.1
     postcss: latest
     prettier: ^2.6.2
@@ -35515,21 +35542,21 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"uuid@npm:^7.0.0 || ^8.0.0, uuid@npm:^8.0.0, uuid@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+  languageName: node
+  linkType: hard
+
 "uuid@npm:^7.0.3":
   version: 7.0.3
   resolution: "uuid@npm:7.0.3"
   bin:
     uuid: dist/bin/uuid
   checksum: f5b7b5cc28accac68d5c083fd51cca64896639ebd4cca88c6cfb363801aaa83aa439c86dfc8446ea250a7a98d17afd2ad9e88d9d4958c79a412eccb93bae29de
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^8.0.0, uuid@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "uuid@npm:8.3.2"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
   languageName: node
   linkType: hard
 
@@ -36647,6 +36674,13 @@ download-git-repo@latest:
   version: 2.3.3
   resolution: "yaml@npm:2.3.3"
   checksum: cdfd132e7e0259f948929efe8835923df05c013c273c02bb7a2de9b46ac3af53c2778a35b32c7c0f877cc355dc9340ed564018c0242bfbb1278c2a3e53a0e99e
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.2.2":
+  version: 2.3.4
+  resolution: "yaml@npm:2.3.4"
+  checksum: e6d1dae1c6383bcc8ba11796eef3b8c02d5082911c6723efeeb5ba50fc8e881df18d645e64de68e421b577296000bea9c75d6d9097c2f6699da3ae0406c030d8
   languageName: node
   linkType: hard
 

@@ -1,7 +1,7 @@
-import { Cluster } from "@solana/web3.js";
-import { api } from "../../api";
-import { PaymentReferenceResponse } from "../../../types/api";
-import { getApiRoute } from "../../../utils/getRoute";
+import { getApiRoute } from '@saibase/routes-api';
+import { Cluster } from '@solana/web3.js';
+import { PaymentReferenceResponse } from '../../../types/api';
+import { api } from '../../api';
 
 type Param = {
   cluster?: Cluster;
@@ -15,10 +15,10 @@ export const fetchPaymentReference = async ({
 }: Param) => {
   try {
     const response = await api.post<PaymentReferenceResponse>(
-      getApiRoute("/api/payment/reference"),
+      getApiRoute('/api/payment/reference'),
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: { swapAccount, publicKey },
       }

@@ -185,6 +185,7 @@
     "metro-resolver": "0.76.7",
     "mocha": "^9.0.3",
     "next-transpile-modules": "^10.0.0",
+    "ngrok": "^5.0.0-beta.2",
     "nx": "17.0.1",
     "postcss": "latest",
     "prettier": "^2.6.2",

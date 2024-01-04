@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Translation } from '../../i18n/Translation';
 import { appendQueryParams } from '../../utils/appendQueryParams';
 import { fillUrlParameters } from '../../utils/fillUrlParameters';
-import { useTutorAccounts } from './useTutorAccounts';
+import { useQuattrinoAccounts } from './useQuattrinoAccounts';
 
 const BadgeBlock = styled(Flex).attrs({
   className:
@@ -15,7 +15,7 @@ const BadgeBlock = styled(Flex).attrs({
 `;
 
 const TitleWrapper = styled(Flex).attrs({
-  className: 'bg-white overflow-hidden divide-y',
+  className: 'bg-white overflow-hidden',
 })``;
 
 const numberFormatter = new Intl.NumberFormat();
@@ -25,11 +25,11 @@ const Tutor = () => {
 
   const query = router.query as Record<string, string | number>;
 
-  const { accounts, states } = useTutorAccounts();
+  const { accounts, states } = useQuattrinoAccounts();
 
   return (
     <>
-      <Flex justify="center" pt={48} px={10}>
+      <Flex justify="center" px={10}>
         <Text align="center" color="text-white" size="6xl" weight="bold" shadow>
           <Translation id="tutor.badgeSelector.title" />
         </Text>
@@ -67,13 +67,13 @@ const Tutor = () => {
               <Flex>
                 <img
                   alt={`tutor-badge-${size}`}
-                  src={`/images/cards/card-tutor-${size}-square.webp`}
+                  src={`/images/resources/quattrino-coin-square.webp`}
                 />
               </Flex>
 
               <TitleWrapper direction="col">
                 <Flex direction="col">
-                  <Flex direction="col" py={4} px={4} className="md:py-3">
+                  <Flex direction="col" py={4} px={6} className="md:py-3">
                     <Text size="3xl" weight="semibold">
                       {state?.name || 'Unknown'}
                     </Text>
@@ -81,38 +81,13 @@ const Tutor = () => {
                     <Flex pt={2}>
                       <Text size="xl">
                         <Translation
-                          id="tutor.badgeSelector.pieces"
+                          id="quattrino.selector.quantity"
                           values={{
                             items: quantity,
                           }}
                         />
                       </Text>
                     </Flex>
-                  </Flex>
-
-                  <Flex direction="col" p={5} className="md:py-3">
-                    <Text size="lg">
-                      <Translation id="tutor.badgeSelector.whatYouReceive" />
-                    </Text>
-
-                    <ul className="list-disc pl-5">
-                      <li>1 {state.name}</li>
-                      <li>
-                        <Translation
-                          id="tutor.dao.shares"
-                          values={{
-                            quantity: quantity,
-                          }}
-                        />
-                      </li>
-                      <li>
-                        <Translation
-                          id="tutor.citizenship.badge"
-                          values={{ quantity: '1' }}
-                        />
-                        *
-                      </li>
-                    </ul>
                   </Flex>
                 </Flex>
 
@@ -153,39 +128,6 @@ const Tutor = () => {
                                 />
                               </Text>
                             </Flex>
-                          </Flex>
-
-                          <Flex pt={3} direction="col">
-                            <Text size="xs" color="text-gray-500">
-                              <Translation id="tutor.shares.description.0" />{' '}
-                              <b>
-                                <Translation
-                                  id="tutor.badgeSelector.pieces"
-                                  values={{
-                                    items: numberFormatter.format(
-                                      (state.quantity || 1) -
-                                        state.prices.real / 0.1
-                                    ),
-                                  }}
-                                />
-                              </b>{' '}
-                              <Translation id="tutor.shares.description.1" />
-                              {!!state.discounts
-                                .discountRelativeToPreviousBundle && (
-                                <>
-                                  {' '}
-                                  <Translation id="tutor.shares.description.2" />{' '}
-                                  <b>
-                                    {
-                                      state.discounts
-                                        .discountRelativeToPreviousBundle
-                                    }
-                                    %
-                                  </b>{' '}
-                                  <Translation id="tutor.shares.description.3" />
-                                </>
-                              )}
-                            </Text>
                           </Flex>
                         </>
                       )}

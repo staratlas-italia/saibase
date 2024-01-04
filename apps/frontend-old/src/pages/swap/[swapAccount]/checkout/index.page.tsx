@@ -1,9 +1,9 @@
-import Head from "next/head";
-import { SwapStateAccountGuard } from "../../../../components/SwapStateAccountGuard";
-import { useRefreshAlert } from "../../../../hooks/useRefreshAlert";
-import { SwapProgramPriceRetriever } from "../../../../hooks/useSwapProgramPrice";
+import Head from 'next/head';
+import { SwapStateAccountGuard } from '../../../../components/SwapStateAccountGuard';
+import { useRefreshAlert } from '../../../../hooks/useRefreshAlert';
 
-import { View } from "./components/View";
+import { BadgesRetriever } from '../../../../components/BadgesRetriever';
+import { View } from './components/View';
 
 const Citizenship = () => {
   useRefreshAlert();
@@ -14,11 +14,11 @@ const Citizenship = () => {
         <title>Citizenship - StarAtlasItalia</title>
       </Head>
 
-      <SwapStateAccountGuard>
-        <SwapProgramPriceRetriever>
+      <BadgesRetriever>
+        <SwapStateAccountGuard>
           <View />
-        </SwapProgramPriceRetriever>
-      </SwapStateAccountGuard>
+        </SwapStateAccountGuard>
+      </BadgesRetriever>
     </>
   );
 };

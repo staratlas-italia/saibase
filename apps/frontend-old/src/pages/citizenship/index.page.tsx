@@ -1,3 +1,4 @@
+import { getPublicRoute } from '@saibase/routes-public';
 import { Flex, Text } from '@saibase/uikit';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -6,7 +7,6 @@ import { BlurBackground } from '../../components/layout/BlurBackground';
 import { Translation } from '../../i18n/Translation';
 import { appendQueryParams } from '../../utils/appendQueryParams';
 import { fillUrlParameters } from '../../utils/fillUrlParameters';
-import { getRoute } from '../../utils/getRoute';
 import { useFactionAccounts } from './useFactionAccounts';
 
 const FactionBlock = styled(BlurBackground).attrs({
@@ -58,7 +58,7 @@ const Citizenship = () => {
           onClick={() =>
             router.push(
               appendQueryParams(
-                fillUrlParameters(getRoute('/swap/:swapAccount'), {
+                fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
                   swapAccount: accounts.mud,
                 }),
                 query
@@ -87,7 +87,7 @@ const Citizenship = () => {
           onClick={() =>
             router.push(
               appendQueryParams(
-                fillUrlParameters(getRoute('/swap/:swapAccount'), {
+                fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
                   swapAccount: accounts.ustur,
                 }),
                 query
@@ -116,7 +116,7 @@ const Citizenship = () => {
           onClick={() =>
             router.push(
               appendQueryParams(
-                fillUrlParameters(getRoute('/swap/:swapAccount'), {
+                fillUrlParameters(getPublicRoute('/swap/:swapAccount'), {
                   swapAccount: accounts.oni,
                 }),
                 query

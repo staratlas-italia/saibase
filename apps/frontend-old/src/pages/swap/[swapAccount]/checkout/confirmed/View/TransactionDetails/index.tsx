@@ -1,7 +1,8 @@
 import { Flex, Text } from '@saibase/uikit';
 import { useMemo } from 'react';
 import { useSwapStateAccount } from '../../../../../../../components/SwapStateAccountGuard';
-import { useSwapProgramPrice } from '../../../../../../../hooks/useSwapProgramPrice';
+
+import { match } from 'ts-pattern';
 import { Translation } from '../../../../../../../i18n/Translation';
 import { useTranslation } from '../../../../../../../i18n/useTranslation';
 
@@ -15,9 +16,12 @@ const Item = ({ title, value }: { title: string; value: string }) => (
 );
 
 export const TransactionDetails = () => {
-  const amount = useSwapProgramPrice();
+  const { quantity, vaultCurrency, price } = useSwapStateAccount();
 
-  const { quantity, vaultCurrency } = useSwapStateAccount();
+  const totalPrice = match(price)
+    .with({ type: 'unit' }, ({ value }) => value * (quantity ?? 1))
+    .with({ type: 'package' }, ({ value }) => value)
+    .exhaustive();
 
   const dateLabel = useTranslation(
     'citizenship.checkout.confirmed.details.date.label'
@@ -51,7 +55,7 @@ export const TransactionDetails = () => {
         <Item title={dateLabel} value={date} />
         <Item
           title={amountLabel}
-          value={`-${(amount * (quantity || 1)).toFixed(2)} ${vaultCurrency}`}
+          value={`-${totalPrice.toFixed(2)} ${vaultCurrency}`}
         />
         <Item title={stateLabel} value={state} />
         <Item title={feeLabel} value="0.00005 SOL" />

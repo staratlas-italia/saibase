@@ -1,7 +1,7 @@
-import Head from "next/head";
-import { SwapStateAccountGuard } from "../../../../../components/SwapStateAccountGuard";
-import { SwapProgramPriceRetriever } from "../../../../../hooks/useSwapProgramPrice";
-import { View } from "./View";
+import Head from 'next/head';
+import { BadgesRetriever } from '../../../../../components/BadgesRetriever';
+import { SwapStateAccountGuard } from '../../../../../components/SwapStateAccountGuard';
+import { View } from './View';
 
 const CitizenshipConfirmed = () => (
   <>
@@ -9,11 +9,11 @@ const CitizenshipConfirmed = () => (
       <title>Confirm Citizenship - StarAtlasItalia</title>
     </Head>
 
-    <SwapStateAccountGuard>
-      <SwapProgramPriceRetriever>
+    <BadgesRetriever>
+      <SwapStateAccountGuard>
         <View />
-      </SwapProgramPriceRetriever>
-    </SwapStateAccountGuard>
+      </SwapStateAccountGuard>
+    </BadgesRetriever>
   </>
 );
 

@@ -76,8 +76,8 @@ export const ClaimAll = () => {
   const hasGenesisOrTutorOrCitizenshipBadge =
     Boolean(tutorBadges) ||
     Boolean(citizenshipBadges?.length) ||
-    badges.some(([badge]) =>
-      allGenesisBadgeMints.includes(badge.mintAddress.toString())
+    badges.some((badge) =>
+      allGenesisBadgeMints.includes(badge.mint.address.toString())
     );
 
   if (!hasGenesisOrTutorOrCitizenshipBadge) {

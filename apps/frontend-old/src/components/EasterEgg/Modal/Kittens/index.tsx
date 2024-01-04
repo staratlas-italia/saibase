@@ -1,3 +1,4 @@
+import { getApiRoute } from '@saibase/routes-api';
 import { Button, Flex, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { shuffle } from 'lodash';
@@ -5,7 +6,6 @@ import md5 from 'md5';
 import { useCallback, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../../../../network/api';
-import { getApiRoute } from '../../../../utils/getRoute';
 
 type Props = {
   onComplete: () => void;
