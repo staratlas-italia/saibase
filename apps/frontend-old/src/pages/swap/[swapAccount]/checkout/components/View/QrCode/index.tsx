@@ -3,6 +3,7 @@ import { createQR, encodeURL } from '@solana/pay';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/router';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { match } from 'ts-pattern';
 import { useCluster } from '../../../../../../../components/ClusterProvider';
 import { useSwapStateAccount } from '../../../../../../../components/SwapStateAccountGuard';
 import { useSwapProgramPrice } from '../../../../../../../hooks/useSwapProgramPrice';
@@ -17,6 +18,11 @@ export const QrCode = memo(() => {
   const router = useRouter();
 
   const { swapAccount, quantity } = useSwapStateAccount();
+
+  const quantityFormatted = match(quantity)
+    .with({ type: 'fixed' }, ({ value }) => value)
+    .with({ type: 'user-defined' }, undefined, () => 1)
+    .exhaustive();
 
   const { cluster } = useCluster();
   const confirmPayment = usePaymentStore((s) => s.confirm);
@@ -56,7 +62,7 @@ export const QrCode = memo(() => {
     }
 
     const status = await confirmPayment({
-      amount: amount * (quantity || 1),
+      amount: amount * quantityFormatted,
       cluster,
       publicKey: publicKey.toString(),
       reference,
@@ -94,7 +100,7 @@ export const QrCode = memo(() => {
     cluster,
     confirmPayment,
     publicKey,
-    quantity,
+    quantityFormatted,
     reference,
     router,
     swapAccount,
