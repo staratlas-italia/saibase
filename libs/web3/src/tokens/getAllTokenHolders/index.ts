@@ -1,8 +1,9 @@
+import { createError } from '@saibase/errors';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { Connection, ParsedAccountData, PublicKey } from '@solana/web3.js';
 import * as A from 'fp-ts/Array';
 import * as TE from 'fp-ts/TaskEither';
-import { constVoid, pipe } from 'fp-ts/function';
+import { pipe } from 'fp-ts/function';
 
 type Param = { connection: Connection; mint: PublicKey };
 
@@ -28,7 +29,7 @@ export const getAllTokenHolders = ({ connection, mint }: Param) =>
             },
           ],
         }),
-      constVoid
+      createError('GetAllTokenHoldersError')
     ),
     TE.map(
       A.map(
