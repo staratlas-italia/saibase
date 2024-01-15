@@ -1,7 +1,7 @@
 import { getAllTokenHolders } from '@saibase/web3';
 import { captureException } from '@sentry/node';
+import * as E from 'fp-ts/Either';
 import * as RA from 'fp-ts/ReadonlyArray';
-import * as T from 'fp-ts/Task';
 import * as TE from 'fp-ts/TaskEither';
 import { flow, pipe } from 'fp-ts/function';
 import { BADGES_MINT_ROLES, connection } from '../../constants';
@@ -32,15 +32,21 @@ export const createUpdateDiscordRoleHandler = (state: AppState) => async () => {
 
     try {
       for (const [mint, roleId] of BADGES_MINT_ROLES) {
-        const holdersWithAtLeastOneToken = await pipe(
+        const holdersWithAtLeastOneTokenEither = await pipe(
           getAllTokenHolders({ connection, mint }),
-          TE.map(flow(RA.filter((h) => h.tokenAmount.uiAmount > 0))),
-          TE.fold(
-            () => T.fromIO(() => []),
-            (holdersWithAtLeastOneToken) =>
-              T.fromIO(() => holdersWithAtLeastOneToken)
-          )
+          TE.map(flow(RA.filter((h) => h.tokenAmount.uiAmount > 0)))
         )();
+
+        if (E.isLeft(holdersWithAtLeastOneTokenEither)) {
+          state.logger.log(
+            'An error occured',
+            holdersWithAtLeastOneTokenEither.left
+          );
+          continue;
+        }
+
+        const holdersWithAtLeastOneToken =
+          holdersWithAtLeastOneTokenEither.right;
 
         state.logger.log(
           'Found ',
