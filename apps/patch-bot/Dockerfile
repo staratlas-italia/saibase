@@ -18,5 +18,9 @@ ENV RPC_API_BASE_URL $rpc_api_base_url
 ENV SENTRY_URL $sentry_url
 ENV SOLSCAN_API_TOKEN $solscan_api_token
 COPY ./dist ./dist
+
+EXPOSE 3000
+
 RUN ls -la
+
 CMD ["node", "./dist/apps/patch-bot/main.cjs"]
