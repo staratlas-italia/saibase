@@ -2,7 +2,10 @@ import { environment, environmentName } from '@saibase/configuration';
 import * as Sentry from '@sentry/node';
 import { Events } from 'discord.js';
 import dotenv from 'dotenv';
+import fastify from 'fastify';
+import fs from 'fs';
 import 'isomorphic-fetch';
+import path from 'path';
 import { discordBotToken } from './constants';
 import { handleClientReady } from './events/handleClientReady';
 import { handleGuildCreate } from './events/handleGuildCreate';
@@ -57,6 +60,32 @@ const run = async () => {
   try {
     await fetchFeatureFlags('root');
 
+    const server = fastify({
+      logger: environment.development,
+      http2: true,
+      https: {
+        key: fs.readFileSync(path.join(__dirname, 'https', 'fastify-key.pem')),
+        cert: fs.readFileSync(path.join(__dirname, 'https', 'fastify.pem')),
+      },
+    });
+
+    server.get('/', (_request, reply) => {
+      reply.status(200).send('Hello World');
+    });
+
+    server.listen(
+      {
+        port: 3000,
+        host: process.env.HOST ?? '0.0.0.0',
+      },
+      (error) => {
+        if (error) {
+          console.log(error);
+          process.exit(1);
+        }
+      }
+    );
+
     state.discord.on(Events.ClientReady, (client) => {
       handleClientReady(client, state);
     });
@@ -81,11 +110,14 @@ const run = async () => {
 
     jobs.forEach((job) => job.start());
   } catch (e) {
+    state.logger.log(e);
+
     Sentry.captureException(e, { level: 'error' });
   }
 };
 
-process.on('SIGINT', async () => {
+process.on('SIGINT', async (err) => {
+  console.log(err);
   process.exit(0);
 });
 

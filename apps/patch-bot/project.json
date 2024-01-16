@@ -18,7 +18,14 @@
         "format": ["cjs"],
         "main": "apps/patch-bot/src/main.ts",
         "tsConfig": "apps/patch-bot/tsconfig.app.json",
-        "assets": ["apps/patch-bot/src/assets"],
+        "assets": [
+          "apps/patch-bot/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/patch-bot/https/local",
+            "output": "./https"
+          }
+        ],
         "esbuildOptions": {
           "sourcemap": true,
           "outExtension": {
@@ -30,6 +37,14 @@
       },
       "configurations": {
         "production": {
+          "assets": [
+            "apps/patch-bot/src/assets",
+            {
+              "glob": "**/*",
+              "input": "apps/patch-bot/https/prod",
+              "output": "./https"
+            }
+          ],
           "esbuildOptions": {
             "sourcemap": false
           }

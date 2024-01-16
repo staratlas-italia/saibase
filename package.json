@@ -51,6 +51,7 @@
     "expo-splash-screen": "0.20.5",
     "expo-status-bar": "1.6.0",
     "fast-glob": "^3.2.12",
+    "fastify": "^4.25.2",
     "fp-ts": "^2.13.1",
     "framer-motion": "^6",
     "glob": "^8.0.3",
