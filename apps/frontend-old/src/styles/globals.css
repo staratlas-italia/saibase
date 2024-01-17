@@ -1,5 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#jupiter-terminal {
+  position: relative;
+  z-index: 999;
+}
