@@ -84,9 +84,8 @@ function App({ router, ...props }: AppProps) {
       }, 500);
     }
 
-    if (intervalId) {
-      return () => clearInterval(intervalId);
-    }
+    return () => intervalId && clearInterval(intervalId);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
