@@ -1,12 +1,14 @@
-/* eslint-disable @next/next/no-sync-scripts */
 import { GrowthBookProvider } from '@growthbook/growthbook-react';
+import { rpcApiBaseUrl } from '@saibase/configuration';
+import { feeCollector, mints } from '@saibase/constants';
+import { getAssociatedTokenAddressSync } from '@solana/spl-token';
 import { ConnectionProvider } from '@solana/wallet-adapter-react';
 import { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,10 +28,75 @@ const WalletProvider = dynamic(() => import('../contexts/WalletProvider'), {
   ssr: false,
 });
 
+const feeMints = [
+  mints.atlas,
+  mints.bonk,
+  mints.bSol,
+  mints.ethWormhole,
+  mints.jitoSol,
+  mints.mSol,
+  mints.polis,
+  mints.ray,
+  mints.srm,
+  mints.stSol,
+  mints.usdc,
+  mints.usdcWormhole,
+  mints.usdt,
+  mints.uxd,
+  mints.wSol,
+];
+
 function App({ router, ...props }: AppProps) {
   const translations = useTranslations();
 
   const { locale } = useRouter();
+
+  const [isJupiterLoaded, setJupiterLoaded] = useState(false);
+
+  const launchTerminal = () => {
+    const feeAccounts = new Map();
+
+    for (const mint of feeMints) {
+      const account = getAssociatedTokenAddressSync(mint, feeCollector);
+
+      feeAccounts.set(mint.toString(), account);
+    }
+
+    window.Jupiter?.init({
+      endpoint: rpcApiBaseUrl,
+      displayMode: 'widget',
+      integratedTargetId: 'integrated-terminal',
+      defaultExplorer: 'Solscan',
+      containerClassName: 'z-50',
+      platformFeeAndAccounts: {
+        feeBps: 5,
+        feeAccounts,
+      },
+    });
+  };
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | undefined = undefined;
+
+    if (!isJupiterLoaded || !window.Jupiter.init || !intervalId) {
+      intervalId = setInterval(() => {
+        setJupiterLoaded(Boolean(window.Jupiter.init));
+      }, 500);
+    }
+
+    if (intervalId) {
+      return () => clearInterval(intervalId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (isJupiterLoaded && Boolean(window.Jupiter.init)) {
+        launchTerminal();
+      }
+    }, 200);
+  }, [isJupiterLoaded]);
 
   useEffect(() => {
     if (!FEATURES_ENDPOINT) {
@@ -51,7 +118,6 @@ function App({ router, ...props }: AppProps) {
   return (
     <GrowthBookProvider growthbook={growthbook}>
       <HtmlComment text="You're looking at the right place?" />
-
       <ClusterProvider>
         <IntlProvider
           messages={translations}
@@ -61,6 +127,13 @@ function App({ router, ...props }: AppProps) {
           <ModalProvider>
             <WalletProvider>
               <ShipsProvider>
+                <div className="z-50">
+                  <div
+                    id="integrated-terminal"
+                    className="z-50 bg-slate-700 rounded-lg max-w-3xl"
+                  />
+                </div>
+
                 <ToastContainer />
 
                 <MainLayout>
@@ -110,7 +183,7 @@ const Pages = ({ Component, pageProps }: Omit<AppProps, 'router'>) => {
         `}
       </Script>
 
-      <Script src="https://terminal.jup.ag/main-v1.js" data-preload />
+      <Script src="https://terminal.jup.ag/main-v2.js" data-preload />
 
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />

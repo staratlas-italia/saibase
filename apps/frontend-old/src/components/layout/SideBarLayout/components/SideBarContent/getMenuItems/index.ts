@@ -40,11 +40,6 @@ export const getMenuItems = async (
 
   routes = routes.concat([
     {
-      name: 'Token swap',
-      route: `${APP_BASE_URL}/swapp`,
-      icon: `${APP_BASE_URL}/images/icons/arrow-path.svg`,
-    },
-    {
       name: intl.formatMessage({
         id: 'Layout.Sidebar.Ships.title',
       }),
