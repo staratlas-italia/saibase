@@ -1,8 +1,8 @@
-import { captureException } from "@sentry/nextjs";
-import { api } from "../api";
-import { Self } from "../../types/api";
-import { getProofMessage } from "../../utils/getProofMessage";
-import { getApiRoute } from "../../utils/getRoute";
+import { getApiRoute } from '@saibase/routes-api';
+import { captureException } from '@sentry/nextjs';
+import { Self } from '../../types/api';
+import { getProofMessage } from '../../utils/getProofMessage';
+import { api } from '../api';
 
 type Response =
   | {
@@ -20,10 +20,10 @@ export const createReferral = async (
 ): Promise<string | null> => {
   try {
     const response = await api.post<Response>(
-      getApiRoute("/api/referral/create"),
+      getApiRoute('/api/referral/create'),
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           publicKey,
@@ -60,10 +60,10 @@ export const redeemReferral = async (
 ): Promise<Self | null> => {
   try {
     const response = await api.post<RedeemResponse>(
-      getApiRoute("/api/referral/redeem"),
+      getApiRoute('/api/referral/redeem'),
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           publicKey,
@@ -80,7 +80,7 @@ export const redeemReferral = async (
 
     return null;
   } catch (e) {
-    captureException(e, { level: "error" });
+    captureException(e, { level: 'error' });
 
     return null;
   }

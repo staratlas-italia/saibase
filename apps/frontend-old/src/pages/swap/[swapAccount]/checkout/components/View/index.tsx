@@ -1,13 +1,13 @@
 import { ShieldCheckIcon } from '@heroicons/react/outline';
 import { Flex, Text } from '@saibase/uikit';
 import styled from 'styled-components';
+import { match } from 'ts-pattern';
 import { useSwapStateAccount } from '../../../../../../components/SwapStateAccountGuard';
 import { Wallet } from '../../../../../../components/Wallet';
 import { Loader as CLoader } from '../../../../../../components/common/Loader';
 import { BlurBackground } from '../../../../../../components/layout/BlurBackground';
 import { Container } from '../../../../../../components/layout/Container';
 import { Logo } from '../../../../../../components/layout/Header';
-import { useSwapProgramPrice } from '../../../../../../hooks/useSwapProgramPrice';
 import { Translation } from '../../../../../../i18n/Translation';
 import { ReferenceRetriever } from '../ReferenceRetriever';
 import { QrCode } from './QrCode';
@@ -33,8 +33,12 @@ const Icon = styled.img`
 `;
 
 const CartItem = () => {
-  const amount = useSwapProgramPrice();
-  const { name, vaultCurrency, image, quantity } = useSwapStateAccount();
+  const { name, vaultCurrency, image, quantity, price } = useSwapStateAccount();
+
+  const unitPrice = match(price)
+    .with({ type: 'unit' }, ({ value }) => value)
+    .with({ type: 'package' }, ({ value }) => value / (quantity ?? 1))
+    .exhaustive();
 
   return (
     <Flex justify="between" className="space-x-3">
@@ -54,7 +58,7 @@ const CartItem = () => {
 
       <Flex align="center">
         <Text color="text-white">
-          {amount.toFixed(3)} {vaultCurrency}
+          {unitPrice.toFixed(4)} {vaultCurrency}
         </Text>
       </Flex>
     </Flex>
@@ -62,8 +66,12 @@ const CartItem = () => {
 };
 
 export const View = () => {
-  const amount = useSwapProgramPrice();
-  const { sections, quantity, vaultCurrency } = useSwapStateAccount();
+  const { sections, quantity, vaultCurrency, price } = useSwapStateAccount();
+
+  const totalPrice = match(price)
+    .with({ type: 'unit' }, ({ value }) => value * (quantity ?? 1))
+    .with({ type: 'package' }, ({ value }) => value)
+    .exhaustive();
 
   return (
     <Container>
@@ -93,7 +101,7 @@ export const View = () => {
                 </Text>
 
                 <Text color="text-white" weight="semibold">
-                  {(amount * (quantity || 1)).toFixed(2)} {vaultCurrency}
+                  {totalPrice.toFixed(2)} {vaultCurrency}
                 </Text>
               </Flex>
             </Flex>

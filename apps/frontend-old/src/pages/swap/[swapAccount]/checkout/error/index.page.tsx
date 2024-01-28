@@ -1,6 +1,7 @@
-import Head from "next/head";
-import { SwapStateAccountGuard } from "../../../../../components/SwapStateAccountGuard";
-import { View } from "./View";
+import Head from 'next/head';
+import { BadgesRetriever } from '../../../../../components/BadgesRetriever';
+import { SwapStateAccountGuard } from '../../../../../components/SwapStateAccountGuard';
+import { View } from './View';
 
 const Citizenship = () => (
   <>
@@ -8,9 +9,11 @@ const Citizenship = () => (
       <title>Citizenship - StarAtlasItalia</title>
     </Head>
 
-    <SwapStateAccountGuard>
-      <View />
-    </SwapStateAccountGuard>
+    <BadgesRetriever>
+      <SwapStateAccountGuard>
+        <View />
+      </SwapStateAccountGuard>
+    </BadgesRetriever>
   </>
 );
 

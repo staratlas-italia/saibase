@@ -1,9 +1,10 @@
-import { PublicKey } from "@solana/web3.js";
-import { values } from "lodash";
-import { CITIZEN_TOKEN_MINT_PER_FACTION } from "../../common/constants/citizenship";
-import { tier1BadgeMints } from "./tier1";
-import { tier2BadgeMints } from "./tier2";
-import { tier3BadgeMints } from "./tier3";
+import { PublicKey } from '@solana/web3.js';
+import { values } from 'lodash';
+
+import { citizenship } from '@saibase/sai-citizenship';
+import { tier1BadgeMints } from './tier1';
+import { tier2BadgeMints } from './tier2';
+import { tier3BadgeMints } from './tier3';
 
 export const allGenesisBadgeMints = [
   ...tier1BadgeMints,
@@ -13,23 +14,23 @@ export const allGenesisBadgeMints = [
 
 export const getBadgeByMint = (badgeMint: PublicKey) => {
   if (tier1BadgeMints.includes(badgeMint.toString())) {
-    return "tier1";
+    return 'tier1';
   }
 
   if (tier2BadgeMints.includes(badgeMint.toString())) {
-    return "tier2";
+    return 'tier2';
   }
 
   if (tier3BadgeMints.includes(badgeMint.toString())) {
-    return "tier3";
+    return 'tier3';
   }
 
   if (
-    values(CITIZEN_TOKEN_MINT_PER_FACTION)
+    values(citizenship.tokenMintPerFaction['mainnet-beta'])
       .map((s) => s.toString())
       .includes(badgeMint.toString())
   ) {
-    return "citizenship";
+    return 'citizenship';
   }
 
   return null;

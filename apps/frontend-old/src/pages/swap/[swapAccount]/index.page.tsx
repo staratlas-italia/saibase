@@ -1,6 +1,7 @@
-import Head from "next/head";
-import { SwapStateAccountGuard } from "../../../components/SwapStateAccountGuard";
-import { View } from "./components/View";
+import Head from 'next/head';
+import { BadgesRetriever } from '../../../components/BadgesRetriever';
+import { SwapStateAccountGuard } from '../../../components/SwapStateAccountGuard';
+import { View } from './components/View';
 
 const TokenSwap = () => {
   return (
@@ -9,9 +10,11 @@ const TokenSwap = () => {
         <title>Swap - StarAtlasItalia</title>
       </Head>
 
-      <SwapStateAccountGuard>
-        <View />
-      </SwapStateAccountGuard>
+      <BadgesRetriever>
+        <SwapStateAccountGuard>
+          <View />
+        </SwapStateAccountGuard>
+      </BadgesRetriever>
     </>
   );
 };
