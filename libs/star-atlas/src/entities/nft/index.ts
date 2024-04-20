@@ -25,6 +25,7 @@ export const attributeCodec = t.type({
     t.literal('epic'),
     t.literal('uncommon'),
     t.literal('legendary'),
+    t.literal('Legendary'),
     t.literal('anomaly'),
     t.literal('rare'),
     t.literal('common'),
