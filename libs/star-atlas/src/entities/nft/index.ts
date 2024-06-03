@@ -7,31 +7,12 @@ import {
 import * as t from 'io-ts';
 
 export const attributeCodec = t.type({
-  itemType: t.union([
-    t.literal('collectible'),
-    t.literal('access'),
-    t.literal('ship'),
-    t.literal('structure'),
-    t.literal('resource'),
-    t.literal('story'),
-    t.literal('currency'),
-    t.literal('memories'),
-    t.literal('crew'),
-  ]),
+  itemType: t.string,
   tier: optional(t.number),
   class: t.string,
   category: optional(t.string),
   score: optional(t.number),
-  rarity: t.union([
-    t.literal('epic'),
-    t.literal('uncommon'),
-    t.literal('legendary'),
-    t.literal('Legendary'),
-    t.literal('anomaly'),
-    t.literal('rare'),
-    t.literal('common'),
-    t.literal('platinum')
-  ]),
+  rarity: t.string,
   musician: optional(t.string),
   spec: optional(t.string),
   make: optional(t.string),
@@ -39,15 +20,9 @@ export const attributeCodec = t.type({
   unitLength: optional(t.number),
   unitWidth: optional(t.number),
   unitHeight: optional(t.number),
-  seriesName: optional(t.literal('core')),
+  seriesName: optional(t.string),
   episode: optional(t.number),
-  edition: optional(
-    t.union([
-      t.literal('star-atlas'),
-      t.literal('magic-eden'),
-      t.literal('alternate-cover'),
-    ])
-  ),
+  edition: optional(t.string),
 });
 
 const crewCodec = t.union([
