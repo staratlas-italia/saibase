@@ -16,6 +16,7 @@ export const attributeCodec = t.type({
     t.literal('story'),
     t.literal('currency'),
     t.literal('memories'),
+    t.literal('crew'),
   ]),
   tier: optional(t.number),
   class: t.string,
@@ -29,6 +30,7 @@ export const attributeCodec = t.type({
     t.literal('anomaly'),
     t.literal('rare'),
     t.literal('common'),
+    t.literal('platinum')
   ]),
   musician: optional(t.string),
   spec: optional(t.string),
