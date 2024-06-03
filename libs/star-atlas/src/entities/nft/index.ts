@@ -7,29 +7,12 @@ import {
 import * as t from 'io-ts';
 
 export const attributeCodec = t.type({
-  itemType: t.union([
-    t.literal('collectible'),
-    t.literal('access'),
-    t.literal('ship'),
-    t.literal('structure'),
-    t.literal('resource'),
-    t.literal('story'),
-    t.literal('currency'),
-    t.literal('memories'),
-  ]),
+  itemType: t.string,
   tier: optional(t.number),
   class: t.string,
   category: optional(t.string),
   score: optional(t.number),
-  rarity: t.union([
-    t.literal('epic'),
-    t.literal('uncommon'),
-    t.literal('legendary'),
-    t.literal('Legendary'),
-    t.literal('anomaly'),
-    t.literal('rare'),
-    t.literal('common'),
-  ]),
+  rarity: t.string,
   musician: optional(t.string),
   spec: optional(t.string),
   make: optional(t.string),
@@ -37,37 +20,15 @@ export const attributeCodec = t.type({
   unitLength: optional(t.number),
   unitWidth: optional(t.number),
   unitHeight: optional(t.number),
-  seriesName: optional(t.literal('core')),
+  seriesName: optional(t.string),
   episode: optional(t.number),
-  edition: optional(
-    t.union([
-      t.literal('star-atlas'),
-      t.literal('magic-eden'),
-      t.literal('alternate-cover'),
-    ])
-  ),
+  edition: optional(t.string),
 });
 
-const crewCodec = t.union([
-  t.literal('medium'),
-  t.literal('x-small'),
-  t.literal('small'),
-  t.literal('large'),
-  t.literal('xx-small'),
-  t.literal('capital'),
-  t.literal('commander'),
-  t.literal('class 8'),
-  t.literal('xxx-small'),
-  t.literal('Class 8'),
-  t.literal('titan'),
-  t.literal('crew'),
-  t.literal('XX-Small'),
-]);
-
 const slotCodec = t.type({
-  crew: optional(crewCodec),
+  crew: optional(t.string),
   type: t.string,
-  size: optional(crewCodec),
+  size: optional(t.string),
   quantity: t.number,
 });
 

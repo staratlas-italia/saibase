@@ -53,7 +53,7 @@ export const fetchFleetStatsByOwners = async (
             ...shipsStats.ships,
             [ship.mint]: {
               ...shipsStats.ships[ship.mint],
-              vwap: getEntityVwapPrice(ship.primarySales),
+              vwap: getEntityVwapPrice(ship.primarySales ?? []),
               mint: ship.mint,
               name: ship.name,
               attributes: ship.attributes,
