@@ -25,26 +25,10 @@ export const attributeCodec = t.type({
   edition: optional(t.string),
 });
 
-const crewCodec = t.union([
-  t.literal('medium'),
-  t.literal('x-small'),
-  t.literal('small'),
-  t.literal('large'),
-  t.literal('xx-small'),
-  t.literal('capital'),
-  t.literal('commander'),
-  t.literal('class 8'),
-  t.literal('xxx-small'),
-  t.literal('Class 8'),
-  t.literal('titan'),
-  t.literal('crew'),
-  t.literal('XX-Small'),
-]);
-
 const slotCodec = t.type({
-  crew: optional(crewCodec),
+  crew: optional(t.string),
   type: t.string,
-  size: optional(crewCodec),
+  size: optional(t.string),
   quantity: t.number,
 });
 
