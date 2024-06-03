@@ -30,7 +30,7 @@ export const ShipCard = ({ ship }: Props) => {
 
   const isF = isFirefox();
 
-  const url = ship.markets.length
+  const url = ship.markets?.length
     ? `https://play.staratlas.com/market/${ship.name
         .toLowerCase()
         .replace(/\s/g, '-')}`

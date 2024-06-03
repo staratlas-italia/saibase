@@ -64,7 +64,7 @@ export const useShipsDealsStore = create<ShipsDealsStore>((set, get) => ({
 
     const data = ships.map((ship) => {
       const vwapPrice =
-        ship.tradeSettings.vwap ?? getEntityVwapPrice(ship.primarySales);
+        ship.tradeSettings.vwap ?? getEntityVwapPrice(ship.primarySales ?? []);
 
       const buyPrice = Math.min(
         ...(orders.usdc.sell
