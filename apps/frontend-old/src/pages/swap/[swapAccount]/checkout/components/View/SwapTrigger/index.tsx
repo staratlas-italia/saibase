@@ -8,6 +8,7 @@ import {
 } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { useCallback, useState } from 'react';
+import { match } from 'ts-pattern';
 import { useCluster } from '../../../../../../../components/ClusterProvider';
 import { useSwapStateAccount } from '../../../../../../../components/SwapStateAccountGuard';
 import { useTransactionToast } from '../../../../../../../hooks/useTransactionToast';
@@ -23,6 +24,11 @@ export const SwapTrigger = () => {
 
   const { connection } = useConnection();
   const { swapAccount, mint, quantity } = useSwapStateAccount();
+
+  const quantityFormatted = match(quantity)
+    .with({ type: 'fixed' }, ({ value }) => value)
+    .with({ type: 'user-defined' }, undefined, () => 1)
+    .exhaustive();
 
   const reference = usePaymentReference();
   const showTransactionToast = useTransactionToast();
@@ -49,7 +55,7 @@ export const SwapTrigger = () => {
         anchorWallet,
         swapAccount,
         mint,
-        quantity
+        quantityFormatted
       );
 
       transaction.instructions[0].keys.push({
@@ -75,7 +81,7 @@ export const SwapTrigger = () => {
     cluster,
     swapAccount,
     mint,
-    quantity,
+    quantityFormatted,
     reference,
     showTransactionToast,
     sendTransaction,
