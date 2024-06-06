@@ -41,8 +41,7 @@ const ConnectedBackground = () => {
 
   const showAnimation = useHueAnimation();
 
-  const [badge] =
-    badges.find(([badge]) => isFactionBadge(badge.mintAddress)) || [];
+  const badge = badges.find((badge) => isFactionBadge(badge.mint.address));
 
   if (!badge) {
     return <LayoutBackground />;
@@ -50,7 +49,7 @@ const ConnectedBackground = () => {
 
   return (
     <LayoutBackground
-      badgeMint={badge.mintAddress.toString()}
+      badgeMint={badge.mint.address.toString()}
       show={showAnimation}
     />
   );

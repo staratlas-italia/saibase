@@ -1,22 +1,27 @@
+import { getApiRoute } from '@saibase/routes-api';
+import { getPublicRoute } from '@saibase/routes-public';
 import { Flex } from '@saibase/uikit';
 import { createQR, encodeURL } from '@solana/pay';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/router';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { match } from 'ts-pattern';
 import { useCluster } from '../../../../../../../components/ClusterProvider';
 import { useSwapStateAccount } from '../../../../../../../components/SwapStateAccountGuard';
-import { useSwapProgramPrice } from '../../../../../../../hooks/useSwapProgramPrice';
 import { usePaymentStore } from '../../../../../../../stores/usePaymentStore';
 import { appendQueryParams } from '../../../../../../../utils/appendQueryParams';
 import { fillUrlParameters } from '../../../../../../../utils/fillUrlParameters';
-import { getApiRoute, getRoute } from '../../../../../../../utils/getRoute';
 import { usePaymentReference } from '../../ReferenceRetriever';
 
 export const QrCode = memo(() => {
-  const amount = useSwapProgramPrice();
   const router = useRouter();
 
-  const { swapAccount, quantity } = useSwapStateAccount();
+  const { swapAccount, quantity, price } = useSwapStateAccount();
+
+  const totalPrice = match(price)
+    .with({ type: 'unit' }, ({ value }) => value * (quantity ?? 1))
+    .with({ type: 'package' }, ({ value }) => value)
+    .exhaustive();
 
   const { cluster } = useCluster();
   const confirmPayment = usePaymentStore((s) => s.confirm);
@@ -44,7 +49,7 @@ export const QrCode = memo(() => {
   useEffect(() => {
     const qr = createQR(url, 250, 'transparent');
 
-    if (qrRef.current && amount > 0) {
+    if (qrRef.current && totalPrice > 0) {
       qrRef.current.innerHTML = '';
       qr.append(qrRef.current);
     }
@@ -56,7 +61,7 @@ export const QrCode = memo(() => {
     }
 
     const status = await confirmPayment({
-      amount: amount * (quantity || 1),
+      amount: totalPrice,
       cluster,
       publicKey: publicKey.toString(),
       reference,
@@ -67,7 +72,7 @@ export const QrCode = memo(() => {
         router.push(
           appendQueryParams(
             fillUrlParameters(
-              getRoute('/swap/:swapAccount/checkout/confirmed'),
+              getPublicRoute('/swap/:swapAccount/checkout/confirmed'),
               {
                 swapAccount: swapAccount.toString(),
               }
@@ -81,20 +86,22 @@ export const QrCode = memo(() => {
 
       router.push(
         appendQueryParams(
-          fillUrlParameters(getRoute('/swap/:swapAccount/checkout/error'), {
-            swapAccount: swapAccount.toString(),
-          }),
+          fillUrlParameters(
+            getPublicRoute('/swap/:swapAccount/checkout/error'),
+            {
+              swapAccount: swapAccount.toString(),
+            }
+          ),
           { cluster }
         )
       );
       return;
     }
   }, [
-    amount,
+    totalPrice,
     cluster,
     confirmPayment,
     publicKey,
-    quantity,
     reference,
     router,
     swapAccount,

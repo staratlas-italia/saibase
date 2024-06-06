@@ -1,12 +1,12 @@
-import { CITIZEN_TOKEN_MINT_PER_FACTION } from "../../common/constants/citizenship";
+import { citizenship } from '@saibase/sai-citizenship';
 
 export const getHueByFactionStyle = (badgeMint: string) => {
   switch (badgeMint) {
-    case CITIZEN_TOKEN_MINT_PER_FACTION.mud.toString():
+    case citizenship.tokenMintPerFaction['mainnet-beta'].mud.toString():
       return 140;
-    case CITIZEN_TOKEN_MINT_PER_FACTION.oni.toString():
+    case citizenship.tokenMintPerFaction['mainnet-beta'].oni.toString():
       return 40;
-    case CITIZEN_TOKEN_MINT_PER_FACTION.ustur.toString():
+    case citizenship.tokenMintPerFaction['mainnet-beta'].ustur.toString():
       return 200;
     default:
       return 0;
