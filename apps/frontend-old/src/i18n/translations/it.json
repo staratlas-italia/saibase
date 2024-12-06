@@ -137,5 +137,12 @@
   "tutor.shares.description.3": "in più rispetto al bundle Small",
   "tutor.badgeSelector.whatYouReceive": "Cosa riceverai:",
   "toast.multiple.pending.transaction": "Invio transazione %i di %c...",
-  "toast.multiple.success.transaction": "Transazione %i di %c completata"
+  "toast.multiple.success.transaction": "Transazione %i di %c completata",
+  "resource.intro.title": "TODO",
+  "resource.checkout.title": "TODO",
+  "resource.checkout.subtitle": "TODO",
+  "resource.checkout.confirmed.subtitle": "TODO",
+  "resource.intro.description.arco": "TODO",
+  "resource.resourceSelector.pieces": "{items} tokens",
+  "resource.resourceSelector.resume": "{nTokens} tokens for {quantity} "
 }
