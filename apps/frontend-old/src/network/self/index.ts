@@ -1,13 +1,13 @@
-import { Cluster } from "@solana/web3.js";
-import type { WithoutId } from "mongodb";
-import { api } from "../api";
-import { fetchPlayer } from "../player";
-import { Player } from "../../types";
-import { Self } from "../../types/api";
-import { appendQueryParams } from "../../utils/appendQueryParams";
-import { getFactionName } from "../../utils/getFactionName";
-import { getProofMessage } from "../../utils/getProofMessage";
-import { getApiRoute } from "../../utils/getRoute";
+import { getApiRoute } from '@saibase/routes-api';
+import { Cluster } from '@solana/web3.js';
+import type { WithoutId } from 'mongodb';
+import { Player } from '../../types';
+import { Self } from '../../types/api';
+import { appendQueryParams } from '../../utils/appendQueryParams';
+import { getFactionName } from '../../utils/getFactionName';
+import { getProofMessage } from '../../utils/getProofMessage';
+import { api } from '../api';
+import { fetchPlayer } from '../player';
 
 const buildDefaultSelf = (
   publicKey: string,
@@ -49,7 +49,7 @@ export const fetchOrCreateSelf = async ({
 }) => {
   try {
     const response = await api.get<SelfResponse>(
-      appendQueryParams(getApiRoute("/api/self"), { cluster, publicKey })
+      appendQueryParams(getApiRoute('/api/self'), { cluster, publicKey })
     );
 
     if (response.success) {
@@ -73,9 +73,9 @@ const insertSelf = async ({
   self: WithoutId<Self>;
 }) => {
   try {
-    const response = await api.post<SelfResponse>(getApiRoute("/api/self"), {
+    const response = await api.post<SelfResponse>(getApiRoute('/api/self'), {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: { cluster, self },
     });
@@ -101,10 +101,10 @@ export const linkDiscordId = async ({
 }) => {
   try {
     const response = await api.post<SelfResponse>(
-      getApiRoute("/api/self/link"),
+      getApiRoute('/api/self/link'),
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           discordId,

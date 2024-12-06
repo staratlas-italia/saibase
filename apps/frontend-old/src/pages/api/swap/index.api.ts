@@ -1,37 +1,44 @@
-import { AnchorProvider, BN, Program } from "@project-serum/anchor";
-import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-import { getAssociatedTokenAddress } from "@solana/spl-token";
+import { bs58 } from '@project-serum/anchor/dist/cjs/utils/bytes';
+import { mints, mintsDecimals } from '@saibase/constants';
+import { matchMethodMiddleware } from '@saibase/middlewares';
+import {
+  createTransferCheckedInstruction,
+  getAssociatedTokenAddressSync,
+} from '@solana/spl-token';
 import {
   Cluster,
   Connection,
   Keypair,
   PublicKey,
-  Transaction,
-} from "@solana/web3.js";
-import { pipe } from "fp-ts/function";
-import { NextApiRequest, NextApiResponse } from "next";
+  TransactionMessage,
+  VersionedTransaction,
+} from '@solana/web3.js';
+import { pipe } from 'fp-ts/function';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { match } from 'ts-pattern';
+import { encodeBase64 } from 'tweetnacl-util';
 import {
   APP_BASE_URL,
   DEVNET_TOKEN_SWAP_STATE_ACCOUNTS,
-  DEVNET_USDC_TOKEN_MINT,
-  SAI_TOKEN_SWAP_PROGRAM_ID,
   TOKEN_SWAP_STATE_ACCOUNTS,
-  USDC_TOKEN_MINT,
-} from "../../../common/constants";
-import { matchMethodMiddleware } from "../../../middlewares/matchMethod";
-import { IDL } from "../../../programs/sai_token_swap";
-import { getConnectionClusterUrl } from "../../../utils/connection";
+} from '../../../common/constants';
+import { getConnectionClusterUrl } from '../../../utils/connection';
 
 const getSwapState = (cluster?: Cluster) =>
-  cluster === "devnet"
+  cluster === 'devnet'
     ? DEVNET_TOKEN_SWAP_STATE_ACCOUNTS
     : TOKEN_SWAP_STATE_ACCOUNTS;
+
+const keypair = Keypair.fromSecretKey(
+  bs58.decode(process.env.PROCEEDS_PRIVATE_KEY!)
+);
 
 const getHandler = (req: NextApiRequest, res: NextApiResponse) => {
   const stateAccountField = req.query.stateAccount as string;
   const clusterField = req.query.cluster as Cluster | undefined;
 
   const state = getSwapState(clusterField)[stateAccountField];
+
   const path = state.image.square;
 
   res.status(200).json({
@@ -41,77 +48,75 @@ const getHandler = (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const accountField = req.body?.account;
+  const publicKeyField = req.body?.account;
   const stateAccountField = req.query.stateAccount as string;
   const referenceField = req.query.reference as string;
-  const publicKeyField = req.query.publicKey as string;
   const clusterField = req.query.cluster as Cluster | undefined;
+  const quantity = Number(req.query.quantity as string);
 
-  if (
-    !accountField ||
-    !stateAccountField ||
-    !publicKeyField ||
-    !referenceField
-  ) {
-    throw new Error("Invalid params");
+  if (!stateAccountField || !publicKeyField || !referenceField || !quantity) {
+    throw new Error('Invalid params');
   }
 
-  const owner = new PublicKey(accountField);
   const publicKey = new PublicKey(publicKeyField);
 
-  if (!owner.equals(publicKey)) {
-    throw new Error("Not same publickey!");
-  }
-
   const reference = new PublicKey(referenceField);
-  const stateAccount = new PublicKey(stateAccountField);
 
   const connection = new Connection(getConnectionClusterUrl(clusterField));
 
-  const provider = new AnchorProvider(
-    connection,
-    new NodeWallet(Keypair.generate()),
-    AnchorProvider.defaultOptions()
+  const buyerOutTokenAccount = getAssociatedTokenAddressSync(
+    clusterField === 'devnet' ? mints.usdcDevnet : mints.usdc,
+    publicKey
   );
 
-  const program = new Program(IDL, SAI_TOKEN_SWAP_PROGRAM_ID, provider);
+  const states = getSwapState(clusterField);
 
-  const [vaultPda] = await PublicKey.findProgramAddress(
-    [Buffer.from("vault"), stateAccount.toBuffer()],
-    SAI_TOKEN_SWAP_PROGRAM_ID
-  );
+  const state = states[stateAccountField];
 
-  const [proceedsVaultPda] = await PublicKey.findProgramAddress(
-    [Buffer.from("proceeds_vault"), stateAccount.toBuffer()],
-    SAI_TOKEN_SWAP_PROGRAM_ID
-  );
+  if (!state) {
+    throw new Error('Invalid state account');
+  }
 
-  const buyerOutTokenAccount = await getAssociatedTokenAddress(
-    clusterField === "devnet" ? DEVNET_USDC_TOKEN_MINT : USDC_TOKEN_MINT,
-    owner
-  );
+  const amount = match(state.price)
+    .with({ type: 'unit' }, ({ value }) => value * (quantity ?? 1))
+    .with({ type: 'package' }, ({ value }) => value)
+    .exhaustive();
 
-  const state = getSwapState(clusterField)[stateAccountField];
-
-  const buyerInTokenAccount = await getAssociatedTokenAddress(
+  const buyerInTokenAccount = getAssociatedTokenAddressSync(
     state.mint,
-    owner
+    publicKey
   );
 
-  const swapIx = await program.methods
-    .swap(new BN(1))
-    .accounts({
-      mint: state.mint,
-      buyerInTokenAccount,
-      buyerOutTokenAccount,
-      state: stateAccount,
-      buyer: owner,
-      vault: vaultPda,
-      proceedsVault: proceedsVaultPda,
-    })
-    .instruction();
+  const ownerOutTokenAccount = getAssociatedTokenAddressSync(
+    state.mint,
+    keypair.publicKey
+  );
 
-  swapIx.keys.push({
+  const usdcMint = clusterField === 'devnet' ? mints.usdcDevnet : mints.usdc;
+  const ownerInTokenAccount = getAssociatedTokenAddressSync(
+    usdcMint,
+    keypair.publicKey
+  );
+
+  const tokenIx = createTransferCheckedInstruction(
+    ownerOutTokenAccount,
+    state.mint,
+    buyerInTokenAccount,
+    keypair.publicKey,
+    quantity,
+    0
+  );
+
+  const usdcIx = createTransferCheckedInstruction(
+    buyerOutTokenAccount,
+    usdcMint,
+    ownerInTokenAccount,
+    publicKey,
+    amount * Math.pow(10, mintsDecimals.usdc.toNumber()),
+    mintsDecimals.usdc.toNumber()
+  );
+
+  tokenIx.keys.push({
     pubkey: reference,
     isWritable: false,
     isSigner: false,
@@ -119,32 +124,28 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const chainInfo = await connection.getLatestBlockhashAndContext();
 
-  const transaction = new Transaction({
-    feePayer: owner,
-    ...chainInfo.value,
-  });
+  const messageV0 = new TransactionMessage({
+    payerKey: publicKey,
+    recentBlockhash: chainInfo.value.blockhash,
+    instructions: [tokenIx, usdcIx],
+  }).compileToV0Message();
 
-  transaction.add(swapIx);
+  const transaction = new VersionedTransaction(messageV0);
 
-  const serializedTransaction = transaction.serialize({
-    requireAllSignatures: false,
-    verifySignatures: false,
-  });
+  transaction.sign([keypair]);
 
-  const base64Transaction = serializedTransaction.toString("base64");
+  const serializedTransaction = encodeBase64(transaction.serialize());
 
   const message = `Thank you for your purchase of ${state.name}`;
 
-  res.status(200).json({ transaction: base64Transaction, message });
+  res.status(200).json({ transaction: serializedTransaction, message });
 };
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  switch (req.method) {
-    case "GET":
-      return getHandler(req, res);
-    case "POST":
-      return postHandler(req, res);
-  }
+  match(req.method as 'POST' | 'GET')
+    .with('GET', () => getHandler(req, res))
+    .with('POST', () => postHandler(req, res))
+    .otherwise(() => null);
 };
 
-export default pipe(handler, matchMethodMiddleware(["GET", "POST"]));
+export default pipe(handler, matchMethodMiddleware(['GET', 'POST']));

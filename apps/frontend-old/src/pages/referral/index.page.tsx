@@ -1,4 +1,5 @@
 import { useFeature } from '@growthbook/growthbook-react';
+import { getPublicRoute } from '@saibase/routes-public';
 import { Button, Text } from '@saibase/uikit';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/router';
@@ -7,7 +8,6 @@ import { Redirect } from '../../components/common/Redirect';
 import { BlurBackground } from '../../components/layout/BlurBackground';
 import { useReferral } from '../../hooks/useReferral';
 import { Translation } from '../../i18n/Translation';
-import { getRoute } from '../../utils/getRoute';
 
 const ReferralCodePage = () => {
   const isReferralSystemDisabled = useFeature(
@@ -20,7 +20,7 @@ const ReferralCodePage = () => {
   const { redeem, redeemingUser } = useReferral();
 
   if (isReferralSystemDisabled) {
-    return <Redirect to={getRoute('/dashboard')} />;
+    return <Redirect to={getPublicRoute('/dashboard')} />;
   }
 
   if (!wallet || !connected) {
@@ -48,7 +48,7 @@ const ReferralCodePage = () => {
     );
   }
 
-  return <Redirect to={getRoute('/dashboard')} />;
+  return <Redirect to={getPublicRoute('/dashboard')} />;
 };
 
 export default ReferralCodePage;

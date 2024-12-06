@@ -1,66 +1,61 @@
+import { getApiRoute } from '@saibase/routes-api';
 import { Button } from '@saibase/uikit';
 import { captureException } from '@sentry/nextjs';
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
-import {
-  useAnchorWallet,
-  useConnection,
-  useWallet,
-} from '@solana/wallet-adapter-react';
-import { PublicKey } from '@solana/web3.js';
-import { useCallback, useState } from 'react';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { VersionedTransaction } from '@solana/web3.js';
+import { useState } from 'react';
 import { useCluster } from '../../../../../../../components/ClusterProvider';
 import { useSwapStateAccount } from '../../../../../../../components/SwapStateAccountGuard';
 import { useTransactionToast } from '../../../../../../../hooks/useTransactionToast';
 import { Translation } from '../../../../../../../i18n/Translation';
-import { swapToken } from '../../../../../../../programs';
 import { usePaymentReference } from '../../ReferenceRetriever';
 
 export const SwapTrigger = () => {
   const { cluster } = useCluster();
 
-  const anchorWallet = useAnchorWallet();
-  const { sendTransaction } = useWallet();
+  const { publicKey, sendTransaction } = useWallet();
 
   const { connection } = useConnection();
-  const { swapAccount, mint, quantity } = useSwapStateAccount();
+  const { swapAccount, quantity } = useSwapStateAccount();
 
   const reference = usePaymentReference();
   const showTransactionToast = useTransactionToast();
 
   const [loading, setLoading] = useState(false);
 
-  const handleDirectPayment = useCallback(async () => {
+  const handleDirectPayment = async () => {
     if (loading) {
       return;
     }
 
     try {
-      if (!anchorWallet) {
+      if (!publicKey) {
         throw new WalletNotConnectedError();
       }
 
       setLoading(true);
 
-      const chainInfo = await connection.getLatestBlockhashAndContext();
-
-      const transaction = await swapToken(
-        cluster,
-        connection,
-        anchorWallet,
-        swapAccount,
-        mint,
-        quantity
+      const currentUrl = new URL(
+        `${window.location.origin}${getApiRoute('/api/swap')}`
       );
 
-      transaction.instructions[0].keys.push({
-        pubkey: new PublicKey(reference),
-        isSigner: false,
-        isWritable: false,
-      });
+      currentUrl.searchParams.append('quantity', String(quantity ?? 1));
+      currentUrl.searchParams.append('cluster', cluster);
+      currentUrl.searchParams.append('reference', reference.toString());
+      currentUrl.searchParams.append('stateAccount', swapAccount.toString());
 
-      transaction.recentBlockhash = chainInfo.value.blockhash;
-      transaction.lastValidBlockHeight = chainInfo.value.lastValidBlockHeight;
-      transaction.feePayer = anchorWallet.publicKey;
+      const { transaction: base64Tx } = await fetch(currentUrl, {
+        method: 'POST',
+        body: JSON.stringify({ account: publicKey.toString() }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => res.json() as Promise<{ transaction: string }>);
+
+      const transaction = VersionedTransaction.deserialize(
+        Buffer.from(base64Tx, 'base64')
+      );
 
       showTransactionToast(() => sendTransaction(transaction, connection));
     } catch (e) {
@@ -68,18 +63,7 @@ export const SwapTrigger = () => {
     } finally {
       setLoading(false);
     }
-  }, [
-    loading,
-    anchorWallet,
-    connection,
-    cluster,
-    swapAccount,
-    mint,
-    quantity,
-    reference,
-    showTransactionToast,
-    sendTransaction,
-  ]);
+  };
 
   return (
     <Button

@@ -1,7 +1,7 @@
-import { Cluster } from "@solana/web3.js";
-import { api } from "../../api";
-import { ConfirmPaymentResponse } from "../../../types/api";
-import { getApiRoute } from "../../../utils/getRoute";
+import { getApiRoute } from '@saibase/routes-api';
+import { Cluster } from '@solana/web3.js';
+import { ConfirmPaymentResponse } from '../../../types/api';
+import { api } from '../../api';
 
 type Param = {
   amount: number;
@@ -19,7 +19,7 @@ export const confirmPayment = async ({
   signal = new AbortController().signal,
 }: Param) => {
   const response = await api.post<ConfirmPaymentResponse>(
-    getApiRoute("/api/payment/confirm"),
+    getApiRoute('/api/payment/confirm'),
     {
       body: {
         amount,
@@ -28,7 +28,7 @@ export const confirmPayment = async ({
         reference,
       },
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       signal,
     }
